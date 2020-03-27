@@ -4,16 +4,16 @@ import "./Map.css"
 import Map from "./Map"
 import { useState, useEffect } from "react"
 
+const WIDTH = 959
+const HEIGHT = 593
 export default function RegretsMap() {
-  const WIDTH = 959
-  const fullHeight = 593
   const svgRef = useRef()
   const [zoomed, setZoomed] = useState(false)
 
   const [xPos, setXPos] = useState(0)
   const [yPos, setYPos] = useState(0)
   const [width, setWidth] = useState(WIDTH)
-  const [height, setHeight] = useState(fullHeight)
+  const [height, setHeight] = useState(HEIGHT)
   const viewBox = {
     xPos,
     yPos,
@@ -21,29 +21,21 @@ export default function RegretsMap() {
     height,
   }
 
-  const animateViewBoxScale = (nextXPos, nextYPos, nextWidth, nextHeight) => {
+  function animateViewBoxScale(nextXPos, nextYPos, nextWidth, nextHeight) {
     let distanceTraveled = 0
-    const speed = 50
-    const { distanceHeight, distanceWidth } = widthHeightDistance(
-      width,
-      height,
-      nextWidth,
-      nextHeight
-    )
-    const distanceXPos = nextXPos - xPos
-    const distanceYPos = nextYPos - yPos
-    const widthUnit = distanceWidth / speed
-    const heightUnit = distanceHeight / speed
-    const xPosUnit = distanceXPos / speed
-    const yPosUnit = distanceYPos / speed
+    const speed = 20
+
+    const widthUnit = nextWidth / speed
+    const heightUnit = nextHeight / speed
+    const xPosUnit = nextXPos / speed
+    const yPosUnit = nextYPos / speed
     const animateValue = () => {
       setWidth(prevState => prevState - widthUnit)
       setHeight(prevState => prevState - heightUnit)
       setXPos(prevState => prevState + xPosUnit)
       setYPos(prevState => prevState + yPosUnit)
       distanceTraveled += 1
-      const checkValue =
-        distanceWidth > distanceHeight ? distanceWidth : distanceHeight
+
       if (distanceTraveled !== speed) {
         requestAnimationFrame(animateValue)
       }
@@ -51,47 +43,71 @@ export default function RegretsMap() {
     requestAnimationFrame(animateValue)
   }
 
-  const [testCo, setTestCo] = useState({ x: 0, y: 0 })
-
-  const zoomHalf = e => {
-    console.log(svgRef)
+  const focusOnState = e => {
     const state = e.target.getBoundingClientRect()
     const svg = e.target.parentElement.parentElement.getBoundingClientRect()
+
     const stateRelative = {
       width: (state.width / svg.width) * WIDTH,
-      height: (state.height / svg.height) * fullHeight,
+      height: (state.height / svg.height) * HEIGHT,
       x: ((state.left - svg.left) / svg.width) * WIDTH,
-      y: ((state.top - svg.top) / svg.height) * fullHeight,
+      y: ((state.top - svg.top) / svg.height) * HEIGHT,
     }
-    console.table({ stateRelative, svg, state })
 
-    animateViewBoxScale(
-      stateRelative.x,
-      stateRelative.y,
+    //sets it to be half the size of the viewport
+    const twiceStateWidth = stateRelative.width * 2
+    const twiceStateHeight = getRatio(
+      stateRelative.height,
       stateRelative.width,
-      stateRelative.height
+      twiceStateWidth * 0.8
     )
 
-    setTestCo({ x: stateRelative.x, y: stateRelative.y })
+    const orientation = getOrientation(
+      width,
+      height,
+      twiceStateWidth,
+      twiceStateHeight
+    )
+    const heightAndWidthViewPort = () => {
+      if (orientation === width) {
+        const widthViewPort = twiceStateWidth
+        const heightViewPort = getRatio(height, width, twiceStateWidth)
+        return { widthViewPort, heightViewPort }
+      } else {
+        const heightViewPort = twiceStateHeight
+        const widthViewPort = getRatio(width, height, twiceStateHeight)
+        return { widthViewPort, heightViewPort }
+      }
+    }
+
+    const { widthViewPort, heightViewPort } = heightAndWidthViewPort()
+    const distanceWidth = width - widthViewPort
+    const distanceHeight = height - heightViewPort
+    const distanceXPos =
+      stateRelative.x - xPos - widthViewPort + twiceStateWidth / 2
+    const distanceYPos =
+      stateRelative.y - yPos - heightViewPort + twiceStateHeight * 0.75
+
+    const viewPort = {
+      distanceXPos,
+      distanceYPos,
+      distanceWidth,
+      distanceHeight,
+    }
+
+    animateViewBoxScale(
+      viewPort.distanceXPos,
+      viewPort.distanceYPos,
+      viewPort.distanceWidth,
+      viewPort.distanceHeight
+    )
   }
 
   return (
     <div
-      onClick={zoomHalf}
+      onClick={focusOnState}
       style={{ position: "relative", width: `100%`, height: `100%` }}
     >
-      <span
-        style={{
-          backgroundColor: "red",
-          position: "absolute",
-          top: testCo.y,
-          left: testCo.x,
-          width: "20px",
-          height: `20px`,
-        }}
-      >
-        {""}
-      </span>
       <Map
         {...viewBox}
         ref={svgRef}
@@ -101,15 +117,23 @@ export default function RegretsMap() {
   )
 }
 
-function widthHeightDistance(width, height, nextWidth, nextHeight) {
-  const orientation = nextWidth - width >= nextHeight - height ? width : height
-  if (orientation === width) {
-    const distanceWidth = width - nextWidth
-    const distanceHeight = height - (nextWidth / width) * height
-    return { distanceWidth, distanceHeight }
-  } else {
-    const distanceHeight = height - nextHeight
-    const distanceWidth = width - (nextHeight / height) * width
-    return { distanceWidth, distanceHeight }
-  }
+function getOrientation(width, height, nextWidth, nextHeight) {
+  const orientation = nextWidth >= nextHeight ? width : height
+  return orientation
 }
+function getRatio(
+  measurementToChange,
+  comparingMeasurement,
+  newComparingMeasurement
+) {
+  return (newComparingMeasurement / comparingMeasurement) * measurementToChange
+}
+
+/* 
+1. get state relative size to svg
+2. figure out the orientation
+3. find the differences between full size and state size
+4. we check to see if state fits in viewbox 
+    - if not re-adjust height
+5.find state position
+*/
