@@ -45,62 +45,56 @@ export default function RegretsMap() {
 
   const focusOnState = e => {
     const state = e.target.getBoundingClientRect()
-    const svg = e.target.parentElement.parentElement.getBoundingClientRect()
+    const svg = e.target.parentElement.getBoundingClientRect()
+
     const stateRelative = {
       width: (state.width / svg.width) * WIDTH,
       height: (state.height / svg.height) * HEIGHT,
       x: ((state.left - svg.left) / svg.width) * WIDTH,
       y: ((state.top - svg.top) / svg.height) * HEIGHT,
     }
+    console.log(stateRelative)
     if (!zoomed) {
       if (!e.target.id || e.target.id === "DC2") return
       e.target.dataset.active = "true"
-      //sets it to be half the size of the viewport
-      const twiceStateWidth = stateRelative.width * 2.5
-      const twiceStateHeight = getRatio(
-        stateRelative.height,
-        stateRelative.width,
-        twiceStateWidth
-      )
 
       const orientation = getOrientation(
         width,
         height,
-        twiceStateWidth,
-        twiceStateHeight
+        stateRelative.width,
+        stateRelative.height
       )
-      const heightAndWidthViewPort = () => {
-        if (orientation === width) {
-          const widthViewPort = twiceStateWidth
-          const heightViewPort = getRatio(height, width, twiceStateWidth)
-          return { widthViewPort, heightViewPort }
-        } else {
-          const heightViewPort = twiceStateHeight
-          const widthViewPort = getRatio(width, height, twiceStateHeight)
-          return { widthViewPort, heightViewPort }
-        }
+      //readjust to allow card to fit
+      const viewPort = {}
+      viewPort.width = stateRelative.width * 2
+      viewPort.height = stateRelative.height * 2
+      let measurementBasedOnRatio
+      if (orientation === width) {
+        viewPort.height = getRatio(height, width, viewPort.width)
+        measurementBasedOnRatio = viewPort.height
+      } else {
+        viewPort.width = getRatio(width, height, viewPort.height)
+        measurementBasedOnRatio = viewPort.width
       }
 
-      const { widthViewPort, heightViewPort } = heightAndWidthViewPort()
-      const distanceWidth = width - widthViewPort
-      const distanceHeight = height - heightViewPort
-      const distanceXPos =
-        stateRelative.x - xPos - widthViewPort + twiceStateWidth / 2 + 15
-      const distanceYPos =
-        stateRelative.y - yPos - heightViewPort + twiceStateHeight * 0.75
-
-      const viewPort = {
-        distanceXPos,
-        distanceYPos,
-        distanceWidth,
-        distanceHeight,
+      if (measurementBasedOnRatio < stateRelative.height) {
+        console.log("off")
+        const offBy = stateRelative.height - measurementBasedOnRatio
+        viewPort.height = offBy + measurementBasedOnRatio
+        viewPort.width = getRatio(width, height, viewPort.height)
       }
 
+      const getDistance = newViewBox => {
+        const distanceWidth = width - newViewBox.width
+        const distanceHeight = height - newViewBox.height
+        return { distanceWidth, distanceHeight }
+      }
+      const { distanceWidth, distanceHeight } = getDistance(viewPort)
       animateViewBoxScale(
-        viewPort.distanceXPos,
-        viewPort.distanceYPos,
-        viewPort.distanceWidth,
-        viewPort.distanceHeight
+        stateRelative.x,
+        stateRelative.y,
+        distanceWidth,
+        distanceHeight
       )
     } else {
       animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
@@ -124,8 +118,8 @@ export default function RegretsMap() {
   )
 }
 
-function getOrientation(width, height, nextWidth, nextHeight) {
-  const orientation = nextWidth >= nextHeight ? width : height
+function getOrientation(width, height, stateWidth, stateHeight) {
+  const orientation = stateWidth >= stateHeight ? width : height
   return orientation
 }
 function getRatio(
