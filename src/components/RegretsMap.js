@@ -53,11 +53,13 @@ export default function RegretsMap() {
       x: ((state.left - svg.left) / svg.width) * WIDTH,
       y: ((state.top - svg.top) / svg.height) * HEIGHT,
     }
-    console.log(stateRelative)
     if (!zoomed) {
-      if (!e.target.id || e.target.id === "DC2") return
+      if (!e.target.hasAttribute("d")) return
+      setZoomed(!zoomed)
+
       e.target.dataset.active = "true"
 
+      //starts the viewBox size
       const orientation = getOrientation(
         width,
         height,
@@ -73,6 +75,7 @@ export default function RegretsMap() {
         viewPort.height = getRatio(height, width, viewPort.width)
         measurementBasedOnRatio = viewPort.height
       } else {
+        console.log("its because of height")
         viewPort.width = getRatio(width, height, viewPort.height)
         measurementBasedOnRatio = viewPort.width
       }
@@ -90,17 +93,20 @@ export default function RegretsMap() {
         return { distanceWidth, distanceHeight }
       }
       const { distanceWidth, distanceHeight } = getDistance(viewPort)
-      animateViewBoxScale(
-        stateRelative.x,
-        stateRelative.y,
-        distanceWidth,
-        distanceHeight
-      )
+      //end viewBox size
+
+      //start viewBox Position
+      viewPort.x = stateRelative.x - (viewPort.width - stateRelative.width)
+      viewPort.x = viewPort.x + (viewPort.width / 2 - stateRelative.width) / 2
+      viewPort.y =
+        stateRelative.y - (viewPort.height - stateRelative.height) / 2
+
+      animateViewBoxScale(viewPort.x, viewPort.y, distanceWidth, distanceHeight)
     } else {
-      animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
+      setZoomed(!zoomed)
       delete document.querySelector("[data-active='true']").dataset.active
+      animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
     }
-    setZoomed(!zoomed)
   }
 
   return (
