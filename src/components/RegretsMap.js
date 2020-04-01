@@ -2,6 +2,7 @@ import React, { useRef } from "react"
 
 import "./Map.css"
 import Map from "./Map"
+import StateInfoCard from "./StateInfoCard"
 import { useState, useEffect } from "react"
 
 const WIDTH = 1009.6727
@@ -20,6 +21,11 @@ export default function RegretsMap() {
     width,
     height,
   }
+  const noActiveState = {
+    state: null,
+    stateId: null,
+  }
+  const [activeState, setActiveState] = useState(noActiveState)
 
   function animateViewBoxScale(nextXPos, nextYPos, nextWidth, nextHeight) {
     let distanceTraveled = 0
@@ -42,10 +48,21 @@ export default function RegretsMap() {
     }
     requestAnimationFrame(animateValue)
   }
-
+  function zoomOut() {
+    setActiveState(noActiveState)
+    setZoomed(!zoomed)
+    delete document.querySelector("[data-active='true']").dataset.active
+    animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
+  }
   const focusOnState = e => {
     const state = e.target.getBoundingClientRect()
     const svg = e.target.parentElement.getBoundingClientRect()
+
+    if (
+      e.target.classList.contains("active-state-info-card") ||
+      e.target.closest(".active-state-info-card")
+    )
+      return
 
     const stateRelative = {
       width: (state.width / svg.width) * WIDTH,
@@ -55,7 +72,13 @@ export default function RegretsMap() {
     }
     if (!zoomed) {
       if (!e.target.hasAttribute("d")) return
+
       setZoomed(!zoomed)
+
+      setActiveState({
+        state: e.target.getAttribute("title"),
+        stateId: e.target.id,
+      })
 
       e.target.dataset.active = "true"
 
@@ -103,15 +126,13 @@ export default function RegretsMap() {
 
       animateViewBoxScale(viewPort.x, viewPort.y, distanceWidth, distanceHeight)
     } else {
-      setZoomed(!zoomed)
-      delete document.querySelector("[data-active='true']").dataset.active
-      animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
+      zoomOut()
     }
   }
 
   return (
     <div
-      className={zoomed && `zoomed`}
+      className={`${zoomed ? `zoomed` : ""} map-wrapper`}
       onClick={focusOnState}
       style={{ position: "relative", width: `100%`, height: `100%` }}
     >
@@ -120,6 +141,9 @@ export default function RegretsMap() {
         ref={svgRef}
         styles={{ width: `100%`, height: `100%` }}
       />
+      {activeState.state && (
+        <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
+      )}
     </div>
   )
 }
