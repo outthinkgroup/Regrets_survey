@@ -1,165 +1,63 @@
 import React, { useRef } from "react"
 
-import "./Map.css"
+//import "./Map.css"
 import Map from "./Map"
 import StateInfoCard from "./StateInfoCard"
-import { useState, useEffect } from "react"
-
+import useInteractiveMap from "../hooks/useInteractiveMap"
+import styled from "styled-components"
+import { colors } from "../styles"
+//these are the viewBox width and height for the svg
 const WIDTH = 1009.6727
 const HEIGHT = 665.96301
-export default function RegretsMap() {
-  const [zoomed, setZoomed] = useState(false)
 
-  const [xPos, setXPos] = useState(0)
-  const [yPos, setYPos] = useState(0)
-  const [width, setWidth] = useState(WIDTH)
-  const [height, setHeight] = useState(HEIGHT)
-  const viewBox = {
-    xPos,
-    yPos,
-    width,
-    height,
-  }
-  const noActiveState = {
-    state: null,
-    stateId: null,
-  }
-  const [activeState, setActiveState] = useState(noActiveState)
-
-  function animateViewBoxScale(nextXPos, nextYPos, nextWidth, nextHeight) {
-    let distanceTraveled = 0
-    const speed = 20
-
-    const widthUnit = nextWidth / speed
-    const heightUnit = nextHeight / speed
-    const xPosUnit = nextXPos / speed
-    const yPosUnit = nextYPos / speed
-    const animateValue = () => {
-      setWidth(prevState => prevState - widthUnit)
-      setHeight(prevState => prevState - heightUnit)
-      setXPos(prevState => prevState + xPosUnit)
-      setYPos(prevState => prevState + yPosUnit)
-      distanceTraveled += 1
-
-      if (distanceTraveled !== speed) {
-        requestAnimationFrame(animateValue)
-      }
-    }
-    requestAnimationFrame(animateValue)
-  }
-  function zoomOut() {
-    setActiveState(noActiveState)
-    setZoomed(!zoomed)
-    delete document.querySelector("[data-active='true']").dataset.active
-    animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
-  }
-  const focusOnState = e => {
-    const state = e.target.getBoundingClientRect()
-    const svg = e.target.parentElement.getBoundingClientRect()
-
-    if (
-      e.target.classList.contains("active-state-info-card") ||
-      e.target.closest(".active-state-info-card")
-    )
-      return
-
-    const stateRelative = {
-      width: (state.width / svg.width) * WIDTH,
-      height: (state.height / svg.height) * HEIGHT,
-      x: ((state.left - svg.left) / svg.width) * WIDTH,
-      y: ((state.top - svg.top) / svg.height) * HEIGHT,
-    }
-    if (!zoomed) {
-      if (!e.target.hasAttribute("d")) return
-
-      setZoomed(!zoomed)
-
-      setActiveState({
-        state: e.target.getAttribute("title"),
-        stateId: e.target.id,
-      })
-
-      e.target.dataset.active = "true"
-
-      //starts the viewBox size
-      const orientation = getOrientation(
-        width,
-        height,
-        stateRelative.width,
-        stateRelative.height
-      )
-      //readjust to allow card to fit
-      const viewPort = {}
-      viewPort.width = stateRelative.width * 2
-      viewPort.height = stateRelative.height * 2
-      let measurementBasedOnRatio
-      if (orientation === width) {
-        viewPort.height = getRatio(height, width, viewPort.width)
-        measurementBasedOnRatio = viewPort.height
-      } else {
-        console.log("its because of height")
-        viewPort.width = getRatio(width, height, viewPort.height)
-        measurementBasedOnRatio = viewPort.width
-      }
-
-      if (measurementBasedOnRatio < stateRelative.height) {
-        console.log("off")
-        const offBy = stateRelative.height - measurementBasedOnRatio
-        viewPort.height = offBy + measurementBasedOnRatio
-        viewPort.width = getRatio(width, height, viewPort.height)
-      }
-
-      const getDistance = newViewBox => {
-        const distanceWidth = width - newViewBox.width
-        const distanceHeight = height - newViewBox.height
-        return { distanceWidth, distanceHeight }
-      }
-      const { distanceWidth, distanceHeight } = getDistance(viewPort)
-      //end viewBox size
-
-      //start viewBox Position
-      viewPort.x = stateRelative.x - (viewPort.width - stateRelative.width)
-      viewPort.x = viewPort.x + (viewPort.width / 2 - stateRelative.width) / 2
-      viewPort.y =
-        stateRelative.y - (viewPort.height - stateRelative.height) / 2
-
-      animateViewBoxScale(viewPort.x, viewPort.y, distanceWidth, distanceHeight)
-    } else {
-      zoomOut()
-    }
-  }
+function RegretsMap({ className }) {
+  const {
+    viewBox,
+    zoomOut,
+    activeState,
+    focusInOut,
+    zoomed,
+  } = useInteractiveMap({ WIDTH, HEIGHT })
 
   return (
-    <div
-      className={`${zoomed ? `zoomed` : ""} map-wrapper`}
-      onClick={focusOnState}
-      style={{ position: "relative", width: `100%`, height: `100%` }}
-    >
-      <Map {...viewBox} styles={{ width: `100%`, height: `100%` }} />
-      {activeState.state && (
-        <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
-      )}
+    <div className={className}>
+      <h2>See a Sample of regrets from all over the world</h2>
+      <p>These results are updated constantly</p>
+      <div
+        className={`${zoomed ? `zoomed` : ""} map-wrapper`}
+        onClick={focusInOut}
+        style={{ position: "relative", width: `100%`, height: `100%` }}
+      >
+        <Map {...viewBox} styles={{ width: `100%`, height: `100%` }} />
+        {activeState.state && (
+          <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
+        )}
+      </div>
     </div>
   )
 }
-
-function getOrientation(width, height, stateWidth, stateHeight) {
-  const orientation = stateWidth >= stateHeight ? width : height
-  return orientation
-}
-function getRatio(
-  measurementToChange,
-  comparingMeasurement,
-  newComparingMeasurement
-) {
-  return (newComparingMeasurement / comparingMeasurement) * measurementToChange
-}
-
-/* 
-1. get state relative size to svg
-2. figure out the orientation
-3. find the differences between full size and state size
-4. we check to see if state fits in viewbox 
-    - if not re-adjust height
-5.find state position
-*/
+export default styled(RegretsMap)`
+  padding: 50px 0;
+  svg path[id] {
+    transition: all 0.23s cubic-bezier(0.5, 0, 0.5, 1);
+    fill: ${colors.country.base};
+    &:hover {
+      fill: ${colors.country.hover};
+    }
+  }
+  .zoomed {
+    path:not([data-active="true"]) {
+      opacity: 0.15;
+    }
+  }
+  svg path[id][data-active="true"] {
+    fill: ${colors.country.active};
+    &:hover {
+      fill: ${colors.country.active};
+    }
+  }
+  .map-wrapper {
+    padding: 20px 0;
+    position: relative;
+  }
+`

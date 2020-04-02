@@ -1,31 +1,15 @@
 import { Link } from "gatsby"
+import styled from "styled-components"
 import PropTypes from "prop-types"
 import React from "react"
 import Menu from "./Menu"
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
+import { layout, colors, fonts } from "../styles"
+
+const Header = ({ siteTitle, className }) => (
+  <header className={className} style={{}}>
+    <div className="container">
+      <h1>
+        <Link to="/">{siteTitle}</Link>
       </h1>
       <Menu />
     </div>
@@ -40,4 +24,24 @@ Header.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default styled(Header)`
+  background: ${colors.grey[2]};
+  margin-bottom: 1.45rem;
+  .container {
+    margin: 0 auto;
+    max-width: ${layout.maxWidth};
+    padding: 1.45rem 1.0875rem;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+  h1 {
+    margin: 0;
+    line-height: 0.3;
+    a {
+      color: black;
+      font-size: ${fonts.sizes.heading[2]};
+      text-decoration: none;
+    }
+  }
+`
