@@ -8,7 +8,6 @@ import { useState, useEffect } from "react"
 const WIDTH = 1009.6727
 const HEIGHT = 665.96301
 export default function RegretsMap() {
-  const svgRef = useRef()
   const [zoomed, setZoomed] = useState(false)
 
   const [xPos, setXPos] = useState(0)
@@ -136,11 +135,7 @@ export default function RegretsMap() {
       onClick={focusOnState}
       style={{ position: "relative", width: `100%`, height: `100%` }}
     >
-      <Map
-        {...viewBox}
-        ref={svgRef}
-        styles={{ width: `100%`, height: `100%` }}
-      />
+      <Map {...viewBox} styles={{ width: `100%`, height: `100%` }} />
       {activeState.state && (
         <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
       )}

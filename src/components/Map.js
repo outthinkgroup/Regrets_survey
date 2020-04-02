@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function Map({ xPos, yPos, width, height, styles, ref }) {
+export default function Map({ xPos, yPos, width, height }) {
   return (
     <svg viewBox={`${xPos} ${yPos} ${width} ${height}`}>
       <path
