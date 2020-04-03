@@ -7,8 +7,8 @@ import useInteractiveMap from "../hooks/useInteractiveMap"
 import styled from "styled-components"
 import { colors } from "../styles"
 //these are the viewBox width and height for the svg
-const WIDTH = 1009.6727
-const HEIGHT = 665.96301
+const WIDTH = 1024
+const HEIGHT = 561.64917
 
 function RegretsMap({ className }) {
   const {
@@ -29,7 +29,8 @@ function RegretsMap({ className }) {
         style={{ position: "relative", width: `100%`, height: `100%` }}
       >
         <Map {...viewBox} styles={{ width: `100%`, height: `100%` }} />
-        {activeState.state && (
+
+        {activeState.country && (
           <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
         )}
       </div>

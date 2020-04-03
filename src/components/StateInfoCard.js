@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { fonts, colors } from "../styles"
 
 function StateInfoCard({ activeState, zoomOut, className }) {
-  const { state, stateId } = activeState
+  const { state, country } = activeState
   return (
     <div className={className}>
       <div className="active-state-info-card">
@@ -12,7 +12,10 @@ function StateInfoCard({ activeState, zoomOut, className }) {
           <button onClick={zoomOut} className="close">
             <Icon name="close" />
           </button>
-          <h1>{state}</h1>
+          <h1>
+            {country}
+            {state && `, ${state}`}
+          </h1>
           <h3>Anonymous Regret</h3>
           <p>
             Tortor arcu porttitor ornare platea aliquam hendrerit ullamcorper

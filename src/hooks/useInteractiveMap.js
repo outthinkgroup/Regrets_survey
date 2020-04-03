@@ -2,8 +2,8 @@ import { useState } from "react"
 
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const noActiveState = {
+    country: null,
     state: null,
-    stateId: null,
   }
   const [zoomed, setZoomed] = useState(false)
   const [activeState, setActiveState] = useState(noActiveState)
@@ -11,6 +11,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const [yPos, setYPos] = useState(0)
   const [width, setWidth] = useState(WIDTH)
   const [height, setHeight] = useState(HEIGHT)
+  const [inAmerica, setInAmerica] = useState(false)
   const viewBox = {
     xPos,
     yPos,
@@ -46,14 +47,20 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
   }
   const focusInOut = e => {
-    const state = e.target.getBoundingClientRect()
-    const svg = e.target.parentElement.getBoundingClientRect()
+    let state = e.target.getBoundingClientRect()
+    const _svg = e.target.closest("svg") || e.target
+    const svg = _svg.getBoundingClientRect()
 
     if (
       e.target.classList.contains("active-state-info-card") ||
       e.target.closest(".active-state-info-card")
     )
       return
+
+    if (e.target.closest("#america") && !inAmerica && !zoomed) {
+      state = e.target.closest("#america").getBoundingClientRect()
+      setInAmerica(true)
+    }
 
     const stateRelative = {
       width: (state.width / svg.width) * WIDTH,
@@ -64,14 +71,14 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     if (!zoomed) {
       if (!e.target.hasAttribute("d")) return
 
-      setZoomed(!zoomed)
-
       setActiveState({
-        state: e.target.getAttribute("title"),
-        stateId: e.target.id,
+        country: e.target.id,
+        state: e.target.dataset.state ? e.target.dataset.state : null,
       })
 
       e.target.dataset.active = "true"
+
+      setZoomed(!zoomed)
 
       //starts the viewBox size
       const orientation = getOrientation(
