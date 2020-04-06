@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 
 //import "./Map.css"
-import Map from "./Map"
+import InteractiveMap from "./InteractiveMap"
 import StateInfoCard from "./StateInfoCard"
 import useInteractiveMap from "../hooks/useInteractiveMap"
 import styled from "styled-components"
@@ -28,7 +28,10 @@ function RegretsMap({ className }) {
         onClick={focusInOut}
         style={{ position: "relative", width: `100%`, height: `100%` }}
       >
-        <Map {...viewBox} styles={{ width: `100%`, height: `100%` }} />
+        <InteractiveMap
+          {...viewBox}
+          styles={{ width: `100%`, height: `100%` }}
+        />
 
         {activeState && (
           <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
@@ -39,7 +42,7 @@ function RegretsMap({ className }) {
 }
 export default styled(RegretsMap)`
   padding: 50px 0;
-  svg path[id] {
+  svg > * {
     transition: all 0.23s cubic-bezier(0.5, 0, 0.5, 1);
     fill: ${colors.country.base};
     &:hover {
@@ -47,11 +50,14 @@ export default styled(RegretsMap)`
     }
   }
   .zoomed {
-    path:not([data-active="true"]) {
-      opacity: 0.15;
+    [id][data-active="true"] path {
+      opacity: 1;
+    }
+    [id]:not([data-active="true"]) {
+      opacity: 0.4;
     }
   }
-  svg path[id][data-active="true"] {
+  [data-active="true"] {
     fill: ${colors.country.active};
     &:hover {
       fill: ${colors.country.active};

@@ -47,12 +47,14 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
   }
   const focusInOut = e => {
-    let state = e.target.getBoundingClientRect()
+    let stateEl = e.target
+    if (e.target.closest("#america")) {
+      stateEl = e.target.closest("#america")
+    }
+    const state = stateEl.getBoundingClientRect()
     const _svg = e.target.closest("svg") || e.target
     const svg = _svg.getBoundingClientRect()
-    if (e.target.closest("#america")) {
-      state = e.target.closest("#america").getBoundingClientRect()
-    }
+
     if (
       e.target.classList.contains("active-state-info-card") ||
       e.target.closest(".active-state-info-card")
@@ -68,9 +70,9 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     if (!zoomed) {
       if (!e.target.hasAttribute("d")) return
 
-      setActiveState(e.target.id)
+      setActiveState(stateEl.id)
 
-      e.target.dataset.active = "true"
+      stateEl.dataset.active = "true"
 
       setZoomed(!zoomed)
 
