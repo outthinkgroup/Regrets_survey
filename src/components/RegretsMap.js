@@ -30,7 +30,7 @@ function RegretsMap({ className }) {
       >
         <Map {...viewBox} styles={{ width: `100%`, height: `100%` }} />
 
-        {activeState.country && (
+        {activeState && (
           <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
         )}
       </div>
