@@ -3,15 +3,15 @@ import { useState } from "react"
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const noActiveState = {
     country: null,
-    state: null,
   }
+
   const [zoomed, setZoomed] = useState(false)
-  const [activeState, setActiveState] = useState(noActiveState)
+  const [activeState, setActiveState] = useState(null)
   const [xPos, setXPos] = useState(0)
   const [yPos, setYPos] = useState(0)
   const [width, setWidth] = useState(WIDTH)
   const [height, setHeight] = useState(HEIGHT)
-  const [inAmerica, setInAmerica] = useState(false)
+
   const viewBox = {
     xPos,
     yPos,
@@ -41,7 +41,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     requestAnimationFrame(animateValue)
   }
   function zoomOut() {
-    setActiveState(noActiveState)
+    setActiveState(null)
     setZoomed(!zoomed)
     delete document.querySelector("[data-active='true']").dataset.active
     animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
@@ -50,17 +50,14 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     let state = e.target.getBoundingClientRect()
     const _svg = e.target.closest("svg") || e.target
     const svg = _svg.getBoundingClientRect()
-
+    if (e.target.closest("#america")) {
+      state = e.target.closest("#america").getBoundingClientRect()
+    }
     if (
       e.target.classList.contains("active-state-info-card") ||
       e.target.closest(".active-state-info-card")
     )
       return
-
-    if (e.target.closest("#america") && !inAmerica && !zoomed) {
-      state = e.target.closest("#america").getBoundingClientRect()
-      setInAmerica(true)
-    }
 
     const stateRelative = {
       width: (state.width / svg.width) * WIDTH,
@@ -71,10 +68,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     if (!zoomed) {
       if (!e.target.hasAttribute("d")) return
 
-      setActiveState({
-        country: e.target.id,
-        state: e.target.dataset.state ? e.target.dataset.state : null,
-      })
+      setActiveState(e.target.id)
 
       e.target.dataset.active = "true"
 
