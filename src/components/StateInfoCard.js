@@ -1,9 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Icon from "./Icon"
 import styled from "styled-components"
 import { fonts, colors } from "../styles"
 
 function StateInfoCard({ activeState, zoomOut, className }) {
+  useEffect(() => {
+    /* makeRequestForData() */
+  }, [])
+
   return (
     <div className={className}>
       <div className="active-state-info-card">

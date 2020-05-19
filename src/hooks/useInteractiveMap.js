@@ -40,14 +40,17 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     }
     requestAnimationFrame(animateValue)
   }
+
   function zoomOut() {
     setActiveState(null)
     setZoomed(!zoomed)
     delete document.querySelector("[data-active='true']").dataset.active
     animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT)
   }
+
   const focusInOut = e => {
     let stateEl = e.target
+
     if (e.target.closest("#america")) {
       stateEl = e.target.closest("#america")
     }
@@ -123,7 +126,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     }
   }
   return { viewBox, focusInOut, activeState, zoomOut, zoomed }
-}
+} //end hook
 
 function getOrientation(width, height, stateWidth, stateHeight) {
   const orientation = stateWidth >= stateHeight ? width : height

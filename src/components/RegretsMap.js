@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useEffect } from "react"
 
 //import "./Map.css"
 import InteractiveMap from "./InteractiveMap"
@@ -10,7 +10,67 @@ import { colors } from "../styles"
 const WIDTH = 1024
 const HEIGHT = 561.64917
 
+const data = {
+  countries: [
+    {
+      id: "Slovakia",
+      survey_count: 53,
+      regrets: [
+        "I ate too much pasta",
+        "I never saw terminator",
+        "I never believed in santa",
+      ],
+    },
+    {
+      id: "Georgia",
+      survey_count: 23,
+      regrets: [
+        "I ate too much pasta",
+        "I never saw terminator",
+        "I never believed in santa",
+      ],
+    },
+    {
+      id: "Mongolia",
+      survey_count: 13,
+      regrets: [
+        "I ate too much pasta",
+        "I never saw terminator",
+        "I never believed in santa",
+      ],
+    },
+    {
+      id: "Kenya",
+      survey_count: 76,
+      regrets: [
+        "I ate too much pasta",
+        "I never saw terminator",
+        "I never believed in santa",
+      ],
+    },
+    {
+      id: "Japan",
+      survey_count: 102,
+      regrets: [
+        "I ate too much pasta",
+        "I never saw terminator",
+        "I never believed in santa",
+      ],
+    },
+    {
+      id: "america",
+      survey_count: 344,
+      regrets: [
+        "I ate too much pasta",
+        "I never saw terminator",
+        "I never believed in santa",
+      ],
+    },
+  ],
+}
+
 function RegretsMap({ className }) {
+  //functions to pass our map
   const {
     viewBox,
     zoomOut,
@@ -18,6 +78,14 @@ function RegretsMap({ className }) {
     focusInOut,
     zoomed,
   } = useInteractiveMap({ WIDTH, HEIGHT })
+
+  const countryScale = 50
+  const countryColor = `hsl(50, 0, ${countryScale})`
+
+  useEffect(() => {
+    if (activeState) {
+    }
+  }, [activeState])
 
   return (
     <div className={className}>
