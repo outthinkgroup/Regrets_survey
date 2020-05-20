@@ -1,73 +1,14 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect } from "react";
 
 //import "./Map.css"
-import InteractiveMap from "./InteractiveMap"
-import StateInfoCard from "./StateInfoCard"
-import useInteractiveMap from "../hooks/useInteractiveMap"
-import styled from "styled-components"
-import { colors } from "../styles"
+import InteractiveMap from "./InteractiveMap";
+import StateInfoCard from "./StateInfoCard";
+import useInteractiveMap from "../hooks/useInteractiveMap";
+import styled from "styled-components";
+import { colors } from "../styles";
 //these are the viewBox width and height for the svg
-const WIDTH = 1024
-const HEIGHT = 561.64917
-
-const data = {
-  countries: [
-    {
-      id: "Slovakia",
-      survey_count: 53,
-      regrets: [
-        "I ate too much pasta",
-        "I never saw terminator",
-        "I never believed in santa",
-      ],
-    },
-    {
-      id: "Georgia",
-      survey_count: 23,
-      regrets: [
-        "I ate too much pasta",
-        "I never saw terminator",
-        "I never believed in santa",
-      ],
-    },
-    {
-      id: "Mongolia",
-      survey_count: 13,
-      regrets: [
-        "I ate too much pasta",
-        "I never saw terminator",
-        "I never believed in santa",
-      ],
-    },
-    {
-      id: "Kenya",
-      survey_count: 76,
-      regrets: [
-        "I ate too much pasta",
-        "I never saw terminator",
-        "I never believed in santa",
-      ],
-    },
-    {
-      id: "Japan",
-      survey_count: 102,
-      regrets: [
-        "I ate too much pasta",
-        "I never saw terminator",
-        "I never believed in santa",
-      ],
-    },
-    {
-      id: "america",
-      survey_count: 344,
-      regrets: [
-        "I ate too much pasta",
-        "I never saw terminator",
-        "I never believed in santa",
-      ],
-    },
-  ],
-}
+const WIDTH = 1024;
+const HEIGHT = 561.64917;
 
 function RegretsMap({ className }) {
   //functions to pass our map
@@ -77,19 +18,20 @@ function RegretsMap({ className }) {
     activeState,
     focusInOut,
     zoomed,
-  } = useInteractiveMap({ WIDTH, HEIGHT })
+  } = useInteractiveMap({ WIDTH, HEIGHT });
 
-  const countryScale = 50
-  const countryColor = `hsl(50, 0, ${countryScale})`
+  const countryScale = 50;
+  const countryColor = `hsl(50, 0, ${countryScale})`;
 
   useEffect(() => {
     if (activeState) {
     }
-  }, [activeState])
+  }, [activeState]);
 
   return (
     <div className={className}>
       <h2>See a Sample of regrets from all over the world</h2>
+
       <p>These results are updated constantly</p>
       <div
         className={`${zoomed ? `zoomed` : ""} map-wrapper`}
@@ -106,7 +48,7 @@ function RegretsMap({ className }) {
         )}
       </div>
     </div>
-  )
+  );
 }
 export default styled(RegretsMap)`
   padding: 50px 0;
@@ -135,4 +77,4 @@ export default styled(RegretsMap)`
     padding: 20px 0;
     position: relative;
   }
-`
+`;
