@@ -1,40 +1,67 @@
 require("dotenv").config();
 const fs = require("fs");
 const fetch = require("node-fetch");
+const path = require("path");
 var StreamZip = require("node-stream-zip");
 
 const TOKEN = process.env.QUALTRICS_TOKEN;
 const SURVEY = process.env.SURVEY_ID;
+const RAW_DATA_NAME = "rawData";
+const CLEAN_DATA_NAME = "data";
+const IP_STACK_KEY = process.env.IP_STACK_KEY;
+//THIS IS ONLY SHOWS RESULTS THAT HAVE IP AND ARE AFTER JUNE 19
+const FILTER = `ebc97c57-062f-4cc2-8724-af4fe73d7b01`;
 
 const myHeaders = {
   "X-API-TOKEN": TOKEN,
   "Content-Type": "application/json",
 };
 
-//getResponses();
-async function getResponses() {
-  //start export
-  const progress = await startExport();
-  if (hasError(progress)) return;
+//* THIS INITS THE WHOLE PROCESS
+//? ----
 
+getResponses({
+  filterId: FILTER,
+  limit: 100,
+}); //*
+
+//?---
+//*
+
+async function getResponses(exportOptions = {}) {
+  //create data directory
+  await createDir("data");
+  await createDir("rawData");
+
+  //start export
+  const progress = await startExport(exportOptions);
+  if (hasError(progress)) return;
   const { progressId } = progress.result;
 
   //query for progress
   const fileId = await getProgress(progressId);
   console.log("fileId", fileId);
 
-  //save results
-  const results = await getResults(fileId);
-  console.log("results", results);
+  //save results to json file
+  await getResults(fileId);
+
+  //read file
+  const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
+
+  //Clean data
+  const data = await cleanData(rawData);
+  console.log(data);
+  //save to filesystem where gatsby can read it
+  saveToFileSystem(data);
 }
 
-function startExport() {
-  var raw = JSON.stringify({ format: "json" });
-
+function startExport(options = {}) {
+  var body = JSON.stringify({ format: "json", ...options });
+  console.log(body);
   var requestOptions = {
     method: "POST",
     headers: myHeaders,
-    body: raw,
+    body,
     redirect: "follow",
   };
 
@@ -66,7 +93,7 @@ async function getProgress(progressId) {
     if (hasError(data)) return;
 
     const { percentComplete, fileId } = data.result;
-
+    console.log(percentComplete);
     if (percentComplete !== 100.0) {
       return getRequestId();
     } else {
@@ -101,7 +128,9 @@ async function getResults(fileId) {
   )
     .then((res) => {
       return new Promise((resolve, reject) => {
-        const writeStream = fs.createWriteStream("data.zip");
+        const writeStream = fs.createWriteStream(
+          `rawData/${RAW_DATA_NAME}.zip`
+        );
 
         res.body.pipe(writeStream).on("finish", (err) => {
           if (err) return reject(err);
@@ -109,17 +138,8 @@ async function getResults(fileId) {
         });
       });
     })
-    .then(() => {
-      return unzip("data.zip").then(() => readFile("data.json"));
-    })
-    .then((res) => res)
+    .then(() => unzip(`rawData/${RAW_DATA_NAME}.zip`))
     .catch((error) => console.log("error", error));
-}
-
-function hasError(data) {
-  if (data.meta.error) {
-    console.log(data.meta.error);
-  }
 }
 
 function unzip(file) {
@@ -152,7 +172,7 @@ function unzip(file) {
           return;
         });
         //
-        stream.pipe(fs.createWriteStream("data.json"));
+        stream.pipe(fs.createWriteStream(`rawData/${RAW_DATA_NAME}.json`));
         //
         stream.on("end", function() {
           resolve();
@@ -166,17 +186,69 @@ function readFile(file) {
   const contents = fs.readFileSync(file, { encoding: "utf8", flag: "r" });
   const data = JSON.parse(contents);
 
-  const regrets = data.responses.map((response) => {
-    const { values, labels } = response;
-    const { ipAddress } = values;
-    const { QID4: country, QUID5: state } = labels;
-    const location = ipAddress ? { ipAddress } : { country, state };
-    return {
-      regret: values.QID1_TEXT || "",
-      gender: labels.QID2 || "",
-      location,
-    };
-  });
-
-  return regrets;
+  return data;
 }
+
+async function cleanData(data) {
+  return Promise.all(
+    data.responses.map(
+      (response) =>
+        new Promise((resolve, reject) => {
+          const { values, labels } = response;
+          const { ipAddress } = values;
+          if (labels.QID5) {
+            const { QID4: country, QID5: state } = labels;
+            resolve({
+              regret: values.QID1_TEXT || "",
+              gender: labels.QID2 || "",
+              location: { country, state },
+            });
+          }
+          getLocationFromIP(ipAddress).then((res) => {
+            const { country, state } = res;
+            const location = { country, state };
+            resolve({
+              regret: values.QID1_TEXT || "",
+              gender: labels.QID2 || "",
+              location,
+            });
+          });
+        })
+    )
+  );
+}
+
+function saveToFileSystem(data) {
+  const dataString = JSON.stringify(data);
+  fs.writeFileSync(`data/${CLEAN_DATA_NAME}.json`, dataString);
+}
+
+function createDir(dirname) {
+  return new Promise((resolve, reject) => {
+    fs.mkdir(dirname, (err) => {
+      if (err && err.code !== "EEXIST") {
+        reject();
+      }
+      resolve();
+    });
+  });
+}
+
+function hasError(data) {
+  if (data.meta.error) {
+    console.log(data.meta.error);
+  }
+}
+
+//This is just for Results that have ip address and not Country/State
+async function getLocationFromIP(ipAddress) {
+  const res = await fetch(
+    `http://api.ipstack.com/${ipAddress}?access_key=${IP_STACK_KEY}&format=1`
+  );
+  const data = await res.json();
+  const { country_name: country, region_name: state } = data;
+
+  return { country, state };
+}
+
+module.exports = { getResults };
