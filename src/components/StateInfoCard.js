@@ -5,7 +5,7 @@ import { fonts, colors } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 
 function StateInfoCard({ activeState, zoomOut, className }) {
-  const { activeRegret: regret } = useGetRegrets(activeState);
+  const { activeRegret: regret, getRegretBy } = useGetRegrets(activeState);
 
   return (
     <div className={className}>
@@ -17,6 +17,7 @@ function StateInfoCard({ activeState, zoomOut, className }) {
           <h1>{regret?.location?.country}</h1>
           <h3>Anonymous Regret</h3>
           <p>{regret?.regret}</p>
+          <button onClick={getRegretBy}>see another</button>
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ export function useGetRegrets(activeState) {
   const [activeRegret, setActiveRegret] = useState();
 
   function getRegretBy(type = "country") {
+    console.log("ran");
     const allInRegion = regrets.filter((regret) => {
       const { country } = regret.location;
       const countryId = snakeCase(country);
@@ -29,7 +30,7 @@ export function useGetRegrets(activeState) {
 
     const getRandom =
       allInRegion[Math.floor(Math.random() * allInRegion.length)];
-    return getRandom;
+    setActiveRegret(getRandom);
   }
 
   const totalRegretsPerCountry = regrets.reduce((totals, regret) => {
@@ -42,9 +43,8 @@ export function useGetRegrets(activeState) {
   }, {});
 
   useEffect(() => {
-    const newRegret = getRegretBy(activeState);
-    setActiveRegret(newRegret);
+    getRegretBy();
   }, [activeState]);
 
-  return { regrets, activeRegret, totalRegretsPerCountry };
+  return { regrets, activeRegret, totalRegretsPerCountry, getRegretBy };
 }
