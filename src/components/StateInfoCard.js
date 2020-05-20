@@ -1,34 +1,26 @@
-import React, { useEffect } from "react"
-import Icon from "./Icon"
-import styled from "styled-components"
-import { fonts, colors } from "../styles"
+import React, { useEffect } from "react";
+import Icon from "./Icon";
+import styled from "styled-components";
+import { fonts, colors } from "../styles";
+import { useGetRegrets } from "../hooks/useGetRegrets";
 
 function StateInfoCard({ activeState, zoomOut, className }) {
-  useEffect(() => {
-    /* makeRequestForData() */
-  }, [])
+  const { activeRegret: regret } = useGetRegrets(activeState);
 
   return (
     <div className={className}>
       <div className="active-state-info-card">
         <div className="contents">
           <button onClick={zoomOut} className="close">
-            <Icon name="close" />
+            <Icon name="close" color="black" />
           </button>
-          <h1>{activeState}</h1>
+          <h1>{regret?.location?.country}</h1>
           <h3>Anonymous Regret</h3>
-          <p>
-            Tortor arcu porttitor ornare platea aliquam hendrerit ullamcorper
-            ipsum porta, sociosqu nunc lacus vestibulum nisi suscipit dictumst
-            lobortis a neque, purus nam id torquent potenti euismod vivamus
-            bibendum. Diam quam hac efficitur mi accumsan suscipit vivamus
-            placerat, habitant mattis in elementum amet lacus taciti massa, sit
-            sapien iaculis duis volutpat non torquent.
-          </p>
+          <p>{regret?.regret}</p>
         </div>
       </div>
     </div>
-  )
+  );
 }
 export default styled(StateInfoCard)`
   position: absolute;
@@ -74,6 +66,13 @@ export default styled(StateInfoCard)`
       position: absolute;
       top: 0;
       right: 0;
+      svg {
+        opacity: 1;
+      }
+      polygon {
+        fill: black;
+        opacity: 1;
+      }
     }
   }
 
@@ -93,4 +92,4 @@ export default styled(StateInfoCard)`
       opacity: 1;
     }
   }
-`
+`;
