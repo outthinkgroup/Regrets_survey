@@ -17,34 +17,14 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   }));
 
   function animateViewBoxScale(nextXPos, nextYPos, nextWidth, nextHeight) {
-    let distanceTraveled = 0;
-    const speed = 20;
-
-    const widthUnit = nextWidth / speed;
-    const heightUnit = nextHeight / speed;
-    const xPosUnit = nextXPos / speed;
-    const yPosUnit = nextYPos / speed;
-    const animateValue = () => {
-      setViewBox({ viewBox: [nextXPos, nextYPos, nextWidth, nextHeight] });
-      /*  setWidth((prevState) => prevState - widthUnit);
-      setHeight((prevState) => prevState - heightUnit);
-      setXPos((prevState) => prevState + xPosUnit);
-      setYPos((prevState) => prevState + yPosUnit); */
-      /*  distanceTraveled += 1;
-
-      if (distanceTraveled !== speed) {
-        requestAnimationFrame(animateValue);
-      } */
-    };
-    animateValue();
-    //requestAnimationFrame(animateValue);
+    setViewBox({ viewBox: [nextXPos, nextYPos, nextWidth, nextHeight] });
   }
 
   function zoomOut() {
     setActiveState(null);
     setZoomed(!zoomed);
     delete document.querySelector("[data-active='true']").dataset.active;
-    //animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT);
+
     animateViewBoxScale(0, 0, WIDTH, HEIGHT);
   }
 
@@ -109,12 +89,12 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         viewPort.width = getRatio(width, height, viewPort.height);
       }
 
-      const getDistance = (newViewBox) => {
+      //?MAY NOT NEED
+      /* const getDistance = (newViewBox) => {
         const distanceWidth = width - newViewBox.width;
         const distanceHeight = height - newViewBox.height;
         return { distanceWidth, distanceHeight };
-      };
-      const { distanceWidth, distanceHeight } = getDistance(viewPort);
+      }; */
       //end viewBox size
 
       //start viewBox Position
@@ -129,12 +109,6 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         viewPort.width,
         viewPort.height
       );
-      /* animateViewBoxScale(
-        viewPort.x,
-        viewPort.y,
-        distanceWidth,
-        distanceHeight
-      ); */
     } else {
       zoomOut();
     }
