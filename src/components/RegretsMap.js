@@ -23,11 +23,6 @@ function RegretsMap({ className }) {
   const countryScale = 50;
   const countryColor = `hsl(50, 0, ${countryScale})`;
 
-  useEffect(() => {
-    if (activeState) {
-    }
-  }, [activeState]);
-
   return (
     <div className={className}>
       <h2>See a Sample of regrets from all over the world</h2>
