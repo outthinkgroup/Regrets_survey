@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useSpring } from "react-spring";
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const noActiveState = {
     country: null,
@@ -12,12 +12,9 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const [width, setWidth] = useState(WIDTH);
   const [height, setHeight] = useState(HEIGHT);
 
-  const viewBox = {
-    xPos,
-    yPos,
-    width,
-    height,
-  };
+  const [{ viewBox }, setViewBox] = useSpring(() => ({
+    viewBox: [0, 0, WIDTH, HEIGHT],
+  }));
 
   function animateViewBoxScale(nextXPos, nextYPos, nextWidth, nextHeight) {
     let distanceTraveled = 0;
@@ -28,24 +25,27 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     const xPosUnit = nextXPos / speed;
     const yPosUnit = nextYPos / speed;
     const animateValue = () => {
-      setWidth((prevState) => prevState - widthUnit);
+      setViewBox({ viewBox: [nextXPos, nextYPos, nextWidth, nextHeight] });
+      /*  setWidth((prevState) => prevState - widthUnit);
       setHeight((prevState) => prevState - heightUnit);
       setXPos((prevState) => prevState + xPosUnit);
-      setYPos((prevState) => prevState + yPosUnit);
-      distanceTraveled += 1;
+      setYPos((prevState) => prevState + yPosUnit); */
+      /*  distanceTraveled += 1;
 
       if (distanceTraveled !== speed) {
         requestAnimationFrame(animateValue);
-      }
+      } */
     };
-    requestAnimationFrame(animateValue);
+    animateValue();
+    //requestAnimationFrame(animateValue);
   }
 
   function zoomOut() {
     setActiveState(null);
     setZoomed(!zoomed);
     delete document.querySelector("[data-active='true']").dataset.active;
-    animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT);
+    //animateViewBoxScale(xPos * -1, yPos * -1, width - WIDTH, height - HEIGHT);
+    animateViewBoxScale(0, 0, WIDTH, HEIGHT);
   }
 
   const focusInOut = (e) => {
@@ -126,14 +126,26 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       animateViewBoxScale(
         viewPort.x,
         viewPort.y,
+        viewPort.width,
+        viewPort.height
+      );
+      /* animateViewBoxScale(
+        viewPort.x,
+        viewPort.y,
         distanceWidth,
         distanceHeight
-      );
+      ); */
     } else {
       zoomOut();
     }
   };
-  return { viewBox, focusInOut, activeState, zoomOut, zoomed };
+  return {
+    viewBox,
+    focusInOut,
+    activeState,
+    zoomOut,
+    zoomed,
+  };
 } //end hook
 
 function getOrientation(width, height, stateWidth, stateHeight) {
@@ -146,4 +158,8 @@ function getRatio(
   newComparingMeasurement
 ) {
   return (newComparingMeasurement / comparingMeasurement) * measurementToChange;
+}
+
+function useReactSpring(el, nextXPos, nextYPos, nextWidth, nextHeight) {
+  const currentViewBox = el.viewBox;
 }

@@ -34,7 +34,7 @@ function RegretsMap({ className }) {
         style={{ position: "relative", width: `100%`, height: `100%` }}
       >
         <InteractiveMap
-          {...viewBox}
+          viewBox={viewBox}
           styles={{ width: `100%`, height: `100%` }}
         />
 

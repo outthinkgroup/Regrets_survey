@@ -3,9 +3,9 @@ import WorldMap from "./WorldMap";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 import { snakeCase } from "../lib";
 import { colors } from "../styles";
-export default function InteractiveMap({ xPos, yPos, width, height }) {
+export default function InteractiveMap({ viewBox }) {
   const { totalRegretsPerCountry } = useGetRegrets();
-  console.log(totalRegretsPerCountry);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     const countries = Object.entries(totalRegretsPerCountry);
@@ -21,7 +21,7 @@ export default function InteractiveMap({ xPos, yPos, width, height }) {
       countryEl.dataset.hasentries = true;
     });
   }, []);
-  return <WorldMap xPos={xPos} yPos={yPos} width={width} height={height} />;
+  return <WorldMap viewBox={viewBox} />;
 }
 function getAverageCount(countries) {
   const total = countries.reduce(

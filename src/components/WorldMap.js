@@ -1,9 +1,12 @@
 import React from "react";
-
-function WorldMap({ xPos, yPos, width, height }) {
+import { useSpring, animated, interpolate } from "react-spring";
+function WorldMap({ viewBox }) {
+  const interpViewBox = viewBox.interpolate(
+    (x, y, w, h) => `${x} ${y} ${w} ${h}`
+  );
   return (
-    <svg
-      viewBox={`${xPos}, ${yPos}, ${width}, ${height}`}
+    <animated.svg
+      viewBox={interpViewBox}
       style={{ width: `100%`, height: `100%` }}
     >
       <path
@@ -1553,7 +1556,7 @@ function WorldMap({ xPos, yPos, width, height }) {
           d="m 258.37548,250.31168 0.64319,-0.66196 0.75209,0.64528 -0.57316,0.68825 z"
         />
       </g>
-    </svg>
+    </animated.svg>
   );
 }
 

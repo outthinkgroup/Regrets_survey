@@ -20,7 +20,6 @@ export function useGetRegrets(activeState) {
   const [activeRegret, setActiveRegret] = useState();
 
   function getRegretBy(type = "country") {
-    console.log("ran");
     const allInRegion = regrets.filter((regret) => {
       const { country } = regret.location;
       const countryId = snakeCase(country);
