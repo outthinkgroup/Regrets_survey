@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Regrets Survey`,
+    title: `World Regret Survey`,
     description: ``,
     author: ``,
   },

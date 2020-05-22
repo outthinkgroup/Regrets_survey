@@ -21,8 +21,8 @@ export const colors = {
 };
 
 export const fonts = {
-  family: `sofia-pro, sans-serif`,
-  weights: ["200", "300", "400", "900"],
+  family: `proxima nova, sans-serif`,
+  weights: ["400", "400", "700", "900"],
   sizes: {
     heading: ["14px", "18px", "24px", "40px"],
     copy: "16px",
@@ -38,3 +38,21 @@ export const breakpoints = {
   medium: "960px",
   large: "1400px",
 };
+
+const screen = {
+  mobile: "762px",
+  medium: "960px",
+  large: "1400px",
+};
+const screenBelow = (screen, rules) => {
+  return `@media (max-width: ${screen}){
+    ${rules}
+  }`;
+};
+const screenAbove = (screen, rules) => {
+  return `@media (min-width: ${screen}){
+    ${rules}
+  }`;
+};
+
+export { screenBelow, screenAbove, screen };

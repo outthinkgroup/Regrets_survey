@@ -1,5 +1,5 @@
 html {
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -43,7 +43,7 @@ template {
   display: none;
 }
 a {
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
@@ -203,7 +203,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: black;
 
   font-weight: normal;
   word-wrap: break-word;
@@ -234,10 +234,10 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 2.25rem;
+  font-size: 51px;
   line-height: 1.1;
 }
 h2 {
@@ -250,7 +250,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -266,7 +266,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -282,7 +282,7 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -298,7 +298,7 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -314,7 +314,7 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -375,7 +375,7 @@ dd {
   margin-bottom: 1.45rem;
 }
 p {
-  font-family: sofia-pro, sans-serif;
+  font-family: proxima nova, sans-serif;
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -618,4 +618,7 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+body {
+  background-color: white;
 }

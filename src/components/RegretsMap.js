@@ -5,7 +5,7 @@ import InteractiveMap from "./InteractiveMap";
 import StateInfoCard from "./StateInfoCard";
 import useInteractiveMap from "../hooks/useInteractiveMap";
 import styled from "styled-components";
-import { colors } from "../styles";
+import { colors, screen, screenAbove } from "../styles";
 //these are the viewBox width and height for the svg
 const WIDTH = 1024;
 const HEIGHT = 561.64917;
@@ -25,13 +25,18 @@ function RegretsMap({ className }) {
 
   return (
     <div className={className}>
-      <h2>See a Sample of regrets from all over the world</h2>
+      <div className="heading-card">
+        <h2>Past Survey Response</h2>
+      </div>
 
-      <p>These results are updated constantly</p>
       <div
         className={`${zoomed ? `zoomed` : ""} map-wrapper`}
         onClick={focusInOut}
-        style={{ position: "relative", width: `100%`, height: `100%` }}
+        style={{
+          position: "relative",
+          width: `100%`,
+          height: `100%`,
+        }}
       >
         <InteractiveMap
           viewBox={viewBox}
@@ -46,12 +51,38 @@ function RegretsMap({ className }) {
   );
 }
 export default styled(RegretsMap)`
-  padding: 50px 0;
-  svg > * {
-    transition: all 0.23s cubic-bezier(0.5, 0, 0.5, 1);
-    fill: ${colors.country.base};
-    &:hover {
-      fill: ${colors.country.hover};
+  padding: 50px 0 100px;
+
+  .heading-card {
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    font-size: 20px;
+    background: white;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    @media (min-width: 562px) {
+      font-size: 22px;
+      transform: translateY(20px);
+      margin: 0;
+    }
+    padding: 10px 25px;
+    display: inline-block;
+    border-radius: 5px;
+
+    text-align: center;
+  }
+  svg {
+    & > * {
+      transition: all 0.23s cubic-bezier(0.5, 0, 0.5, 1);
+      fill: ${colors.country.base};
+      &:hover {
+        fill: ${colors.country.hover};
+      }
     }
   }
   .zoomed {
@@ -69,7 +100,7 @@ export default styled(RegretsMap)`
     }
   }
   .map-wrapper {
-    padding: 20px 0;
+    padding: 0px 0;
     position: relative;
   }
 `;

@@ -1,7 +1,7 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
-import SurveyButton from "./SurveyButton"
+import React from "react";
+import { Link } from "gatsby";
+import styled from "styled-components";
+import { SurveyButton } from "./SurveyButton";
 function Menu({ className }) {
   return (
     <ul className={className}>
@@ -9,7 +9,7 @@ function Menu({ className }) {
         <SurveyButton to="/survey">Take Survey</SurveyButton>
       </li>
     </ul>
-  )
+  );
 }
 export default styled(Menu)`
   display: flex;
@@ -20,4 +20,4 @@ export default styled(Menu)`
     margin-right: 20px;
     margin-bottom: 0;
   }
-`
+`;

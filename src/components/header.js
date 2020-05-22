@@ -1,9 +1,9 @@
-import { Link } from "gatsby"
-import styled from "styled-components"
-import PropTypes from "prop-types"
-import React from "react"
-import Menu from "./Menu"
-import { layout, colors, fonts } from "../styles"
+import { Link } from "gatsby";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import React from "react";
+import Menu from "./Menu";
+import { layout, colors, fonts } from "../styles";
 
 const Header = ({ siteTitle, className }) => (
   <header className={className} style={{}}>
@@ -14,18 +14,22 @@ const Header = ({ siteTitle, className }) => (
       <Menu />
     </div>
   </header>
-)
+);
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
 export default styled(Header)`
-  background: ${colors.grey[2]};
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
   margin-bottom: 1.45rem;
   .container {
     margin: 0 auto;
@@ -44,4 +48,4 @@ export default styled(Header)`
       text-decoration: none;
     }
   }
-`
+`;

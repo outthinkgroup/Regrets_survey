@@ -35,8 +35,8 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       console.log("should be america");
       stateEl = e.target.closest("#United_States");
     }
-    if (!stateEl.dataset.hasentries) return;
-
+    //if (!stateEl.dataset.hasentries) return;
+    console.log(stateEl);
     const state = stateEl.getBoundingClientRect();
     const _svg = e.target.closest("svg") || e.target;
     const svg = _svg.getBoundingClientRect();
@@ -53,65 +53,64 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       x: ((state.left - svg.left) / svg.width) * WIDTH,
       y: ((state.top - svg.top) / svg.height) * HEIGHT,
     };
-    if (!zoomed) {
-      if (!e.target.hasAttribute("d")) return;
+    //if (!zoomed) {
+    if (!e.target.hasAttribute("d")) return;
 
-      setActiveState(stateEl.id);
+    setActiveState(stateEl.id);
 
-      stateEl.dataset.active = "true";
+    stateEl.dataset.active = "true";
 
-      setZoomed(!zoomed);
+    setZoomed(!zoomed);
 
-      //starts the viewBox size
-      const orientation = getOrientation(
-        width,
-        height,
-        stateRelative.width,
-        stateRelative.height
-      );
+    //starts the viewBox size
+    const orientation = getOrientation(
+      width,
+      height,
+      stateRelative.width,
+      stateRelative.height
+    );
 
-      //readjust to allow card to fit
-      const viewPort = {};
-      viewPort.width = stateRelative.width * 2;
-      viewPort.height = stateRelative.height * 2;
-      let measurementBasedOnRatio;
-      if (orientation === width) {
-        viewPort.height = getRatio(height, width, viewPort.width);
-        measurementBasedOnRatio = viewPort.height;
-      } else {
-        viewPort.width = getRatio(width, height, viewPort.height);
-        measurementBasedOnRatio = viewPort.width;
-      }
+    //readjust to allow card to fit
+    const viewPort = {};
+    viewPort.width = stateRelative.width * 2;
+    viewPort.height = stateRelative.height * 2;
+    let measurementBasedOnRatio;
+    if (orientation === width) {
+      viewPort.height = getRatio(height, width, viewPort.width);
+      measurementBasedOnRatio = viewPort.height;
+    } else {
+      viewPort.width = getRatio(width, height, viewPort.height);
+      measurementBasedOnRatio = viewPort.width;
+    }
 
-      if (measurementBasedOnRatio < stateRelative.height) {
-        const offBy = stateRelative.height - measurementBasedOnRatio;
-        viewPort.height = offBy + measurementBasedOnRatio;
-        viewPort.width = getRatio(width, height, viewPort.height);
-      }
+    if (measurementBasedOnRatio < stateRelative.height) {
+      const offBy = stateRelative.height - measurementBasedOnRatio;
+      viewPort.height = offBy + measurementBasedOnRatio;
+      viewPort.width = getRatio(width, height, viewPort.height);
+    }
 
-      //?MAY NOT NEED
-      /* const getDistance = (newViewBox) => {
+    //?MAY NOT NEED
+    /* const getDistance = (newViewBox) => {
         const distanceWidth = width - newViewBox.width;
         const distanceHeight = height - newViewBox.height;
         return { distanceWidth, distanceHeight };
       }; */
-      //end viewBox size
+    //end viewBox size
 
-      //start viewBox Position
-      viewPort.x = stateRelative.x - (viewPort.width - stateRelative.width);
-      viewPort.x = viewPort.x + (viewPort.width / 2 - stateRelative.width) / 2;
-      viewPort.y =
-        stateRelative.y - (viewPort.height - stateRelative.height) / 2;
+    //start viewBox Position
+    viewPort.x = stateRelative.x - (viewPort.width - stateRelative.width);
+    viewPort.x = viewPort.x + (viewPort.width / 2 - stateRelative.width) / 2;
+    viewPort.y = stateRelative.y - (viewPort.height - stateRelative.height) / 2;
 
-      animateViewBoxScale(
-        viewPort.x,
-        viewPort.y,
-        viewPort.width,
-        viewPort.height
-      );
-    } else {
+    animateViewBoxScale(
+      viewPort.x,
+      viewPort.y,
+      viewPort.width,
+      viewPort.height
+    );
+    /* } else {
       zoomOut();
-    }
+    } */
   };
   return {
     viewBox,

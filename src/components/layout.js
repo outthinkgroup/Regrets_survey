@@ -1,10 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
+import React from "react";
+import PropTypes from "prop-types";
+import { useStaticQuery, graphql } from "gatsby";
+import styled from "styled-components";
 
-import Header from "./header"
-import "./layout.css"
+import Header from "./header";
+import "./layout.css";
 
 const Layout = ({ children, className }) => {
   const data = useStaticQuery(graphql`
@@ -15,7 +15,7 @@ const Layout = ({ children, className }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <div className={className}>
@@ -35,13 +35,23 @@ const Layout = ({ children, className }) => {
         </footer>
       </div>
     </div>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
 export default styled(Layout)`
+  background-color: white;
+  background-image: linear-gradient(
+      180deg,
+      #efefef 0%,
+      rgba(255, 255, 255, 0) 46.93%
+    ),
+    url("/Artworkaaa.png");
+  background-repeat: no-repeat;
+  background-size: 100% 200px, cover;
   min-height: 100vh;
-`
+  padding-top: 70px;
+`;
