@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { fonts, colors } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 
-function StateInfoCard({ activeState, zoomOut, className }) {
+function StateInfoCard({ activeState, zoomOut, className, isMobile }) {
   const { activeRegret: regret, getRegretBy } = useGetRegrets(activeState);
-
+  console.log(isMobile);
   return (
     <div className={className}>
       <div className="active-state-info-card">
@@ -14,7 +14,10 @@ function StateInfoCard({ activeState, zoomOut, className }) {
           <button onClick={zoomOut} className="close">
             <Icon name="close" color="black" />
           </button>
-          <h1>{regret?.location?.country}</h1>
+          <h1>
+            {regret?.location?.state + ", "}
+            {regret?.location?.country}
+          </h1>
           <h3>Anonymous Regret</h3>
           <p>{regret?.regret}</p>
           <button onClick={getRegretBy}>see another</button>
@@ -24,14 +27,13 @@ function StateInfoCard({ activeState, zoomOut, className }) {
   );
 }
 export default styled(StateInfoCard)`
-  position: absolute;
+  position: ${({ isMobile }) => (isMobile ? "relative" : "absolute")};
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-
   .active-state-info-card {
     animation: slideIn 0.28s ease-in-out forwards;
     position: relative;
@@ -40,8 +42,8 @@ export default styled(StateInfoCard)`
     background: #fff;
     border-radius: 8px;
     padding: 20px;
-    width: calc(50% - 40px);
-    max-width: 400px;
+    width: ${({ isMobile }) => (isMobile ? `100%` : `calc(50% - 40px)`)};
+
     margin: 20px;
     .contents {
       margin-top: 20px;
@@ -59,6 +61,8 @@ export default styled(StateInfoCard)`
     p {
       font-size: ${fonts.sizes.copy};
       line-height: 2em;
+      max-height: 200px;
+      overflow-x: scroll;
     }
     button.close {
       background: transparent;

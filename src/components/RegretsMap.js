@@ -6,6 +6,8 @@ import StateInfoCard from "./StateInfoCard";
 import useInteractiveMap from "../hooks/useInteractiveMap";
 import styled from "styled-components";
 import { colors, screen, screenAbove } from "../styles";
+
+import { useIsMobile } from "../hooks/useWindowWidth";
 //these are the viewBox width and height for the svg
 const WIDTH = 1024;
 const HEIGHT = 561.64917;
@@ -20,9 +22,9 @@ function RegretsMap({ className }) {
     zoomed,
   } = useInteractiveMap({ WIDTH, HEIGHT });
 
-  const countryScale = 50;
-  const countryColor = `hsl(50, 0, ${countryScale})`;
+  const isMobile = useIsMobile();
 
+  if (typeof window === "undefined") return null;
   return (
     <div className={className}>
       <div className="heading-card">
@@ -44,7 +46,12 @@ function RegretsMap({ className }) {
         />
 
         {activeState && (
-          <StateInfoCard zoomOut={zoomOut} activeState={activeState} />
+          <StateInfoCard
+            zoomOut={zoomOut}
+            isMobile={isMobile}
+            invis={true}
+            activeState={activeState}
+          />
         )}
       </div>
     </div>

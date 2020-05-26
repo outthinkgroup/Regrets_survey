@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSpring } from "react-spring";
+import { useIsMobile } from "./useWindowWidth";
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const noActiveState = {
     country: null,
@@ -11,6 +12,8 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const [yPos, setYPos] = useState(0);
   const [width, setWidth] = useState(WIDTH);
   const [height, setHeight] = useState(HEIGHT);
+
+  const isMobile = useIsMobile();
 
   const [{ viewBox }, setViewBox] = useSpring(() => ({
     viewBox: [0, 0, WIDTH, HEIGHT],
@@ -36,7 +39,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       stateEl = e.target.closest("#United_States");
     }
     //if (!stateEl.dataset.hasentries) return;
-    console.log(stateEl);
+
     const state = stateEl.getBoundingClientRect();
     const _svg = e.target.closest("svg") || e.target;
     const svg = _svg.getBoundingClientRect();
@@ -53,64 +56,89 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       x: ((state.left - svg.left) / svg.width) * WIDTH,
       y: ((state.top - svg.top) / svg.height) * HEIGHT,
     };
-    //if (!zoomed) {
-    if (!e.target.hasAttribute("d")) return;
+    if (!zoomed) {
+      if (!e.target.hasAttribute("d")) return;
 
-    setActiveState(stateEl.id);
+      setActiveState(stateEl.id);
 
-    stateEl.dataset.active = "true";
+      stateEl.dataset.active = "true";
 
-    setZoomed(!zoomed);
+      setZoomed(!zoomed);
 
-    //starts the viewBox size
-    const orientation = getOrientation(
-      width,
-      height,
-      stateRelative.width,
-      stateRelative.height
-    );
+      //starts the viewBox size
+      const orientation = getOrientation(
+        width,
+        height,
+        stateRelative.width,
+        stateRelative.height
+      );
 
-    //readjust to allow card to fit
-    const viewPort = {};
-    viewPort.width = stateRelative.width * 2;
-    viewPort.height = stateRelative.height * 2;
-    let measurementBasedOnRatio;
-    if (orientation === width) {
-      viewPort.height = getRatio(height, width, viewPort.width);
-      measurementBasedOnRatio = viewPort.height;
+      //readjust to allow card to fit
+      const viewPort = {};
+      //if its mobile position the country in the middle of viewport else
+      //position it the right for the card to go be side it
+
+      function setViewBoxWidthSize() {
+        let width;
+        if (!isMobile) {
+          width = stateRelative.width * 2;
+        } else {
+          width = stateRelative.width;
+        }
+        return width;
+      }
+      function setViewBoxHeightSize() {
+        let height;
+        if (!isMobile) {
+          height = stateRelative.height * 2;
+        } else {
+          height = stateRelative.height;
+        }
+        return height;
+      }
+      function setViewBoxXPos() {
+        let x;
+        if (!isMobile) {
+          x = stateRelative.x - (viewPort.width - stateRelative.width);
+          x = x + (viewPort.width / 2 - stateRelative.width) / 2;
+        } else {
+          x = stateRelative.x - (viewPort.width - stateRelative.width) / 2;
+        }
+
+        return x;
+      }
+
+      viewPort.width = setViewBoxWidthSize();
+      viewPort.height = setViewBoxHeightSize();
+      let measurementBasedOnRatio;
+      if (orientation === width) {
+        viewPort.height = getRatio(height, width, viewPort.width);
+        measurementBasedOnRatio = viewPort.height;
+      } else {
+        viewPort.width = getRatio(width, height, viewPort.height);
+        measurementBasedOnRatio = viewPort.width;
+      }
+
+      if (measurementBasedOnRatio < stateRelative.height) {
+        const offBy = stateRelative.height - measurementBasedOnRatio;
+        viewPort.height = offBy + measurementBasedOnRatio;
+        viewPort.width = getRatio(width, height, viewPort.height);
+      }
+
+      //start viewBox Position
+      viewPort.x = setViewBoxXPos();
+      viewPort.y =
+        stateRelative.y - (viewPort.height - stateRelative.height) / 2;
+
+      animateViewBoxScale(
+        viewPort.x,
+        viewPort.y,
+        viewPort.width,
+        viewPort.height
+      );
     } else {
-      viewPort.width = getRatio(width, height, viewPort.height);
-      measurementBasedOnRatio = viewPort.width;
-    }
-
-    if (measurementBasedOnRatio < stateRelative.height) {
-      const offBy = stateRelative.height - measurementBasedOnRatio;
-      viewPort.height = offBy + measurementBasedOnRatio;
-      viewPort.width = getRatio(width, height, viewPort.height);
-    }
-
-    //?MAY NOT NEED
-    /* const getDistance = (newViewBox) => {
-        const distanceWidth = width - newViewBox.width;
-        const distanceHeight = height - newViewBox.height;
-        return { distanceWidth, distanceHeight };
-      }; */
-    //end viewBox size
-
-    //start viewBox Position
-    viewPort.x = stateRelative.x - (viewPort.width - stateRelative.width);
-    viewPort.x = viewPort.x + (viewPort.width / 2 - stateRelative.width) / 2;
-    viewPort.y = stateRelative.y - (viewPort.height - stateRelative.height) / 2;
-
-    animateViewBoxScale(
-      viewPort.x,
-      viewPort.y,
-      viewPort.width,
-      viewPort.height
-    );
-    /* } else {
       zoomOut();
-    } */
+    }
   };
   return {
     viewBox,
