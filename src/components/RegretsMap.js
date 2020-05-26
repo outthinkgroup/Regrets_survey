@@ -6,7 +6,7 @@ import StateInfoCard from "./StateInfoCard";
 import useInteractiveMap from "../hooks/useInteractiveMap";
 import styled from "styled-components";
 import { colors, screen, screenAbove } from "../styles";
-
+import CountrySearch from "./CountrySearch";
 import { useIsMobile } from "../hooks/useWindowWidth";
 //these are the viewBox width and height for the svg
 const WIDTH = 1024;
@@ -20,6 +20,7 @@ function RegretsMap({ className }) {
     activeState,
     focusInOut,
     zoomed,
+    zoomToState, //triggers a zoom manually
   } = useInteractiveMap({ WIDTH, HEIGHT });
 
   const isMobile = useIsMobile();
@@ -44,12 +45,12 @@ function RegretsMap({ className }) {
           viewBox={viewBox}
           styles={{ width: `100%`, height: `100%` }}
         />
+        <CountrySearch zoomToState={zoomToState} />
 
         {activeState && (
           <StateInfoCard
             zoomOut={zoomOut}
             isMobile={isMobile}
-            invis={true}
             activeState={activeState}
           />
         )}

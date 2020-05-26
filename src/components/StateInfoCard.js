@@ -43,8 +43,7 @@ export default styled(StateInfoCard)`
     border-radius: 8px;
     padding: 20px;
     width: ${({ isMobile }) => (isMobile ? `100%` : `calc(50% - 40px)`)};
-
-    margin: 20px;
+    margin: ${({ isMobile }) => (isMobile ? `20px 0` : `20px`)};
     .contents {
       margin-top: 20px;
       opacity: 0;
