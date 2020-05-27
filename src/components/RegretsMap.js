@@ -93,10 +93,10 @@ export default styled(RegretsMap)`
     }
   }
   .zoomed {
-    [id][data-active="true"] path {
+    [data-country][data-active="true"] path {
       opacity: 1;
     }
-    [id]:not([data-active="true"]) {
+    [data-country]:not([data-active="true"]) {
       opacity: 0.4;
     }
   }

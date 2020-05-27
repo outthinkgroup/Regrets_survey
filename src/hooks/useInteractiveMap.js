@@ -45,7 +45,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     };
     //if (!stateEl.hasAttribute("d")) return;
 
-    setActiveState(stateEl.id);
+    setActiveState(stateEl.dataset.country);
 
     stateEl.dataset.active = "true";
 
@@ -126,9 +126,9 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const focusInOut = (e) => {
     let stateEl = e.target;
 
-    if (e.target.closest("#United_States")) {
+    if (e.target.closest("[data-country]")) {
       console.log("should be america");
-      stateEl = e.target.closest("#United_States");
+      stateEl = e.target.closest("[data-country]");
     }
     if (
       e.target.classList.contains("active-state-info-card") ||

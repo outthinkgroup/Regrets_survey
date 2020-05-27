@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import WorldMap from "./WorldMap";
+import WorldMapTwo from "./WorldMapTwo";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 import { snakeCase } from "../lib";
 import { colors } from "../styles";
+const state = "country";
 export default function InteractiveMap({ viewBox }) {
   const { totalRegretsPerCountry } = useGetRegrets();
 
@@ -14,14 +15,17 @@ export default function InteractiveMap({ viewBox }) {
     const getLightness = (count) => (count / highest) * 100;
     countries.forEach(([key, value]) => {
       const id = snakeCase(key);
-      const countryEl = document.querySelector(`#${id}`);
+      const countryEl = document.querySelector(
+        `[data-country="${id}"], [data-state=${id}]`
+      );
+
       if (!countryEl) return;
       const lightness = getLightness(value);
       countryEl.style.setProperty("--lightness", 100 - (lightness + 50));
       countryEl.dataset.hasentries = true;
     });
   }, [viewBox]);
-  return <WorldMap viewBox={viewBox} />;
+  return <WorldMapTwo viewBox={viewBox} />;
 }
 function getAverageCount(countries) {
   const total = countries.reduce(

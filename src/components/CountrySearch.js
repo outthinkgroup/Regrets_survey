@@ -14,15 +14,17 @@ export default function CountrySearch({ zoomToState }) {
         style={{ position: `absolute` }}
         onSubmit={(e) => {
           e.preventDefault();
+          if (searchVal == "") return;
           const searchValSnakeCased = snakeCase(searchVal);
           const searchedState = document.querySelector(
-            `#${searchValSnakeCased}`
+            `[data-country="${searchValSnakeCased}"], [data-state=${searchValSnakeCased}]`
           );
           if (!searchedState) {
             console.log(searchValSnakeCased, "no results");
             return null;
           }
           zoomToState(searchedState);
+          setSearchVal("");
         }}
       >
         <DropdownSelect
