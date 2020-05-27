@@ -49,7 +49,6 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
   }
   return (
     <>
-      <p>{searchVal}</p>
       <Downshift
         selectedItem={searchVal}
         onStateChange={handleStateChange}
@@ -67,7 +66,6 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
           getRootProps,
         }) => (
           <div>
-            <label {...getLabelProps()}>Enter a fruit</label>
             <div
               style={{
                 display: "inline-block",
