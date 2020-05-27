@@ -16,6 +16,7 @@ export default function CountrySearch({ zoomToState }) {
         onSubmit={(e) => {
           e.preventDefault();
           if (searchVal == "") return;
+
           const searchValSnakeCased = snakeCase(searchVal);
           const searchedState = document.querySelector(
             `[data-country="${searchValSnakeCased}"], [data-state=${searchValSnakeCased}]`
