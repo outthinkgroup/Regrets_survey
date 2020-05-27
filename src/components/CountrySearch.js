@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import Downshift, { useSelect } from "downshift";
 import { snakeCase } from "../lib";
 import { colors } from "../styles";
+import { useGetRegrets } from "../hooks/useGetRegrets";
 export default function CountrySearch({ zoomToState }) {
+  const { totalRegretsPerCountry } = useGetRegrets();
+  const countries = Object.keys(totalRegretsPerCountry);
   const [searchVal, setSearchVal] = useState("");
   return (
     <div>
@@ -19,24 +23,100 @@ export default function CountrySearch({ zoomToState }) {
             return null;
           }
           zoomToState(searchedState);
-          setSearchVal("");
         }}
       >
-        <input
-          type="search"
-          name=""
-          value={searchVal}
-          onChange={(e) => setSearchVal(e.target.value)}
-          id=""
-          style={{
-            zIndex: 3,
-            background: colors.grey[2],
-          }}
+        <DropdownSelect
+          searchVal={searchVal}
+          setSearchVal={setSearchVal}
+          items={countries}
         />
+
         <button type="submit" style={{ background: colors.grey[3] }}>
           search
         </button>
       </form>
     </div>
+  );
+}
+
+function DropdownSelect({ items, setSearchVal, searchVal }) {
+  function handleStateChange(changes) {
+    if (changes.hasOwnProperty("selectedItem")) {
+      setSearchVal(changes.selectedItem);
+    } else if (changes.hasOwnProperty("inputValue")) {
+      setSearchVal(changes.inputValue);
+    }
+  }
+  return (
+    <>
+      <p>{searchVal}</p>
+      <Downshift
+        selectedItem={searchVal}
+        onStateChange={handleStateChange}
+        itemToString={(item) => (item ? item : "")}
+      >
+        {({
+          getInputProps,
+          getItemProps,
+          getLabelProps,
+          getMenuProps,
+          isOpen,
+          inputValue,
+          highlightedIndex,
+          selectedItem,
+          getRootProps,
+        }) => (
+          <div>
+            <label {...getLabelProps()}>Enter a fruit</label>
+            <div
+              style={{
+                display: "inline-block",
+              }}
+              {...getRootProps(
+                {},
+                {
+                  suppressRefError: true,
+                }
+              )}
+            >
+              <input {...getInputProps()} />
+            </div>
+            <ul {...getMenuProps()}>
+              {isOpen
+                ? items
+                    .filter(
+                      (item) =>
+                        !inputValue ||
+                        item.toLowerCase().includes(inputValue.toLowerCase())
+                    )
+                    .map((item, index) => (
+                      <li
+                        styles={{
+                          color: `black`,
+                        }}
+                        {...getItemProps({
+                          key: item,
+                          index,
+                          item,
+                          style: {
+                            color: `black`,
+                            backgroundColor:
+                              highlightedIndex === index
+                                ? "lightgray"
+                                : "white",
+                            fontWeight:
+                              selectedItem === item ? "bold" : "normal",
+                          },
+                        })}
+                      >
+                        {item}
+                      </li>
+                    ))
+                : null}
+            </ul>
+          </div>
+        )}
+      </Downshift>
+    </>
   );
 }

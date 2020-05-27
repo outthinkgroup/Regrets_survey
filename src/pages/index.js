@@ -10,7 +10,7 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <WelcomeSection />
-    {typeof window !== "undefined" && <RegretsMap />}
+    <RegretsMap />
     <About />
   </Layout>
 );

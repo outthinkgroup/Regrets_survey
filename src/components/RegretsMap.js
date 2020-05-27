@@ -25,7 +25,6 @@ function RegretsMap({ className }) {
 
   const isMobile = useIsMobile();
 
-  if (typeof window === "undefined") return null;
   return (
     <div className={className}>
       <div className="heading-card">

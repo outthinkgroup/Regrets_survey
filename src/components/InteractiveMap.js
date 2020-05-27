@@ -20,7 +20,7 @@ export default function InteractiveMap({ viewBox }) {
       countryEl.style.setProperty("--lightness", 100 - (lightness + 50));
       countryEl.dataset.hasentries = true;
     });
-  }, []);
+  }, [viewBox]);
   return <WorldMap viewBox={viewBox} />;
 }
 function getAverageCount(countries) {
