@@ -1,6 +1,37 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { useSpring } from "react-spring";
 import { useIsMobile } from "./useWindowWidth";
+
+const WORLD = "WORLD";
+const COUNTRY = "COUNTRY";
+const STATE = "STATE";
+const MACHINE = {
+  WORLD: {
+    countrySelect: () => {
+      console.log("now will be in Country state");
+      return COUNTRY;
+    },
+  },
+  COUNTRY: {
+    stateSelected: () => {
+      return STATE;
+    },
+    zoomOut: () => {
+      return WORLD;
+    },
+  },
+  STATE: {
+    zoomOut: () => {
+      console.log("now will be in Country State");
+      return COUNTRY;
+    },
+  },
+};
+const reducer = (state, event) => {
+  const nextState = MACHINE[state][event]();
+  console.log(nextState);
+  return nextState;
+};
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const noActiveState = {
     country: null,
@@ -12,6 +43,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const [yPos, setYPos] = useState(0);
   const [width, setWidth] = useState(WIDTH);
   const [height, setHeight] = useState(HEIGHT);
+  const [mapState, send] = useReducer(reducer, WORLD);
 
   const isMobile = useIsMobile();
 
@@ -24,6 +56,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   }
 
   function zoomOut() {
+    send("zoomOut");
     setActiveState(null);
     setZoomed(!zoomed);
     delete document.querySelector("[data-active='true']").dataset.active;
@@ -32,6 +65,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   }
 
   function zoomToState(stateEl) {
+    send("countrySelect");
     if (!stateEl.dataset.hasentries) return;
     const state = stateEl.getBoundingClientRect();
     const _svg = stateEl.closest("svg") || stateEl;
