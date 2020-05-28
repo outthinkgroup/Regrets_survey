@@ -18,7 +18,7 @@ function StateInfoCard({ activeState, zoomOut, className, isMobile }) {
             {regret?.location?.state + ", "}
             {regret?.location?.country}
           </h1>
-          <h3>Anonymous Regret</h3>
+          <h3>Male, Age 45</h3>
           <p>{regret?.regret}</p>
           <button onClick={getRegretBy}>see another</button>
         </div>
