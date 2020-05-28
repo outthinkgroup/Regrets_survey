@@ -5,33 +5,7 @@ import { useIsMobile } from "./useWindowWidth";
 const WORLD = "WORLD";
 const COUNTRY = "COUNTRY";
 const STATE = "STATE";
-const MACHINE = {
-  WORLD: {
-    countrySelect: () => {
-      console.log("now will be in Country state");
-      return COUNTRY;
-    },
-  },
-  COUNTRY: {
-    stateSelected: () => {
-      return STATE;
-    },
-    zoomOut: () => {
-      return WORLD;
-    },
-  },
-  STATE: {
-    zoomOut: () => {
-      console.log("now will be in Country State");
-      return COUNTRY;
-    },
-  },
-};
-const reducer = (state, event) => {
-  const nextState = MACHINE[state][event]();
-  console.log(nextState);
-  return nextState;
-};
+
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const noActiveState = {
     country: null,
@@ -39,11 +13,6 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
 
   const [zoomed, setZoomed] = useState(false);
   const [activeState, setActiveState] = useState(null);
-  const [xPos, setXPos] = useState(0);
-  const [yPos, setYPos] = useState(0);
-  const [width, setWidth] = useState(WIDTH);
-  const [height, setHeight] = useState(HEIGHT);
-  const [mapState, send] = useReducer(reducer, WORLD);
 
   const isMobile = useIsMobile();
 
@@ -51,46 +20,92 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     viewBox: [0, 0, WIDTH, HEIGHT],
   }));
 
+  const MACHINE = {
+    WORLD: {
+      click: (e) => {
+        console.log(e);
+        if (!e.target.dataset.country && !e.target.dataset.state) return;
+        const target = e.target.dataset.state
+          ? e.target.closest("[data-country]")
+          : e.target;
+        zoomTo(target);
+        return COUNTRY;
+      },
+    },
+    COUNTRY: {
+      click: (e) => {
+        console.log(e);
+        if (!e.target.dataset.state && !e.target.closest(`[data-state]`))
+          return COUNTRY;
+        const target = !e.target.dataset.state
+          ? e.target.closest("[data-state]")
+          : e.target;
+        zoomTo(target);
+        return STATE;
+      },
+      close: () => {
+        resetMapState();
+        return WORLD;
+      },
+    },
+    STATE: {
+      zoomOut: () => {
+        console.log("now will be in Country State");
+        return COUNTRY;
+      },
+    },
+  };
+  const reducer = (state, event) => {
+    const [eventName, data] = event;
+    console.log(eventName);
+    const nextState = MACHINE[state][eventName](data);
+    //console.log(nextState);
+    return nextState;
+  };
+  const [mapState, send] = useReducer(reducer, WORLD);
+
   function animateViewBoxScale(nextXPos, nextYPos, nextWidth, nextHeight) {
     setViewBox({ viewBox: [nextXPos, nextYPos, nextWidth, nextHeight] });
   }
 
-  function zoomOut() {
-    send("zoomOut");
+  function resetMapState() {
+    //send("zoomOut");
+    if (activeState === null) return;
     setActiveState(null);
-    setZoomed(!zoomed);
+    setZoomed(false);
     delete document.querySelector("[data-active='true']").dataset.active;
 
     animateViewBoxScale(0, 0, WIDTH, HEIGHT);
   }
 
-  function zoomToState(stateEl) {
-    send("countrySelect");
-    if (!stateEl.dataset.hasentries) return;
-    const state = stateEl.getBoundingClientRect();
-    const _svg = stateEl.closest("svg") || stateEl;
-    const svg = _svg.getBoundingClientRect();
+  function zoomTo(targetEl) {
+    console.log(targetEl);
+    //send("countrySelect");
+    //if (!targetEl.dataset.hasentries) return;
+    const targetRect = targetEl.getBoundingClientRect();
+    const svgEl = targetEl.closest("svg") || targetEl;
+    const svgRect = svgEl.getBoundingClientRect();
 
-    const stateRelative = {
-      width: (state.width / svg.width) * WIDTH,
-      height: (state.height / svg.height) * HEIGHT,
-      x: ((state.left - svg.left) / svg.width) * WIDTH,
-      y: ((state.top - svg.top) / svg.height) * HEIGHT,
+    const relativeSizeToSvg = {
+      width: (targetRect.width / svgRect.width) * WIDTH,
+      height: (targetRect.height / svgRect.height) * HEIGHT,
+      x: ((targetRect.left - svgRect.left) / svgRect.width) * WIDTH,
+      y: ((targetRect.top - svgRect.top) / svgRect.height) * HEIGHT,
     };
     //if (!stateEl.hasAttribute("d")) return;
 
-    setActiveState(stateEl.dataset.country);
+    setActiveState(targetEl.dataset.country);
 
-    stateEl.dataset.active = "true";
+    targetEl.dataset.active = "true";
 
     setZoomed(!zoomed);
 
     //starts the viewBox size
     const orientation = getOrientation(
-      width,
-      height,
-      stateRelative.width,
-      stateRelative.height
+      WIDTH,
+      HEIGHT,
+      relativeSizeToSvg.width,
+      relativeSizeToSvg.height
     );
 
     //readjust to allow card to fit
@@ -101,28 +116,29 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     function setViewBoxWidthSize() {
       let width;
       if (!isMobile) {
-        width = stateRelative.width * 2;
+        width = relativeSizeToSvg.width * 2;
       } else {
-        width = stateRelative.width;
+        width = relativeSizeToSvg.width;
       }
       return width;
     }
     function setViewBoxHeightSize() {
       let height;
       if (!isMobile) {
-        height = stateRelative.height * 2;
+        height = relativeSizeToSvg.height * 2;
       } else {
-        height = stateRelative.height;
+        height = relativeSizeToSvg.height;
       }
       return height;
     }
     function setViewBoxXPos() {
       let x;
       if (!isMobile) {
-        x = stateRelative.x - (viewPort.width - stateRelative.width);
-        x = x + (viewPort.width / 2 - stateRelative.width) / 2;
+        x = relativeSizeToSvg.x - (viewPort.width - relativeSizeToSvg.width);
+        x = x + (viewPort.width / 2 - relativeSizeToSvg.width) / 2;
       } else {
-        x = stateRelative.x - (viewPort.width - stateRelative.width) / 2;
+        x =
+          relativeSizeToSvg.x - (viewPort.width - relativeSizeToSvg.width) / 2;
       }
 
       return x;
@@ -131,24 +147,30 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     viewPort.width = setViewBoxWidthSize();
     viewPort.height = setViewBoxHeightSize();
     let measurementBasedOnRatio;
-    if (orientation === width) {
-      viewPort.height = getRatio(height, width, viewPort.width);
+    if (orientation === WIDTH) {
+      viewPort.height = getRatio(HEIGHT, WIDTH, viewPort.width);
       measurementBasedOnRatio = viewPort.height;
     } else {
-      viewPort.width = getRatio(width, height, viewPort.height);
+      viewPort.width = getRatio(WIDTH, HEIGHT, viewPort.height);
       measurementBasedOnRatio = viewPort.width;
     }
 
-    if (measurementBasedOnRatio < stateRelative.height) {
-      const offBy = stateRelative.height - measurementBasedOnRatio;
+    if (measurementBasedOnRatio < relativeSizeToSvg.height) {
+      const offBy = relativeSizeToSvg.height - measurementBasedOnRatio;
       viewPort.height = offBy + measurementBasedOnRatio;
-      viewPort.width = getRatio(width, height, viewPort.height);
+      viewPort.width = getRatio(WIDTH, HEIGHT, viewPort.height);
     }
 
     //start viewBox Position
     viewPort.x = setViewBoxXPos();
-    viewPort.y = stateRelative.y - (viewPort.height - stateRelative.height) / 2;
-
+    viewPort.y =
+      relativeSizeToSvg.y - (viewPort.height - relativeSizeToSvg.height) / 2;
+    console.log({
+      X: viewPort.x,
+      Y: viewPort.y,
+      Width: viewPort.width,
+      Height: viewPort.height,
+    });
     animateViewBoxScale(
       viewPort.x,
       viewPort.y,
@@ -157,9 +179,11 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     );
   }
 
-  const focusInOut = (e) => {
+  function focusInOut(e) {
+    e.persist();
     let stateEl = e.target;
-
+    console.log(stateEl);
+    if (!stateEl.dataset.country && !stateEl.dataset.state) return;
     if (e.target.closest("[data-country]")) {
       console.log("should be america");
       stateEl = e.target.closest("[data-country]");
@@ -170,18 +194,20 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     )
       return;
     if (!zoomed) {
-      zoomToState(stateEl);
+      zoomTo(stateEl);
     } else {
-      zoomOut();
+      resetMapState();
     }
-  };
+  }
   return {
     viewBox,
     focusInOut,
     activeState,
-    zoomOut,
+    resetMapState,
     zoomed,
-    zoomToState,
+    zoomTo,
+    send,
+    mapState,
   };
 } //end hook
 

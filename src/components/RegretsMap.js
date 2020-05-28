@@ -16,11 +16,12 @@ function RegretsMap({ className }) {
   //functions to pass our map
   const {
     viewBox,
-    zoomOut,
+    resetMapState,
     activeState,
     focusInOut,
     zoomed,
-    zoomToState, //triggers a zoom manually
+    zoomTo, //triggers a zoom manually
+    send,
   } = useInteractiveMap({ WIDTH, HEIGHT });
 
   const isMobile = useIsMobile();
@@ -33,7 +34,11 @@ function RegretsMap({ className }) {
 
       <div
         className={`${zoomed ? `zoomed` : ""} map-wrapper`}
-        onClick={focusInOut}
+        onClick={(e) => {
+          console.log("called");
+          e.persist();
+          send(["click", e]);
+        }}
         style={{
           position: "relative",
           width: `100%`,
@@ -44,11 +49,14 @@ function RegretsMap({ className }) {
           viewBox={viewBox}
           styles={{ width: `100%`, height: `100%` }}
         />
-        <CountrySearch zoomToState={zoomToState} />
+        <CountrySearch zoomTo={zoomTo} />
 
         {activeState && (
           <StateInfoCard
-            zoomOut={zoomOut}
+            zoomOut={(e) => {
+              e.stopPropagation();
+              send(["close"]);
+            }}
             isMobile={isMobile}
             activeState={activeState}
           />
