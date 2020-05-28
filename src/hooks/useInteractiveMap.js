@@ -5,6 +5,7 @@ import { useIsMobile } from "./useWindowWidth";
 const WORLD = "WORLD";
 const COUNTRY = "COUNTRY";
 const STATE = "STATE";
+const PARENT_COUNTRY = "PARENT_COUNTRY";
 
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const noActiveState = {
@@ -28,15 +29,22 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         const target = e.target.dataset.state
           ? e.target.closest("[data-country]")
           : e.target;
-        zoomTo(target);
-        return COUNTRY;
+        // checks if is america or canada
+        const hideActiveState = target.dataset.hasChildren;
+        zoomTo(target, hideActiveState);
+
+        if (target.dataset.hasChildren) {
+          return PARENT_COUNTRY;
+        } else {
+          return COUNTRY;
+        }
       },
     },
-    COUNTRY: {
+    PARENT_COUNTRY: {
       click: (e) => {
         console.log(e);
         if (!e.target.dataset.state && !e.target.closest(`[data-state]`))
-          return COUNTRY;
+          return PARENT_COUNTRY;
         const target = !e.target.dataset.state
           ? e.target.closest("[data-state]")
           : e.target;
@@ -48,16 +56,29 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         return WORLD;
       },
     },
-    STATE: {
-      zoomOut: () => {
-        console.log("now will be in Country State");
+    COUNTRY: {
+      click: (e) => {
         return COUNTRY;
+      },
+      close: () => {
+        resetMapState();
+        return WORLD;
+      },
+    },
+    STATE: {
+      click: () => {
+        return STATE;
+      },
+      close: () => {
+        console.log(mapState);
+        resetMapState();
+        return WORLD;
       },
     },
   };
   const reducer = (state, event) => {
     const [eventName, data] = event;
-    console.log(eventName);
+    console.log({ state, eventName });
     const nextState = MACHINE[state][eventName](data);
     //console.log(nextState);
     return nextState;
@@ -70,15 +91,18 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
 
   function resetMapState() {
     //send("zoomOut");
-    if (activeState === null) return;
+    if (zoomed === false) return;
     setActiveState(null);
     setZoomed(false);
-    delete document.querySelector("[data-active='true']").dataset.active;
+
+    [...document.querySelectorAll("[data-active='true']")].forEach(
+      (el) => delete el.dataset.active
+    );
 
     animateViewBoxScale(0, 0, WIDTH, HEIGHT);
   }
 
-  function zoomTo(targetEl) {
+  function zoomTo(targetEl, hideActiveState) {
     console.log(targetEl);
     //send("countrySelect");
     //if (!targetEl.dataset.hasentries) return;
@@ -93,12 +117,12 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       y: ((targetRect.top - svgRect.top) / svgRect.height) * HEIGHT,
     };
     //if (!stateEl.hasAttribute("d")) return;
+    if (!hideActiveState) {
+      setActiveState(targetEl.dataset.state || targetEl.dataset.country);
+      targetEl.dataset.active = "true";
+    }
 
-    setActiveState(targetEl.dataset.country);
-
-    targetEl.dataset.active = "true";
-
-    setZoomed(!zoomed);
+    setZoomed(true);
 
     //starts the viewBox size
     const orientation = getOrientation(
@@ -115,16 +139,18 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
 
     function setViewBoxWidthSize() {
       let width;
-      if (!isMobile) {
+      if (!isMobile && !hideActiveState) {
+        //cut in half
         width = relativeSizeToSvg.width * 2;
       } else {
+        // take up full width
         width = relativeSizeToSvg.width;
       }
       return width;
     }
     function setViewBoxHeightSize() {
       let height;
-      if (!isMobile) {
+      if (!isMobile && !hideActiveState) {
         height = relativeSizeToSvg.height * 2;
       } else {
         height = relativeSizeToSvg.height;
@@ -133,7 +159,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     }
     function setViewBoxXPos() {
       let x;
-      if (!isMobile) {
+      if (!isMobile && !hideActiveState) {
         x = relativeSizeToSvg.x - (viewPort.width - relativeSizeToSvg.width);
         x = x + (viewPort.width / 2 - relativeSizeToSvg.width) / 2;
       } else {

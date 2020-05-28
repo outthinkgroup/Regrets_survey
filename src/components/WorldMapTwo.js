@@ -1322,6 +1322,7 @@ function WorldMap({ viewBox }) {
         id="United_States"
         data-country="United_States"
         data-name="United States"
+        data-has-children="true"
       >
         <path
           data-state="South_Dakota"
@@ -1591,7 +1592,7 @@ function WorldMap({ viewBox }) {
           d="M258.19,250.12l.64-.66.75.65-.57.69Z"
         />
       </g>
-      <g data-country="Canada">
+      <g data-country="Canada" data-has-children="true">
         <path
           data-state="Yukon"
           d="M131,171.68h-5.76l-26,.14L97.65,169,96,168l-2.88-4.56-2.47,1.12-1.15,2-2.28,1.15-.79-1.51-4.15-4,.15-1.43-2.34.77L77,161.13V104.85l5.11.87,5.1,4.57h2.68l1.33.8,2,4.37L94,127.83l6.11.28,4.52,7.39s.52,4.22,0,5.43,1.2,5.4,2.5,5.4h1.3l6.26,11.82,5.48,4.31,1.3,3.75h.83l5.4-.3Z"

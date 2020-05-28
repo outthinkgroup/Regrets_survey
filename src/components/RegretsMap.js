@@ -22,6 +22,7 @@ function RegretsMap({ className }) {
     zoomed,
     zoomTo, //triggers a zoom manually
     send,
+    mapState,
   } = useInteractiveMap({ WIDTH, HEIGHT });
 
   const isMobile = useIsMobile();
@@ -33,7 +34,7 @@ function RegretsMap({ className }) {
       </div>
 
       <div
-        className={`${zoomed ? `zoomed` : ""} map-wrapper`}
+        className={`${zoomed ? `zoomed` : ""} map-wrapper, ${mapState}`}
         onClick={(e) => {
           console.log("called");
           e.persist();
