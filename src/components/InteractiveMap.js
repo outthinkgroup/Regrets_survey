@@ -3,7 +3,7 @@ import WorldMapTwo from "./WorldMapTwo";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 import { snakeCase } from "../lib";
 import { colors } from "../styles";
-const state = "country";
+
 export default function InteractiveMap({ viewBox }) {
   const { totalRegretsPerCountry } = useGetRegrets();
 
@@ -26,14 +26,6 @@ export default function InteractiveMap({ viewBox }) {
     });
   }, [viewBox]);
   return <WorldMapTwo viewBox={viewBox} />;
-}
-function getAverageCount(countries) {
-  const total = countries.reduce(
-    (total, [key, value]) => total + Number(value),
-    0
-  );
-  console.log(total);
-  return total / countries.length;
 }
 
 function getHighestCount(countries) {
