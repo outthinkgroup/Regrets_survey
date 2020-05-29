@@ -3,12 +3,10 @@ import Downshift, { useSelect } from "downshift";
 import { snakeCase } from "../lib";
 import { colors, fonts } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
-<<<<<<< HEAD
+
 import styled from "styled-components";
-export default function CountrySearch({ zoomToState }) {
-=======
+
 export default function CountrySearch({ zoomTo }) {
->>>>>>> renamed variables
   const { totalRegretsPerCountry } = useGetRegrets();
   const countries = Object.keys(totalRegretsPerCountry);
   const [searchVal, setSearchVal] = useState("");

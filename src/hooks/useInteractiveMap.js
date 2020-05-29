@@ -24,7 +24,6 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const MACHINE = {
     WORLD: {
       click: (e) => {
-        console.log(e);
         if (!e.target.dataset.country && !e.target.dataset.state) return;
         const target = e.target.dataset.state
           ? e.target.closest("[data-country]")
@@ -38,6 +37,13 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         } else {
           return COUNTRY;
         }
+        /*  if (!e.target.dataset.state && !e.target.closest(`[data-state]`))
+          return PARENT_COUNTRY;
+        const target = !e.target.dataset.state
+          ? e.target.closest("[data-state]")
+          : e.target;
+        zoomTo(target);
+        return STATE; */
       },
     },
     PARENT_COUNTRY: {
@@ -70,7 +76,6 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         return STATE;
       },
       close: () => {
-        console.log(mapState);
         resetMapState();
         return WORLD;
       },
@@ -78,9 +83,9 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   };
   const reducer = (state, event) => {
     const [eventName, data] = event;
-    console.log({ state, eventName });
+    console.log({ StateBEFORE: state });
     const nextState = MACHINE[state][eventName](data);
-    //console.log(nextState);
+    console.log({ StateAFTER: nextState });
     return nextState;
   };
   const [mapState, send] = useReducer(reducer, WORLD);
@@ -103,13 +108,14 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   }
 
   function zoomTo(targetEl, hideActiveState) {
-    console.log(targetEl);
-    //send("countrySelect");
     //if (!targetEl.dataset.hasentries) return;
     const targetRect = targetEl.getBoundingClientRect();
     const svgEl = targetEl.closest("svg") || targetEl;
+
+    const currentViewBox = getViewBoxFromString(svgEl);
     const svgRect = svgEl.getBoundingClientRect();
 
+    const ratio = currentViewBox.width / WIDTH;
     const relativeSizeToSvg = {
       width: (targetRect.width / svgRect.width) * WIDTH,
       height: (targetRect.height / svgRect.height) * HEIGHT,
@@ -121,7 +127,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       setActiveState(targetEl.dataset.state || targetEl.dataset.country);
       targetEl.dataset.active = "true";
     }
-
+    console.log(relativeSizeToSvg);
     setZoomed(true);
 
     //starts the viewBox size
@@ -133,7 +139,8 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     );
 
     //readjust to allow card to fit
-    const viewPort = {};
+    const newViewPort = {};
+
     //if its mobile position the country in the middle of viewport else
     //position it the right for the card to go be side it
 
@@ -160,48 +167,102 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     function setViewBoxXPos() {
       let x;
       if (!isMobile && !hideActiveState) {
-        x = relativeSizeToSvg.x - (viewPort.width - relativeSizeToSvg.width);
-        x = x + (viewPort.width / 2 - relativeSizeToSvg.width) / 2;
+        x = relativeSizeToSvg.x - (newViewPort.width - relativeSizeToSvg.width);
+        x = x + (newViewPort.width / 2 - relativeSizeToSvg.width) / 2;
       } else {
         x =
-          relativeSizeToSvg.x - (viewPort.width - relativeSizeToSvg.width) / 2;
+          relativeSizeToSvg.x -
+          (newViewPort.width - relativeSizeToSvg.width) / 2;
       }
 
       return x;
     }
 
-    viewPort.width = setViewBoxWidthSize();
-    viewPort.height = setViewBoxHeightSize();
+    newViewPort.width = setViewBoxWidthSize();
+    newViewPort.height = setViewBoxHeightSize();
     let measurementBasedOnRatio;
     if (orientation === WIDTH) {
-      viewPort.height = getRatio(HEIGHT, WIDTH, viewPort.width);
-      measurementBasedOnRatio = viewPort.height;
+      newViewPort.height = getRatio(HEIGHT, WIDTH, newViewPort.width);
+      measurementBasedOnRatio = newViewPort.height;
     } else {
-      viewPort.width = getRatio(WIDTH, HEIGHT, viewPort.height);
-      measurementBasedOnRatio = viewPort.width;
+      newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
+      measurementBasedOnRatio = newViewPort.width;
     }
 
     if (measurementBasedOnRatio < relativeSizeToSvg.height) {
       const offBy = relativeSizeToSvg.height - measurementBasedOnRatio;
-      viewPort.height = offBy + measurementBasedOnRatio;
-      viewPort.width = getRatio(WIDTH, HEIGHT, viewPort.height);
+      newViewPort.height = offBy + measurementBasedOnRatio;
+      newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
+    }
+
+    function getGoalViewBoxPos({ actualUnit, currentUnit }) {
+      return actualUnit * ratio + currentUnit;
+    }
+    function getGoalViewBoxSize({ actualUnit }) {
+      return actualUnit * ratio;
     }
 
     //start viewBox Position
-    viewPort.x = setViewBoxXPos();
-    viewPort.y =
-      relativeSizeToSvg.y - (viewPort.height - relativeSizeToSvg.height) / 2;
+    newViewPort.x = setViewBoxXPos();
+    newViewPort.y =
+      relativeSizeToSvg.y - (newViewPort.height - relativeSizeToSvg.height) / 2;
     console.log({
-      X: viewPort.x,
-      Y: viewPort.y,
-      Width: viewPort.width,
-      Height: viewPort.height,
+      X: newViewPort.x,
+      Y: newViewPort.y,
+      Width: newViewPort.width,
+      Height: newViewPort.height,
     });
+    //0.398807642
+    //*TEXAS
+    // goal:
+    // 161.7734871106435 258.7399935677117 64.10384483350498 35.160030512252796
+
+    // actual
+    // 556.9060638304336 418.0962189235486 160.738757294885 88.16288048974963
+
+    //AMERICA
+    // -60.32041747121499 91.99998286214836 408.3790255220418 223.98998118150743
+
+    // const WIDTH = 1024;
+    // const HEIGHT = 561.64917;
+
+    //160.738757294885 * 0.398807642  408.3790255220418
+
+    //*UTAH
+    //x:-26.71924
+    //y:
+    function getGoalViewPort() {
+      const { x: _x, y, width, height } = newViewPort;
+
+      //const ratio = 1;
+      return {
+        x: getGoalViewBoxPos({
+          actualUnit: _x,
+          currentUnit: currentViewBox.x,
+          ratio,
+        }),
+        y: getGoalViewBoxPos({
+          actualUnit: y,
+          currentUnit: currentViewBox.y,
+          ratio,
+        }),
+        width: getGoalViewBoxSize({
+          actualUnit: width,
+          ratio,
+        }),
+        height: getGoalViewBoxSize({
+          actualUnit: height,
+          ratio,
+        }),
+      };
+    }
+    const goalViewPort = getGoalViewPort();
+
     animateViewBoxScale(
-      viewPort.x,
-      viewPort.y,
-      viewPort.width,
-      viewPort.height
+      goalViewPort.x,
+      goalViewPort.y,
+      goalViewPort.width,
+      goalViewPort.height
     );
   }
 
@@ -248,3 +309,18 @@ function getRatio(
 ) {
   return (newComparingMeasurement / comparingMeasurement) * measurementToChange;
 }
+
+function getViewBoxFromString(svgEl) {
+  const currentViewBoxArray = svgEl
+    .getAttribute("viewBox")
+    .split(" ")
+    .map((viewBoxUnit) => parseInt(viewBoxUnit));
+  const [x, y, width, height] = currentViewBoxArray;
+  return {
+    x,
+    y,
+    width,
+    height,
+  };
+}
+/* finds percentage of what the state size is to the country*/
