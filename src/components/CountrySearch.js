@@ -6,7 +6,7 @@ import { useGetRegrets } from "../hooks/useGetRegrets";
 
 import styled from "styled-components";
 
-export default function CountrySearch({ zoomTo }) {
+export default function CountrySearch({ send }) {
   const { totalRegretsPerCountry } = useGetRegrets();
   const countries = Object.keys(totalRegretsPerCountry);
   const [searchVal, setSearchVal] = useState("");
@@ -28,7 +28,15 @@ export default function CountrySearch({ zoomTo }) {
             return null;
           }
           console.log(searchedState);
-          zoomTo(searchedState);
+          const type = searchedState.dataset.state
+            ? "STATE"
+            : searchedState.dataset.hasChildren
+            ? "PARENT_COUNTRY"
+            : "COUNTRY";
+          if (type === "STATE") {
+            searchedState.closest("[data-country]").dataset.active = "true";
+          }
+          send(["searched", { searchedState, type }]);
           setSearchVal("");
         }}
       >

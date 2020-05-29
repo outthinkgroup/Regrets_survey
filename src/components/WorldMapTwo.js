@@ -1,11 +1,12 @@
 import React from "react";
 import { useSpring, animated, interpolate } from "react-spring";
-function WorldMap({ viewBox }) {
+function WorldMap({ viewBox, onClick }) {
   const interpViewBox = viewBox.interpolate(
     (x, y, w, h) => `${x} ${y} ${w} ${h}`
   );
   return (
     <animated.svg
+      onClick={onClick}
       viewBox={interpViewBox}
       style={{ width: `100%`, height: `100%` }}
     >

@@ -25,10 +25,15 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     WORLD: {
       click: (e) => {
         if (!e.target.dataset.country && !e.target.dataset.state) return WORLD;
+
         const target = e.target.dataset.state
           ? e.target.closest("[data-country]")
           : e.target;
-        // checks if is america or canada
+
+        if (!target.dataset.hasentries) {
+          console.log("because no entries");
+          return WORLD;
+        }
         const hideActiveState = target.dataset.hasChildren; // boolean
         zoomTo(target, hideActiveState);
 
@@ -38,6 +43,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
           return COUNTRY;
         }
       },
+      searched: (data) => searched(data),
     },
     PARENT_COUNTRY: {
       click: (e) => {
@@ -48,9 +54,13 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
           !e.target.closest(`[data-state]`)
         )
           return PARENT_COUNTRY;
+
         const target = !e.target.dataset.state
           ? e.target.closest("[data-state]")
           : e.target;
+
+        if (!target.dataset.hasentries) return PARENT_COUNTRY;
+
         zoomTo(target);
         return STATE;
       },
@@ -58,6 +68,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         resetMapState();
         return WORLD;
       },
+      searched: (data) => searched(data),
     },
     COUNTRY: {
       click: (e) => {
@@ -67,6 +78,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         resetMapState();
         return WORLD;
       },
+      searched: (data) => searched(data),
     },
     STATE: {
       click: () => {
@@ -76,11 +88,12 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         zoomBackOnce();
         return PARENT_COUNTRY;
       },
+      searched: (data) => searched(data),
     },
   };
   const reducer = (state, event) => {
     const [eventName, data] = event;
-    console.log({ StateBEFORE: state });
+    console.log({ StateBEFORE: state, data });
     const nextState = MACHINE[state][eventName](data);
     console.log({ StateAFTER: nextState });
     return nextState;
@@ -104,6 +117,25 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     animateViewBoxScale(0, 0, WIDTH, HEIGHT);
   }
 
+  function searched({ searchedState, type }) {
+    if (!searchedState.dataset.hasentries) {
+      console.log({ mapState });
+      return mapState;
+    }
+
+    if (type === COUNTRY || type === STATE) {
+      if (type === STATE) {
+        console.log("the country is active too");
+        searchedState.closest("[data-country]").active = "true";
+      }
+      zoomTo(searchedState);
+    } else {
+      zoomTo(searchedState, false);
+    }
+
+    return type;
+  }
+
   function zoomBackOnce() {
     if (!activeState) return;
     const stateEl = document.querySelector(`[data-state="${activeState}"]`);
@@ -116,7 +148,6 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   }
 
   function zoomTo(targetEl, hideActiveState) {
-    //if (!targetEl.dataset.hasentries) return;
     const targetRect = targetEl.getBoundingClientRect();
     const svgEl = targetEl.closest("svg") || targetEl;
 
@@ -252,26 +283,6 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     //end of zoomTo
   }
 
-  function focusInOut(e) {
-    e.persist();
-    let stateEl = e.target;
-    console.log(stateEl);
-    if (!stateEl.dataset.country && !stateEl.dataset.state) return;
-    if (e.target.closest("[data-country]")) {
-      console.log("should be america");
-      stateEl = e.target.closest("[data-country]");
-    }
-    if (
-      e.target.classList.contains("active-state-info-card") ||
-      e.target.closest(".active-state-info-card")
-    )
-      return;
-    if (!zoomed) {
-      zoomTo(stateEl);
-    } else {
-      resetMapState();
-    }
-  }
   return {
     viewBox,
     activeState,

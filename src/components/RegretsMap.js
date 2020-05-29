@@ -34,11 +34,6 @@ function RegretsMap({ className }) {
 
       <div
         className={`${zoomed ? `zoomed` : ""} map-wrapper, ${mapState}`}
-        onClick={(e) => {
-          console.log("called");
-          e.persist();
-          send(["click", e]);
-        }}
         style={{
           position: "relative",
           width: `100%`,
@@ -57,12 +52,17 @@ function RegretsMap({ className }) {
           </button>
         )}
         <InteractiveMap
+          onClick={(e) => {
+            console.log("called");
+            e.persist();
+            send(["click", e]);
+          }}
           viewBox={viewBox}
           activeState={activeState}
           mapState={mapState}
           styles={{ width: `100%`, height: `100%` }}
         />
-        <CountrySearch zoomTo={zoomTo} />
+        <CountrySearch send={send} />
 
         {mapState !== "PARENT_COUNTRY" && activeState && (
           <StateInfoCard
