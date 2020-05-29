@@ -58,6 +58,8 @@ function RegretsMap({ className }) {
         )}
         <InteractiveMap
           viewBox={viewBox}
+          activeState={activeState}
+          mapState={mapState}
           styles={{ width: `100%`, height: `100%` }}
         />
         <CountrySearch zoomTo={zoomTo} />
@@ -111,7 +113,7 @@ export default styled(RegretsMap)`
   }
   .WORLD {
     svg {
-      [data-country] {
+      [data-country][data-hasentries] {
         &:hover {
           fill: ${colors.country.hover};
         }
@@ -120,7 +122,7 @@ export default styled(RegretsMap)`
   }
   .PARENT_COUNTRY {
     svg {
-      [data-state] {
+      [data-active] [data-state][data-hasentries] {
         &:hover {
           fill: ${colors.country.hover};
         }
@@ -135,10 +137,16 @@ export default styled(RegretsMap)`
         opacity: 1;
       }
     }
+    &.PARENT_COUNTRY,
     &.COUNTRY,
     &.STATE {
       [data-country]:not([data-active="true"]) {
         opacity: 0.4;
+      }
+    }
+    &.STATE {
+      [data-country][data-active] {
+        fill: ${colors.grey[2]};
       }
     }
   }
@@ -146,6 +154,17 @@ export default styled(RegretsMap)`
     fill: ${colors.country.active};
     &:hover {
       fill: ${colors.country.active};
+    }
+  }
+  .PARENT_COUNTRY {
+    [data-country][data-active="true"] {
+      fill: unset;
+    }
+    [data-country]:not([data-active="true"]) {
+      pointer-events: none;
+    }
+    [data-state] {
+      fill: ${colors.country.base};
     }
   }
 

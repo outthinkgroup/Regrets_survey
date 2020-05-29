@@ -44,10 +44,30 @@ export function useGetRegrets(activeState, mapState) {
     totals[country]++;
     return totals;
   }, {});
+  const totalRegretsPerState = regrets
+    .filter((regret) => {
+      const { country } = regret.location;
+      const countryId = snakeCase(country);
+      return countryId === activeState;
+    })
+    .reduce((totals, regret) => {
+      const { state } = regret.location;
+      if (!totals[state]) {
+        totals[state] = 0;
+      }
+      totals[state]++;
+      return totals;
+    }, {});
 
   useEffect(() => {
     getRegretBy();
   }, [activeState]);
 
-  return { regrets, activeRegret, totalRegretsPerCountry, getRegretBy };
+  return {
+    regrets,
+    activeRegret,
+    totalRegretsPerCountry,
+    totalRegretsPerState,
+    getRegretBy,
+  };
 }

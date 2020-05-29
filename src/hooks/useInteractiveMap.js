@@ -42,7 +42,11 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     PARENT_COUNTRY: {
       click: (e) => {
         console.log(e);
-        if (!e.target.dataset.state && !e.target.closest(`[data-state]`))
+        if (
+          !e.target.dataset.state &&
+          !e.target.closest(`[data-state]`) &&
+          !e.target.closest(`[data-state]`)
+        )
           return PARENT_COUNTRY;
         const target = !e.target.dataset.state
           ? e.target.closest("[data-state]")
@@ -101,10 +105,14 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   }
 
   function zoomBackOnce() {
+    if (!activeState) return;
     const stateEl = document.querySelector(`[data-state="${activeState}"]`);
     const countryEl = stateEl.closest("[data-country]");
     zoomTo(countryEl, true);
     setActiveState(null);
+    [...countryEl.querySelectorAll("[data-active='true']")].forEach(
+      (el) => delete el.dataset.active
+    );
   }
 
   function zoomTo(targetEl, hideActiveState) {
@@ -124,8 +132,8 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     };
     //if (!stateEl.hasAttribute("d")) return;
     setActiveState(targetEl.dataset.state || targetEl.dataset.country);
+    targetEl.dataset.active = "true";
     if (!hideActiveState) {
-      targetEl.dataset.active = "true";
     }
 
     setZoomed(true);
