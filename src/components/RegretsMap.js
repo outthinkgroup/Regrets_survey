@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { colors, screen, screenAbove } from "../styles";
 import CountrySearch from "./CountrySearch";
 import { useIsMobile } from "../hooks/useWindowWidth";
+import Icon from "./Icon.js";
 //these are the viewBox width and height for the svg
 const WIDTH = 1024;
 const HEIGHT = 561.64917;
@@ -16,9 +17,7 @@ function RegretsMap({ className }) {
   //functions to pass our map
   const {
     viewBox,
-    resetMapState,
     activeState,
-    focusInOut,
     zoomed,
     zoomTo, //triggers a zoom manually
     send,
@@ -46,13 +45,24 @@ function RegretsMap({ className }) {
           height: `100%`,
         }}
       >
+        {mapState === "PARENT_COUNTRY" && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              send(["close"]);
+            }}
+            className="close"
+          >
+            <Icon name="close" color="black" />
+          </button>
+        )}
         <InteractiveMap
           viewBox={viewBox}
           styles={{ width: `100%`, height: `100%` }}
         />
         <CountrySearch zoomTo={zoomTo} />
 
-        {activeState && (
+        {mapState !== "PARENT_COUNTRY" && activeState && (
           <StateInfoCard
             zoomOut={(e) => {
               e.stopPropagation();
@@ -96,17 +106,39 @@ export default styled(RegretsMap)`
     & > * {
       transition: all 0.23s cubic-bezier(0.5, 0, 0.5, 1);
       fill: ${colors.country.base};
-      &:hover {
-        fill: ${colors.country.hover};
+    }
+  }
+  .WORLD {
+    svg {
+      [data-country] {
+        &:hover {
+          fill: ${colors.country.hover};
+        }
       }
     }
   }
-  .zoomed {
-    [data-country][data-active="true"] path {
-      opacity: 1;
+  .PARENT_COUNTRY {
+    svg {
+      [data-state] {
+        &:hover {
+          fill: ${colors.country.hover};
+        }
+      }
     }
-    [data-country]:not([data-active="true"]) {
-      opacity: 0.4;
+  }
+
+  .zoomed {
+    [data-country],
+    [data-state] {
+      &[data-active="true"] path {
+        opacity: 1;
+      }
+    }
+    &.COUNTRY,
+    &.STATE {
+      [data-country]:not([data-active="true"]) {
+        opacity: 0.4;
+      }
     }
   }
   [data-active="true"] {
@@ -115,6 +147,7 @@ export default styled(RegretsMap)`
       fill: ${colors.country.active};
     }
   }
+
   .map-wrapper {
     padding: 0px 0;
     position: relative;

@@ -24,12 +24,12 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   const MACHINE = {
     WORLD: {
       click: (e) => {
-        if (!e.target.dataset.country && !e.target.dataset.state) return;
+        if (!e.target.dataset.country && !e.target.dataset.state) return WORLD;
         const target = e.target.dataset.state
           ? e.target.closest("[data-country]")
           : e.target;
         // checks if is america or canada
-        const hideActiveState = target.dataset.hasChildren;
+        const hideActiveState = target.dataset.hasChildren; // boolean
         zoomTo(target, hideActiveState);
 
         if (target.dataset.hasChildren) {
@@ -37,13 +37,6 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         } else {
           return COUNTRY;
         }
-        /*  if (!e.target.dataset.state && !e.target.closest(`[data-state]`))
-          return PARENT_COUNTRY;
-        const target = !e.target.dataset.state
-          ? e.target.closest("[data-state]")
-          : e.target;
-        zoomTo(target);
-        return STATE; */
       },
     },
     PARENT_COUNTRY: {
@@ -76,8 +69,8 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         return STATE;
       },
       close: () => {
-        resetMapState();
-        return WORLD;
+        zoomBackOnce();
+        return PARENT_COUNTRY;
       },
     },
   };
@@ -107,6 +100,13 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     animateViewBoxScale(0, 0, WIDTH, HEIGHT);
   }
 
+  function zoomBackOnce() {
+    const stateEl = document.querySelector(`[data-state="${activeState}"]`);
+    const countryEl = stateEl.closest("[data-country]");
+    zoomTo(countryEl, true);
+    setActiveState(null);
+  }
+
   function zoomTo(targetEl, hideActiveState) {
     //if (!targetEl.dataset.hasentries) return;
     const targetRect = targetEl.getBoundingClientRect();
@@ -123,11 +123,11 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       y: ((targetRect.top - svgRect.top) / svgRect.height) * HEIGHT,
     };
     //if (!stateEl.hasAttribute("d")) return;
+    setActiveState(targetEl.dataset.state || targetEl.dataset.country);
     if (!hideActiveState) {
-      setActiveState(targetEl.dataset.state || targetEl.dataset.country);
       targetEl.dataset.active = "true";
     }
-    console.log(relativeSizeToSvg);
+
     setZoomed(true);
 
     //starts the viewBox size
@@ -141,9 +141,48 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
     //readjust to allow card to fit
     const newViewPort = {};
 
+    newViewPort.width = setViewBoxWidthSize();
+    newViewPort.height = setViewBoxHeightSize();
+    let measurementBasedOnRatio;
+    if (orientation === WIDTH) {
+      newViewPort.height = getRatio(HEIGHT, WIDTH, newViewPort.width);
+      measurementBasedOnRatio = newViewPort.height;
+    } else {
+      newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
+      measurementBasedOnRatio = newViewPort.width;
+    }
+
+    if (measurementBasedOnRatio < relativeSizeToSvg.height) {
+      const offBy = relativeSizeToSvg.height - measurementBasedOnRatio;
+      newViewPort.height = offBy + measurementBasedOnRatio;
+      newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
+    }
+
+    function getGoalViewBoxPos({ actualUnit, currentUnit }) {
+      return actualUnit * ratio + currentUnit;
+    }
+    function getGoalViewBoxSize({ actualUnit }) {
+      return actualUnit * ratio;
+    }
+
+    //start viewBox Position
+    newViewPort.x = setViewBoxXPos();
+    newViewPort.y =
+      relativeSizeToSvg.y - (newViewPort.height - relativeSizeToSvg.height) / 2;
+
+    const goalViewPort = getGoalViewPort(newViewPort);
+
+    animateViewBoxScale(
+      goalViewPort.x,
+      goalViewPort.y,
+      goalViewPort.width,
+      goalViewPort.height
+    );
+
+    //function ends below is the inner functions
+
     //if its mobile position the country in the middle of viewport else
     //position it the right for the card to go be side it
-
     function setViewBoxWidthSize() {
       let width;
       if (!isMobile && !hideActiveState) {
@@ -178,66 +217,12 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       return x;
     }
 
-    newViewPort.width = setViewBoxWidthSize();
-    newViewPort.height = setViewBoxHeightSize();
-    let measurementBasedOnRatio;
-    if (orientation === WIDTH) {
-      newViewPort.height = getRatio(HEIGHT, WIDTH, newViewPort.width);
-      measurementBasedOnRatio = newViewPort.height;
-    } else {
-      newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
-      measurementBasedOnRatio = newViewPort.width;
-    }
+    function getGoalViewPort(newViewPort) {
+      const { x, y, width, height } = newViewPort;
 
-    if (measurementBasedOnRatio < relativeSizeToSvg.height) {
-      const offBy = relativeSizeToSvg.height - measurementBasedOnRatio;
-      newViewPort.height = offBy + measurementBasedOnRatio;
-      newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
-    }
-
-    function getGoalViewBoxPos({ actualUnit, currentUnit }) {
-      return actualUnit * ratio + currentUnit;
-    }
-    function getGoalViewBoxSize({ actualUnit }) {
-      return actualUnit * ratio;
-    }
-
-    //start viewBox Position
-    newViewPort.x = setViewBoxXPos();
-    newViewPort.y =
-      relativeSizeToSvg.y - (newViewPort.height - relativeSizeToSvg.height) / 2;
-    console.log({
-      X: newViewPort.x,
-      Y: newViewPort.y,
-      Width: newViewPort.width,
-      Height: newViewPort.height,
-    });
-    //0.398807642
-    //*TEXAS
-    // goal:
-    // 161.7734871106435 258.7399935677117 64.10384483350498 35.160030512252796
-
-    // actual
-    // 556.9060638304336 418.0962189235486 160.738757294885 88.16288048974963
-
-    //AMERICA
-    // -60.32041747121499 91.99998286214836 408.3790255220418 223.98998118150743
-
-    // const WIDTH = 1024;
-    // const HEIGHT = 561.64917;
-
-    //160.738757294885 * 0.398807642  408.3790255220418
-
-    //*UTAH
-    //x:-26.71924
-    //y:
-    function getGoalViewPort() {
-      const { x: _x, y, width, height } = newViewPort;
-
-      //const ratio = 1;
       return {
         x: getGoalViewBoxPos({
-          actualUnit: _x,
+          actualUnit: x,
           currentUnit: currentViewBox.x,
           ratio,
         }),
@@ -256,14 +241,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
         }),
       };
     }
-    const goalViewPort = getGoalViewPort();
-
-    animateViewBoxScale(
-      goalViewPort.x,
-      goalViewPort.y,
-      goalViewPort.width,
-      goalViewPort.height
-    );
+    //end of zoomTo
   }
 
   function focusInOut(e) {
@@ -288,9 +266,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   }
   return {
     viewBox,
-    focusInOut,
     activeState,
-    resetMapState,
     zoomed,
     zoomTo,
     send,
@@ -323,4 +299,3 @@ function getViewBoxFromString(svgEl) {
     height,
   };
 }
-/* finds percentage of what the state size is to the country*/
