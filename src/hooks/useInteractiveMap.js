@@ -161,7 +161,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       x: ((targetRect.left - svgRect.left) / svgRect.width) * WIDTH,
       y: ((targetRect.top - svgRect.top) / svgRect.height) * HEIGHT,
     };
-    //if (!stateEl.hasAttribute("d")) return;
+
     setActiveState(targetEl.dataset.state || targetEl.dataset.country);
     targetEl.dataset.active = "true";
     if (!hideActiveState) {
