@@ -34,7 +34,7 @@ export default function CountrySearch({ zoomToState }) {
           items={countries}
         />
 
-        <SearchButton type="submit">search</SearchButton>
+        <SearchButton type="submit">Search Location</SearchButton>
       </form>
     </div>
   );
