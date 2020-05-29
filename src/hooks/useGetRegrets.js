@@ -14,19 +14,23 @@ const GET_REGRETS = graphql`
     }
   }
 `;
-export function useGetRegrets(activeState) {
+export function useGetRegrets(activeState, mapState) {
   const { allQualtricsData } = useStaticQuery(GET_REGRETS);
   const { regrets } = allQualtricsData;
   const [activeRegret, setActiveRegret] = useState();
 
-  function getRegretBy(type = "country") {
+  function getRegretBy() {
     const allInRegion = regrets.filter((regret) => {
-      const { country } = regret.location;
+      const { country, state } = regret.location;
       const countryId = snakeCase(country);
-
-      return countryId == activeState;
+      const stateId = snakeCase(state);
+      if (mapState === "COUNTRY") {
+        return countryId === activeState;
+      }
+      if (mapState === "STATE") {
+        return stateId === activeState;
+      }
     });
-
     const getRandom =
       allInRegion[Math.floor(Math.random() * allInRegion.length)];
     setActiveRegret(getRandom);

@@ -68,6 +68,7 @@ function RegretsMap({ className }) {
               e.stopPropagation();
               send(["close"]);
             }}
+            mapState={mapState}
             isMobile={isMobile}
             activeState={activeState}
           />

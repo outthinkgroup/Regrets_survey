@@ -4,8 +4,17 @@ import styled from "styled-components";
 import { fonts, colors } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 
-function StateInfoCard({ activeState, zoomOut, className, isMobile }) {
-  const { activeRegret: regret, getRegretBy } = useGetRegrets(activeState);
+function StateInfoCard({
+  activeState,
+  zoomOut,
+  className,
+  isMobile,
+  mapState,
+}) {
+  const { activeRegret: regret, getRegretBy } = useGetRegrets(
+    activeState,
+    mapState
+  );
   console.log(isMobile);
   return (
     <div className={className}>
