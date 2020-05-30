@@ -15,14 +15,10 @@ const HEIGHT = 561.64917;
 
 function RegretsMap({ className }) {
   //functions to pass our map
-  const {
-    viewBox,
-    activeState,
-    zoomed,
-    zoomTo, //triggers a zoom manually
-    send,
-    mapState,
-  } = useInteractiveMap({ WIDTH, HEIGHT });
+  const { viewBox, activeState, zoomed, send, mapState } = useInteractiveMap({
+    WIDTH,
+    HEIGHT,
+  });
 
   const isMobile = useIsMobile();
 
