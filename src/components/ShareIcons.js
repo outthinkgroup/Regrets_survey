@@ -3,30 +3,32 @@ import Icon from "./Icon";
 import { useStaticQuery, graphql } from "gatsby";
 import { colors, fonts, elevation } from "../styles";
 import styled from "styled-components";
+
 export default function ShareIcons() {
   return (
     <div>
-      <TwitterButton />
-      <FacebookButton />
-      <LinkedInButton />
-      <EmailButton />
+      <TwitterButton tweet="hello" url="http://localhost:8000/thanks" />
+      <FacebookButton url="https://worldregretsurvey.com" />
+      <LinkedInButton url="https://worldregretsurvey.com" />
+      <EmailButton subject="hello" body="i am super cool" />
     </div>
   );
 }
-export const TwitterButton = () => {
-  const link = "$";
+
+export const TwitterButton = ({ tweet, url }) => {
+  const link = createTweet({ tweet, url });
   return <ShareButton link={link} color={`#1C95E0`} icon="twitter" />;
 };
-export const FacebookButton = () => {
-  const link = "$";
+export const FacebookButton = ({ url }) => {
+  const link = createFacebookLink({ url });
   return <ShareButton link={link} color={`#1777F2`} icon="facebook" />;
 };
-export const LinkedInButton = () => {
-  const link = "$";
+export const LinkedInButton = ({ url, title, summary }) => {
+  const link = createLinkedInLink({ url, title, summary });
   return <ShareButton link={link} color={`#0173B1`} icon="linkedin" />;
 };
-export const EmailButton = () => {
-  const link = "$";
+export const EmailButton = ({ body, subject }) => {
+  const link = createEmail({ body, subject });
   return (
     <ShareButton
       link={link}
@@ -34,6 +36,7 @@ export const EmailButton = () => {
       text="email"
       icon="mail"
       textColor={colors.grey[4]}
+      newTab
     />
   );
 };
@@ -44,9 +47,15 @@ export const ShareButton = ({
   link = "#",
   color,
   textColor = "white",
+  newTab,
 }) => {
   return (
-    <ShareLink bgColor={color} href={link} textColor={textColor}>
+    <ShareLink
+      bgColor={color}
+      href={link}
+      textColor={textColor}
+      target={newTab ? `_blank` : ``}
+    >
       <ButtonIcon>
         <Icon name={icon} color="currentColor" />
       </ButtonIcon>
@@ -76,3 +85,24 @@ const ShareLink = styled.a`
     ${elevation[1]};
   }
 `;
+
+function createEmail({ recipient = "", subject = "", body = "" }) {
+  const enCodedSubject = encodeURIComponent(subject);
+  const enCodedBody = encodeURIComponent(body);
+  return `mailto:${recipient}?subject=${enCodedSubject}&body=${enCodedBody}`;
+}
+function createTweet({ tweet, url }) {
+  const enCodedTweet = encodeURIComponent(tweet);
+  const enCodedUrl = encodeURIComponent(url);
+  return `https://twitter.com/intent/tweet?text=${enCodedTweet}&url=${enCodedUrl}`;
+}
+function createFacebookLink({ url }) {
+  const enCodedUrl = encodeURIComponent(url);
+  return `https://www.facebook.com/sharer/sharer.php?u=${enCodedUrl}`;
+}
+function createLinkedInLink({ url, title = "", summary = "" }) {
+  const enCodedUrl = encodeURIComponent(url);
+  const enCodedTitle = encodeURIComponent(title);
+  const enCodedSummary = encodeURIComponent(summary);
+  return `https://www.linkedin.com/shareArticle?mini=true&url=${enCodedUrl}&title=${enCodedTitle}&summary=${enCodedSummary}&source=`;
+}
