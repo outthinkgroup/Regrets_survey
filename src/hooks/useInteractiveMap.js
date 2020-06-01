@@ -150,11 +150,9 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   function zoomTo(targetEl, hideActiveState) {
     const targetRect = targetEl.getBoundingClientRect();
     const svgEl = targetEl.closest("svg") || targetEl;
-
     const currentViewBox = getViewBoxFromString(svgEl);
     const svgRect = svgEl.getBoundingClientRect();
 
-    const ratio = currentViewBox.width / WIDTH;
     const relativeSizeToSvg = {
       width: (targetRect.width / svgRect.width) * WIDTH,
       height: (targetRect.height / svgRect.height) * HEIGHT,
@@ -162,27 +160,23 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       y: ((targetRect.top - svgRect.top) / svgRect.height) * HEIGHT,
     };
 
+    //sets all the state
     setActiveState(targetEl.dataset.state || targetEl.dataset.country);
     targetEl.dataset.active = "true";
-    if (!hideActiveState) {
-    }
-
     setZoomed(true);
 
     //starts the viewBox size
+    //readjust to allow card to fit
+    const newViewPort = {};
+    newViewPort.width = setViewBoxWidthSize();
+    newViewPort.height = setViewBoxHeightSize();
+    let measurementBasedOnRatio;
     const orientation = getOrientation(
       WIDTH,
       HEIGHT,
       relativeSizeToSvg.width,
       relativeSizeToSvg.height
     );
-
-    //readjust to allow card to fit
-    const newViewPort = {};
-
-    newViewPort.width = setViewBoxWidthSize();
-    newViewPort.height = setViewBoxHeightSize();
-    let measurementBasedOnRatio;
     if (orientation === WIDTH) {
       newViewPort.height = getRatio(HEIGHT, WIDTH, newViewPort.width);
       measurementBasedOnRatio = newViewPort.height;
@@ -190,24 +184,17 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
       measurementBasedOnRatio = newViewPort.width;
     }
-
     if (measurementBasedOnRatio < relativeSizeToSvg.height) {
       const offBy = relativeSizeToSvg.height - measurementBasedOnRatio;
       newViewPort.height = offBy + measurementBasedOnRatio;
       newViewPort.width = getRatio(WIDTH, HEIGHT, newViewPort.height);
     }
 
-    function getGoalViewBoxPos({ actualUnit, currentUnit }) {
-      return actualUnit * ratio + currentUnit;
-    }
-    function getGoalViewBoxSize({ actualUnit }) {
-      return actualUnit * ratio;
-    }
+    const ratio = currentViewBox.width / WIDTH;
 
     //start viewBox Position
     newViewPort.x = setViewBoxXPos();
-    newViewPort.y =
-      relativeSizeToSvg.y - (newViewPort.height - relativeSizeToSvg.height) / 2;
+    newViewPort.y = setViewBoxYPos();
 
     const goalViewPort = getGoalViewPort(newViewPort);
 
@@ -233,6 +220,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       }
       return width;
     }
+
     function setViewBoxHeightSize() {
       let height;
       if (!isMobile && !hideActiveState) {
@@ -242,6 +230,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
       }
       return height;
     }
+
     function setViewBoxXPos() {
       let x;
       if (!isMobile && !hideActiveState) {
@@ -252,8 +241,22 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
           relativeSizeToSvg.x -
           (newViewPort.width - relativeSizeToSvg.width) / 2;
       }
-
       return x;
+    }
+
+    function setViewBoxYPos() {
+      return (
+        relativeSizeToSvg.y -
+        (newViewPort.height - relativeSizeToSvg.height) / 2
+      );
+    }
+
+    function getGoalViewBoxPos({ actualUnit, currentUnit }) {
+      return actualUnit * ratio + currentUnit;
+    }
+
+    function getGoalViewBoxSize({ actualUnit }) {
+      return actualUnit * ratio;
     }
 
     function getGoalViewPort(newViewPort) {
