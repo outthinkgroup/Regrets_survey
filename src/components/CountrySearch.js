@@ -172,7 +172,7 @@ const Options = styled.ul`
 const SearchBar = styled.input`
   background: ${colors.grey[2]};
   position: relative;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
   border: none;
   font-family: ${fonts.family};
   font-weight: ${fonts.weights[2]};
@@ -180,7 +180,7 @@ const SearchBar = styled.input`
 const SearchButton = styled.button`
   font-family: ${fonts.family};
   font-weight: ${fonts.weights[2]};
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
   border: none;
   font-size: 16px;
   background: ${colors.primary.light};
