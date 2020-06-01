@@ -5,12 +5,14 @@ import { colors, fonts, elevation } from "../styles";
 import styled from "styled-components";
 
 export default function ShareIcons() {
+  const data = useStaticQuery(SOCIAL_QUERY);
+  const { email, twitter, facebook, linkedIn } = data.site.siteMetadata.sharing;
   return (
     <div>
-      <TwitterButton tweet="hello" url="http://localhost:8000/thanks" />
-      <FacebookButton url="https://worldregretsurvey.com" />
-      <LinkedInButton url="https://worldregretsurvey.com" />
-      <EmailButton subject="hello" body="i am super cool" />
+      <TwitterButton tweet={twitter.tweet} url={twitter.url} />
+      <FacebookButton url={facebook.url} />
+      <LinkedInButton url={linkedIn.url} />
+      <EmailButton subject={email.subject} body={email.body} url={email.url} />
     </div>
   );
 }
@@ -27,8 +29,8 @@ export const LinkedInButton = ({ url, title, summary }) => {
   const link = createLinkedInLink({ url, title, summary });
   return <ShareButton link={link} color={`#0173B1`} icon="linkedin" />;
 };
-export const EmailButton = ({ body, subject }) => {
-  const link = createEmail({ body, subject });
+export const EmailButton = ({ body, subject, url }) => {
+  const link = createEmail({ body, subject, url });
   return (
     <ShareButton
       link={link}
@@ -64,6 +66,32 @@ export const ShareButton = ({
   );
 };
 
+const SOCIAL_QUERY = graphql`
+  query SOCIAL_QUERY {
+    site {
+      siteMetadata {
+        sharing {
+          email {
+            body
+            subject
+            url
+          }
+          facebook {
+            url
+          }
+          linkedIn {
+            url
+          }
+          twitter {
+            tweet
+            url
+          }
+        }
+      }
+    }
+  }
+`;
+
 const ButtonIcon = styled.span`
   width: 1em;
   margin-right: 0.5em;
@@ -86,10 +114,12 @@ const ShareLink = styled.a`
   }
 `;
 
-function createEmail({ recipient = "", subject = "", body = "" }) {
+function createEmail({ recipient = "", subject = "", body = "", url = "" }) {
   const enCodedSubject = encodeURIComponent(subject);
   const enCodedBody = encodeURIComponent(body);
-  return `mailto:${recipient}?subject=${enCodedSubject}&body=${enCodedBody}`;
+  const enCodedUrl = encodeURIComponent(url);
+  const lineBreak = encodeURIComponent(`\u000A`);
+  return `mailto:${recipient}?subject=${enCodedSubject}&body=${enCodedBody} ${lineBreak}${enCodedUrl}`;
 }
 function createTweet({ tweet, url }) {
   const enCodedTweet = encodeURIComponent(tweet);

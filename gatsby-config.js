@@ -3,6 +3,23 @@ module.exports = {
     title: `World Regret Survey`,
     description: ``,
     author: ``,
+    sharing: {
+      twitter: {
+        tweet: `take this really cool survey`,
+        url: `https://worldregretsurvey.com`,
+      },
+      facebook: {
+        url: `https://worldregretsurvey.com`,
+      },
+      linkedIn: {
+        url: `https://worldregretsurvey.com`,
+      },
+      email: {
+        subject: `World Regret Survey`,
+        body: `take this really cool survey`,
+        url: `https://worldregretsurvey.com`,
+      },
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
