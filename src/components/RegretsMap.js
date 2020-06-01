@@ -4,8 +4,8 @@ import React, { useRef, useEffect } from "react";
 import InteractiveMap from "./InteractiveMap";
 import StateInfoCard from "./StateInfoCard";
 import useInteractiveMap from "../hooks/useInteractiveMap";
-import styled from "styled-components";
-import { colors, screen, screenAbove } from "../styles";
+import styled, { css } from "styled-components";
+import { colors, screen, screenAbove, elevation } from "../styles";
 import CountrySearch from "./CountrySearch";
 import { useIsMobile } from "../hooks/useWindowWidth";
 import Icon from "./Icon.js";
@@ -36,15 +36,24 @@ function RegretsMap({ className }) {
           height: `100%`,
         }}
       >
-        {mapState === "PARENT_COUNTRY" && (
+        {mapState !== "WORLD" && (
           <button
             onClick={(e) => {
               e.stopPropagation();
               send(["close"]);
             }}
             className="close"
+            style={{
+              background: `transparent`,
+              border: `none`,
+              position: `absolute`,
+              top: `5px`,
+              left: `5px`,
+            }}
           >
-            <Icon name="close" color="black" />
+            <span style={{ width: `20px`, display: `inline-block` }}>
+              <Icon name="zoom-out" color="black" />
+            </span>
           </button>
         )}
         <InteractiveMap
@@ -58,9 +67,8 @@ function RegretsMap({ className }) {
           mapState={mapState}
           styles={{ width: `100%`, height: `100%` }}
         />
-        <CountrySearch send={send} />
 
-        {mapState !== "PARENT_COUNTRY" && activeState && (
+        {mapState !== "PARENT_COUNTRY" && activeState ? (
           <StateInfoCard
             zoomOut={(e) => {
               e.stopPropagation();
@@ -70,13 +78,15 @@ function RegretsMap({ className }) {
             isMobile={isMobile}
             activeState={activeState}
           />
+        ) : (
+          <CountrySearch send={send} />
         )}
       </div>
     </div>
   );
 }
 export default styled(RegretsMap)`
-  padding: 50px 0 100px;
+  margin: 50px 0 100px;
 
   .heading-card {
     width: auto;
@@ -101,7 +111,9 @@ export default styled(RegretsMap)`
 
     text-align: center;
   }
-  svg {
+  .map {
+    ${elevation[1]};
+    background: ${colors.grey[0]};
     & > * {
       transition: all 0.23s cubic-bezier(0.5, 0, 0.5, 1);
       fill: ${colors.country.base};

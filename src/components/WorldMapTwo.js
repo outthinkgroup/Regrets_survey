@@ -8,6 +8,7 @@ function WorldMap({ viewBox, onClick }) {
     <animated.svg
       onClick={onClick}
       viewBox={interpViewBox}
+      className="map"
       style={{ width: `100%`, height: `100%` }}
     >
       <path

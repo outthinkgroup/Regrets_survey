@@ -36,13 +36,13 @@ function StateInfoCard({
   );
 }
 export default styled(StateInfoCard)`
-  position: ${({ isMobile }) => (isMobile ? "relative" : "absolute")};
-  top: 0;
+  position: absolute;
+  top: ${({ isMobile }) => (isMobile ? "100%" : "0")};
   left: 0;
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: ${({ isMobile }) => (isMobile ? "start" : "center")};
   .active-state-info-card {
     animation: slideIn 0.28s ease-in-out forwards;
     position: relative;
@@ -52,7 +52,7 @@ export default styled(StateInfoCard)`
     border-radius: 8px;
     padding: 20px;
     width: ${({ isMobile }) => (isMobile ? `100%` : `calc(50% - 40px)`)};
-    margin: ${({ isMobile }) => (isMobile ? `20px 0` : `20px`)};
+    margin: ${({ isMobile }) => (isMobile ? `0px` : `20px`)};
     .contents {
       margin-top: 20px;
       opacity: 0;

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import Downshift, { useSelect } from "downshift";
 import { snakeCase } from "../lib";
-import { colors, fonts } from "../styles";
+import { colors, fonts, elevation } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 
 import styled from "styled-components";
 
-export default function CountrySearch({ send }) {
+function CountrySearch({ send, className }) {
   const { totalRegretsPerCountry } = useGetRegrets();
   const countries = Object.keys(totalRegretsPerCountry);
   const [searchVal, setSearchVal] = useState("");
   return (
-    <div>
+    <div className={className}>
       <form
         action=""
-        style={{ position: `absolute`, display: `flex` }}
+        style={{ display: `flex` }}
         onSubmit={(e) => {
           e.preventDefault();
           if (searchVal == "") return;
@@ -40,17 +40,34 @@ export default function CountrySearch({ send }) {
           setSearchVal("");
         }}
       >
-        <DropdownSelect
-          searchVal={searchVal}
-          setSearchVal={setSearchVal}
-          items={countries}
-        />
-
-        <SearchButton type="submit">Search Location</SearchButton>
+        <span>
+          <DropdownSelect
+            searchVal={searchVal}
+            setSearchVal={setSearchVal}
+            items={countries}
+          />
+        </span>
+        <span>
+          <SearchButton type="submit">Search Location</SearchButton>
+        </span>
       </form>
     </div>
   );
 }
+export default styled(CountrySearch)`
+  padding: 8px;
+  background: white;
+
+  position: absolute;
+  top: calc(100% - 6.6px);
+  left: 50%;
+  transform: translateX(-50%);
+  ${elevation[1]};
+  form {
+    margin-bottom: 0;
+    position: relative;
+  }
+`;
 
 function DropdownSelect({ items, setSearchVal, searchVal }) {
   function handleStateChange(changes) {
@@ -142,6 +159,8 @@ const Options = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  position: absolute;
+  width: 100%;
   max-height: 300px;
   overflow-y: scroll;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -153,13 +172,10 @@ const Options = styled.ul`
 const SearchBar = styled.input`
   background: ${colors.grey[2]};
   position: relative;
-  z-index: 3;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border: none;
-  border-radius: 3px;
   font-family: ${fonts.family};
   font-weight: ${fonts.weights[2]};
-  margin-right: 10px;
 `;
 const SearchButton = styled.button`
   font-family: ${fonts.family};
@@ -167,9 +183,8 @@ const SearchButton = styled.button`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border: none;
   font-size: 16px;
-  border-radius: 3px;
   background: ${colors.primary.light};
-  height: 28px;
+  white-space: nowrap;
   &:hover {
     background: ${colors.primary.base};
     color: white;

@@ -12,7 +12,7 @@ const ThanksPage = () => (
     <SEO title="Thank You" />
     <ThanksSection />
     <RegretsMap />
-    <div style={{ textAlign: `center` }}>
+    <div style={{ textAlign: `center`, marginBottom: `30px` }}>
       <ShareIcons />
     </div>
   </Layout>
