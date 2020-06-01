@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
 import Menu from "./Menu";
-import { layout, colors, fonts } from "../styles";
+import { layout, colors, fonts, breakpoints } from "../styles";
 
 const Header = ({ siteTitle, className }) => (
   <header className={className} style={{}}>
@@ -41,10 +41,14 @@ export default styled(Header)`
   }
   h1 {
     margin: 0;
-    line-height: 0.3;
+    display: flex;
+    align-items: center;
     a {
-      color: black;
       font-size: ${fonts.sizes.heading[2]};
+      @media (max-width: ${breakpoints.small}) {
+        font-size: ${fonts.sizes.heading[1]};
+      }
+      color: black;
       text-decoration: none;
     }
   }

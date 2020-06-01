@@ -6,12 +6,15 @@ import SEO from "../components/seo";
 import RegretsMap from "../components/RegretsMap";
 import ThanksSection from "../components/ThanksSection";
 import About from "../components/About";
+import ShareIcons from "../components/ShareIcons";
 const ThanksPage = () => (
   <Layout>
     <SEO title="Thank You" />
     <ThanksSection />
     <RegretsMap />
-    <p>[TODO: share component]</p>
+    <div style={{ textAlign: `center` }}>
+      <ShareIcons />
+    </div>
   </Layout>
 );
 

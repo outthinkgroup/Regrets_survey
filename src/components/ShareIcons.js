@@ -8,12 +8,12 @@ export default function ShareIcons() {
   const data = useStaticQuery(SOCIAL_QUERY);
   const { email, twitter, facebook, linkedIn } = data.site.siteMetadata.sharing;
   return (
-    <div>
+    <ShareButtonGroup>
       <TwitterButton tweet={twitter.tweet} url={twitter.url} />
       <FacebookButton url={facebook.url} />
       <LinkedInButton url={linkedIn.url} />
       <EmailButton subject={email.subject} body={email.body} url={email.url} />
-    </div>
+    </ShareButtonGroup>
   );
 }
 
@@ -35,7 +35,7 @@ export const EmailButton = ({ body, subject, url }) => {
     <ShareButton
       link={link}
       color={colors.grey[3]}
-      text="email"
+      text="Email"
       icon="mail"
       textColor={colors.grey[4]}
       newTab
@@ -66,32 +66,6 @@ export const ShareButton = ({
   );
 };
 
-const SOCIAL_QUERY = graphql`
-  query SOCIAL_QUERY {
-    site {
-      siteMetadata {
-        sharing {
-          email {
-            body
-            subject
-            url
-          }
-          facebook {
-            url
-          }
-          linkedIn {
-            url
-          }
-          twitter {
-            tweet
-            url
-          }
-        }
-      }
-    }
-  }
-`;
-
 const ButtonIcon = styled.span`
   width: 1em;
   margin-right: 0.5em;
@@ -108,9 +82,20 @@ const ShareLink = styled.a`
   font-weight: ${fonts.weights[2]};
   text-decoration: none;
   background: ${(props) => props.bgColor};
-  margin: 0 10px;
   &:hover {
     ${elevation[1]};
+  }
+`;
+const ShareButtonGroup = styled.div`
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  justify-content: space-between;
+  @media (max-width: 324px) {
+    flex-wrap: wrap;
+    a {
+      margin-bottom: 10px;
+    }
   }
 `;
 
@@ -136,3 +121,29 @@ function createLinkedInLink({ url, title = "", summary = "" }) {
   const enCodedSummary = encodeURIComponent(summary);
   return `https://www.linkedin.com/shareArticle?mini=true&url=${enCodedUrl}&title=${enCodedTitle}&summary=${enCodedSummary}&source=`;
 }
+
+const SOCIAL_QUERY = graphql`
+  query SOCIAL_QUERY {
+    site {
+      siteMetadata {
+        sharing {
+          email {
+            body
+            subject
+            url
+          }
+          facebook {
+            url
+          }
+          linkedIn {
+            url
+          }
+          twitter {
+            tweet
+            url
+          }
+        }
+      }
+    }
+  }
+`;
