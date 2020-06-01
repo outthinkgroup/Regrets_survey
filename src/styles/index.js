@@ -30,6 +30,13 @@ export const fonts = {
   },
 };
 
+export const elevation = [
+  `border:1px solid ${grey[2]}`,
+  `box-shadow:0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)`,
+  `box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)`,
+  `box-shadow: 0 4px 12px rgba(0,0,0,0.12)`, //this is pretty large
+];
+
 export const layout = {
   maxWidth: "960px",
 };
@@ -56,3 +63,4 @@ const screenAbove = (screen, rules) => {
 };
 
 export { screenBelow, screenAbove, screen };
+export * from "./StyledComponents";

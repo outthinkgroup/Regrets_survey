@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
 import { SurveyButton } from "./SurveyButton";
-import WorldRegreArtwork from "./WorldRegretArtwork";
+import { PageHeading, PageIntro } from "../styles";
 function Welcome({ className }) {
   return (
-    <div className={className}>
-      <h1>
+    <PageIntro className={className}>
+      <PageHeading>
         Welcome To the
         <br /> World Regret Survey
-      </h1>
+      </PageHeading>
       <p>
         Eu sem conubia tincidunt, maecenas netus fusce, natoque ipsum. Duis
         lacus eleifend venenatis a adipiscing ipsum condimentum, iaculis
@@ -19,7 +18,7 @@ function Welcome({ className }) {
         ex, dolor aliquam venenatis duis vehicula donec.
       </p>
       <SurveyButton>Take Survey</SurveyButton>
-    </div>
+    </PageIntro>
   );
 }
 
