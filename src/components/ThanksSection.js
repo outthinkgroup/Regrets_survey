@@ -2,6 +2,7 @@ import React from "react";
 
 import ShareIcons from "./ShareIcons";
 import { PageHeading, PageIntro } from "../styles";
+import { ThanksContent } from "./content";
 function ThanksSection({ className }) {
   return (
     <PageIntro className={className}>
@@ -11,7 +12,7 @@ function ThanksSection({ className }) {
         The World Regret Survey
       </PageHeading>
       <div>
-        <p>check out the map, and feel free to share it!!</p>
+        <ThanksContent />
         <ShareIcons />
       </div>
     </PageIntro>

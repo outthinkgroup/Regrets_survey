@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { SurveyButton } from "./SurveyButton";
 import { PageHeading, PageIntro } from "../styles";
+import { MainIntroduction } from "./content";
 function Welcome({ className }) {
   return (
     <PageIntro className={className}>
@@ -9,14 +10,7 @@ function Welcome({ className }) {
         Welcome To the
         <br /> World Regret Survey
       </PageHeading>
-      <p>
-        Eu sem conubia tincidunt, maecenas netus fusce, natoque ipsum. Duis
-        lacus eleifend venenatis a adipiscing ipsum condimentum, iaculis
-        himenaeos suspendisse varius semper efficitur facilisi aenean, hac
-        consequat dictum volutpat augue non. Iaculis ridiculus dignissim cubilia
-        magna nec scelerisque tortor, parturient tristique commodo inceptos et
-        ex, dolor aliquam venenatis duis vehicula donec.
-      </p>
+      <MainIntroduction />
       <SurveyButton>Take Survey</SurveyButton>
     </PageIntro>
   );

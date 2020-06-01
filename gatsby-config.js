@@ -43,6 +43,15 @@ module.exports = {
         path: `${__dirname}/data`,
       },
     },
+    `gatsby-transformer-remark`, // this is for turning the copy in markdown to html
+    {
+      //For Copy
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/content`,
+      },
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
