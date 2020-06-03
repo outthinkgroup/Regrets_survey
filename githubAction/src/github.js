@@ -4,62 +4,69 @@ const { decode, encode } = require("base-64");
 
 const { qualtricsData } = require("./qualtricsData");
 
-const OWNER = "joshatoutthink";
-const REPO = "testing-node-github-actions";
+async function updateFileInGit({
+  owner,
+  repo,
+  githubToken,
+  qualtricsToken,
+  ipStackKey,
+  surveyId,
+}) {
+  const octokit = new Octokit({
+    auth: githubToken,
+  });
 
-const octokit = new Octokit({
-  auth: process.env.AUTH,
-});
-
-async function updateFileInGit({ owner, repo }) {
   const { sha } = await getFile({
-    owner,
-    repo,
     filepath: "data/results.json",
   }).catch((e) => console.log(e));
 
-  const data = await qualtricsData();
+  const data = await qualtricsData({
+    token: qualtricsToken,
+    ipStackKey,
+    surveyId,
+  });
   const json = JSON.stringify(data);
 
   const res = await updateFile({
-    owner,
-    repo,
     filepath: "data/results.json",
     sha,
     content: json,
   }).catch((e) => console.log(e));
-}
 
-async function getFile({ owner, repo, filepath }) {
-  const response = await octokit.repos.getContents({
-    owner,
-    repo,
-    path: filepath,
-  });
-  const { data } = response;
-  const { sha } = data;
-  const content = decode(data.content);
-  return { sha, content };
-}
+  async function getFile({ filepath }) {
+    const response = await octokit.repos.getContents({
+      owner,
+      repo,
+      path: filepath,
+    });
+    const { data } = response;
+    const { sha } = data;
+    const content = decode(data.content);
+    return { sha, content };
+  }
 
-async function updateFile({ owner, repo, filepath, sha, content }) {
-  const response = await octokit.repos.createOrUpdateFile({
-    owner: OWNER,
-    repo: REPO,
-    path: filepath,
-    message: `automatic update to ${filepath}`,
-    content: encode(content),
-    sha,
-  });
+  async function updateFile({ filepath, sha, content }) {
+    const response = await octokit.repos.createOrUpdateFile({
+      owner,
+      repo,
+      path: filepath,
+      message: `automatic update to ${filepath}`,
+      content: encode(content),
+      sha,
+    });
 
-  return response;
+    return response;
+  }
 }
 module.exports = { updateFileInGit };
 
+const octokit = new Octokit({
+  auth: process.env.AUTH,
+});
 async function triggerDeploy(owner, repo) {
   const response = await octokit.repos.createDispatchEvent({
-    owner: OWNER,
-    repo: REPO,
+    owner,
+    repo,
     event_type: "deployment",
   });
   console.log(response);

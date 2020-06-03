@@ -2791,51 +2791,59 @@ const IP_STACK_KEY = process.env.IP_STACK_KEY;
 //THIS IS ONLY SHOWS RESULTS THAT HAVE IP AND ARE AFTER JUNE 19
 const FILTER = `ebc97c57-062f-4cc2-8724-af4fe73d7b01`;
 
-const myHeaders = {
-  "X-API-TOKEN": TOKEN,
-  "Content-Type": "application/json",
-};
-
 //* THIS INITS THE WHOLE PROCESS
 //? ----
 
-const qualtricsData = () =>
-  getResponses({
-    filterId: FILTER,
-    limit: 5,
-  });
+const qualtricsData = ({ token, surveyId, ipStackKey }) =>
+  getResponses(
+    {
+      filterId: FILTER,
+      limit: 5,
+    },
+    {
+      token,
+      surveyId,
+      ipStackKey,
+    }
+  );
 
 //?---
 //*
 
-async function getResponses(exportOptions = {}) {
+async function getResponses(exportOptions = {}, config) {
   //create data directory
   //await createDir("data");
   await createDir("rawData");
 
   //start export
-  const progress = await startExport(exportOptions);
+  const progress = await startExport(exportOptions, config);
   if (hasError(progress)) return;
   const { progressId } = progress.result;
 
   //query for progress
-  const fileId = await getProgress(progressId);
+  const fileId = await getProgress(progressId, config);
   console.log("fileId", fileId);
 
   //save results to json file
-  await getResults(fileId);
+  await getResults(fileId, config);
 
   //read file
   const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
 
   //Clean data
-  const data = await cleanData(rawData);
+  const data = await cleanData(rawData, config);
 
   return data;
   //saveToFileSystem(data);
 }
 
-function startExport(options = {}) {
+function startExport(options = {}, config) {
+  const { token, surveyId } = config;
+
+  const myHeaders = {
+    "X-API-TOKEN": token,
+    "Content-Type": "application/json",
+  };
   var body = JSON.stringify({ format: "json", ...options });
   console.log(body);
   var requestOptions = {
@@ -2846,7 +2854,7 @@ function startExport(options = {}) {
   };
 
   return fetch(
-    `https://co1.qualtrics.com/API/v3/surveys/${SURVEY}/export-responses/`,
+    `https://co1.qualtrics.com/API/v3/surveys/${surveyId}/export-responses/`,
     requestOptions
   )
     .then((response) => response.json())
@@ -2854,7 +2862,14 @@ function startExport(options = {}) {
     .catch((error) => console.log("error", error));
 }
 
-async function getProgress(progressId) {
+async function getProgress(progressId, config) {
+  const { token, surveyId } = config;
+
+  const myHeaders = {
+    "X-API-TOKEN": token,
+    "Content-Type": "application/json",
+  };
+
   const getRequestId = async () => {
     var requestOptions = {
       method: "GET",
@@ -2863,7 +2878,7 @@ async function getProgress(progressId) {
     };
 
     const data = await fetch(
-      `https://co1.qualtrics.com/API/v3/surveys/${SURVEY}/export-responses/${progressId}`,
+      `https://co1.qualtrics.com/API/v3/surveys/${surveyId}/export-responses/${progressId}`,
       requestOptions
     )
       .then((response) => response.json())
@@ -2886,9 +2901,11 @@ async function getProgress(progressId) {
   return fileId;
 }
 
-async function getResults(fileId) {
+async function getResults(fileId, config) {
+  const { token, surveyId } = config;
+
   const headers = {
-    "X-API-TOKEN": TOKEN,
+    "X-API-TOKEN": token,
     "accept-charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
     "accept-language": "en-US,en;q=0.8",
     accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -2903,7 +2920,7 @@ async function getResults(fileId) {
   };
 
   return fetch(
-    `https://co1.qualtrics.com/API/v3/surveys/${SURVEY}/export-responses/${fileId}/file`,
+    `https://co1.qualtrics.com/API/v3/surveys/${surveyId}/export-responses/${fileId}/file`,
     requestOptions
   )
     .then((res) => {
@@ -2969,7 +2986,7 @@ function readFile(file) {
   return data;
 }
 
-async function cleanData(data) {
+async function cleanData(data, config) {
   return Promise.all(
     data.responses.map(
       (response) =>
@@ -2984,7 +3001,7 @@ async function cleanData(data) {
               location: { country, state },
             });
           }
-          getLocationFromIP(ipAddress).then((res) => {
+          getLocationFromIP(ipAddress, config).then((res) => {
             const { country, state } = res;
             const location = { country, state };
             resolve({
@@ -3021,9 +3038,9 @@ function hasError(data) {
 }
 
 //This is just for Results that have ip address and not Country/State
-async function getLocationFromIP(ipAddress) {
+async function getLocationFromIP(ipAddress, config) {
   const res = await fetch(
-    `http://api.ipstack.com/${ipAddress}?access_key=${IP_STACK_KEY}&format=1`
+    `http://api.ipstack.com/${ipAddress}?access_key=${config.ipStackKey}&format=1`
   );
   const data = await res.json();
   console.log(data);
@@ -3033,7 +3050,6 @@ async function getLocationFromIP(ipAddress) {
 }
 
 module.exports = { getResults, qualtricsData };
-qualtricsData();
 
 
 /***/ }),
@@ -19339,64 +19355,74 @@ const { decode, encode } = __webpack_require__(145);
 
 const { qualtricsData } = __webpack_require__(323);
 
-const OWNER = "joshatoutthink";
-const REPO = "testing-node-github-actions";
+async function updateFileInGit({
+  owner,
+  repo,
+  githubToken,
+  qualtricsToken,
+  ipStackKey,
+  surveyId,
+}) {
+  const octokit = new Octokit({
+    auth: githubToken,
+  });
+
+  const { sha } = await getFile({
+    filepath: "data/results.json",
+  }).catch((e) => console.log(e));
+
+  const data = await qualtricsData({
+    token: qualtricsToken,
+    ipStackKey,
+    surveyId,
+  });
+  const json = JSON.stringify(data);
+
+  const res = await updateFile({
+    filepath: "data/results.json",
+    sha,
+    content: json,
+  }).catch((e) => console.log(e));
+
+  async function getFile({ filepath }) {
+    const response = await octokit.repos.getContents({
+      owner,
+      repo,
+      path: filepath,
+    });
+    const { data } = response;
+    const { sha } = data;
+    const content = decode(data.content);
+    return { sha, content };
+  }
+
+  async function updateFile({ filepath, sha, content }) {
+    const response = await octokit.repos.createOrUpdateFile({
+      owner,
+      repo,
+      path: filepath,
+      message: `automatic update to ${filepath}`,
+      content: encode(content),
+      sha,
+    });
+
+    return response;
+  }
+}
+module.exports = { updateFileInGit };
 
 const octokit = new Octokit({
   auth: process.env.AUTH,
 });
-
-async function updateFileInGit({ owner, repo }) {
-  const { sha } = await getFile({
-    owner,
-    repo,
-    filepath: "raw.json",
-  }).catch((e) => console.log(e));
-  const data = await qualtricsData();
-  const json = JSON.stringify(data);
-  const res = await updateFile({
-    owner,
-    repo,
-    filepath: "raw.json",
-    sha,
-    content: json,
-  }).catch((e) => console.log(e));
-}
-
-async function getFile({ owner, repo, filepath }) {
-  const response = await octokit.repos.getContents({
-    owner,
-    repo,
-    path: filepath,
-  });
-  const { data } = response;
-  const { sha } = data;
-  const content = decode(data.content);
-  return { sha, content };
-}
-
-async function updateFile({ owner, repo, filepath, sha, content }) {
-  const response = await octokit.repos.createOrUpdateFile({
-    owner: OWNER,
-    repo: REPO,
-    path: filepath,
-    message: `automatic update to ${filepath}`,
-    content: encode(content),
-    sha,
-  });
-
-  return response;
-}
-module.exports = { updateFileInGit };
-
 async function triggerDeploy(owner, repo) {
   const response = await octokit.repos.createDispatchEvent({
-    owner: OWNER,
-    repo: REPO,
+    owner,
+    repo,
     event_type: "deployment",
   });
   console.log(response);
 }
+triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
 
 
 /***/ }),
@@ -21817,10 +21843,21 @@ try {
   // `who-to-greet` input defined in action metadata file
   const repo = core.getInput("repo");
   const owner = core.getInput("owner");
+  const githubToken = core.getInput("github_access_token");
+  const qualtricsToken = core.getInput("qualtrics_token");
+  const ipStackKey = core.getInput("ip_stack_key");
+  const surveyId = core.getInput("survey_id");
   const time = new Date().toTimeString();
   core.setOutput("time", time);
 
-  updateFileInGit({ owner, repo });
+  updateFileInGit({
+    owner,
+    repo,
+    githubToken,
+    qualtricsToken,
+    ipStackKey,
+    surveyId,
+  });
 
   const payload = JSON.stringify(github.context.payload, undefined, 2);
   console.log(`The event payload: ${payload}`);

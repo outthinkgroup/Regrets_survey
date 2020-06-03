@@ -9,9 +9,22 @@ inputs:
     description: "owner of the repository"
     required: true
     default: "outthinkgroup"
+  github_access_token:
+    description: "the personal access token that is used for auth"
+    required: true
+  ip_stack_key:
+    description: "the api key for ip stack"
+    required: true
+  qualtrics_token:
+    description: "qualtrics api key"
+    required: true
+  surveyId:
+    description: "the id of the survey"
+    required: true
 outputs:
   time: # id of output
     description: "The time we greeted you"
+
 runs:
   using: "node12"
   main: "dist/index.js"
