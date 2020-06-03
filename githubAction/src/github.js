@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { Octokit } = require("@octokit/rest");
 const { decode, encode } = require("base-64");
-
+const utf8 = require("utf8");
 const { qualtricsData } = require("./qualtricsData");
 
 async function updateFileInGit({
@@ -46,12 +46,13 @@ async function updateFileInGit({
   }
 
   async function updateFile({ filepath, sha, content }) {
+    const bytes = utf8.encode(content);
     const response = await octokit.repos.createOrUpdateFile({
       owner,
       repo,
       path: filepath,
       message: `automatic update to ${filepath}`,
-      content: encode(content),
+      content: encode(bytes),
       sha,
     });
 

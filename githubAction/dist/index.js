@@ -4991,6 +4991,14 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 443:
+/***/ (function(module) {
+
+module.exports = eval("require")("utf8");
+
+
+/***/ }),
+
 /***/ 496:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -19352,7 +19360,7 @@ exports.restEndpointMethods = restEndpointMethods;
 __webpack_require__(657).config();
 const { Octokit } = __webpack_require__(750);
 const { decode, encode } = __webpack_require__(145);
-
+const utf8 = __webpack_require__(443);
 const { qualtricsData } = __webpack_require__(323);
 
 async function updateFileInGit({
@@ -19397,12 +19405,13 @@ async function updateFileInGit({
   }
 
   async function updateFile({ filepath, sha, content }) {
+    const bytes = utf8.encode(content);
     const response = await octokit.repos.createOrUpdateFile({
       owner,
       repo,
       path: filepath,
       message: `automatic update to ${filepath}`,
-      content: encode(content),
+      content: encode(bytes),
       sha,
     });
 
