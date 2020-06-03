@@ -1,0 +1,17 @@
+name: "Rebuild Qualtrics Data"
+description: "rebuilds the data.json file that holds our survey results"
+inputs:
+  repo: # id of input
+    description: "the repository"
+    required: true
+    default: "Regrets_survey"
+  owner:
+    description: "owner of the repository"
+    required: true
+    default: "outthinkgroup"
+outputs:
+  time: # id of output
+    description: "The time we greeted you"
+runs:
+  using: "node12"
+  main: "dist/index.js"

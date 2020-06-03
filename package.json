@@ -5,7 +5,11 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^2.2.0",
+    "@octokit/rest": "^17.9.2",
     "babel-plugin-styled-components": "^1.10.7",
+    "base-64": "^0.1.0",
     "dotenv": "^8.2.0",
     "downshift": "^5.4.2",
     "gatsby": "^2.19.45",

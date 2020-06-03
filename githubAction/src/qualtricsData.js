@@ -1,7 +1,6 @@
 require("dotenv").config();
 const fs = require("fs");
 const fetch = require("node-fetch");
-const path = require("path");
 var StreamZip = require("node-stream-zip");
 
 const TOKEN = process.env.QUALTRICS_TOKEN;
@@ -20,17 +19,18 @@ const myHeaders = {
 //* THIS INITS THE WHOLE PROCESS
 //? ----
 
-getResponses({
-  filterId: FILTER,
-  limit: 100,
-}); //*
+const qualtricsData = () =>
+  getResponses({
+    filterId: FILTER,
+    limit: 5,
+  });
 
 //?---
 //*
 
 async function getResponses(exportOptions = {}) {
   //create data directory
-  await createDir("data");
+  //await createDir("data");
   await createDir("rawData");
 
   //start export
@@ -50,9 +50,9 @@ async function getResponses(exportOptions = {}) {
 
   //Clean data
   const data = await cleanData(rawData);
-  console.log(data);
-  //save to filesystem where gatsby can read it
-  saveToFileSystem(data);
+
+  return data;
+  //saveToFileSystem(data);
 }
 
 function startExport(options = {}) {
@@ -246,9 +246,11 @@ async function getLocationFromIP(ipAddress) {
     `http://api.ipstack.com/${ipAddress}?access_key=${IP_STACK_KEY}&format=1`
   );
   const data = await res.json();
+  console.log(data);
   const { country_name: country, region_name: state } = data;
 
   return { country, state };
 }
 
-module.exports = { getResults };
+module.exports = { getResults, qualtricsData };
+qualtricsData();
