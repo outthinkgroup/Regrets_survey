@@ -19382,7 +19382,7 @@ async function updateFileInGit({
     filepath: "data/results.json",
     sha,
     content: json,
-  }).catch((e) => console.log(e));
+  }).catch((e) => console.log({ e, json }));
 
   async function getFile({ filepath }) {
     const response = await octokit.repos.getContents({
@@ -19422,7 +19422,7 @@ async function triggerDeploy(owner, repo) {
   });
   console.log(response);
 }
-//triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
+triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
 
 
 /***/ }),
