@@ -12,7 +12,10 @@ const headers = {
 
 exports.handler = async (event, context) => {
   const { email } = JSON.parse(event.body);
-  const response = updateListWithUser(email).catch((e) => console.log(e));
+  const response = await updateListWithUser(email).catch((e) => {
+    console.log(e);
+    return e;
+  });
 
   // return message
   //
@@ -33,12 +36,8 @@ async function updateListWithUser(email) {
     console.log(data.status);
     return data.status;
   } else {
-    return handleMailChimpError(data, email);
+    return data.title;
   }
-}
-async function handleMailChimpError(error, email) {
-  console.log(error);
-  return error;
 }
 
 function getInfo(email) {
