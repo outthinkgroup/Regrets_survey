@@ -2,7 +2,10 @@
 
 ## Documentation
 
-
+###  I need to test the github action with the secrets I added.
+- I need to trigger action from dispatch
+ - problems being authenticated
+- if secrets are working should be golden 
 
 ## TODOS
 - multi level zoom 
