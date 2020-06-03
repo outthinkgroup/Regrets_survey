@@ -1,4 +1,4 @@
-on: [repository_dispatch]
+on: [push]
 
 jobs:
   rebuild_qualtrics_data:

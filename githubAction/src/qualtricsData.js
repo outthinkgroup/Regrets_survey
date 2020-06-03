@@ -253,4 +253,3 @@ async function getLocationFromIP(ipAddress) {
 }
 
 module.exports = { getResults, qualtricsData };
-qualtricsData();
