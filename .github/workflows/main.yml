@@ -16,7 +16,7 @@ jobs:
           repo: "Regrets_survey"
           owner: "outthinkgroup"
           github_access_token: ${{ secrets.ACCESS_TOKEN }}
-          ip_stack_token: ${{ secrets.IP_STACK_TOKEN }}
+          ip_stack_key: ${{ secrets.IP_STACK_TOKEN }}
           qualtrics_token: ${{ secrets.QUALTRICS_TOKEN }}
           survey_id: ${{ secrets.SURVEY_ID }}
       # Use the output from the `hello` step

@@ -18,7 +18,7 @@ inputs:
   qualtrics_token:
     description: "qualtrics api key"
     required: true
-  surveyId:
+  survey_id:
     description: "the id of the survey"
     required: true
 outputs:
