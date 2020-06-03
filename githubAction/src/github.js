@@ -15,14 +15,16 @@ async function updateFileInGit({ owner, repo }) {
   const { sha } = await getFile({
     owner,
     repo,
-    filepath: "raw.json",
+    filepath: "data/results.json",
   }).catch((e) => console.log(e));
+
   const data = await qualtricsData();
   const json = JSON.stringify(data);
+
   const res = await updateFile({
     owner,
     repo,
-    filepath: "raw.json",
+    filepath: "data/results.json",
     sha,
     content: json,
   }).catch((e) => console.log(e));
