@@ -25,6 +25,7 @@
     "gatsby-transformer-json": "^2.4.3",
     "gatsby-transformer-remark": "^2.8.13",
     "gatsby-transformer-sharp": "^2.3.19",
+    "md5": "^2.2.1",
     "node-fetch": "^2.6.0",
     "node-stream-zip": "^1.11.1",
     "prop-types": "^15.7.2",
