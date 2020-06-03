@@ -19363,7 +19363,6 @@ async function updateFileInGit({
   ipStackKey,
   surveyId,
 }) {
-  
   const octokit = new Octokit({
     auth: githubToken,
   });
@@ -19423,7 +19422,7 @@ async function triggerDeploy(owner, repo) {
   });
   console.log(response);
 }
-triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
+//triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
 
 
 /***/ }),
