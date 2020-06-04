@@ -36,26 +36,6 @@ function RegretsMap({ className }) {
           height: `100%`,
         }}
       >
-        {mapState !== "WORLD" && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              send(["close"]);
-            }}
-            className="close"
-            style={{
-              background: `transparent`,
-              border: `none`,
-              position: `absolute`,
-              top: `5px`,
-              left: `5px`,
-            }}
-          >
-            <span style={{ width: `20px`, display: `inline-block` }}>
-              <Icon name="zoom-out" color="black" />
-            </span>
-          </button>
-        )}
         <InteractiveMap
           onClick={(e) => {
             console.log("called");
@@ -80,6 +60,26 @@ function RegretsMap({ className }) {
           />
         ) : (
           <CountrySearch send={send} />
+        )}
+        {mapState !== "WORLD" && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              send(["close"]);
+            }}
+            className="close"
+            style={{
+              background: `transparent`,
+              border: `none`,
+              position: `absolute`,
+              top: `5px`,
+              left: `5px`,
+            }}
+          >
+            <span style={{ width: `20px`, display: `inline-block` }}>
+              <Icon name="zoom-out" color="black" />
+            </span>
+          </button>
         )}
       </div>
     </div>
