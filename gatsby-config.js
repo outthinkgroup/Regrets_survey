@@ -5,7 +5,7 @@ module.exports = {
     author: ``,
     sharing: {
       twitter: {
-        tweet: `take this really cool survey`,
+        tweet: `I just completed The World Regret Survey! Check it out:`,
         url: `https://worldregretsurvey.com`,
       },
       facebook: {
@@ -16,7 +16,7 @@ module.exports = {
       },
       email: {
         subject: `World Regret Survey`,
-        body: `take this really cool survey`,
+        body: `I just completed The World Regret Survey! Check it out:`,
         url: `https://worldregretsurvey.com`,
       },
     },
