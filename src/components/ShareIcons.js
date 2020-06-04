@@ -71,6 +71,10 @@ const ButtonIcon = styled.span`
   margin-right: 0.5em;
   display: flex;
   height: auto;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 const ShareLink = styled.a`
   display: inline-flex;
