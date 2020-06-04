@@ -111,43 +111,45 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
                 <SearchBar {...getInputProps()} />
               </div>
             </div>
-            <Options {...getMenuProps()}>
-              {isOpen
-                ? items
-                    .filter(
-                      (item) =>
-                        !inputValue ||
-                        item.toLowerCase().includes(inputValue.toLowerCase())
-                    )
-                    .map((item, index) => (
-                      <li
-                        styles={{
-                          color: `black`,
-                        }}
-                        {...getItemProps({
-                          key: item,
-                          index,
-                          item,
-                          style: {
+            {isOpen && (
+              <Options {...getMenuProps()}>
+                {isOpen
+                  ? items
+                      .filter(
+                        (item) =>
+                          !inputValue ||
+                          item.toLowerCase().includes(inputValue.toLowerCase())
+                      )
+                      .map((item, index) => (
+                        <li
+                          styles={{
                             color: `black`,
-                            borderLeft:
-                              highlightedIndex === index
-                                ? `2px solid ${colors.primary.base}`
-                                : "none",
-                            backgroundColor:
-                              highlightedIndex === index
-                                ? "lightgray"
-                                : "white",
-                            fontWeight:
-                              highlightedIndex === index ? "bold" : "normal",
-                          },
-                        })}
-                      >
-                        {item}
-                      </li>
-                    ))
-                : null}
-            </Options>
+                          }}
+                          {...getItemProps({
+                            key: item,
+                            index,
+                            item,
+                            style: {
+                              color: `black`,
+                              borderLeft:
+                                highlightedIndex === index
+                                  ? `2px solid ${colors.primary.base}`
+                                  : "none",
+                              backgroundColor:
+                                highlightedIndex === index
+                                  ? "lightgray"
+                                  : "white",
+                              fontWeight:
+                                highlightedIndex === index ? "bold" : "normal",
+                            },
+                          })}
+                        >
+                          {item}
+                        </li>
+                      ))
+                  : null}
+              </Options>
+            )}
           </div>
         )}
       </Downshift>
