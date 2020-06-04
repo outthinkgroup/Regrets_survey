@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Downshift, { useSelect } from "downshift";
 import { snakeCase } from "../lib";
-import { colors, fonts, elevation } from "../styles";
+import { colors, fonts, elevation, breakpoints } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 
 import styled from "styled-components";
@@ -145,13 +145,20 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
   );
 }
 export default styled(CountrySearch)`
-  background: transparent;
   padding: 5px;
-  position: absolute;
-  top: 0;
-  right: 0%;
+  background: #eaeaea;
+  display: flex;
+  justify-content: flex-end;
+  @media (min-width: ${breakpoints.small}) {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    right: 0%;
+    form {
+      ${elevation[3]};
+    }
+  }
   form {
-    ${elevation[3]};
     display: flex;
     margin-bottom: 0;
     position: relative;

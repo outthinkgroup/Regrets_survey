@@ -40,6 +40,8 @@ function RegretsMap({ className }) {
           height: `100%`,
         }}
       >
+        {mapState === "PARENT_COUNTRY" ||
+          (!activeState && <CountrySearch send={send} />)}
         <InteractiveMap
           onClick={(e) => {
             console.log("called");
@@ -51,8 +53,7 @@ function RegretsMap({ className }) {
           mapState={mapState}
           styles={{ width: `100%`, height: `100%` }}
         />
-
-        {mapState !== "PARENT_COUNTRY" && activeState ? (
+        {mapState !== "PARENT_COUNTRY" && activeState && (
           <StateInfoCard
             zoomOut={(e) => {
               e.stopPropagation();
@@ -62,8 +63,6 @@ function RegretsMap({ className }) {
             isMobile={isMobile}
             activeState={activeState}
           />
-        ) : (
-          <CountrySearch send={send} />
         )}
         {mapState !== "WORLD" && (
           <button
