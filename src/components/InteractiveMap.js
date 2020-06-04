@@ -16,6 +16,7 @@ export default function InteractiveMap({
     totalRegretsPerStateByCountry,
   } = useGetRegrets(activeState);
 
+  //COLORS THE STATES/COUNTRIES BASED ON REGRETS
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
     if (mapState === "WORLD") {
@@ -35,11 +36,9 @@ export default function InteractiveMap({
       });
     }
     if (mapState === "PARENT_COUNTRY" || mapState === "STATE") {
-      console.log("RAN");
       document
         .querySelectorAll("[data-country]")
         .forEach((c) => c.style.setProperty("--lightness", 90));
-      console.log(activeState);
 
       const stateCountry =
         mapState === "STATE"
@@ -47,11 +46,11 @@ export default function InteractiveMap({
               .querySelector(`[data-state="${activeState}"]`)
               .closest("[data-country]").dataset.country
           : activeState;
-      console.log(stateCountry);
+
       const states = Object.entries(
         totalRegretsPerStateByCountry(stateCountry)
       );
-      console.log(states);
+
       const highestState = getHighestCount(states);
       const getLightnessForState = (count) => (count / highestState) * 100 + 30;
       states.forEach(([key, value]) => {
@@ -62,19 +61,18 @@ export default function InteractiveMap({
         stateEl.style.setProperty("--lightness", 110 - lightnessForState);
       });
     }
-    console.log("LAYOUTEFFECT", mapState);
   }, [mapState]);
 
+  //THIS TELLS THE DOM IF THE COUNTRY/STATE HAS REGRETS
   useLayoutEffect(() => {
     const states = Object.entries(totalRegretsPerState);
-    console.log(states);
+
     states.forEach(([key, value]) => {
       const id = snakeCase(key);
-      console.log(key);
+
       const stateEl = document.querySelector(`[data-state="${id}"]`);
       if (!stateEl) return;
       stateEl.dataset.hasentries = true;
-      console.log(stateEl);
     });
 
     const countries = Object.entries(totalRegretsPerCountry);
@@ -93,7 +91,6 @@ function getHighestCount(listOfPlaces) {
   return listOfPlaces
     .map((country) => country[1])
     .sort((a, b) => {
-      console.log(Number(a));
       return Number(a) >= Number(b) ? -1 : 1;
     })[0];
 }

@@ -7,8 +7,10 @@ import { useGetRegrets } from "../hooks/useGetRegrets";
 import styled from "styled-components";
 
 function CountrySearch({ send, className }) {
-  const { totalRegretsPerCountry } = useGetRegrets();
+  const { totalRegretsPerCountry, totalRegretsPerState } = useGetRegrets();
   const countries = Object.keys(totalRegretsPerCountry);
+  const states = Object.keys(totalRegretsPerState);
+  const locations = [...countries];
   const [searchVal, setSearchVal] = useState("");
   return (
     <div className={className}>
@@ -44,7 +46,7 @@ function CountrySearch({ send, className }) {
           <DropdownSelect
             searchVal={searchVal}
             setSearchVal={setSearchVal}
-            items={countries}
+            items={locations}
           />
         </span>
         <span>
@@ -54,20 +56,6 @@ function CountrySearch({ send, className }) {
     </div>
   );
 }
-export default styled(CountrySearch)`
-  padding: 8px;
-  background: white;
-
-  position: absolute;
-  top: calc(100% - 6.6px);
-  left: 50%;
-  transform: translateX(-50%);
-  ${elevation[1]};
-  form {
-    margin-bottom: 0;
-    position: relative;
-  }
-`;
 
 function DropdownSelect({ items, setSearchVal, searchVal }) {
   function handleStateChange(changes) {
@@ -156,6 +144,19 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
     </>
   );
 }
+export default styled(CountrySearch)`
+  background: transparent;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 0%;
+  form {
+    ${elevation[3]};
+    display: flex;
+    margin-bottom: 0;
+    position: relative;
+  }
+`;
 const Options = styled.ul`
   font-family: ${fonts.family};
   list-style: none;
@@ -172,21 +173,20 @@ const Options = styled.ul`
   }
 `;
 const SearchBar = styled.input`
-  background: ${colors.grey[2]};
+  background: white;
   position: relative;
-
-  border: none;
+  border: 1px solid transparent;
   font-family: ${fonts.family};
   font-weight: ${fonts.weights[2]};
 `;
 const SearchButton = styled.button`
   font-family: ${fonts.family};
   font-weight: ${fonts.weights[2]};
-
-  border: none;
-  font-size: 16px;
+  border: 1px solid transparent;
+  font-size: 14px;
   background: ${colors.primary.light};
   white-space: nowrap;
+  /* height: 100%; */
   &:hover {
     background: ${colors.primary.base};
     color: white;

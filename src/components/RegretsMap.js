@@ -25,7 +25,11 @@ function RegretsMap({ className }) {
   return (
     <div className={className}>
       <div className="heading-card">
-        <h2>Past Survey Response</h2>
+        <h2>Past Survey Responses</h2>
+        <p>
+          Click on a country, or search by a country, to see regrets from that
+          area.
+        </p>
       </div>
 
       <div
@@ -88,31 +92,18 @@ function RegretsMap({ className }) {
 export default styled(RegretsMap)`
   margin: 50px 0 100px;
 
-  .heading-card {
-    width: auto;
-    display: flex;
-    justify-content: center;
-  }
   h2 {
-    font-size: 20px;
     background: white;
     position: relative;
     z-index: 2;
     margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    @media (min-width: 562px) {
-      font-size: 22px;
-      transform: translateY(20px);
-      margin: 0;
-    }
-    padding: 10px 25px;
     display: inline-block;
     border-radius: 5px;
-
+    margin-bottom: 5px;
     text-align: center;
   }
   .map {
-    ${elevation[1]};
+    ${elevation[3]};
     background: ${colors.grey[0]};
     & > * {
       transition: all 0.23s cubic-bezier(0.5, 0, 0.5, 1);
