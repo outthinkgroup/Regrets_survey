@@ -43,7 +43,12 @@ module.exports = {
         path: `${__dirname}/data`,
       },
     },
-    `gatsby-transformer-remark`, // this is for turning the copy in markdown to html
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+      },
+    }, // this is for turning the copy in markdown to html
     {
       //For Copy
       resolve: `gatsby-source-filesystem`,

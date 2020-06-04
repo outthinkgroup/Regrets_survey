@@ -1,7 +1,12 @@
 const primary = {
   base: "#FF393C",
-  dark: "#E53335",
+  dark: "hsl(359, 77%, 35%)",
   light: "hsl(359, 100%, 76%)",
+};
+const success = {
+  base: "3AFF85",
+  dark: "hsl(143, 100%, 31%)",
+  light: "hsl(143, 100%, 76%)",
 };
 const grey = [
   "#FEFEFE",
@@ -12,6 +17,8 @@ const grey = [
 ];
 export const colors = {
   primary,
+  error: primary,
+  success,
   grey,
   country: {
     base: grey[3],

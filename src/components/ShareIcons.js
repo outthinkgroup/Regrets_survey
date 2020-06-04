@@ -4,11 +4,11 @@ import { useStaticQuery, graphql } from "gatsby";
 import { colors, fonts, elevation } from "../styles";
 import styled from "styled-components";
 
-export default function ShareIcons() {
+export default function ShareIcons({ alignment }) {
   const data = useStaticQuery(SOCIAL_QUERY);
   const { email, twitter, facebook, linkedIn } = data.site.siteMetadata.sharing;
   return (
-    <ShareButtonGroup>
+    <ShareButtonGroup alignment={alignment}>
       <TwitterButton tweet={twitter.tweet} url={twitter.url} />
       <FacebookButton url={facebook.url} />
       <LinkedInButton url={linkedIn.url} />
@@ -88,8 +88,14 @@ const ShareLink = styled.a`
 `;
 const ShareButtonGroup = styled.div`
   display: flex;
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: ${({ alignment }) =>
+    alignment === `left`
+      ? `0 auto 0 0`
+      : alignment === `right`
+      ? `0 0 0 auto`
+      : `0 auto`};
+  margin-top: 10px;
   justify-content: space-between;
   @media (max-width: 324px) {
     flex-wrap: wrap;

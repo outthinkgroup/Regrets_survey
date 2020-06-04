@@ -6,7 +6,7 @@ function Menu({ className }) {
   return (
     <ul className={className}>
       <li>
-        <SurveyButton to="/survey">Take Survey</SurveyButton>
+        <SurveyButton />
       </li>
     </ul>
   );

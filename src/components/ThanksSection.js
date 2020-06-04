@@ -6,14 +6,16 @@ import { ThanksContent } from "./content";
 function ThanksSection({ className }) {
   return (
     <PageIntro className={className}>
-      <PageHeading>
-        Thanks For Taking
-        <br />
-        The World Regret Survey
-      </PageHeading>
       <div>
+        <PageHeading style={{ lineHeight: `.75em` }}>
+          <span style={{ fontWeight: 900 }}>Thank you</span>
+          <br />
+          <span style={{ fontSize: `.5em`, lineHeight: `1` }}>
+            {" "}
+            for completing the World Regret Survey
+          </span>
+        </PageHeading>
         <ThanksContent />
-        <ShareIcons />
       </div>
     </PageIntro>
   );

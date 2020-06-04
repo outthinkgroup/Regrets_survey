@@ -1,13 +1,13 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-
+import { MDXRenderer } from "gatsby-plugin-mdx";
 export const AboutContent = () => {
   const data = useStaticQuery(graphql`
-    query About {
-      markdownRemark(frontmatter: { slug: { eq: "about" } }) {
-        html
+    query about {
+      mdx(frontmatter: { slug: { eq: "about" } }) {
+        body
       }
     }
   `);
-  return <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />;
+  return <MDXRenderer>{data.mdx.body}</MDXRenderer>;
 };

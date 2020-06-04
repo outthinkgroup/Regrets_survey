@@ -30,7 +30,6 @@ const Layout = ({ children, className }) => {
       >
         <main>{children}</main>
         <footer>
-          <EmailSignUp />
           <div>
             © {new Date().getFullYear()},{` `}
             World Regret Survey - A Dan Pink Project
