@@ -34,6 +34,7 @@ async function updateFileInGit({
     sha,
     content: results,
   }).catch((e) => console.log({ e, json }));
+  //end of function
 
   async function getFile({ filepath }) {
     const response = await octokit.repos.getContents({
