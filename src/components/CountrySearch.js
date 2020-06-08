@@ -7,9 +7,13 @@ import { useGetRegrets } from "../hooks/useGetRegrets";
 import styled from "styled-components";
 
 function CountrySearch({ send, className }) {
-  const { totalRegretsPerCountry, totalRegretsPerState } = useGetRegrets();
-  const countries = Object.keys(totalRegretsPerCountry);
-  const states = Object.keys(totalRegretsPerState);
+  const {
+    totalRegretsPerCountry,
+    totalRegretsPerState,
+    regrets,
+  } = useGetRegrets();
+  const countries = Object.keys(regrets);
+
   const locations = [...countries];
   const [searchVal, setSearchVal] = useState("");
   return (

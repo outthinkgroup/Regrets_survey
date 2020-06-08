@@ -53,6 +53,7 @@ export function useGetRegrets(activeState, mapState) {
     }
   }
   const activeStateHasMultiple = activeState && regrets[activeState].length > 1;
+
   const totalRegretsPerCountry = allRegrets.reduce((totals, regret) => {
     if (!regret.location) return totals;
     const { country } = regret.location;
@@ -62,7 +63,6 @@ export function useGetRegrets(activeState, mapState) {
     totals[country]++;
     return totals;
   }, {});
-
   const totalRegretsPerStateByCountry = (countryActive) =>
     allRegrets
       .filter((regret) => {
