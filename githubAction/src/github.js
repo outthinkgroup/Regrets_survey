@@ -65,7 +65,7 @@ async function updateFileInGit({
 module.exports = { updateFileInGit };
 
 const octokit = new Octokit({
-  auth: process.env.AUTH,
+  auth: "6a858e36de428c9aeb06195fc5650b9d15d2717b",
 });
 async function triggerDeploy(owner, repo) {
   const response = await octokit.repos.createDispatchEvent({

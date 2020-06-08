@@ -25,6 +25,7 @@ export function useGetRegrets(activeState, mapState) {
 
   function getRegretBy() {
     const allInRegion = allRegrets.filter((regret) => {
+      if (!regret.location) return false;
       const { country, state } = regret.location;
       const countryId = snakeCase(country);
       const stateId = state && snakeCase(state);
@@ -41,7 +42,7 @@ export function useGetRegrets(activeState, mapState) {
   }
 
   const totalRegretsPerCountry = allRegrets.reduce((totals, regret) => {
-    if (!regret.location) return;
+    if (!regret.location) return totals;
     const { country } = regret.location;
     if (!totals[country]) {
       totals[country] = 0;
@@ -53,6 +54,7 @@ export function useGetRegrets(activeState, mapState) {
   const totalRegretsPerStateByCountry = (countryActive) =>
     allRegrets
       .filter((regret) => {
+        if (!regret.location) return false;
         const { country } = regret.location;
         const countryId = snakeCase(country);
         return countryId === countryActive;
@@ -66,6 +68,7 @@ export function useGetRegrets(activeState, mapState) {
         return totals;
       }, {});
   const totalRegretsPerState = allRegrets.reduce((totals, regret) => {
+    if (!regret.location) return totals;
     const { state } = regret.location;
     if (!totals[state]) {
       totals[state] = 0;
