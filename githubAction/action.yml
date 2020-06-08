@@ -21,6 +21,8 @@ inputs:
   survey_id:
     description: "the id of the survey"
     required: true
+  branch:
+    description: "what is the branch to publish the files to"
 outputs:
   time: # id of output
     description: "The time we greeted you"

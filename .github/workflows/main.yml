@@ -19,6 +19,7 @@ jobs:
           ip_stack_key: ${{ secrets.IP_STACK_TOKEN }}
           qualtrics_token: ${{ secrets.QUALTRICS_TOKEN }}
           survey_id: ${{ secrets.SURVEY_ID }}
+          branch: staging
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
