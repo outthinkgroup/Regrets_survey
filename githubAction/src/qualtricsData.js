@@ -2,6 +2,8 @@ require("dotenv").config();
 const fs = require("fs");
 const fetch = require("node-fetch");
 var StreamZip = require("node-stream-zip");
+const { mergeData } = require("./resultsmerger");
+const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
 
 const TOKEN = process.env.QUALTRICS_TOKEN;
 const SURVEY = process.env.SURVEY_ID;
@@ -13,24 +15,32 @@ const FILTER = `ebc97c57-062f-4cc2-8724-af4fe73d7b01`;
 
 //* THIS INITS THE WHOLE PROCESS
 //? ----
-
-const qualtricsData = ({ token, surveyId, ipStackKey }) =>
+const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
       filterId: FILTER,
-      limit: 100,
+      limit: 200,
     },
+    oldData,
     {
       token,
       surveyId,
       ipStackKey,
     }
   );
-
 //?---
 //*
 
-async function getResponses(exportOptions = {}, config) {
+//REBUILD DATA
+//dont forget to uncomment saving tofile system
+qualtricsData({
+  token: TOKEN,
+  surveyId: SURVEY,
+  ipStackKey: IP_STACK_KEY,
+  oldData: demoFile,
+});
+
+async function getResponses(exportOptions = {}, oldData, config) {
   //create data directory
   //await createDir("data");
   await createDir("rawData");
@@ -51,10 +61,10 @@ async function getResponses(exportOptions = {}, config) {
   const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
 
   //Clean data
-  const data = await cleanData(rawData, config);
-
-  return data;
-  //saveToFileSystem(data);
+  const data = await mergeData({ newData: rawData, oldData, config });
+  const json = JSON.stringify(data);
+  //return data;
+  saveToFileSystem({ results: json });
 }
 
 function startExport(options = {}, config) {
@@ -160,7 +170,7 @@ async function getResults(fileId, config) {
 }
 
 function unzip(file) {
-  var zip = new StreamZip({
+  const zip = new StreamZip({
     file: file,
     storeEntries: true,
   });
@@ -219,6 +229,7 @@ async function cleanData(data, config) {
               regret: values.QID1_TEXT || "",
               gender: labels.QID2 || "",
               location: { country, state },
+              date: values.endDate,
             });
           }
           getLocationFromIP(ipAddress, config).then((res) => {
@@ -228,6 +239,7 @@ async function cleanData(data, config) {
               regret: values.QID1_TEXT || "",
               gender: labels.QID2 || "",
               location,
+              date: values.endDate,
             });
           });
         })
@@ -258,15 +270,10 @@ function hasError(data) {
 }
 
 //This is just for Results that have ip address and not Country/State
-async function getLocationFromIP(ipAddress, config) {
-  const res = await fetch(
-    `http://api.ipstack.com/${ipAddress}?access_key=${config.ipStackKey}&format=1`
-  );
-  const data = await res.json();
-  console.log(data);
-  const { country_name: country, region_name: state } = data;
 
-  return { country, state };
-}
+module.exports = {
+  getResults,
+  qualtricsData,
 
-module.exports = { getResults, qualtricsData };
+  saveToFileSystem,
+};

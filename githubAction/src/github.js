@@ -16,21 +16,23 @@ async function updateFileInGit({
     auth: githubToken,
   });
 
-  const { sha } = await getFile({
-    filepath: "data/results.json",
+  const { sha, content } = await getFile({
+    filepath: "data/data.json",
   }).catch((e) => console.log(e));
 
+  const oldData = JSON.parse(content);
   const data = await qualtricsData({
     token: qualtricsToken,
     ipStackKey,
     surveyId,
+    oldData,
   });
   const json = JSON.stringify(data);
-
+  const results = JSON.stringify({ results: json });
   const res = await updateFile({
     filepath: "data/results.json",
     sha,
-    content: json,
+    content: results,
   }).catch((e) => console.log({ e, json }));
 
   async function getFile({ filepath }) {

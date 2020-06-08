@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { snakeCase } from "../lib";
+import { snakeCase, approvedStates } from "../lib";
 const GET_REGRETS = graphql`
   query GET_REGRETS {
     allQualtricsData {
-      regrets: nodes {
-        regret
-        location {
-          country
-          state
-        }
+      nodes {
+        results
       }
     }
   }
 `;
 export function useGetRegrets(activeState, mapState) {
   const { allQualtricsData } = useStaticQuery(GET_REGRETS);
-  const { regrets } = allQualtricsData;
+  const { results } = allQualtricsData.nodes[0];
+  const regrets = JSON.parse(results);
+  const countriesAndStates = Object.keys(regrets);
+  const allRegrets = countriesAndStates.reduce((allRegrets, country) => {
+    return [...allRegrets, ...regrets[country]];
+  }, []);
   const [activeRegret, setActiveRegret] = useState();
 
   function getRegretBy() {
-    const allInRegion = regrets.filter((regret) => {
+    const allInRegion = allRegrets.filter((regret) => {
       const { country, state } = regret.location;
       const countryId = snakeCase(country);
       const stateId = snakeCase(state);
@@ -36,7 +37,7 @@ export function useGetRegrets(activeState, mapState) {
     setActiveRegret(getRandom);
   }
 
-  const totalRegretsPerCountry = regrets.reduce((totals, regret) => {
+  const totalRegretsPerCountry = allRegrets.reduce((totals, regret) => {
     const { country } = regret.location;
     if (!totals[country]) {
       totals[country] = 0;
@@ -44,12 +45,13 @@ export function useGetRegrets(activeState, mapState) {
     totals[country]++;
     return totals;
   }, {});
-  const totalRegretsPerStateByCountry = (countryactive) =>
-    regrets
+
+  const totalRegretsPerStateByCountry = (countryActive) =>
+    allRegrets
       .filter((regret) => {
         const { country } = regret.location;
         const countryId = snakeCase(country);
-        return countryId === countryactive;
+        return countryId === countryActive;
       })
       .reduce((totals, regret) => {
         const { state } = regret.location;
@@ -59,7 +61,7 @@ export function useGetRegrets(activeState, mapState) {
         totals[state]++;
         return totals;
       }, {});
-  const totalRegretsPerState = regrets.reduce((totals, regret) => {
+  const totalRegretsPerState = allRegrets.reduce((totals, regret) => {
     const { state } = regret.location;
     if (!totals[state]) {
       totals[state] = 0;
