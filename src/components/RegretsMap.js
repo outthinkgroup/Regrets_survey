@@ -5,7 +5,7 @@ import InteractiveMap from "./InteractiveMap";
 import StateInfoCard from "./StateInfoCard";
 import useInteractiveMap from "../hooks/useInteractiveMap";
 import styled, { css } from "styled-components";
-import { colors, screen, screenAbove, elevation } from "../styles";
+import { colors, screen, screenAbove, elevation, fonts } from "../styles";
 import CountrySearch from "./CountrySearch";
 import { useIsMobile } from "../hooks/useWindowWidth";
 import Icon from "./Icon.js";
@@ -71,7 +71,7 @@ function RegretsMap({ className }) {
               e.stopPropagation();
               send(["close"]);
             }}
-            className="close"
+            className="zoomout"
             style={{
               background: `transparent`,
               border: `none`,
@@ -80,9 +80,12 @@ function RegretsMap({ className }) {
               left: `5px`,
             }}
           >
-            <span style={{ width: `20px`, display: `inline-block` }}>
+            <span
+              style={{ width: `20px`, marginRight: `10px`, marginTop: `7px` }}
+            >
               <Icon name="zoom-out" color="black" />
             </span>
+            <span>zoom out</span>
           </button>
         )}
       </div>
@@ -170,5 +173,13 @@ export default styled(RegretsMap)`
   .map-wrapper {
     padding: 0px 0;
     position: relative;
+  }
+  button.zoomout {
+    display: flex;
+    align-items: center;
+    font-family: ${fonts.family};
+    span {
+      display: block;
+    }
   }
 `;
