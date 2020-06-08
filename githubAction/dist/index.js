@@ -3015,7 +3015,7 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
       filterId: FILTER,
-      limit: 260,
+      limit: 10,
     },
     oldData,
     {
@@ -19673,7 +19673,8 @@ async function updateFileInGit({
 
   const { sha, content } = await getFile({
     filepath: "data/data.json",
-  }).catch((e) => console.log(e));
+  }).catch((e) => console.log("getting the file", e));
+  console.log(blob);
 
   const oldData = JSON.parse(content);
   const data = await qualtricsData({
@@ -19689,7 +19690,7 @@ async function updateFileInGit({
     sha,
     content: results,
     branch,
-  }).catch((e) => console.log({ e, json }));
+  }).catch((e) => console.log("updating the file", { e, json }));
   //end of function
 
   async function getFile({ filepath }) {
@@ -19701,7 +19702,12 @@ async function updateFileInGit({
     const { data } = response;
     const { sha } = data;
     const content = decode(data.content);
-    return { sha, content };
+    const blob = await octokit.git.getBlob({
+      owner,
+      repo,
+      sha,
+    });
+    return { sha, blob, content };
   }
 
   async function updateFile({ filepath, sha, content, branch }) {
