@@ -31,8 +31,7 @@ const Layout = ({ children, className }) => {
         <main>{children}</main>
         <footer>
           <div>
-            © {new Date().getFullYear()},{` `}
-            World Regret Survey - A Dan Pink Project
+            © {new Date().getFullYear()},{` `}, Daniel Pink
           </div>
         </footer>
       </div>

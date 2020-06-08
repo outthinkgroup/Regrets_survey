@@ -40,7 +40,19 @@ export function useGetRegrets(activeState, mapState) {
       allInRegion[Math.floor(Math.random() * allInRegion.length)];
     setActiveRegret(getRandom);
   }
-
+  function getAnotherRegret() {
+    const availableRegrets = regrets[activeState];
+    const currentRegretIndex = availableRegrets.findIndex(
+      (regret) => regret.id === activeRegret.id
+    );
+    const nextRegretIndex = currentRegretIndex + 1;
+    if (nextRegretIndex > availableRegrets.length - 1) {
+      setActiveRegret(availableRegrets[0]);
+    } else {
+      setActiveRegret(availableRegrets[nextRegretIndex]);
+    }
+  }
+  const activeStateHasMultiple = activeState && regrets[activeState].length > 1;
   const totalRegretsPerCountry = allRegrets.reduce((totals, regret) => {
     if (!regret.location) return totals;
     const { country } = regret.location;
@@ -84,9 +96,10 @@ export function useGetRegrets(activeState, mapState) {
   return {
     regrets,
     activeRegret,
+    activeStateHasMultiple,
     totalRegretsPerCountry,
     totalRegretsPerStateByCountry,
     totalRegretsPerState,
-    getRegretBy,
+    getRegretBy: getAnotherRegret,
   };
 }

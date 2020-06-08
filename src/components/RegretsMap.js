@@ -25,10 +25,10 @@ function RegretsMap({ className }) {
   return (
     <div className={className}>
       <div className="heading-card">
-        <h2>Past Survey Responses</h2>
+        <h2>What do others regret?</h2>
         <p>
-          Click on a country, or search by a country, to see regrets from that
-          area.
+          Click a country or state, or search by country or state, to see a
+          selection of survey responses from that area.
         </p>
       </div>
 

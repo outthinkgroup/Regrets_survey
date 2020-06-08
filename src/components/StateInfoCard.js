@@ -11,10 +11,11 @@ function StateInfoCard({
   isMobile,
   mapState,
 }) {
-  const { activeRegret: regret, getRegretBy } = useGetRegrets(
-    activeState,
-    mapState
-  );
+  const {
+    activeRegret: regret,
+    getRegretBy,
+    activeStateHasMultiple,
+  } = useGetRegrets(activeState, mapState);
   console.log(isMobile);
   return (
     <div className={className}>
@@ -32,7 +33,9 @@ function StateInfoCard({
             {regret?.age && `, Age ${regret.age}`}
           </h3>
           <p>{regret?.regret}</p>
-          <button onClick={getRegretBy}>see another</button>
+          {activeStateHasMultiple && (
+            <button onClick={getRegretBy}>see another</button>
+          )}
         </div>
       </div>
     </div>
