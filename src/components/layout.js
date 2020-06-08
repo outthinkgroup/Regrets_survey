@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import { fonts } from "../styles";
 import Header from "./header";
-import EmailSignUp from "./EmailSignUp";
+
 import "./layout.css";
 
 const Layout = ({ children, className }) => {
@@ -31,7 +31,8 @@ const Layout = ({ children, className }) => {
         <main>{children}</main>
         <footer>
           <div>
-            © {new Date().getFullYear()},{` `}, Daniel Pink
+            © {new Date().getFullYear()},{` `},{" "}
+            <a href="https://danpink.com/about/">Daniel Pink</a>
           </div>
         </footer>
       </div>

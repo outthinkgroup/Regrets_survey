@@ -9,7 +9,6 @@ function About({ className }) {
     <div className={className}>
       <AuthorImage />
       <div className="content">
-        <h2>About the Author</h2>
         <AboutContent />
       </div>
     </div>

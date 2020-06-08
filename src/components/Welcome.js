@@ -7,7 +7,7 @@ function Welcome({ className }) {
   return (
     <PageIntro className={className}>
       <PageHeading>
-        <span style={{ fontSize: `.75em` }}>Welcome To the</span>
+        <span style={{ fontSize: `.75em` }}>Welcome to the</span>
         <br /> <span style={{ fontWeight: 900 }}>World Regret Survey</span>
       </PageHeading>
       <MainIntroduction />
