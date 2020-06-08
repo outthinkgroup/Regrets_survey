@@ -11,6 +11,7 @@ async function updateFileInGit({
   qualtricsToken,
   ipStackKey,
   surveyId,
+  branch = "master",
 }) {
   const octokit = new Octokit({
     auth: githubToken,
@@ -33,6 +34,7 @@ async function updateFileInGit({
     filepath: "data/data.json",
     sha,
     content: results,
+    branch,
   }).catch((e) => console.log({ e, json }));
   //end of function
 
@@ -48,7 +50,7 @@ async function updateFileInGit({
     return { sha, content };
   }
 
-  async function updateFile({ filepath, sha, content }) {
+  async function updateFile({ filepath, sha, content, branch }) {
     const bytes = utf8.encode(content);
     const response = await octokit.repos.createOrUpdateFile({
       owner,
@@ -56,6 +58,7 @@ async function updateFileInGit({
       path: filepath,
       message: `automatic update to ${filepath}`,
       content: encode(bytes),
+      ref: branch,
       sha,
     });
 

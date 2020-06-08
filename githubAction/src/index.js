@@ -9,6 +9,7 @@ try {
   const qualtricsToken = core.getInput("qualtrics_token");
   const ipStackKey = core.getInput("ip_stack_key");
   const surveyId = core.getInput("survey_id");
+  const branch = core.getInput("branch");
   const time = new Date().toTimeString();
   core.setOutput("time", time);
 
@@ -19,6 +20,7 @@ try {
     qualtricsToken,
     ipStackKey,
     surveyId,
+    branch,
   });
 
   const payload = JSON.stringify(github.context.payload, undefined, 2);
