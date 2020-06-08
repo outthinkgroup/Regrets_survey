@@ -41,6 +41,7 @@ export function useGetRegrets(activeState, mapState) {
   }
 
   const totalRegretsPerCountry = allRegrets.reduce((totals, regret) => {
+    if (!regret.location) return;
     const { country } = regret.location;
     if (!totals[country]) {
       totals[country] = 0;
