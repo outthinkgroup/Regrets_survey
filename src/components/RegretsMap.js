@@ -40,8 +40,9 @@ function RegretsMap({ className }) {
           height: `100%`,
         }}
       >
-        {mapState === "PARENT_COUNTRY" ||
-          (!activeState && <CountrySearch send={send} />)}
+        {mapState === "PARENT_COUNTRY" || !activeState ? (
+          <CountrySearch send={send} />
+        ) : null}
         <InteractiveMap
           onClick={(e) => {
             console.log("called");

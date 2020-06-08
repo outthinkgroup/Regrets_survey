@@ -34,7 +34,9 @@ function StateInfoCard({
           </h3>
           <p>{regret?.regret}</p>
           {activeStateHasMultiple && (
-            <button onClick={getRegretBy}>see another</button>
+            <button className="next" onClick={getRegretBy}>
+              see another
+            </button>
           )}
         </div>
       </div>
@@ -45,6 +47,7 @@ export default styled(StateInfoCard)`
   position: absolute;
   top: ${({ isMobile }) => (isMobile ? "100%" : "0")};
   left: 0;
+  z-index: 99;
   width: 100%;
   height: 100%;
   display: flex;
@@ -63,6 +66,15 @@ export default styled(StateInfoCard)`
       margin-top: 20px;
       opacity: 0;
       animation: fadeIn 0.2s linear 0.28s forwards;
+      button.next {
+        background: ${colors.grey[2]};
+        font-family: ${fonts.family};
+        border: none;
+        font-weight: 700;
+        &:hover {
+          background: #dfdfdf;
+        }
+      }
     }
     h1 {
       font-size: ${fonts.sizes.heading[0]};
