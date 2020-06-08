@@ -19,15 +19,15 @@ export default function ShareIcons({ alignment }) {
 
 export const TwitterButton = ({ tweet, url }) => {
   const link = createTweet({ tweet, url });
-  return <ShareButton link={link} color={`#1C95E0`} icon="twitter" />;
+  return <ShareButton link={link} color={`#1C95E0`} icon="twitter" newTab />;
 };
 export const FacebookButton = ({ url }) => {
   const link = createFacebookLink({ url });
-  return <ShareButton link={link} color={`#1777F2`} icon="facebook" />;
+  return <ShareButton link={link} color={`#1777F2`} icon="facebook" newTab />;
 };
 export const LinkedInButton = ({ url, title, summary }) => {
   const link = createLinkedInLink({ url, title, summary });
-  return <ShareButton link={link} color={`#0173B1`} icon="linkedin" />;
+  return <ShareButton link={link} color={`#0173B1`} icon="linkedin" newTab />;
 };
 export const EmailButton = ({ body, subject, url }) => {
   const link = createEmail({ body, subject, url });
