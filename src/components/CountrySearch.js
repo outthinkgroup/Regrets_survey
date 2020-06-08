@@ -30,10 +30,10 @@ function CountrySearch({ send, className }) {
             `[data-country="${searchValSnakeCased}"], [data-state=${searchValSnakeCased}]`
           );
           if (!searchedState) {
-            console.log(searchValSnakeCased, "no results");
+            console.log(searchValSnakeCased, "no results"); //TODO: make this something the user can see.
             return null;
           }
-          console.log(searchedState);
+
           const type = searchedState.dataset.state
             ? "STATE"
             : searchedState.dataset.hasChildren
