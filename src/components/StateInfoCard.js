@@ -25,7 +25,7 @@ function StateInfoCard({
             <Icon name="close" color="black" />
           </button>
           <h1>
-            {regret?.location?.state + ", "}
+            {regret?.location.state && regret?.location?.state + ", "}
             {regret?.location?.country}
           </h1>
           <h3>
