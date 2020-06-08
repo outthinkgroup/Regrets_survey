@@ -14,17 +14,20 @@ export function useGetRegrets(activeState, mapState) {
   const { allQualtricsData } = useStaticQuery(GET_REGRETS);
   const { results } = allQualtricsData.nodes[0];
   const regrets = JSON.parse(results);
+
   const countriesAndStates = Object.keys(regrets);
+
   const allRegrets = countriesAndStates.reduce((allRegrets, country) => {
     return [...allRegrets, ...regrets[country]];
   }, []);
+
   const [activeRegret, setActiveRegret] = useState();
 
   function getRegretBy() {
     const allInRegion = allRegrets.filter((regret) => {
       const { country, state } = regret.location;
       const countryId = snakeCase(country);
-      const stateId = snakeCase(state);
+      const stateId = state && snakeCase(state);
       if (mapState === "COUNTRY") {
         return countryId === activeState;
       }

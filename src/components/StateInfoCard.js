@@ -27,7 +27,10 @@ function StateInfoCard({
             {regret?.location?.state + ", "}
             {regret?.location?.country}
           </h1>
-          <h3>Male, Age 45</h3>
+          <h3>
+            {regret?.gender}
+            {regret?.age && `, Age ${regret.age}`}
+          </h3>
           <p>{regret?.regret}</p>
           <button onClick={getRegretBy}>see another</button>
         </div>
