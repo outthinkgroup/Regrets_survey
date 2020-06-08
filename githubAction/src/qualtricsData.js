@@ -19,7 +19,7 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
       filterId: FILTER,
-      limit: 200,
+      limit: 260,
     },
     oldData,
     {
@@ -33,12 +33,12 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
 
 //REBUILD DATA
 //dont forget to uncomment saving tofile system
-qualtricsData({
+/* qualtricsData({
   token: TOKEN,
   surveyId: SURVEY,
   ipStackKey: IP_STACK_KEY,
   oldData: demoFile,
-});
+}); */
 
 async function getResponses(exportOptions = {}, oldData, config) {
   //create data directory
@@ -63,8 +63,8 @@ async function getResponses(exportOptions = {}, oldData, config) {
   //Clean data
   const data = await mergeData({ newData: rawData, oldData, config });
   const json = JSON.stringify(data);
-  //return data;
-  saveToFileSystem({ results: json });
+  return json;
+  //saveToFileSystem({ results: json });
 }
 
 function startExport(options = {}, config) {

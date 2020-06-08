@@ -30,7 +30,7 @@ async function updateFileInGit({
   const json = JSON.stringify(data);
   const results = JSON.stringify({ results: json });
   const res = await updateFile({
-    filepath: "data/results.json",
+    filepath: "data/data.json",
     sha,
     content: results,
   }).catch((e) => console.log({ e, json }));
