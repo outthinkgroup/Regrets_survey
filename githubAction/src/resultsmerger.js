@@ -41,7 +41,7 @@ async function mergeData({ newData, oldData = {}, config }) {
     const responseExists = oldDataObj[locationKey].find(
       (res) => res.id === response.id
     );
-    console.log(responseExists);
+    //console.log(responseExists);
     if (responseExists) return oldDataObj;
     const updatedResults = [...oldDataObj[locationKey], response].sort(
       (a, b) => {
@@ -58,7 +58,7 @@ async function mergeData({ newData, oldData = {}, config }) {
 
     return oldDataObj;
   }, oldData);
-
+  //console.log(mergedData);
   return mergedData;
 }
 

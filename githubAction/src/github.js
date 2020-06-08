@@ -17,12 +17,12 @@ async function updateFileInGit({
     auth: githubToken,
   });
 
-  const { sha, content } = await getFile({
-    filepath: "data/data.json",
-  }).catch((e) => console.log("getting the file", e));
-  console.log(blob);
+  const { sha, content } = await getFileBlobContents({}).catch((e) =>
+    console.log("getting the file", e)
+  );
 
-  const oldData = JSON.parse(content);
+  const oldData = JSON.parse(JSON.parse(content).results);
+  console.log(Object.keys(oldData));
   const data = await qualtricsData({
     token: qualtricsToken,
     ipStackKey,
@@ -40,11 +40,20 @@ async function updateFileInGit({
   //end of function
 
   async function getFile({ filepath }) {
-    const response = await octokit.repos.getContents({
+    /* const response = await octokit.repos.getContent({
       owner,
       repo,
       path: filepath,
+    }); */
+    //get the commit sha
+    const commit = octokit.repos.getCommit({
+      owner,
+      repo,
+      ref: "master",
     });
+    //get tree sha
+    // get subtree or blob sha
+
     const { data } = response;
     const { sha } = data;
     const content = decode(data.content);
@@ -84,4 +93,47 @@ async function triggerDeploy(owner, repo) {
   });
   console.log(response);
 }
-triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
+//triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
+async function getFileBlobContents({ filepath }) {
+  //get the commit sha
+  const { data: commitData } = await octokit.repos.getCommit({
+    owner: "outthinkgroup",
+    repo: "Regrets_survey",
+    ref: "master",
+  });
+
+  //get tree sha
+  const { sha } = commitData.commit.tree;
+  const treeData = await octokit.git.getTree({
+    owner: "outthinkgroup",
+    repo: "Regrets_survey",
+    tree_sha: sha,
+  });
+  const dataDirSha = treeData.data.tree.find((obj) => obj.path === "data");
+  const { data: dataDirTreeData } = await octokit.git.getTree({
+    owner: "outthinkgroup",
+    repo: "Regrets_survey",
+    tree_sha: dataDirSha.sha,
+  });
+  const fileBlobSha = dataDirTreeData.tree.find(
+    (obj) => obj.path === "data.json"
+  ).sha;
+  //console.log(fileBlobSha);
+  const blob = await octokit.git.getBlob({
+    owner: "outthinkgroup",
+    repo: "Regrets_survey",
+    file_sha: fileBlobSha,
+  });
+
+  return { content: decode(blob.data.content), sha: fileBlobSha };
+}
+updateFileInGit({
+  owner: "outthinkgroup",
+  repo: "Regrets_survey",
+  githubToken: process.env.AUTH,
+  qualtricsToken: process.env.QUALTRICS_TOKEN,
+  ipStackKey: process.env.IP_STACK_KEY,
+  surveyId: process.env.SURVEY_ID,
+})
+  //.then((re) => console.log(JSON.stringify(re, null, 2)))
+  .catch((e) => console.log(e));

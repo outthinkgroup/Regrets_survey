@@ -64,6 +64,7 @@ async function getResponses(exportOptions = {}, oldData, config) {
   const data = await mergeData({ newData: rawData, oldData, config });
   //const json = JSON.stringify(data);
   //saveToFileSystem({ results: json });
+  //console.log(data);
   return data;
 }
 
