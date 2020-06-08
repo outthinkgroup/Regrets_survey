@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { SurveyButton } from "./SurveyButton";
 import { PageHeading, PageIntro } from "../styles";
 import { MainIntroduction } from "./content";
 function Welcome({ className }) {

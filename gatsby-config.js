@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `World Regret Survey`,
-    description: ``,
-    author: ``,
+    description: `Regrets are a universal part of the human experience. All of us have something we wish we had done differently – or some action we wish we had taken or not taken.
+For a book about regret, author Daniel H. Pink is collecting regrets from all over the world. This simple survey takes about 3 minutes. Your responses are anonymous. Please consider participating. We think you’ll find the experience interesting and meaningful.`,
+    author: `Daniel Pink`,
     sharing: {
       twitter: {
         tweet: `I just completed The World Regret Survey! Check it out:`,
@@ -69,7 +70,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/dpicon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
