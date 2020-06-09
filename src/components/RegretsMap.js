@@ -43,17 +43,42 @@ function RegretsMap({ className }) {
         {mapState === "PARENT_COUNTRY" || !activeState ? (
           <CountrySearch send={send} />
         ) : null}
-        <InteractiveMap
-          onClick={(e) => {
-            console.log("called");
-            e.persist();
-            send(["click", e]);
-          }}
-          viewBox={viewBox}
-          activeState={activeState}
-          mapState={mapState}
-          styles={{ width: `100%`, height: `100%` }}
-        />
+        <div style={{ position: `relative` }}>
+          <InteractiveMap
+            onClick={(e) => {
+              console.log("called");
+              e.persist();
+              send(["click", e]);
+            }}
+            viewBox={viewBox}
+            activeState={activeState}
+            mapState={mapState}
+            styles={{ width: `100%`, height: `100%` }}
+          />
+          {mapState !== "WORLD" && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                send(["close"]);
+              }}
+              className="zoomout"
+              style={{
+                background: `transparent`,
+                border: `none`,
+                position: `absolute`,
+                top: `5px`,
+                left: `5px`,
+              }}
+            >
+              <span
+                style={{ width: `20px`, marginRight: `10px`, marginTop: `7px` }}
+              >
+                <Icon name="zoom-out" color="black" />
+              </span>
+              <span>zoom out</span>
+            </button>
+          )}
+        </div>
         {mapState !== "PARENT_COUNTRY" && activeState && (
           <StateInfoCard
             zoomOut={(e) => {
@@ -64,29 +89,6 @@ function RegretsMap({ className }) {
             isMobile={isMobile}
             activeState={activeState}
           />
-        )}
-        {mapState !== "WORLD" && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              send(["close"]);
-            }}
-            className="zoomout"
-            style={{
-              background: `transparent`,
-              border: `none`,
-              position: `absolute`,
-              top: `5px`,
-              left: `5px`,
-            }}
-          >
-            <span
-              style={{ width: `20px`, marginRight: `10px`, marginTop: `7px` }}
-            >
-              <Icon name="zoom-out" color="black" />
-            </span>
-            <span>zoom out</span>
-          </button>
         )}
       </div>
     </div>

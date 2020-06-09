@@ -163,6 +163,7 @@ export default styled(CountrySearch)`
   background: #eaeaea;
   display: flex;
   justify-content: flex-end;
+  z-index: 2;
   @media (min-width: ${breakpoints.small}) {
     background: transparent;
     position: absolute;
@@ -185,6 +186,7 @@ const Options = styled.ul`
   padding: 0;
   position: absolute;
   width: 100%;
+  z-index: 100;
   max-height: 300px;
   overflow-y: scroll;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
