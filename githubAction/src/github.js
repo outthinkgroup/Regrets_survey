@@ -17,9 +17,9 @@ async function updateFileInGit({
     auth: githubToken,
   });
 
-  const { sha, content } = await getFileBlobContents({}).catch((e) =>
-    console.log("getting the file", e)
-  );
+  const { sha, content } = await getFile({
+    filepath: "data/data.json",
+  }).catch((e) => console.log("getting the file", e));
 
   const oldData = JSON.parse(JSON.parse(content).results);
   console.log(Object.keys(oldData));
@@ -37,6 +37,18 @@ async function updateFileInGit({
     content: results,
   }).catch((e) => console.log("updating the file", { e, json }));
   //end of function
+
+  async function getFile({ filepath }) {
+    const response = await octokit.repos.getContents({
+      owner,
+      repo,
+      path: filepath,
+    });
+    const { data } = response;
+    const { sha } = data;
+    const content = decode(data.content);
+    return { sha, content };
+  }
 
   async function updateFile({ filepath, sha, content, branch }) {
     const bytes = utf8.encode(content);
