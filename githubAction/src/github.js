@@ -35,35 +35,8 @@ async function updateFileInGit({
     filepath: "data/data.json",
     sha,
     content: results,
-    branch,
   }).catch((e) => console.log("updating the file", { e, json }));
   //end of function
-
-  async function getFile({ filepath }) {
-    /* const response = await octokit.repos.getContent({
-      owner,
-      repo,
-      path: filepath,
-    }); */
-    //get the commit sha
-    const commit = octokit.repos.getCommit({
-      owner,
-      repo,
-      ref: "master",
-    });
-    //get tree sha
-    // get subtree or blob sha
-
-    const { data } = response;
-    const { sha } = data;
-    const content = decode(data.content);
-    const blob = await octokit.git.getBlob({
-      owner,
-      repo,
-      sha,
-    });
-    return { sha, blob, content };
-  }
 
   async function updateFile({ filepath, sha, content, branch }) {
     const bytes = utf8.encode(content);
@@ -73,7 +46,6 @@ async function updateFileInGit({
       path: filepath,
       message: `automatic update to ${filepath}`,
       content: encode(bytes),
-      ref: branch,
       sha,
     });
 

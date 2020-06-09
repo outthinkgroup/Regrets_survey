@@ -47,6 +47,7 @@ async function mergeData({ newData, oldData = {}, config }) {
       (a, b) => {
         const aDate = new Date(a.date);
         const bDate = new Date(b.date);
+        //newest to oldest
         return aDate <= bDate ? 1 : -1;
       }
     );
