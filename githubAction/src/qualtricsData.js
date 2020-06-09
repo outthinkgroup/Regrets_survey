@@ -12,14 +12,14 @@ const CLEAN_DATA_NAME = "data";
 const IP_STACK_KEY = process.env.IP_STACK_KEY;
 //THIS IS ONLY SHOWS RESULTS THAT HAVE IP AND ARE AFTER JUNE 19
 const FILTER = `ebc97c57-062f-4cc2-8724-af4fe73d7b01`;
-
+const TEST_FILTER = `75547da0-65fa-4a35-a62b-c3a170aab2e4`;
 //* THIS INITS THE WHOLE PROCESS
 //? ----
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
-      filterId: FILTER,
-      limit: 120,
+      filterId: TEST_FILTER,
+      limit: 5,
     },
     oldData,
     {
