@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { snakeCase, approvedStates } from "../lib";
+import { decode } from "base-64";
+const utf8 = require("utf8");
 const GET_REGRETS = graphql`
   query GET_REGRETS {
     allQualtricsData {
@@ -13,8 +15,8 @@ const GET_REGRETS = graphql`
 export function useGetRegrets(activeState, mapState) {
   const { allQualtricsData } = useStaticQuery(GET_REGRETS);
   const { results } = allQualtricsData.nodes[0];
-  const regrets = JSON.parse(results);
 
+  const regrets = JSON.parse(results);
   const countriesAndStates = Object.keys(regrets);
   const allRegrets = countriesAndStates.reduce((allRegrets, country) => {
     return [...allRegrets, ...regrets[country]];

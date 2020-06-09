@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 var StreamZip = require("node-stream-zip");
 const { mergeData } = require("./resultsmerger");
 const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
-
+const { decode, encode } = require("base-64");
 const TOKEN = process.env.QUALTRICS_TOKEN;
 const SURVEY = process.env.SURVEY_ID;
 const RAW_DATA_NAME = "rawData";
@@ -18,8 +18,8 @@ const TEST_FILTER = `75547da0-65fa-4a35-a62b-c3a170aab2e4`;
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
-      filterId: TEST_FILTER,
-      limit: 5,
+      filterId: FILTER,
+      limit: 120,
     },
     oldData,
     {
@@ -62,8 +62,8 @@ async function getResponses(exportOptions = {}, oldData, config) {
 
   //Clean data
   const data = await mergeData({ newData: rawData, oldData, config });
-  const json = JSON.stringify(data);
-  saveToFileSystem({ results: json });
+  //const encodedData = JSON.stringify(data);
+  //saveToFileSystem({ results: encodedData });
   //console.log(data);
   //return data;
 }
@@ -250,7 +250,7 @@ async function cleanData(data, config) {
 
 function saveToFileSystem(data) {
   const dataString = JSON.stringify(data);
-  fs.writeFileSync(`data/${CLEAN_DATA_NAME}.json`, dataString);
+  fs.writeFileSync(`./../data/${CLEAN_DATA_NAME}.json`, dataString);
 }
 
 function createDir(dirname) {
