@@ -7,17 +7,11 @@ import { useGetRegrets } from "../hooks/useGetRegrets";
 import styled from "styled-components";
 
 function CountrySearch({ send, className }) {
-  const {
-    totalRegretsPerCountry,
-    totalRegretsPerState,
-    regrets,
-  } = useGetRegrets();
-  const countryNames = Object.keys(regrets);
-  const locations = countryNames.reduce((countries, countryName) => {
-    const regretCount = regrets[countryName].length;
-    countries.push({ country: unSnakeCase(countryName), regretCount });
-    return countries;
-  }, []);
+  const { totalRegretsPerCountry, locations } = useGetRegrets();
+
+  const locationsPretty = locations.map(({ name, regretCount }) => {
+    return { location: unSnakeCase(name), regretCount };
+  });
 
   const [searchVal, setSearchVal] = useState("");
   return (
@@ -54,7 +48,7 @@ function CountrySearch({ send, className }) {
           <DropdownSelect
             searchVal={searchVal}
             setSearchVal={setSearchVal}
-            items={locations}
+            items={locationsPretty}
           />
         </span>
         <span>
@@ -70,7 +64,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
     console.log(changes);
     if (changes.hasOwnProperty("selectedItem")) {
       console.log(changes.selectedItem);
-      setSearchVal(changes.selectedItem.country);
+      setSearchVal(changes.selectedItem.name);
     } else if (changes.hasOwnProperty("inputValue")) {
       console.log("it ran");
       setSearchVal(changes.inputValue);
@@ -122,9 +116,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
                     console.log(inputValue, item, searchVal);
                     return (
                       !inputValue ||
-                      item.country
-                        .toLowerCase()
-                        .includes(inputValue.toLowerCase())
+                      item.name.toLowerCase().includes(inputValue.toLowerCase())
                     );
                   })
 
@@ -152,7 +144,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
                         },
                       })}
                     >
-                      <span className="name">{item.country}</span>
+                      <span className="name">{item.name}</span>
                       <span className="count">{item.regretCount}</span>
                     </ListItem>
                   ))}

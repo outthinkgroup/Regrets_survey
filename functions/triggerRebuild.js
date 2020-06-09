@@ -12,7 +12,7 @@ exports.handler = async function(event, context) {
     });
     console.log(response);
   }
-  return triggerDeploy("outthinkgroup", "Regrets_survey")
+  triggerDeploy("outthinkgroup", "Regrets_survey")
     .then((res) => ({
       statusCode: 200,
       body: JSON.stringify({

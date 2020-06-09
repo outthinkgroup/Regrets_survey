@@ -29,21 +29,23 @@ async function getCleanedData(data, config) {
   );
 }
 async function mergeData({ newData, oldData = {}, config }) {
+  const { regretList: oldRegretList } = oldData;
+  const regretObj = oldRegretList ? createObjByLocation(oldRegretList) : {};
   const cleanedData = await getCleanedData(newData, config);
 
-  const mergedData = cleanedData.reduce((oldDataObj, response) => {
+  const mergedDataOBJ = cleanedData.reduce((mergedRegrets, response) => {
     const locationKey = getLocationKey(response.location);
 
-    if (!locationKey) return oldDataObj;
-    if (!oldDataObj[locationKey]) {
-      oldDataObj[locationKey] = [];
+    if (!locationKey) return mergedRegrets;
+    if (!mergedRegrets[locationKey]) {
+      mergedRegrets[locationKey] = [];
     }
-    const responseExists = oldDataObj[locationKey].find(
+    const responseExists = mergedRegrets[locationKey].find(
       (res) => res.id === response.id
     );
     //console.log(responseExists);
-    if (responseExists) return oldDataObj;
-    const updatedResults = [...oldDataObj[locationKey], response].sort(
+    if (responseExists) return mergedRegrets;
+    const updatedResults = [...mergedRegrets[locationKey], response].sort(
       (a, b) => {
         const aDate = new Date(a.date);
         const bDate = new Date(b.date);
@@ -55,12 +57,23 @@ async function mergeData({ newData, oldData = {}, config }) {
     if (updatedResults.length > 5) {
       updatedResults.length = 5;
     }
-    oldDataObj[locationKey] = updatedResults;
+    mergedRegrets[locationKey] = updatedResults;
 
-    return oldDataObj;
-  }, oldData);
+    return mergedRegrets;
+  }, regretObj);
   //console.log(mergedData);
-  return mergedData;
+
+  const locationNames = Object.keys(mergedDataOBJ);
+  const locations = locationNames.map((name) => {
+    const regretCount = mergedDataOBJ[name].length;
+    return { name, regretCount };
+  });
+  const regretList = locationNames.reduce((fullList, location) => {
+    const regretsInLocation = mergedDataOBJ[location];
+    return [...fullList, ...regretsInLocation];
+  }, []);
+
+  return { locations, regretList };
 }
 
 async function test() {
