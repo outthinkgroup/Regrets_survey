@@ -87,19 +87,6 @@ async function updateFileInGit({
 }
 module.exports = { updateFileInGit };
 
-const octokit = new Octokit({
-  auth: process.env.AUTH,
-});
-async function triggerDeploy(owner, repo) {
-  const response = await octokit.repos.createDispatchEvent({
-    owner,
-    repo,
-    event_type: "deployment",
-  });
-  console.log(response);
-}
-triggerDeploy("outthinkgroup", "Regrets_survey").catch((e) => console.log(e));
-
 // updateFileInGit({
 //   owner: "outthinkgroup",
 //   repo: "Regrets_survey",
