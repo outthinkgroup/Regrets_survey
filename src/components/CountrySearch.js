@@ -64,7 +64,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
     console.log(changes);
     if (changes.hasOwnProperty("selectedItem")) {
       console.log(changes.selectedItem);
-      setSearchVal(changes.selectedItem.name);
+      setSearchVal(changes.selectedItem.location);
     } else if (changes.hasOwnProperty("inputValue")) {
       console.log("it ran");
       setSearchVal(changes.inputValue);
@@ -116,7 +116,9 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
                     console.log(inputValue, item, searchVal);
                     return (
                       !inputValue ||
-                      item.name.toLowerCase().includes(inputValue.toLowerCase())
+                      item.location
+                        .toLowerCase()
+                        .includes(inputValue.toLowerCase())
                     );
                   })
 
@@ -128,7 +130,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
                         color: `black`,
                       }}
                       {...getItemProps({
-                        key: item.country,
+                        key: item.location,
                         index,
                         item,
                         style: {
@@ -144,7 +146,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
                         },
                       })}
                     >
-                      <span className="name">{item.name}</span>
+                      <span className="name">{item.location}</span>
                       <span className="count">{item.regretCount}</span>
                     </ListItem>
                   ))}
