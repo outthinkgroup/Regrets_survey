@@ -19,7 +19,7 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
       filterId: FILTER,
-      limit: 100,
+      limit: 120,
     },
     oldData,
     {
