@@ -204,9 +204,7 @@ const ListItem = styled.li`
   .count {
     display: block;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     background: ${({ isHighLighted }) =>
       isHighLighted ? "white" : "lightgray"};
     font-feature-settings: "tnum";
