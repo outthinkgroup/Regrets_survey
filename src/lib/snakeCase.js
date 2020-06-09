@@ -12,3 +12,7 @@ export function snakeCase(string) {
     })
     .join("_");
 }
+
+export function unSnakeCase(string) {
+  return string.split("_").join(" ");
+}

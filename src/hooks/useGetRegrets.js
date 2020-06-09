@@ -16,7 +16,6 @@ export function useGetRegrets(activeState, mapState) {
   const regrets = JSON.parse(results);
 
   const countriesAndStates = Object.keys(regrets);
-
   const allRegrets = countriesAndStates.reduce((allRegrets, country) => {
     return [...allRegrets, ...regrets[country]];
   }, []);
@@ -52,7 +51,9 @@ export function useGetRegrets(activeState, mapState) {
       setActiveRegret(availableRegrets[nextRegretIndex]);
     }
   }
-  const activeStateHasMultiple = activeState && regrets[activeState].length > 1;
+
+  const activeStateHasMultiple =
+    activeState && regrets[activeState]?.length > 1;
 
   const totalRegretsPerCountry = allRegrets.reduce((totals, regret) => {
     if (!regret.location) return totals;
@@ -100,6 +101,6 @@ export function useGetRegrets(activeState, mapState) {
     totalRegretsPerCountry,
     totalRegretsPerStateByCountry,
     totalRegretsPerState,
-    getRegretBy: getAnotherRegret,
+    getAnotherRegret,
   };
 }

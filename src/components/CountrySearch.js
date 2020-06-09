@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Downshift, { useSelect } from "downshift";
-import { snakeCase } from "../lib";
+import { snakeCase, unSnakeCase } from "../lib";
 import { colors, fonts, elevation, breakpoints } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 
@@ -12,9 +12,13 @@ function CountrySearch({ send, className }) {
     totalRegretsPerState,
     regrets,
   } = useGetRegrets();
-  const countries = Object.keys(regrets);
+  const countryNames = Object.keys(regrets);
+  const locations = countryNames.reduce((countries, countryName) => {
+    const regretCount = regrets[countryName].length;
+    countries.push({ country: unSnakeCase(countryName), regretCount });
+    return countries;
+  }, []);
 
-  const locations = [...countries];
   const [searchVal, setSearchVal] = useState("");
   return (
     <div className={className}>
@@ -63,10 +67,14 @@ function CountrySearch({ send, className }) {
 
 function DropdownSelect({ items, setSearchVal, searchVal }) {
   function handleStateChange(changes) {
+    console.log(changes);
     if (changes.hasOwnProperty("selectedItem")) {
-      setSearchVal(changes.selectedItem);
+      console.log(changes.selectedItem);
+      setSearchVal(changes.selectedItem.country);
     } else if (changes.hasOwnProperty("inputValue")) {
+      console.log("it ran");
       setSearchVal(changes.inputValue);
+      console.log(searchVal);
     }
   }
   return (
@@ -74,7 +82,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
       <Downshift
         selectedItem={searchVal}
         onStateChange={handleStateChange}
-        itemToString={(item) => (item ? item : "")}
+        //itemToString={(item) => (item ? item.country : "")}
       >
         {({
           getInputProps,
@@ -100,46 +108,54 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
               )}
             >
               <div>
-                <SearchBar {...getInputProps()} />
+                <SearchBar
+                  {...getInputProps({
+                    value: searchVal,
+                  })}
+                />
               </div>
             </div>
             {isOpen && (
-              <Options {...getMenuProps()}>
-                {isOpen
-                  ? items
-                      .filter(
-                        (item) =>
-                          !inputValue ||
-                          item.toLowerCase().includes(inputValue.toLowerCase())
-                      )
-                      .map((item, index) => (
-                        <li
-                          styles={{
-                            color: `black`,
-                          }}
-                          {...getItemProps({
-                            key: item,
-                            index,
-                            item,
-                            style: {
-                              color: `black`,
-                              borderLeft:
-                                highlightedIndex === index
-                                  ? `2px solid ${colors.primary.base}`
-                                  : "none",
-                              backgroundColor:
-                                highlightedIndex === index
-                                  ? "lightgray"
-                                  : "white",
-                              fontWeight:
-                                highlightedIndex === index ? "bold" : "normal",
-                            },
-                          })}
-                        >
-                          {item}
-                        </li>
-                      ))
-                  : null}
+              <Options {...getMenuProps({ isOpen })}>
+                {items
+                  .filter((item) => {
+                    console.log(inputValue, item, searchVal);
+                    return (
+                      !inputValue ||
+                      item.country
+                        .toLowerCase()
+                        .includes(inputValue.toLowerCase())
+                    );
+                  })
+
+                  .map((item, index) => (
+                    <ListItem
+                      className="listItem"
+                      isHighLighted={highlightedIndex === index}
+                      style={{
+                        color: `black`,
+                      }}
+                      {...getItemProps({
+                        key: item.country,
+                        index,
+                        item,
+                        style: {
+                          color: `black`,
+                          borderLeft:
+                            highlightedIndex === index
+                              ? `2px solid ${colors.primary.base}`
+                              : "none",
+                          backgroundColor:
+                            highlightedIndex === index ? "lightgray" : "white",
+                          fontWeight:
+                            highlightedIndex === index ? "bold" : "normal",
+                        },
+                      })}
+                    >
+                      <span className="name">{item.country}</span>
+                      <span className="count">{item.regretCount}</span>
+                    </ListItem>
+                  ))}
               </Options>
             )}
           </div>
@@ -178,9 +194,28 @@ const Options = styled.ul`
   max-height: 300px;
   overflow-y: scroll;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  li {
-    margin: 0;
-    padding: 10px;
+`;
+const ListItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 10px 15px;
+  .count {
+    display: block;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: ${({ isHighLighted }) =>
+      isHighLighted ? "white" : "lightgray"};
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 0.75em;
+    padding: 0.25rem;
+    line-height: 1rem;
+    min-width: 1.5rem;
   }
 `;
 const SearchBar = styled.input`

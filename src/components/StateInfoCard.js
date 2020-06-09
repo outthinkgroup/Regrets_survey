@@ -13,7 +13,7 @@ function StateInfoCard({
 }) {
   const {
     activeRegret: regret,
-    getRegretBy,
+    getAnotherRegret,
     activeStateHasMultiple,
   } = useGetRegrets(activeState, mapState);
   console.log(isMobile);
@@ -34,7 +34,7 @@ function StateInfoCard({
           </h3>
           <p>{regret?.regret}</p>
           {activeStateHasMultiple && (
-            <button className="next" onClick={getRegretBy}>
+            <button className="next" onClick={getAnotherRegret}>
               see another
             </button>
           )}
@@ -47,7 +47,7 @@ export default styled(StateInfoCard)`
   position: absolute;
   top: ${({ isMobile }) => (isMobile ? "100%" : "0")};
   left: 0;
-  z-index: 99;
+  z-index: 10;
   width: 100%;
   height: 100%;
   display: flex;

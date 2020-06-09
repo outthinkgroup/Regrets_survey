@@ -176,6 +176,8 @@ export default styled(RegretsMap)`
   }
   button.zoomout {
     display: flex;
+    position: relative;
+    z-index: 11;
     align-items: center;
     font-family: ${fonts.family};
     span {
