@@ -12,18 +12,12 @@ exports.handler = async function(event, context) {
     });
     console.log(response);
   }
-  triggerDeploy("outthinkgroup", "Regrets_survey")
+  return triggerDeploy("outthinkgroup", "Regrets_survey")
     .then((res) => ({
       statusCode: 200,
       body: JSON.stringify({
         message: "successfully started the rebuilding of the regrets data",
       }),
     }))
-    .catch((e) => ({
-      statusCode: 200,
-      body: JSON.stringify({
-        message:
-          "Oops there has been an error in trying to rebuild the regrets: " + e,
-      }),
-    }));
+    .catch((e) => console.log(e));
 };
