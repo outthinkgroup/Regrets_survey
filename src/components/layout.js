@@ -4,8 +4,8 @@ import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import { fonts } from "../styles";
 import Header from "./header";
-
 import "./layout.css";
+import Notifications from "./Notifications";
 
 const Layout = ({ children, className }) => {
   const data = useStaticQuery(graphql`
@@ -17,7 +17,6 @@ const Layout = ({ children, className }) => {
       }
     }
   `);
-
   return (
     <div className={className}>
       <Header siteTitle={data.site.siteMetadata.title} />
@@ -35,6 +34,7 @@ const Layout = ({ children, className }) => {
             <a href="https://danpink.com/about/">Daniel Pink</a>
           </div>
         </footer>
+        <Notifications />
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ function Welcome({ className }) {
 }
 
 export default styled(Welcome)`
+  margin-bottom: 100px;
   p {
     line-height: 1.5;
     font-size: 22px;

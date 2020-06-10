@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Downshift, { useSelect } from "downshift";
+import styled from "styled-components";
 import { snakeCase, unSnakeCase } from "../lib";
 import { colors, fonts, elevation, breakpoints } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
-
-import styled from "styled-components";
+import { useNotification } from "../context";
 
 function CountrySearch({ send, className }) {
   const { totalRegretsPerCountry, locations } = useGetRegrets();
+  const { createWarning } = useNotification();
 
   const locationsPretty = locations.map(({ name, regretCount }) => {
     return { location: unSnakeCase(name), regretCount };
@@ -28,6 +29,7 @@ function CountrySearch({ send, className }) {
             `[data-country="${searchValSnakeCased}"], [data-state=${searchValSnakeCased}]`
           );
           if (!searchedState) {
+            createWarning("NO_RESULTS");
             console.log(searchValSnakeCased, "no results"); //TODO: make this something the user can see.
             return null;
           }
@@ -61,14 +63,10 @@ function CountrySearch({ send, className }) {
 
 function DropdownSelect({ items, setSearchVal, searchVal }) {
   function handleStateChange(changes) {
-    console.log(changes);
     if (changes.hasOwnProperty("selectedItem")) {
-      console.log(changes.selectedItem);
       setSearchVal(changes.selectedItem.location);
     } else if (changes.hasOwnProperty("inputValue")) {
-      console.log("it ran");
       setSearchVal(changes.inputValue);
-      console.log(searchVal);
     }
   }
   return (
@@ -113,7 +111,6 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
               <Options {...getMenuProps({ isOpen })}>
                 {items
                   .filter((item) => {
-                    console.log(inputValue, item, searchVal);
                     return (
                       !inputValue ||
                       item.location

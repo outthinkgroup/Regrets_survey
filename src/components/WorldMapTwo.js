@@ -1,9 +1,7 @@
 import React from "react";
 import { useSpring, animated, interpolate } from "react-spring";
 function WorldMap({ viewBox, onClick }) {
-  const interpViewBox = viewBox.interpolate(
-    (x, y, w, h) => `${x} ${y} ${w} ${h}`
-  );
+  const interpViewBox = viewBox.to((x, y, w, h) => `${x} ${y} ${w} ${h}`);
   return (
     <animated.svg
       onClick={onClick}
