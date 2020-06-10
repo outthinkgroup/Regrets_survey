@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import netlifyIdentity from "netlify-identity-widget";
-import {} from "gatsby";
+import { useAuth } from "../hooks";
+
 export default function() {
+  const { login } = useAuth();
+
   useEffect(() => {
-    netlifyIdentity.open();
+    login();
   }, []);
   return <div></div>;
 }
