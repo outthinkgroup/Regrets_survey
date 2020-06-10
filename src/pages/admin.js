@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "@reach/router";
+import styled from "styled-components";
 import { useAuth } from "../hooks";
 import AdminLayout from "../components/AdminLayout";
 
@@ -14,7 +15,7 @@ export default function Admin() {
   return (
     <AdminLayout>
       <h1>Hello, {user.user_metadata.full_name}</h1>
-      <section>
+      <AdminSection>
         <h2>Links</h2>
         <p>Links to assets that make this site run.</p>
         <ul>
@@ -37,15 +38,18 @@ export default function Admin() {
             </a>
           </li>
         </ul>
-      </section>
-      <section>
+      </AdminSection>
+      <AdminSection>
         <h2>Refresh the Regrets</h2>
         <p>click the button to refresh the regrets being shown on the map.</p>
         <button onClick={refreshRegrets} type="button">
           Refresh
         </button>
-      </section>
+      </AdminSection>
     </AdminLayout>
   );
 }
-const AdminSection
+const AdminSection = styled.section`
+  padding: 30px 0;
+  margin-bottom: 30px;
+`;
