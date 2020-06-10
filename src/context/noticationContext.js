@@ -39,7 +39,7 @@ export function useNotification() {
       case "NO_RESULTS":
         id = create({
           type: "WARNING",
-          message: "Oops, There are no results yet for that location.",
+          message: "Oops, No entries yet from this location.",
         });
         break;
       default:

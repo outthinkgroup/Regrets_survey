@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PageHeading, PageIntro } from "../styles";
+import { PageHeading, PageIntro, breakpoints } from "../styles";
 import { MainIntroduction } from "./content";
 function Welcome({ className }) {
   return (
@@ -15,7 +15,10 @@ function Welcome({ className }) {
 }
 
 export default styled(Welcome)`
-  margin-bottom: 100px;
+  margin-bottom: 75px;
+  @media (min-width: ${breakpoints.small}) {
+    margin-bottom: 150px;
+  }
   p {
     line-height: 1.5;
     font-size: 22px;

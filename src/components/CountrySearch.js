@@ -74,7 +74,9 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
       <Downshift
         selectedItem={searchVal}
         onStateChange={handleStateChange}
-        //itemToString={(item) => (item ? item.country : "")}
+        itemToString={(item) => {
+          return typeof item === "object" ? item.location : item;
+        }}
       >
         {({
           getInputProps,
