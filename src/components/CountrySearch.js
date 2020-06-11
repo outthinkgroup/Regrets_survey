@@ -64,7 +64,7 @@ function CountrySearch({ send, className }) {
 function DropdownSelect({ items, setSearchVal, searchVal }) {
   function handleStateChange(changes) {
     if (changes.hasOwnProperty("selectedItem")) {
-      setSearchVal(changes.selectedItem.location);
+      setSearchVal(changes.selectedItem?.location);
     } else if (changes.hasOwnProperty("inputValue")) {
       setSearchVal(changes.inputValue);
     }
@@ -75,7 +75,7 @@ function DropdownSelect({ items, setSearchVal, searchVal }) {
         selectedItem={searchVal}
         onStateChange={handleStateChange}
         itemToString={(item) => {
-          return typeof item === "object" ? item.location : item;
+          return typeof item === "object" ? item?.location : item;
         }}
       >
         {({

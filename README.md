@@ -20,6 +20,6 @@
 ## Bugs
 
 - Country Select Bugs
-  - [ ] esc key hit white screen
+  - [x] esc key hit white screen
   - [ ] add notification if not found
   - [ ] notification if country/state no regrets
