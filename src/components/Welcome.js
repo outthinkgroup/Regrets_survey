@@ -17,7 +17,7 @@ function Welcome({ className }) {
 export default styled(Welcome)`
   margin-bottom: 75px;
   @media (min-width: ${breakpoints.small}) {
-    margin-bottom: 150px;
+    margin-bottom: 75px;
   }
   p {
     line-height: 1.5;
