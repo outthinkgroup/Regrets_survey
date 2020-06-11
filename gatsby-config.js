@@ -6,7 +6,7 @@ For a book about regret, author Daniel H. Pink is collecting regrets from all ov
     author: `Daniel Pink`,
     sharing: {
       twitter: {
-        tweet: `I just completed The World Regret Survey! Check it out:`,
+        tweet: `I just completed @DanielPink’s World Regret Survey! Check it out:`,
         url: `https://worldregretsurvey.com`,
       },
       facebook: {
