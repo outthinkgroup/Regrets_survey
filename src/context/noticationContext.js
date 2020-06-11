@@ -36,6 +36,13 @@ export function useNotification() {
   function createWarning(warning) {
     let id;
     switch (warning) {
+      case "NOT_EXIST":
+        id = create({
+          type: "WARNING",
+          message:
+            "Oops, that location couldn't be found, try searching a state or country instead.",
+        });
+        break;
       case "NO_RESULTS":
         id = create({
           type: "WARNING",

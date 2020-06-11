@@ -29,7 +29,7 @@ function CountrySearch({ send, className }) {
             `[data-country="${searchValSnakeCased}"], [data-state=${searchValSnakeCased}]`
           );
           if (!searchedState) {
-            createWarning("NO_RESULTS");
+            createWarning("NOT_EXIST");
             console.log(searchValSnakeCased, "no results"); //TODO: make this something the user can see.
             return null;
           }
@@ -41,6 +41,11 @@ function CountrySearch({ send, className }) {
             : "COUNTRY";
           if (type === "STATE") {
             searchedState.closest("[data-country]").dataset.active = "true";
+          }
+          if (!searchedState.dataset.hasentries) {
+            createWarning("NO_RESULTS");
+            console.log(searchValSnakeCased, "no results"); //TODO: make this something the user can see.
+            return null;
           }
           send(["searched", { searchedState, type }]);
           setSearchVal("");
