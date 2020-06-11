@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "./SurveyButton";
-import { colors } from "../styles";
+import { colors, fonts } from "../styles";
 const SIGNUP_URL = `/.netlify/functions/signup`;
 function EmailSignUp({ className, includeLabel }) {
   const [email, setEmail] = useState("");
@@ -49,11 +49,15 @@ function EmailSignUp({ className, includeLabel }) {
 export default styled(EmailSignUp)`
   margin-top: 10px;
   margin-bottom: 20px;
+  font-family: ${fonts.family};
   form {
     display: flex;
     margin-bottom: 10px;
   }
-
+  input {
+    border: 1px solid black;
+    border-radius: 2px;
+  }
   button {
     margin-left: 10px;
     border: none;
