@@ -13,7 +13,7 @@ For a book about regret, author Daniel H. Pink is collecting regrets from all ov
         url: `https://worldregretsurvey.com`,
       },
       linkedIn: {
-        url: `https://worldregretsurvey.com`,
+        url: `https://worldregretsurvey.com/?`,
       },
       email: {
         subject: `World Regret Survey`,
