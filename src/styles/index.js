@@ -28,7 +28,7 @@ export const colors = {
 };
 
 export const fonts = {
-  family: `proxima nova, sans-serif`,
+  family: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif`,
   weights: ["400", "400", "700", "900"],
   sizes: {
     heading: ["14px", "18px", "24px", "40px"],

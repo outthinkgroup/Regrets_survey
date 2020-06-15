@@ -1,8 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `World Regret Survey`,
-    description: `Regrets are a universal part of the human experience. All of us have something we wish we had done differently – or some action we wish we had taken or not taken.
-For a book about regret, author Daniel H. Pink is collecting regrets from all over the world. This simple survey takes about 3 minutes. Your responses are anonymous. Please consider participating. We think you’ll find the experience interesting and meaningful.`,
+    description: `What do people regret? Author Daniel Pink is trying to find out`,
     author: `Daniel Pink`,
     sharing: {
       twitter: {
