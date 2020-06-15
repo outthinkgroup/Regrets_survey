@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `World Regret Survey`,
-    description: `What do people regret? Author Daniel Pink is trying to find out`,
+    description: `What do people regret? Author Daniel Pink is trying to find out. This simple survey takes about 3 minutes.`,
     author: `Daniel Pink`,
     sharing: {
       twitter: {
@@ -12,7 +12,7 @@ module.exports = {
         url: `https://worldregretsurvey.com`,
       },
       linkedIn: {
-        url: `https://worldregretsurvey.com/?hello`,
+        url: `https://worldregretsurvey.com/?`,
       },
       email: {
         subject: `World Regret Survey`,
