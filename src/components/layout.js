@@ -32,7 +32,7 @@ const Layout = ({ children, className }) => {
           <div>
             © {new Date().getFullYear()},{" "}
             <a href="https://danpink.com/about/">Daniel Pink</a> - site by{" "}
-            <a href="https://outthinkgroup.com/">Outthink</a>
+            <a href="https://outthinkgroup.com/">Out:think</a>
           </div>
         </footer>
         <Notifications />

@@ -83,7 +83,13 @@ context("map", () => {
       .click();
     cy.get('.CountrySearch___default-fVasUo button[type="submit"]').click();
     cy.get(".active-state-info-card").should("exist");
+    cy.get(".active-state-info-card .close").click();
 
-    cy.get(".CountrySearch__SearchBar-fIuJUf").type("Iceland{enter}{enter}");
+    cy.get(".CountrySearch__SearchBar-fIuJUf")
+      .type("Iceland{enter}{enter}")
+      .wait(200);
+    cy.get(".Notifications__StyledNotification-gUaUly")
+      .should("exist")
+      .contains("No entries yet");
   });
 });

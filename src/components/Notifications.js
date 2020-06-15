@@ -33,6 +33,7 @@ export default function Notifications() {
               transform: style.y.to((y) => `translateY(${y}px)`),
             }}
             key={item}
+            data-testid="notification"
           >
             {item.message}
           </StyledNotification>
