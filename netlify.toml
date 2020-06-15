@@ -4,7 +4,7 @@
   functions = "./functions/"
 
 [dev]
-  command = "yarn dev"
+  command = "gatsby develop"
   publish = "/public"
   functions = "./functions/"
 
