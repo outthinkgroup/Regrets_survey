@@ -7,7 +7,7 @@ import { useGetRegrets } from "../hooks/useGetRegrets";
 import { useNotification } from "../context";
 
 function CountrySearch({ send, className }) {
-  const { totalRegretsPerCountry, locations } = useGetRegrets();
+  const { locations } = useGetRegrets();
   const { createWarning } = useNotification();
 
   const locationsPretty = locations.map(({ name, regretCount }) => {
@@ -26,10 +26,16 @@ function CountrySearch({ send, className }) {
 
           const searchValSnakeCased = snakeCase(searchVal);
           const searchedState = document.querySelector(
-            `[data-country="${searchValSnakeCased}"], [data-state=${searchValSnakeCased}]`
+            `[data-state=${searchValSnakeCased}], [data-country="${searchValSnakeCased}"]`
           );
           if (!searchedState) {
             createWarning("NOT_EXIST");
+            console.log(searchValSnakeCased, "not found"); //TODO: make this something the user can see.
+            return null;
+          }
+          if (!searchedState.dataset.hasentries) {
+            console.log({ searchValSnakeCased, searchedState });
+            createWarning("NO_RESULTS");
             console.log(searchValSnakeCased, "no results"); //TODO: make this something the user can see.
             return null;
           }
@@ -42,11 +48,7 @@ function CountrySearch({ send, className }) {
           if (type === "STATE") {
             searchedState.closest("[data-country]").dataset.active = "true";
           }
-          if (!searchedState.dataset.hasentries) {
-            createWarning("NO_RESULTS");
-            console.log(searchValSnakeCased, "no results"); //TODO: make this something the user can see.
-            return null;
-          }
+
           send(["searched", { searchedState, type }]);
           setSearchVal("");
         }}
