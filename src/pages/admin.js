@@ -3,6 +3,7 @@ import { Redirect } from "@reach/router";
 import styled from "styled-components";
 import { useAuth } from "../hooks";
 import AdminLayout from "../components/AdminLayout";
+import { colors, elevation } from "../styles";
 
 export default function Admin() {
   const { user } = useAuth();
@@ -15,6 +16,14 @@ export default function Admin() {
   return (
     <AdminLayout>
       <h1>Hello, {user.user_metadata.full_name}</h1>
+      <AdminSection>
+        <h2>Build Status</h2>
+        <p>The status of the most recent build on Netlify</p>
+        <img
+          style={{ marginBottom: `0px` }}
+          src="https://api.netlify.com/api/v1/badges/7fdca82a-d896-474c-bb04-0fdf698caa7f/deploy-status"
+        />
+      </AdminSection>
       <AdminSection>
         <h2>Links</h2>
         <p>Links to assets that make this site run.</p>
@@ -50,6 +59,9 @@ export default function Admin() {
   );
 }
 const AdminSection = styled.section`
-  padding: 30px 0;
+  padding: 30px 20px;
   margin-bottom: 30px;
+  background: ${colors.grey[2]};
+  border-radius: 8px;
+  ${elevation[1]};
 `;
