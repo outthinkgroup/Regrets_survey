@@ -12,7 +12,7 @@ module.exports = {
         url: `https://worldregretsurvey.com`,
       },
       linkedIn: {
-        url: `https://worldregretsurvey.com/?`,
+        url: `https://worldregretsurvey.com/?hello`,
       },
       email: {
         subject: `World Regret Survey`,
