@@ -135,9 +135,9 @@ function createObjByLocation(array) {
 saveToFileSystem(data); */
 
 function getLocationKey(location) {
-  if (location?.state && approvedStates.includes(location.state)) {
+  if (location && location.state && approvedStates.includes(location.state)) {
     return snakeCase(location.state);
-  } else if (location?.country) {
+  } else if (location && location.country) {
     return snakeCase(location.country);
   } else {
     return null;

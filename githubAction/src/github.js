@@ -29,7 +29,7 @@ async function updateFileInGit({
     surveyId,
     oldData,
   });
-  const results = JSON.stringify({ results: data });
+  const results = JSON.stringify(data);
   const res = await updateFile({
     filepath: "data/data.json",
     sha,
