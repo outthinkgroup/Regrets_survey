@@ -13,6 +13,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   };
 
   const [zoomed, setZoomed] = useState(false);
+
   const [activeState, setActiveState] = useState(null);
 
   const isMobile = useIsMobile();
