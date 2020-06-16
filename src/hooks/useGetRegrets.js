@@ -15,6 +15,7 @@ const GET_REGRETS = graphql`
             date
             gender
             id
+            age
             location {
               country
               state
