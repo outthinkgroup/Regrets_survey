@@ -1,4 +1,4 @@
-export function snakeCase(string) {
+function snakeCase(string) {
   if (typeof string !== "string") return;
   return string
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
@@ -14,6 +14,8 @@ export function snakeCase(string) {
     .join("_");
 }
 
-export function unSnakeCase(string) {
+function unSnakeCase(string) {
   return string.split("_").join(" ");
 }
+
+module.exports = { unSnakeCase, snakeCase };

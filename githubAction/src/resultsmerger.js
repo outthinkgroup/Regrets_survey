@@ -2,6 +2,9 @@ const oldData = require("../../data/data.json");
 const newRawData = require("../../rawData/rawData.json");
 const fetch = require("node-fetch");
 const approvedStates = require("../../src/lib/approvedStates");
+const { unSnakeCase } = require("../../src/lib/snakeCase");
+const alterCountryList = require("../../src/lib/alterCountryList");
+const alterStateList = require("../../src/lib/alterStateList");
 const IP_STACK_KEY = process.env.IP_STACK_KEY;
 const config = { ipStackKey: IP_STACK_KEY };
 
@@ -21,6 +24,7 @@ async function getCleanedData(data, config) {
             gender: labels.QID2 || "",
             id: responseId,
             date: values.endDate,
+            age: values.QID3_TEXT,
           };
           responseDetails.location = await setLocation(response, config);
           resolve(responseDetails);
@@ -84,16 +88,29 @@ async function test() {
 //test();
 
 function setLocation({ labels, values }, config) {
-  const { ipAddress } = values;
+  const location = {};
   if (labels.QID4) {
     const { QID4: country, QID5: state } = labels;
-    return { country, state };
+    location.state = state;
+    location.country = country;
+
+    //need to normalize countries to match the map.
+    if (listObjectsValues(alterCountryList).includes(country)) {
+      const idOfLocation = Object.entries(alterCountryList).find(
+        ([key, value]) => value === country
+      )[0];
+      location.country = unSnakeCase(idOfLocation);
+    }
+    if (listObjectsValues(alterStateList).includes(state)) {
+      const idOfLocation = Object.entries(alterStateList).find(
+        ([key, value]) => value === state
+      )[0]; //returns the key and uses that as the location
+      location.state = unSnakeCase(idOfLocation);
+    }
+
+    return location;
   } else {
-    return getLocationFromIP(ipAddress, config).then((res) => {
-      const { country, state } = res;
-      const location = { country, state };
-      return location;
-    });
+    return null;
   }
 }
 
@@ -112,10 +129,12 @@ function createObjByLocation(array) {
 saveToFileSystem(data); */
 
 function getLocationKey(location) {
-  if (location.state && approvedStates.includes(location.state)) {
+  if (location?.state && approvedStates.includes(location.state)) {
     return snakeCase(location.state);
-  } else {
+  } else if (location?.country) {
     return snakeCase(location.country);
+  } else {
+    return null;
   }
 }
 
@@ -145,4 +164,9 @@ async function getLocationFromIP(ipAddress, config) {
   const { country_name: country, region_name: state } = data;
 
   return { country, state };
+}
+
+function listObjectsValues(obj) {
+  const entries = Object.entries(obj);
+  return entries.map(([_, value]) => value);
 }

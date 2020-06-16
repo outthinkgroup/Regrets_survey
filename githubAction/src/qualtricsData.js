@@ -11,15 +11,14 @@ const RAW_DATA_NAME = "rawData";
 const CLEAN_DATA_NAME = "data";
 const IP_STACK_KEY = process.env.IP_STACK_KEY;
 //THIS IS ONLY SHOWS RESULTS THAT HAVE IP AND ARE AFTER JUNE 19
-const FILTER = `ebc97c57-062f-4cc2-8724-af4fe73d7b01`;
-const TEST_FILTER = `75547da0-65fa-4a35-a62b-c3a170aab2e4`;
+const TOKEN_FROM_JUNE16 =
+  "UQhcCBAIGwgGCFkIEBsfEhMSExIZEx4GCEQIEBwcEhoaGhoaGgYITwgQGx8TGBMYExIfElc";
 //* THIS INITS THE WHOLE PROCESS
 //? ----
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
-      filterId: FILTER,
-      limit: 120,
+      limit: 1000,
     },
     oldData,
     {
@@ -41,18 +40,23 @@ qualtricsData({
 });
 
 async function getResponses(exportOptions = {}, oldData, config) {
+  const freshData = {};
   //create data directory
   //await createDir("data");
   await createDir("rawData");
 
   //start export
+  exportOptions.continuationToken =
+    oldData.continuationToken || TOKEN_FROM_JUNE16;
   const progress = await startExport(exportOptions, config);
   if (hasError(progress)) return;
   const { progressId } = progress.result;
 
   //query for progress
-  const fileId = await getProgress(progressId, config);
-  console.log("fileId", fileId);
+  const { fileId, continuationToken } = await getProgress(progressId, config);
+
+  //updates continuationToken
+  freshData.continuationToken = continuationToken;
 
   //save results to json file
   await getResults(fileId, config);
@@ -61,11 +65,15 @@ async function getResponses(exportOptions = {}, oldData, config) {
   const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
 
   //Clean data
-  const data = await mergeData({ newData: rawData, oldData, config });
-
-  saveToFileSystem({ results: data });
-  console.log(data);
-  //return data;
+  const data = await mergeData({
+    newData: rawData,
+    oldData,
+    config,
+  });
+  freshData.results = data;
+  saveToFileSystem(freshData);
+  // console.log(freshData);
+  //return freshData;
 }
 
 function startExport(options = {}, config) {
@@ -75,7 +83,10 @@ function startExport(options = {}, config) {
     "X-API-TOKEN": token,
     "Content-Type": "application/json",
   };
-  var body = JSON.stringify({ format: "json", ...options });
+  var body = JSON.stringify({
+    format: "json",
+    ...options,
+  });
   console.log(body);
   var requestOptions = {
     method: "POST",
@@ -118,18 +129,18 @@ async function getProgress(progressId, config) {
 
     if (hasError(data)) return;
 
-    const { percentComplete, fileId } = data.result;
+    const { percentComplete, fileId, continuationToken } = data.result;
     console.log(percentComplete);
     if (percentComplete !== 100.0) {
       return getRequestId();
     } else {
-      return fileId;
+      return { fileId, continuationToken };
     }
   };
 
-  const fileId = await getRequestId();
-
-  return fileId;
+  const { fileId, continuationToken } = await getRequestId();
+  console.log(continuationToken);
+  return { fileId, continuationToken };
 }
 
 async function getResults(fileId, config) {
