@@ -16,7 +16,7 @@ context("map", () => {
 
   it("countries with regrets are interactive", () => {
     //zoom works
-    cy.get("[data-country][data-hasentries]")
+    cy.get("[data-country][data-hasentries]path")
       .first()
       .click();
     cy.get("svg.map").should("not.have.attr", "viewBox", "0 0 1024 561.64917");
@@ -34,7 +34,7 @@ context("map", () => {
     cy.get("svg.map").should("have.attr", "viewBox", "0 0 1024 561.64917");
 
     //close button works
-    cy.get("[data-country][data-hasentries]")
+    cy.get("[data-country][data-hasentries]path")
       .first()
       .click();
     cy.get(".active-state-info-card button.close").click();
