@@ -2,12 +2,20 @@ import React from "react";
 import { Link as _Link } from "gatsby";
 import styled from "styled-components";
 import { fonts, colors } from "../styles";
+import { trackCustomEvent } from "gatsby-plugin-google-analytics";
 function SurveyButton({ children, className, size }) {
   return (
     <Button
       as="a"
       size={size}
       className={className}
+      onClick={() =>
+        trackCustomEvent({
+          category: "general",
+          action: "clicked take survey",
+          label: size === "large" ? "button in copy" : "button in header",
+        })
+      }
       href="https://worldregretsurvey.iad1.qualtrics.com/jfe/form/SV_3CRcRbjb7pIenxr"
     >
       Take Survey
