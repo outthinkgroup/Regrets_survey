@@ -1,7 +1,8 @@
 import { useState, useReducer } from "react";
 import { useSpring } from "react-spring";
-import { useIsMobile } from "./useWindowWidth";
 
+import { useIsMobile } from "./useWindowWidth";
+import { trackCustomEvent } from "gatsby-plugin-google-analytics";
 const WORLD = "WORLD";
 const COUNTRY = "COUNTRY";
 const STATE = "STATE";
@@ -35,6 +36,7 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
           console.log("because no entries");
           return WORLD;
         }
+
         const hideActiveState = target.dataset.hasChildren; // boolean
         zoomTo(target, hideActiveState);
 
@@ -44,7 +46,9 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
           return COUNTRY;
         }
       },
-      searched: (data) => searched(data),
+      searched: (data) => {
+        return searched(data);
+      },
     },
     PARENT_COUNTRY: {
       click: (e) => {
@@ -94,9 +98,10 @@ export default function useInteractiveMap({ WIDTH, HEIGHT }) {
   };
   const reducer = (state, event) => {
     const [eventName, data] = event;
-    console.log({ StateBEFORE: state, data });
+
     const nextState = MACHINE[state][eventName](data);
-    console.log({ StateAFTER: nextState });
+    trackCustomEvent({ category: "map", action: eventName, label: nextState });
+
     return nextState;
   };
   const [mapState, send] = useReducer(reducer, WORLD);

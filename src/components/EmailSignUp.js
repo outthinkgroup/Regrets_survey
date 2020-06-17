@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "./SurveyButton";
 import { colors, fonts } from "../styles";
+import { trackCustomEvent } from "gatsby-plugin-google-analytics";
 const SIGNUP_URL = `/.netlify/functions/signup`;
 function EmailSignUp({ className, includeLabel }) {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  const trackSignUps = (message) =>
+    trackCustomEvent({
+      category: "general",
+      action: "newsletter signup",
+      label: message,
+    });
   return (
     <div className={className}>
       <form
@@ -24,9 +32,11 @@ function EmailSignUp({ className, includeLabel }) {
           setLoading(false);
           if (data.message !== "subscribed") {
             setError(`Oops there has been and error: ${data.message}`);
+            trackSignUps(data.message);
           } else {
             setEmail("");
             setSuccess("You will be notified of any updates, thank you.");
+            trackSignUps("success");
           }
         }}
       >
