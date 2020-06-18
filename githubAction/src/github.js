@@ -21,8 +21,8 @@ async function updateFileInGit({
     filepath: "data/data.json",
   }).catch((e) => console.log("getting the file", e));
 
-  const oldData = JSON.parse(JSON.parse(content).results);
-  console.log(Object.keys(oldData));
+  const oldData = JSON.parse(content).results.regretList;
+
   const data = await qualtricsData({
     token: qualtricsToken,
     ipStackKey,
@@ -55,6 +55,7 @@ async function updateFileInGit({
       owner,
       repo,
       path: filepath,
+      branch: "staging",
       message: `automatic update to ${filepath}`,
       content: encode(bytes),
       sha,
@@ -98,13 +99,13 @@ async function updateFileInGit({
 }
 module.exports = { updateFileInGit };
 
-// updateFileInGit({
-//   owner: "outthinkgroup",
-//   repo: "Regrets_survey",
-//   githubToken: process.env.AUTH,
-//   qualtricsToken: process.env.QUALTRICS_TOKEN,
-//   ipStackKey: process.env.IP_STACK_KEY,
-//   surveyId: process.env.SURVEY_ID,
-// })
-//   //.then((re) => console.log(JSON.stringify(re, null, 2)))
-//   .catch((e) => console.log(e));
+updateFileInGit({
+  owner: "outthinkgroup",
+  repo: "Regrets_survey",
+  githubToken: process.env.AUTH,
+  qualtricsToken: process.env.QUALTRICS_TOKEN,
+  ipStackKey: process.env.IP_STACK_KEY,
+  surveyId: process.env.SURVEY_ID,
+})
+  //.then((re) => console.log(JSON.stringify(re, null, 2)))
+  .catch((e) => console.log(e));
