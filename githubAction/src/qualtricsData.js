@@ -18,7 +18,7 @@ const TOKEN_FROM_JUNE16 =
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
-      limit: 1000,
+      limit: 10,
     },
     oldData,
     {
@@ -90,7 +90,7 @@ function startExport(options = {}, config) {
     format: "json",
     ...options,
   });
-  console.log(body);
+  //console.log(body);
   var requestOptions = {
     method: "POST",
     headers: myHeaders,

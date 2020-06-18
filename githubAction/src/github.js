@@ -34,7 +34,9 @@ async function updateFileInGit({
     filepath: "data/data.json",
     sha,
     content: results,
-  }).catch((e) => console.log("updating the file", { e, json }));
+  })
+    .then((res) => res)
+    .catch((e) => console.log("updating the file", { e }));
   //end of function
 
   async function getFile({ filepath }) {

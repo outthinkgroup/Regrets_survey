@@ -88,7 +88,7 @@ async function mergeData({ newData, oldData = {}, config }) {
 async function test() {
   const data = await mergeData(newRawData, oldData, config);
 
-  console.log(JSON.stringify(data, null, 2));
+  //console.log(JSON.stringify(data, null, 2));
 }
 //test();
 
