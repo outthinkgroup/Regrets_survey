@@ -17,9 +17,9 @@ async function updateFileInGit({
     auth: githubToken,
   });
 
-  const { sha, content } = await getFile({
-    filepath: "data/data.json",
-  }).catch((e) => console.log("getting the file", e));
+  const { sha, content } = await getFileBlobContents({}).catch((e) =>
+    console.log("getting the file", e)
+  );
 
   const oldData = JSON.parse(content).results;
 
@@ -73,7 +73,7 @@ async function updateFileInGit({
     const { data: commitData } = await octokit.repos.getCommit({
       owner,
       repo,
-      ref: "master",
+      ref: "staging",
     });
 
     //get tree sha
@@ -104,13 +104,13 @@ async function updateFileInGit({
 }
 module.exports = { updateFileInGit };
 
-updateFileInGit({
-  owner: "outthinkgroup",
-  repo: "Regrets_survey",
-  githubToken: process.env.AUTH,
-  qualtricsToken: process.env.QUALTRICS_TOKEN,
-  ipStackKey: process.env.IP_STACK_KEY,
-  surveyId: process.env.SURVEY_ID,
-})
-  //.then((re) => console.log(JSON.stringify(re, null, 2)))
-  .catch((e) => console.log(e));
+// updateFileInGit({
+//   owner: "outthinkgroup",
+//   repo: "Regrets_survey",
+//   githubToken: process.env.AUTH,
+//   qualtricsToken: process.env.QUALTRICS_TOKEN,
+//   ipStackKey: process.env.IP_STACK_KEY,
+//   surveyId: process.env.SURVEY_ID,
+// })
+//   //.then((re) => console.log(JSON.stringify(re, null, 2)))
+//   .catch((e) => console.log(e));

@@ -10,8 +10,11 @@ export default function Admin() {
   if (!user) {
     return <Redirect noThrow to={"/"} />;
   }
-  function refreshRegrets() {
-    console.log("this will refresh the regrets eventually");
+  async function refreshRegrets() {
+    const res = await fetch("/.netlify/functions/triggerRebuild").then((res) =>
+      res.json()
+    );
+    console.log(res);
   }
   return (
     <AdminLayout>

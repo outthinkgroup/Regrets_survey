@@ -49,6 +49,7 @@ async function mergeData({ newData, oldData = {}, config }) {
     const { regret } = response;
     if (regret.match(/asdf/)) return mergedRegrets;
     if (regret.match("test response")) return mergedRegrets;
+    if (regret.match(/Ã/)) return mergedRegrets;
 
     const responseExists = mergedRegrets[locationKey].find(
       (res) => res.id === response.id
