@@ -56,10 +56,8 @@ async function getResponses(exportOptions = {}, oldData, config) {
   const { fileId, continuationToken } = await getProgress(progressId, config);
 
   //updates continuationToken
-  freshData.continuationToken =
-    "UQhcCBAIGwgGCFkIEBsfExgZGRgZHR8GCEQIEBMfGxoaGhoaGgYITwgQGx8TGBMZHR0YE1c";
-  //TODO: uncomment
-  //freshData.continuationToken = continuationToken;
+
+  freshData.continuationToken = continuationToken;
 
   //save results to json file
   await getResults(fileId, config);
