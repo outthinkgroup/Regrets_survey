@@ -17,12 +17,13 @@ exports.handler = async function(event, context) {
     qualtricsToken,
     ipStackKey,
     surveyId,
-  });
+  }).catch((e) => e);
 
   return {
     statusCode: 200,
     body: JSON.stringify({
       msg: "https://github.com/outthinkgroup/Regrets_survey",
+      results,
     }),
   };
 };

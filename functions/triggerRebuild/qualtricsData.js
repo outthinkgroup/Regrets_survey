@@ -18,7 +18,7 @@ const TOKEN_FROM_JUNE16 =
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
   getResponses(
     {
-      limit: 500,
+      limit: 1000,
     },
     oldData,
     {
@@ -56,7 +56,6 @@ async function getResponses(exportOptions = {}, oldData, config) {
   const { fileId, continuationToken } = await getProgress(progressId, config);
 
   //updates continuationToken
-
   freshData.continuationToken = continuationToken;
   // freshData.continuationToken =
   //   "UQhcCBAIGwgGCFkIEBsfExgZGRgZHR8GCEQIEBMfGxoaGhoaGgYITwgQGx8TGBMZHR0YE1c";
