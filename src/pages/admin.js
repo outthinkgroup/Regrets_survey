@@ -1,21 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Redirect } from "@reach/router";
 import styled from "styled-components";
 import { useAuth } from "../hooks";
 import AdminLayout from "../components/AdminLayout";
-import { colors, elevation } from "../styles";
+import { colors, elevation, fonts } from "../styles";
+
+const deployLinks = [
+  {
+    name: "Staging Site",
+    href: "https://staging--world-regrets-survey.netlify.app/",
+  },
+  {
+    name: "Staging JSON Data",
+    href:
+      "https://github.com/outthinkgroup/Regrets_survey/blob/staging/data/data.json",
+  },
+  {
+    name: "Watch Staging Deploy",
+    href: "https://app.netlify.com/sites/world-regrets-survey/deploys",
+  },
+];
 
 export default function Admin() {
   const { user } = useAuth();
+  const [isShowingStagingLinks, setIsShowingStagingLinks] = useState(false);
+  const [isRefreshButtonLoading, setIsRefreshButtonLoading] = useState(false);
+  const [isDeployButtonLoading, setIsDeployButtonLoading] = useState(false);
   if (!user) {
     return <Redirect noThrow to={"/"} />;
   }
   async function refreshRegrets() {
-    const res = await fetch("/.netlify/functions/triggerRebuild").then((res) =>
-      res.json()
-    );
-    console.log(res);
+    setIsRefreshButtonLoading(true);
+    const res = await fetch("/.netlify/functions/triggerRebuild", {
+      method: "POST",
+      body: JSON.stringify({ branch: "staging" }),
+    }).then((res) => res.json());
+    setIsRefreshButtonLoading(false);
+    if (res.results.status == 200) {
+      setIsShowingStagingLinks(true);
+    }
   }
+  async function deployToMaster() {
+    setIsDeployButtonLoading(true);
+    const res = await fetch("/.netlify/functions/triggerRebuild", {
+      method: "POST",
+      body: JSON.stringify({ branch: "master" }),
+    }).then((res) => res.json());
+    setIsDeployButtonLoading(false);
+  }
+
   return (
     <AdminLayout>
       <h1>Hello, {user.user_metadata.full_name}</h1>
@@ -55,8 +88,26 @@ export default function Admin() {
         <h2>Refresh the Regrets</h2>
         <p>click the button to refresh the regrets being shown on the map.</p>
         <button onClick={refreshRegrets} type="button">
-          Refresh
+          Refresh{isRefreshButtonLoading && "ing..."}
         </button>
+        {isShowingStagingLinks && (
+          <StagingLinks>
+            <h4>Check to staging before merging to master</h4>
+            <ul>
+              {deployLinks.map((link) => {
+                return (
+                  <li key={link.href}>
+                    <a href={link.href}>{link.name}</a>
+                  </li>
+                );
+              })}
+            </ul>
+            <p>after checking deploy to master</p>
+            <button type="button" onClick={deployToMaster}>
+              Deploy{isDeployButtonLoading && "ing..."} To Master
+            </button>
+          </StagingLinks>
+        )}
       </AdminSection>
     </AdminLayout>
   );
@@ -67,4 +118,23 @@ const AdminSection = styled.section`
   background: ${colors.grey[2]};
   border-radius: 8px;
   ${elevation[1]};
+`;
+const StagingLinks = styled.div`
+  margin-top: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  h4 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  ul {
+    padding: 0px;
+    margin: 0;
+    list-style: none;
+  }
+  li {
+    font-weight: 700;
+    font-size: 14px;
+  }
 `;

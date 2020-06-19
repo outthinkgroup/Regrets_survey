@@ -12,13 +12,15 @@ async function updateFileInGit({
   qualtricsToken,
   ipStackKey,
   surveyId,
-  branch = "master",
+  branch = "staging",
 }) {
   const octokit = new Octokit({
     auth: githubToken,
   });
 
-  const { sha, content } = await getFileBlobContents({}).catch((e) => e);
+  const { sha, content } = await getFileBlobContents({ branch }).catch(
+    (e) => e
+  );
 
   //console.log(content);
   const oldData = JSON.parse(content).results;
@@ -35,6 +37,7 @@ async function updateFileInGit({
     filepath: "data/data.json",
     sha,
     content: results,
+    branch,
   })
     .then((res) => res)
     .catch((e) => {
@@ -63,7 +66,7 @@ async function updateFileInGit({
       owner,
       repo,
       path: filepath,
-      branch: "staging",
+      branch: branch,
       message: `automatic update to ${filepath}`,
       content: Base64.encode(content),
       sha,
@@ -71,12 +74,12 @@ async function updateFileInGit({
 
     return response;
   }
-  async function getFileBlobContents() {
+  async function getFileBlobContents({ branch }) {
     //get the commit sha
     const { data: commitData } = await octokit.repos.getCommit({
       owner,
       repo,
-      ref: "staging",
+      ref: branch,
     });
 
     //get tree sha

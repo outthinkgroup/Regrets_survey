@@ -10,6 +10,7 @@ const {
 const { updateFileInGit } = require("./github.js");
 
 exports.handler = async function(event, context) {
+  const { branch } = JSON.parse(event.body);
   const results = await updateFileInGit({
     owner,
     repo,
@@ -17,6 +18,7 @@ exports.handler = async function(event, context) {
     qualtricsToken,
     ipStackKey,
     surveyId,
+    branch,
   }).catch((e) => e);
 
   return {
@@ -24,14 +26,6 @@ exports.handler = async function(event, context) {
     body: JSON.stringify({
       msg: "https://github.com/outthinkgroup/Regrets_survey",
       results: results || "oh no, no results to show",
-      config: {
-        owner,
-        repo,
-        githubToken,
-        qualtricsToken,
-        ipStackKey,
-        surveyId,
-      },
     }),
   };
 };
