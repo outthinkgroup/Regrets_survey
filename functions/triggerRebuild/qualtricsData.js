@@ -26,7 +26,7 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
       surveyId,
       ipStackKey,
     }
-  );
+  ).catch((e) => e);
 //?---
 //*
 

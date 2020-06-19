@@ -24,6 +24,14 @@ exports.handler = async function(event, context) {
     body: JSON.stringify({
       msg: "https://github.com/outthinkgroup/Regrets_survey",
       results: results || "oh no, no results to show",
+      config: {
+        owner,
+        repo,
+        githubToken,
+        qualtricsToken,
+        ipStackKey,
+        surveyId,
+      },
     }),
   };
 };

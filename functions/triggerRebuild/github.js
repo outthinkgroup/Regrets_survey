@@ -18,9 +18,8 @@ async function updateFileInGit({
     auth: githubToken,
   });
 
-  const { sha, content } = await getFileBlobContents({}).catch((e) =>
-    console.log("getting the file", e)
-  );
+  const { sha, content } = await getFileBlobContents({}).catch((e) => e);
+
   //console.log(content);
   const oldData = JSON.parse(content).results;
 
@@ -29,7 +28,7 @@ async function updateFileInGit({
     ipStackKey,
     surveyId,
     oldData,
-  });
+  }).catch((e) => e);
   const results = JSON.stringify(data);
   console.log(results);
   const res = await updateFile({
@@ -38,7 +37,9 @@ async function updateFileInGit({
     content: results,
   })
     .then((res) => res)
-    .catch((e) => console.log("updating the file", { e }));
+    .catch((e) => {
+      return e;
+    });
   return res;
   //end of function
 
