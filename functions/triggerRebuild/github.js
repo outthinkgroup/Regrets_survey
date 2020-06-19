@@ -39,6 +39,7 @@ async function updateFileInGit({
   })
     .then((res) => res)
     .catch((e) => console.log("updating the file", { e }));
+  return res;
   //end of function
 
   async function getFile({ filepath }) {
