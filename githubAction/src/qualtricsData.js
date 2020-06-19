@@ -32,12 +32,12 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
 
 //REBUILD DATA
 //dont forget to uncomment saving tofile system
-/* qualtricsData({
+qualtricsData({
   token: TOKEN,
   surveyId: SURVEY,
   ipStackKey: IP_STACK_KEY,
   oldData: {},
-}); */
+});
 
 async function getResponses(exportOptions = {}, oldData, config) {
   const freshData = {};
@@ -74,7 +74,7 @@ async function getResponses(exportOptions = {}, oldData, config) {
     config,
   });
   freshData.results = data;
-  //saveToFileSystem(freshData);
+  saveToFileSystem(freshData);
   // console.log(freshData);
   return freshData;
 }

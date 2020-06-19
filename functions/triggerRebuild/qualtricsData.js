@@ -3,7 +3,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 var StreamZip = require("node-stream-zip");
 const { mergeData } = require("./resultsmerger");
-const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
+//const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
 const { decode, encode } = require("base-64");
 const TOKEN = process.env.QUALTRICS_TOKEN;
 const SURVEY = process.env.SURVEY_ID;
@@ -58,6 +58,8 @@ async function getResponses(exportOptions = {}, oldData, config) {
   //updates continuationToken
 
   freshData.continuationToken = continuationToken;
+  // freshData.continuationToken =
+  //   "UQhcCBAIGwgGCFkIEBsfExgZGRgZHR8GCEQIEBMfGxoaGhoaGgYITwgQGx8TGBMZHR0YE1c";
 
   //save results to json file
   await getResults(fileId, config);

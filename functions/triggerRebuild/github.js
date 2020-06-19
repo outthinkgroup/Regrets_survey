@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { Octokit } = require("@octokit/rest");
 const { decode, encode } = require("base-64");
+var Base64 = require("js-base64").Base64;
 const utf8 = require("utf8");
 const { qualtricsData } = require("./qualtricsData");
 
@@ -20,7 +21,7 @@ async function updateFileInGit({
   const { sha, content } = await getFileBlobContents({}).catch((e) =>
     console.log("getting the file", e)
   );
-
+  //console.log(content);
   const oldData = JSON.parse(content).results;
 
   const data = await qualtricsData({
@@ -30,7 +31,7 @@ async function updateFileInGit({
     oldData,
   });
   const results = JSON.stringify(data);
-
+  console.log(results);
   const res = await updateFile({
     filepath: "data/data.json",
     sha,
@@ -55,14 +56,14 @@ async function updateFileInGit({
   }
 
   async function updateFile({ filepath, sha, content, branch }) {
-    const bytes = utf8.encode(content);
+    //const bytes = utf8.encode(content);
     const response = await octokit.repos.createOrUpdateFile({
       owner,
       repo,
       path: filepath,
       branch: "staging",
       message: `automatic update to ${filepath}`,
-      content: encode(bytes),
+      content: Base64.encode(content),
       sha,
     });
 
@@ -99,7 +100,7 @@ async function updateFileInGit({
       file_sha: fileBlobSha,
     });
 
-    return { content: decode(blob.data.content), sha: fileBlobSha };
+    return { content: Base64.decode(blob.data.content), sha: fileBlobSha };
   }
 }
 module.exports = { updateFileInGit };
