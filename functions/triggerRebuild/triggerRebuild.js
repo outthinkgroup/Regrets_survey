@@ -23,7 +23,7 @@ exports.handler = async function(event, context) {
     statusCode: 200,
     body: JSON.stringify({
       msg: "https://github.com/outthinkgroup/Regrets_survey",
-      results,
+      results: results || "oh no, no results to show",
     }),
   };
 };
