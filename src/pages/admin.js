@@ -36,6 +36,7 @@ export default function Admin() {
       body: JSON.stringify({ branch: "staging" }),
     }).then((res) => res.json());
     setIsRefreshButtonLoading(false);
+    console.log(res);
     if (res.results.status == 200) {
       setIsShowingStagingLinks(true);
     }

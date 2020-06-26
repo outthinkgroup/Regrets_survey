@@ -7,5 +7,5 @@
   command = "gatsby develop"
   publish = "/public"
   functions = "./functions/"
-
+  port = 8888
   

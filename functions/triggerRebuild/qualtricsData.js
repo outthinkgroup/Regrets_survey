@@ -10,23 +10,17 @@ const SURVEY = process.env.SURVEY_ID;
 const RAW_DATA_NAME = "rawData";
 const CLEAN_DATA_NAME = "data";
 const IP_STACK_KEY = process.env.IP_STACK_KEY;
-//THIS IS ONLY SHOWS RESULTS THAT HAVE IP AND ARE AFTER JUNE 19
-const TOKEN_FROM_JUNE16 =
-  "UQhcCBAIGwgGCFkIEBsfEhMSExIZEx4GCEQIEBwcEhoaGhoaGgYITwgQGx8TGBMYExIfElc";
+
+const FILTER = "ef924f0b-a858-4d13-a214-12f9b68e57e7";
+
 //* THIS INITS THE WHOLE PROCESS
 //? ----
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
-  getResponses(
-    {
-      limit: 1000,
-    },
-    oldData,
-    {
-      token,
-      surveyId,
-      ipStackKey,
-    }
-  ).catch((e) => e);
+  getResponses({}, oldData, {
+    token,
+    surveyId,
+    ipStackKey,
+  }).catch((e) => console.log(e));
 //?---
 //*
 
@@ -40,25 +34,19 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
 }); */
 
 async function getResponses(exportOptions = {}, oldData, config) {
+  console.log("ran");
   const freshData = {};
   //create data directory
   //await createDir("data");
   await createDir("rawData");
 
   //start export
-  exportOptions.continuationToken =
-    oldData.continuationToken || TOKEN_FROM_JUNE16;
   const progress = await startExport(exportOptions, config);
   if (hasError(progress)) return;
   const { progressId } = progress.result;
 
   //query for progress
-  const { fileId, continuationToken } = await getProgress(progressId, config);
-
-  //updates continuationToken
-  freshData.continuationToken = continuationToken;
-  // freshData.continuationToken =
-  //   "UQhcCBAIGwgGCFkIEBsfExgZGRgZHR8GCEQIEBMfGxoaGhoaGgYITwgQGx8TGBMZHR0YE1c";
+  const { fileId } = await getProgress(progressId, config);
 
   //save results to json file
   await getResults(fileId, config);
@@ -73,6 +61,11 @@ async function getResponses(exportOptions = {}, oldData, config) {
     config,
   });
   freshData.results = data;
+
+  const freshDataCount = data.regretList.length;
+  const oldDataCount = oldData.regretList.length;
+  console.log({ oldDataCount, freshDataCount });
+
   //saveToFileSystem(freshData);
   // console.log(freshData);
   return freshData;
@@ -88,6 +81,7 @@ function startExport(options = {}, config) {
   var body = JSON.stringify({
     format: "json",
     ...options,
+    filterId: "ef924f0b-a858-4d13-a214-12f9b68e57e7",
   });
   //console.log(body);
   var requestOptions = {
@@ -131,18 +125,18 @@ async function getProgress(progressId, config) {
 
     if (hasError(data)) return;
 
-    const { percentComplete, fileId, continuationToken } = data.result;
+    const { percentComplete, fileId } = data.result;
     console.log(percentComplete);
     if (percentComplete !== 100.0) {
       return getRequestId();
     } else {
-      return { fileId, continuationToken };
+      return { fileId };
     }
   };
 
-  const { fileId, continuationToken } = await getRequestId();
-  console.log(continuationToken);
-  return { fileId, continuationToken };
+  const { fileId } = await getRequestId();
+
+  return { fileId };
 }
 
 async function getResults(fileId, config) {

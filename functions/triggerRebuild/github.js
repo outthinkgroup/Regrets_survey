@@ -22,7 +22,6 @@ async function updateFileInGit({
     (e) => e
   );
 
-  //console.log(content);
   const oldData = JSON.parse(content).results;
 
   const data = await qualtricsData({
@@ -32,7 +31,7 @@ async function updateFileInGit({
     oldData,
   }).catch((e) => e);
   const results = JSON.stringify(data);
-  console.log(results);
+
   const res = await updateFile({
     filepath: "data/data.json",
     sha,
@@ -62,7 +61,7 @@ async function updateFileInGit({
 
   async function updateFile({ filepath, sha, content, branch }) {
     //const bytes = utf8.encode(content);
-    const response = await octokit.repos.createOrUpdateFile({
+    const response = await octokit.repos.createOrUpdateFileContents({
       owner,
       repo,
       path: filepath,
