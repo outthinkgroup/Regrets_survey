@@ -3,23 +3,35 @@ import { Link as _Link } from "gatsby";
 import styled from "styled-components";
 import { fonts, colors } from "../styles";
 import { trackCustomEvent } from "gatsby-plugin-google-analytics";
-function SurveyButton({ children, className, size }) {
+function SurveyButton({ children, className, size, includeOtherLang }) {
   return (
-    <Button
-      as="a"
-      size={size}
-      className={className}
-      onClick={() =>
-        trackCustomEvent({
-          category: "general",
-          action: "clicked take survey",
-          label: size === "large" ? "button in copy" : "button in header",
-        })
-      }
-      href="https://worldregretsurvey.iad1.qualtrics.com/jfe/form/SV_3CRcRbjb7pIenxr"
-    >
-      Take Survey
-    </Button>
+    <>
+      <Button
+        as="a"
+        size={size}
+        className={className}
+        onClick={() =>
+          trackCustomEvent({
+            category: "general",
+            action: "clicked take survey",
+            label: size === "large" ? "button in copy" : "button in header",
+          })
+        }
+        href="https://worldregretsurvey.iad1.qualtrics.com/jfe/form/SV_3CRcRbjb7pIenxr"
+      >
+        Take Survey
+      </Button>
+      <p style={{ fontSize: ".75em", marginTop: ".5em" }}>
+        take survey in:{" "}
+        <a href="https://worldregretsurvey.iad1.qualtrics.com/jfe/form/SV_3CRcRbjb7pIenxr/?lang=en">
+          español
+        </a>{" "}
+        |{" "}
+        <a href="https://worldregretsurvey.iad1.qualtrics.com/jfe/form/SV_3CRcRbjb7pIenxr/?lang=">
+          普通话
+        </a>
+      </p>
+    </>
   );
 }
 
