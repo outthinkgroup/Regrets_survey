@@ -23,7 +23,10 @@ async function updateFileInGit({
   );
 
   const oldData = JSON.parse(content).results;
-
+  if (oldData === "undefined") {
+    console.log("received undefined");
+    return "Error: received undefined from the previous file";
+  }
   const data = await qualtricsData({
     token: qualtricsToken,
     ipStackKey,
@@ -31,7 +34,7 @@ async function updateFileInGit({
     oldData,
   }).catch((e) => e);
   const results = JSON.stringify(data);
-  console.log(results);
+
   const res = await updateFile({
     filepath: "data/data.json",
     sha,
