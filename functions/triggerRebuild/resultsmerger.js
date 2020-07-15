@@ -12,6 +12,7 @@ const config = { ipStackKey: IP_STACK_KEY };
 //include in obj
 //reduce length for each key
 //return obj
+const AMOUNT_PER_ENTRY = 10;
 
 async function getCleanedData(data, config) {
   return Promise.all(
@@ -66,8 +67,8 @@ async function mergeData({ newData, oldData = {}, config }) {
       }
     );
 
-    if (updatedResults.length > 8) {
-      updatedResults.length = 8;
+    if (updatedResults.length > AMOUNT_PER_ENTRY) {
+      updatedResults.length = AMOUNT_PER_ENTRY;
     }
     mergedRegrets[locationKey] = updatedResults;
 
