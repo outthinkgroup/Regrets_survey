@@ -31,7 +31,7 @@ async function updateFileInGit({
     oldData,
   }).catch((e) => e);
   const results = JSON.stringify(data);
-
+  console.log(results);
   const res = await updateFile({
     filepath: "data/data.json",
     sha,

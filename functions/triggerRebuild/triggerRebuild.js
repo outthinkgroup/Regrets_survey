@@ -19,8 +19,7 @@ exports.handler = async function(event, context) {
     ipStackKey,
     surveyId,
     branch,
-  }).catch((e) => e);
-
+  }).catch((e) => console.log(e));
   return {
     statusCode: 200,
     body: JSON.stringify({
