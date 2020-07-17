@@ -43,7 +43,7 @@ async function updateFileInGit({
       return e;
     });
   return res;
-  //end of functio
+  //end of function
 
   async function getFile({ filepath }) {
     const response = await octokit.repos.getContents({
