@@ -1,7 +1,7 @@
 name: Weekly Refreshing of the regrets.
 on:
   schedule:
-    cron: "0 16 * * 5"
+    - cron: "0 16 * * 5"
 
 jobs:
   rebuild_qualtrics_data:
