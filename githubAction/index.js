@@ -5,7 +5,7 @@ async function triggerBuild() {
     "https://worldregretsurvey.com/.netlify/functions/triggerRebuild",
     {
       method: "POST",
-      body: JSON.stringify({ branch: "staging" }),
+      body: JSON.stringify({ branch: "master" }),
     }
   ).then((res) => res.json());
   console.log(res);

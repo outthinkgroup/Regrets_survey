@@ -1,5 +1,7 @@
 name: Weekly Refreshing of the regrets.
-on: []
+on:
+  issue_comment:
+    types: [created, deleted]
 
 jobs:
   rebuild_qualtrics_data:
