@@ -1,5 +1,5 @@
 name: Weekly Refreshing of the regrets.
-on: [push]
+on: []
 
 jobs:
   rebuild_qualtrics_data:
