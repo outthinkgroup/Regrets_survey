@@ -1317,13 +1317,18 @@ const fetch = __webpack_require__(877);
 
 async function triggerBuild() {
   const res = await fetch(
-    "https://worldregretsurvey.com//.netlify/functions/triggerRebuild",
+    "https://worldregretsurvey.com/.netlify/functions/triggerRebuild",
     {
       method: "POST",
       body: JSON.stringify({ branch: "master" }),
     }
-  ).then((res) => res.json());
-  console.log(res);
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      return res;
+    });
+  return res;
 }
 triggerBuild();
 

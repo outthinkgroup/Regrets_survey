@@ -46,7 +46,9 @@ export default function Admin() {
     const res = await fetch("/.netlify/functions/triggerRebuild", {
       method: "POST",
       body: JSON.stringify({ branch: "master" }),
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
     setIsDeployButtonLoading(false);
   }
 

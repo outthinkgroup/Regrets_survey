@@ -7,7 +7,12 @@ async function triggerBuild() {
       method: "POST",
       body: JSON.stringify({ branch: "master" }),
     }
-  ).then((res) => res.json());
-  console.log(res);
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      return res;
+    });
+  return res;
 }
 triggerBuild();

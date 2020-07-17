@@ -34,7 +34,9 @@ async function updateFileInGit({
     oldData,
   }).catch((e) => e);
   const results = JSON.stringify(data);
-
+  if (results === "undefined") {
+    return "ERROR: after qualtrics data function was run we got `undefined`";
+  }
   const res = await updateFile({
     filepath: "data/data.json",
     sha,
