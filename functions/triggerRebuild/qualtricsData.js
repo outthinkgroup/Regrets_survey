@@ -4,12 +4,9 @@ const fetch = require("node-fetch");
 var StreamZip = require("node-stream-zip");
 const { mergeData } = require("./resultsmerger");
 //const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
-const { decode, encode } = require("base-64");
-const TOKEN = process.env.QUALTRICS_TOKEN;
-const SURVEY = process.env.SURVEY_ID;
+
 const RAW_DATA_NAME = "rawData";
 const CLEAN_DATA_NAME = "data";
-const IP_STACK_KEY = process.env.IP_STACK_KEY;
 
 const FILTER = "ef924f0b-a858-4d13-a214-12f9b68e57e7";
 const errMsgs = [];
@@ -70,7 +67,7 @@ async function getResponses(exportOptions = {}, oldData, config) {
 
   //saveToFileSystem(freshData);
   // console.log(freshData);
-  return { data: freshData, errors: errMsgs };
+  return { data: freshData, q_errors: errMsgs };
 }
 
 function startExport(options = {}, config) {
@@ -85,7 +82,7 @@ function startExport(options = {}, config) {
     ...options,
     filterId: "ef924f0b-a858-4d13-a214-12f9b68e57e7",
   });
-  //console.log(body);
+
   var requestOptions = {
     method: "POST",
     headers: myHeaders,
