@@ -65,8 +65,10 @@ async function updateFileInGit({
   }
 
   async function updateFile({ filepath, sha, content, branch }) {
-    if (content == "undefined" || typeof content === "undefined")
-      return "ERROR: in updatefile function (line 68) the content equals or is of type undefined";
+    if (content == "undefined")
+      return "ERROR: in updatefile function (line 68) the content equals undefined";
+    if (typeof content === "undefined")
+      return "ERROR: in updatefile function (line 68) is of type undefined";
     const response = await octokit.repos.createOrUpdateFileContents({
       owner,
       repo,
