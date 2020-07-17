@@ -35,7 +35,7 @@ async function updateFileInGit({
   }).catch((e) => {
     errorMessages.push(e);
   });
-  errorMessages.push(q_errors);
+
   const results = JSON.stringify(data);
   if (results === "undefined") {
     return "ERROR: after qualtrics data function was run we got `undefined`";
@@ -48,7 +48,7 @@ async function updateFileInGit({
   })
     .then((res) => res)
     .catch((e) => {
-      return e;
+      errorMessages.push({ updateFile: e });
     });
   return {
     updateFileResults: res,
