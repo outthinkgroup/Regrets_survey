@@ -23,7 +23,10 @@ async function updateFileInGit({
   );
 
   const oldData = JSON.parse(content).results;
-
+  if (oldData === "undefined") {
+    console.log("received undefined");
+    return "Error: received undefined from the previous file";
+  }
   const data = await qualtricsData({
     token: qualtricsToken,
     ipStackKey,
@@ -31,7 +34,9 @@ async function updateFileInGit({
     oldData,
   }).catch((e) => e);
   const results = JSON.stringify(data);
-  console.log(results);
+  if (results === "undefined") {
+    return "ERROR: after qualtrics data function was run we got `undefined`";
+  }
   const res = await updateFile({
     filepath: "data/data.json",
     sha,
@@ -42,7 +47,7 @@ async function updateFileInGit({
     .catch((e) => {
       return e;
     });
-  return res;
+  return { res, new: "message" };
   //end of function
 
   async function getFile({ filepath }) {
@@ -60,7 +65,8 @@ async function updateFileInGit({
   }
 
   async function updateFile({ filepath, sha, content, branch }) {
-    //const bytes = utf8.encode(content);
+    if (content == "undefined" || typeof content === "undefined")
+      return "ERROR: in updatefile function (line 68) the content equals or is of type undefined";
     const response = await octokit.repos.createOrUpdateFileContents({
       owner,
       repo,
