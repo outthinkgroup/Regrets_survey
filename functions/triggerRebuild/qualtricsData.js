@@ -12,7 +12,7 @@ const CLEAN_DATA_NAME = "data";
 const IP_STACK_KEY = process.env.IP_STACK_KEY;
 
 const FILTER = "ef924f0b-a858-4d13-a214-12f9b68e57e7";
-
+const errMsgs = [];
 //* THIS INITS THE WHOLE PROCESS
 //? ----
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
@@ -38,7 +38,9 @@ async function getResponses(exportOptions = {}, oldData, config) {
   const freshData = {};
   //create data directory
   //await createDir("data");
-  await createDir("rawData");
+  await createDir("rawData").catch((er) => {
+    errMsgs.push({ createDir: e });
+  });
 
   //start export
   const progress = await startExport(exportOptions, config);
@@ -59,7 +61,7 @@ async function getResponses(exportOptions = {}, oldData, config) {
     newData: rawData,
     oldData,
     config,
-  });
+  }).catch((e) => errMsgs.push({ mergeData: e }));
   freshData.results = data;
 
   const freshDataCount = data.regretList.length;
@@ -68,7 +70,7 @@ async function getResponses(exportOptions = {}, oldData, config) {
 
   //saveToFileSystem(freshData);
   // console.log(freshData);
-  return freshData;
+  return { data: freshData, errors: errMsgs };
 }
 
 function startExport(options = {}, config) {

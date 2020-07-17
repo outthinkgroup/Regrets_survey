@@ -4,7 +4,7 @@ const { decode, encode } = require("base-64");
 var Base64 = require("js-base64").Base64;
 const utf8 = require("utf8");
 const { qualtricsData } = require("./qualtricsData");
-
+const errorMessages = [];
 async function updateFileInGit({
   owner,
   repo,
@@ -32,7 +32,9 @@ async function updateFileInGit({
     ipStackKey,
     surveyId,
     oldData,
-  }).catch((e) => e);
+  }).catch((e) => {
+    errorMessages.push(e);
+  });
 
   const results = JSON.stringify(data);
   if (results === "undefined") {
@@ -51,7 +53,7 @@ async function updateFileInGit({
   return {
     updateFileResults: res,
     dataFromQualtrics: { data },
-    //originalFile: oldData,
+    errorMessages,
   };
 
   //!end of function
