@@ -48,26 +48,28 @@ async function getResponses(exportOptions = {}, oldData, config) {
   const { fileId } = await getProgress(progressId, config);
 
   //save results to json file
-  await getResults(fileId, config);
+  // await getResults(fileId, config);
 
   //read file
-  const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
+  // const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
+
+  const rawData = getJsonResults(fileId, config);
 
   //Clean data
-  const data = await mergeData({
-    newData: rawData,
-    oldData,
-    config,
-  }).catch((e) => errMsgs.push({ mergeData: e }));
-  freshData.results = data;
+  // const data = await mergeData({
+  //   newData: rawData,
+  //   oldData,
+  //   config,
+  // }).catch((e) => errMsgs.push({ mergeData: e }));
+  // freshData.results = data;
 
-  const freshDataCount = data.regretList.length;
-  const oldDataCount = oldData.regretList.length;
-  console.log({ oldDataCount, freshDataCount });
+  // const freshDataCount = data.regretList.length;
+  // const oldDataCount = oldData.regretList.length;
+  // console.log({ oldDataCount, freshDataCount });
 
-  //saveToFileSystem(freshData);
-  // console.log(freshData);
-  return { data: freshData, q_errors: errMsgs };
+  // //saveToFileSystem(freshData);
+  // // console.log(freshData);
+  // return { data: freshData, q_errors: errMsgs };
 }
 
 function startExport(options = {}, config) {
@@ -80,6 +82,7 @@ function startExport(options = {}, config) {
   var body = JSON.stringify({
     format: "json",
     ...options,
+    compress: false,
     filterId: "ef924f0b-a858-4d13-a214-12f9b68e57e7",
   });
 
@@ -174,6 +177,24 @@ async function getResults(fileId, config) {
     })
     .then(() => unzip(`rawData/${RAW_DATA_NAME}.zip`))
     .catch((error) => console.log("error", error));
+}
+
+async function getJsonResults(fileId, config) {
+  const myHeaders = {
+    "X-API-TOKEN": token,
+    "Content-Type": "application/json",
+  };
+  var requestOptions = {
+    method: "GET",
+    headers: headers,
+    redirect: "follow",
+  };
+  return fetch(
+    `https://co1.qualtrics.com/API/v3/surveys/${surveyId}/export-responses/${fileId}/file`,
+    requestOptions
+  ).then((res) => {
+    console.log(res);
+  });
 }
 
 function unzip(file) {
