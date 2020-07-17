@@ -1,4 +1,5 @@
-on: [repository_dispatch]
+name: Weekly Refreshing of the regrets.
+on:[push]
 
 jobs:
   rebuild_qualtrics_data:
@@ -10,16 +11,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Hello world action step
-        uses: ./githubAction # Uses an action in the root directory
+        uses: ./githubAction
         id: hello
         with:
           repo: "Regrets_survey"
           owner: "outthinkgroup"
           github_access_token: ${{ secrets.ACCESS_TOKEN }}
-          ip_stack_key: ${{ secrets.IP_STACK_TOKEN }}
-          qualtrics_token: ${{ secrets.QUALTRICS_TOKEN }}
-          survey_id: ${{ secrets.SURVEY_ID }}
-          branch: staging
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: echo "finished"
+# schedule:
+# - cron: "0 16 * * 5"
