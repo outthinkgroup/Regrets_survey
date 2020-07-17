@@ -50,7 +50,7 @@ async function updateFileInGit({
     .catch((e) => {
       errorMessages.push({ updateFile: e });
     });
-<<<<<<< HEAD
+
   return {
     updateFileResults: res,
     dataFromQualtrics: { data },
@@ -59,10 +59,6 @@ async function updateFileInGit({
 
   //!end of function
   ///?--//0--/
-=======
-  return res;
-  //end of function
->>>>>>> commit
 
   async function getFile({ filepath }) {
     const response = await octokit.repos.getContents({
