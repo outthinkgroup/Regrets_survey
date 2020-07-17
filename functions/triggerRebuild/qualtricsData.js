@@ -35,7 +35,7 @@ async function getResponses(exportOptions = {}, oldData, config) {
   const freshData = {};
   //create data directory
   //await createDir("data");
-  await createDir("rawData").catch((er) => {
+  await createDir("rawData").catch((e) => {
     errMsgs.push({ createDir: e });
   });
 
