@@ -50,8 +50,8 @@ async function updateFileInGit({
     });
   return {
     updateFileResults: res,
-    dataFromQualtrics: data,
-    originalFile: oldData,
+    dataFromQualtrics: { data },
+    //originalFile: oldData,
   };
 
   //!end of function
