@@ -1,5 +1,7 @@
 name: Weekly Refreshing of the regrets.
-on: [push]
+on:
+  schedule:
+    cron: "0 16 * * 5"
 
 jobs:
   rebuild_qualtrics_data:
@@ -15,5 +17,4 @@ jobs:
         id: hello
       - name: Get the output time
         run: echo "finished"
-# schedule:
-# - cron: "0 16 * * 5"
+#
