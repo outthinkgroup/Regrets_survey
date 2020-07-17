@@ -4,11 +4,12 @@ const fetch = require("node-fetch");
 var StreamZip = require("node-stream-zip");
 const { mergeData } = require("./resultsmerger");
 //const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
-
+const { decode, encode } = require("base-64");
+const TOKEN = process.env.QUALTRICS_TOKEN;
+const SURVEY = process.env.SURVEY_ID;
 const RAW_DATA_NAME = "rawData";
 const CLEAN_DATA_NAME = "data";
-
-const FILTER = "ef924f0b-a858-4d13-a214-12f9b68e57e7";
+const IP_STACK_KEY = process.env.IP_STACK_KEY;
 const errMsgs = [];
 //* THIS INITS THE WHOLE PROCESS
 //? ----
@@ -23,12 +24,12 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
 
 //REBUILD DATA
 //dont forget to uncomment saving tofile system
-/* qualtricsData({
+qualtricsData({
   token: TOKEN,
   surveyId: SURVEY,
   ipStackKey: IP_STACK_KEY,
   oldData: {},
-}); */
+});
 
 async function getResponses(exportOptions = {}, oldData, config) {
   console.log("ran");
@@ -53,23 +54,17 @@ async function getResponses(exportOptions = {}, oldData, config) {
   //read file
   // const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
 
-  const rawData = getJsonResults(fileId, config);
+  const rawData = await getJsonResults(fileId, config);
 
-  //Clean data
-  // const data = await mergeData({
-  //   newData: rawData,
-  //   oldData,
-  //   config,
-  // }).catch((e) => errMsgs.push({ mergeData: e }));
-  // freshData.results = data;
+  // Clean data
+  const data = await mergeData({
+    newData: rawData,
+    oldData,
+    config,
+  }).catch((e) => errMsgs.push({ mergeData: e }));
+  freshData.results = data;
 
-  // const freshDataCount = data.regretList.length;
-  // const oldDataCount = oldData.regretList.length;
-  // console.log({ oldDataCount, freshDataCount });
-
-  // //saveToFileSystem(freshData);
-  // // console.log(freshData);
-  // return { data: freshData, q_errors: errMsgs };
+  return { data: freshData, q_errors: errMsgs };
 }
 
 function startExport(options = {}, config) {
@@ -83,6 +78,7 @@ function startExport(options = {}, config) {
     format: "json",
     ...options,
     compress: false,
+    limit: 200,
     filterId: "ef924f0b-a858-4d13-a214-12f9b68e57e7",
   });
 
@@ -180,20 +176,21 @@ async function getResults(fileId, config) {
 }
 
 async function getJsonResults(fileId, config) {
+  const { token, surveyId } = config;
   const myHeaders = {
     "X-API-TOKEN": token,
     "Content-Type": "application/json",
   };
   var requestOptions = {
     method: "GET",
-    headers: headers,
+    headers: myHeaders,
     redirect: "follow",
   };
   return fetch(
     `https://co1.qualtrics.com/API/v3/surveys/${surveyId}/export-responses/${fileId}/file`,
     requestOptions
   ).then((res) => {
-    console.log(res);
+    return res.json();
   });
 }
 
