@@ -33,6 +33,7 @@ async function updateFileInGit({
     surveyId,
     oldData,
   }).catch((e) => e);
+
   const results = JSON.stringify(data);
   if (results === "undefined") {
     return "ERROR: after qualtrics data function was run we got `undefined`";
@@ -47,8 +48,14 @@ async function updateFileInGit({
     .catch((e) => {
       return e;
     });
-  return { res, new: "message" };
-  //end of function
+  return {
+    updateFileResults: res,
+    dataFromQualtrics: data,
+    originalFile: oldData,
+  };
+
+  //!end of function
+  ///?--//0--/
 
   async function getFile({ filepath }) {
     const response = await octokit.repos.getContents({
