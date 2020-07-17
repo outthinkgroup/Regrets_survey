@@ -1,14 +1,12 @@
 require("dotenv").config();
-const fs = require("fs");
+
 const fetch = require("node-fetch");
-var StreamZip = require("node-stream-zip");
+
 const { mergeData } = require("./resultsmerger");
 //const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
-const { decode, encode } = require("base-64");
+
 const TOKEN = process.env.QUALTRICS_TOKEN;
 const SURVEY = process.env.SURVEY_ID;
-const RAW_DATA_NAME = "rawData";
-const CLEAN_DATA_NAME = "data";
 const IP_STACK_KEY = process.env.IP_STACK_KEY;
 const errMsgs = [];
 //* THIS INITS THE WHOLE PROCESS
@@ -34,11 +32,6 @@ qualtricsData({
 async function getResponses(exportOptions = {}, oldData, config) {
   console.log("ran");
   const freshData = {};
-  //create data directory
-  //await createDir("data");
-  await createDir("rawData").catch((e) => {
-    errMsgs.push({ createDir: e });
-  });
 
   //start export
   const progress = await startExport(exportOptions, config);
@@ -48,12 +41,7 @@ async function getResponses(exportOptions = {}, oldData, config) {
   //query for progress
   const { fileId } = await getProgress(progressId, config);
 
-  //save results to json file
-  // await getResults(fileId, config);
-
-  //read file
-  // const rawData = readFile(`rawData/${RAW_DATA_NAME}.json`);
-
+  //get the results in json
   const rawData = await getJsonResults(fileId, config);
 
   // Clean data
@@ -137,44 +125,6 @@ async function getProgress(progressId, config) {
   return { fileId };
 }
 
-async function getResults(fileId, config) {
-  const { token, surveyId } = config;
-
-  const headers = {
-    "X-API-TOKEN": token,
-    "accept-charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
-    "accept-language": "en-US,en;q=0.8",
-    accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "user-agent":
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2",
-    "accept-encoding": "gzip,deflate",
-  };
-  var requestOptions = {
-    method: "GET",
-    headers: headers,
-    redirect: "follow",
-  };
-
-  return fetch(
-    `https://co1.qualtrics.com/API/v3/surveys/${surveyId}/export-responses/${fileId}/file`,
-    requestOptions
-  )
-    .then((res) => {
-      return new Promise((resolve, reject) => {
-        const writeStream = fs.createWriteStream(
-          `rawData/${RAW_DATA_NAME}.zip`
-        );
-
-        res.body.pipe(writeStream).on("finish", (err) => {
-          if (err) return reject(err);
-          else resolve();
-        });
-      });
-    })
-    .then(() => unzip(`rawData/${RAW_DATA_NAME}.zip`))
-    .catch((error) => console.log("error", error));
-}
-
 async function getJsonResults(fileId, config) {
   const { token, surveyId } = config;
   const myHeaders = {
@@ -194,100 +144,6 @@ async function getJsonResults(fileId, config) {
   });
 }
 
-function unzip(file) {
-  const zip = new StreamZip({
-    file: file,
-    storeEntries: true,
-  });
-
-  return new Promise((resolve, reject) => {
-    zip.on("error", function(err) {
-      console.error("[ERROR]", err);
-      reject();
-    });
-
-    zip.on("ready", function() {
-      console.log("All entries read: " + zip.entriesCount);
-    });
-
-    zip.on("entry", function(entry) {
-      console.log("[FILE]", entry.name);
-      //
-      zip.stream(entry.name, function(err, stream) {
-        if (err) {
-          console.error("Error:", err.toString());
-          return;
-        }
-        //
-        stream.on("error", function(err) {
-          console.log("[ERROR]", err);
-          return;
-        });
-        //
-        stream.pipe(fs.createWriteStream(`rawData/${RAW_DATA_NAME}.json`));
-        //
-        stream.on("end", function() {
-          resolve();
-        });
-      });
-    });
-  });
-}
-
-function readFile(file) {
-  const contents = fs.readFileSync(file, { encoding: "utf8", flag: "r" });
-  const data = JSON.parse(contents);
-
-  return data;
-}
-
-async function cleanData(data, config) {
-  return Promise.all(
-    data.responses.map(
-      (response) =>
-        new Promise((resolve, reject) => {
-          const { values, labels } = response;
-          const { ipAddress } = values;
-          if (labels.QID5) {
-            const { QID4: country, QID5: state } = labels;
-            resolve({
-              regret: values.QID1_TEXT || "",
-              gender: labels.QID2 || "",
-              location: { country, state },
-              date: values.endDate,
-            });
-          }
-          getLocationFromIP(ipAddress, config).then((res) => {
-            const { country, state } = res;
-            const location = { country, state };
-            resolve({
-              regret: values.QID1_TEXT || "",
-              gender: labels.QID2 || "",
-              location,
-              date: values.endDate,
-            });
-          });
-        })
-    )
-  );
-}
-
-function saveToFileSystem(data) {
-  const dataString = JSON.stringify(data);
-  fs.writeFileSync(`./../data/${CLEAN_DATA_NAME}.json`, dataString);
-}
-
-function createDir(dirname) {
-  return new Promise((resolve, reject) => {
-    fs.mkdir(dirname, (err) => {
-      if (err && err.code !== "EEXIST") {
-        reject();
-      }
-      resolve();
-    });
-  });
-}
-
 function hasError(data) {
   if (data.meta.error) {
     console.log(data.meta.error);
@@ -297,8 +153,5 @@ function hasError(data) {
 //This is just for Results that have ip address and not Country/State
 
 module.exports = {
-  getResults,
   qualtricsData,
-
-  saveToFileSystem,
 };
