@@ -13,11 +13,6 @@ jobs:
       - name: Hello world action step
         uses: ./githubAction
         id: hello
-        with:
-          repo: "Regrets_survey"
-          owner: "outthinkgroup"
-          github_access_token: ${{ secrets.ACCESS_TOKEN }}
-      # Use the output from the `hello` step
       - name: Get the output time
         run: echo "finished"
 # schedule:
