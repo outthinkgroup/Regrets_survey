@@ -23,7 +23,7 @@ function SurveyButton({ children, className, size, includeOtherLang }) {
       </Button>
       <p style={{ fontSize: "1em", marginTop: ".5em" }}>
         <a href="https://worldregretsurvey.iad1.qualtrics.com/jfe/form/SV_3CRcRbjb7pIenxr/?Q_Language=ES">
-          Participe en la cuesta
+          Participe en la encuesta
         </a>{" "}
         |{" "}
         <a href="https://worldregretsurvey.iad1.qualtrics.com/jfe/form/SV_3CRcRbjb7pIenxr/?Q_Language=ZH-S">
