@@ -22,6 +22,10 @@ const GET_REGRETS = graphql`
             }
             regret
           }
+          locationCount
+          previousLocationCount
+          previousRegretCount
+          regretCount
         }
       }
     }
@@ -31,7 +35,14 @@ export function useGetRegrets(activeState, mapState) {
   const { allQualtricsData } = useStaticQuery(GET_REGRETS);
   const { results } = allQualtricsData.nodes[0];
 
-  const { regretList, locations } = results;
+  const {
+    regretList,
+    locations,
+    locationCount,
+    previousLocationCount,
+    regretCount,
+    previousRegretCount,
+  } = results;
 
   const [activeRegret, setActiveRegret] = useState();
 
@@ -121,5 +132,9 @@ export function useGetRegrets(activeState, mapState) {
     totalRegretsPerStateByCountry,
     totalRegretsPerState,
     getAnotherRegret,
+    locationCount,
+    previousLocationCount,
+    regretCount,
+    previousRegretCount,
   };
 }

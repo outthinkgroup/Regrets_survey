@@ -27,12 +27,16 @@ export default function Admin() {
   const [isShowingStagingLinks, setIsShowingStagingLinks] = useState(false);
   const [isRefreshButtonLoading, setIsRefreshButtonLoading] = useState(false);
   const [isDeployButtonLoading, setIsDeployButtonLoading] = useState(false);
-  const { locations, regretList } = useGetRegrets();
+  const {
+    locationCount,
+    previousLocationCount,
+    regretCount,
+    previousRegretCount,
+  } = useGetRegrets();
 
   if (!user) {
     return <Redirect noThrow to={"/"} />;
   }
-  console.log({ locations: locations.length, regrets: regretList.length });
 
   async function refreshRegrets() {
     setIsRefreshButtonLoading(true);
@@ -75,17 +79,20 @@ export default function Admin() {
             <thead>
               <tr>
                 <th>number of</th>
-                <th>count</th>
+                <th>current count</th>
+                <th>previous count</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Locations</td>
-                <td>{locations.length}</td>
+                <td>{locationCount}</td>
+                <td>{previousLocationCount}</td>
               </tr>
               <tr>
                 <td>Regrets</td>
-                <td>{regretList.length}</td>
+                <td>{regretCount}</td>
+                <td>{previousRegretCount}</td>
               </tr>
             </tbody>
           </table>
@@ -119,11 +126,11 @@ export default function Admin() {
         <h2>Refresh the Regrets</h2>
         <p>click the button to refresh the regrets being shown on the map.</p>
         <button onClick={refreshRegrets} type="button">
-          Refresh{isRefreshButtonLoading && "ing..."}
+          Refresh{isRefreshButtonLoading && "ing..."} Staging
         </button>
-        {/* <button type="button" onClick={deployToMaster}>
+        <button type="button" onClick={deployToMaster}>
           Deploy{isDeployButtonLoading && "ing..."} To Master
-        </button> */}
+        </button>
         {isShowingStagingLinks && (
           <StagingLinks>
             <h4>Check to staging before merging to master</h4>
