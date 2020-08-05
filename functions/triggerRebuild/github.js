@@ -37,11 +37,32 @@ async function updateFileInGit({
     errorMessages.push(e);
   });
 
+  const previousLocationCount = oldData.locationCount;
+  const previousRegretCount = oldData.regretCount;
+  data.results.previousRegretCount = previousRegretCount;
+  data.results.previousLocationCount = previousLocationCount;
+  const { locationCount, regretCount } = data.results;
+
+  if (locationCount < previousLocationCount) {
+    const errorMsg = `ERROR: Location Count is less than previously ( prev: ${previousLocationCount}, new: ${locationCount} )`;
+    errorMessages.push({
+      mainGitFN: errorMsg,
+    });
+    return errorMsg;
+  }
+  if (regretCount < previousRegretCount) {
+    const errorMsg = `ERROR: Regret Count is less than previously ( prev: ${previousRegretCount}, new: ${regretCount} )`;
+    errorMessages.push({
+      mainGitFN: errorMsg,
+    });
+    return errorMsg;
+  }
+
   const results = JSON.stringify(data);
   if (results === "undefined") {
     return "ERROR: after qualtrics data function was run we got `undefined`";
   }
-  console.log(data.results.locationCount, data.results.regretCount);
+
   const res = await updateFile({
     filepath: "data/data.json",
     sha,
