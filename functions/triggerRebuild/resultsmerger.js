@@ -150,4 +150,9 @@ function snakeCase(string) {
     .join("_");
 }
 
+function listObjectsValues(obj) {
+  const entries = Object.entries(obj);
+  return entries.map(([_, value]) => value);
+}
+
 module.exports = { mergeData };
