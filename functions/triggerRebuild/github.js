@@ -48,6 +48,7 @@ async function updateFileInGit({
     errorMessages.push({
       mainGitFN: errorMsg,
     });
+
     return errorMsg;
   }
   if (regretCount < previousRegretCount) {
