@@ -80,8 +80,9 @@ async function mergeData({ newData, oldData = {}, config }) {
     const regretsInLocation = mergedDataOBJ[location];
     return [...fullList, ...regretsInLocation];
   }, []);
-  console.log(locations.length, regretList.length);
-  return { locations, regretList };
+  const locationCount = locations.length;
+  const regretCount = regretList.length;
+  return { locations, regretList, locationCount, regretCount };
 }
 
 function setLocation({ labels, values }, config) {
