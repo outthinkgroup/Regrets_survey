@@ -4966,6 +4966,8 @@
       }
     ],
     "locationCount": 107,
-    "regretCount": 601
+    "regretCount": 601,
+    "previousRegretCount": 601,
+    "previousLocationCount": 107
   }
 }
