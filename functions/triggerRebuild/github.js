@@ -50,7 +50,6 @@ async function updateFileInGit({
     .catch((e) => {
       errorMessages.push({ updateFile: e });
     });
-
   return {
     updateFileResults: res,
     dataFromQualtrics: { data },
