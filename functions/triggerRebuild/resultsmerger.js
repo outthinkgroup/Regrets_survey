@@ -1,12 +1,7 @@
-const oldData = require("../../data/data.json");
-const newRawData = require("../../rawData/rawData.json");
-const fetch = require("node-fetch");
 const approvedStates = require("../../src/lib/approvedStates");
 const { unSnakeCase } = require("../../src/lib/snakeCase");
 const alterCountryList = require("../../src/lib/alterCountryList");
 const alterStateList = require("../../src/lib/alterStateList");
-const IP_STACK_KEY = process.env.IP_STACK_KEY;
-const config = { ipStackKey: IP_STACK_KEY };
 
 //find location
 //include in obj
@@ -89,13 +84,6 @@ async function mergeData({ newData, oldData = {}, config }) {
   return { locations, regretList };
 }
 
-async function test() {
-  const data = await mergeData(newRawData, oldData, config);
-
-  //console.log(JSON.stringify(data, null, 2));
-}
-//test();
-
 function setLocation({ labels, values }, config) {
   const location = {};
   if (labels.QID4) {
@@ -163,19 +151,3 @@ function snakeCase(string) {
 }
 
 module.exports = { mergeData };
-
-async function getLocationFromIP(ipAddress, config) {
-  const res = await fetch(
-    `http://api.ipstack.com/${ipAddress}?access_key=${config.ipStackKey}&format=1`
-  );
-  const data = await res.json();
-  //console.log(data);
-  const { country_name: country, region_name: state } = data;
-
-  return { country, state };
-}
-
-function listObjectsValues(obj) {
-  const entries = Object.entries(obj);
-  return entries.map(([_, value]) => value);
-}

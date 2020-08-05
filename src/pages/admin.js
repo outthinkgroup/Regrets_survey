@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useAuth } from "../hooks";
 import AdminLayout from "../components/AdminLayout";
 import { colors, elevation, fonts } from "../styles";
+import { useGetRegrets } from "../hooks";
 
 const deployLinks = [
   {
@@ -26,9 +27,13 @@ export default function Admin() {
   const [isShowingStagingLinks, setIsShowingStagingLinks] = useState(false);
   const [isRefreshButtonLoading, setIsRefreshButtonLoading] = useState(false);
   const [isDeployButtonLoading, setIsDeployButtonLoading] = useState(false);
+  const { locations, regretList } = useGetRegrets();
+
   if (!user) {
     return <Redirect noThrow to={"/"} />;
   }
+  console.log({ locations: locations.length, regrets: regretList.length });
+
   async function refreshRegrets() {
     setIsRefreshButtonLoading(true);
     const res = await fetch("/.netlify/functions/triggerRebuild", {
@@ -62,6 +67,29 @@ export default function Admin() {
           style={{ marginBottom: `0px` }}
           src="https://api.netlify.com/api/v1/badges/7fdca82a-d896-474c-bb04-0fdf698caa7f/deploy-status"
         />
+      </AdminSection>
+      <AdminSection>
+        <h2>Stats</h2>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>number of</th>
+                <th>count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Locations</td>
+                <td>{locations.length}</td>
+              </tr>
+              <tr>
+                <td>Regrets</td>
+                <td>{regretList.length}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </AdminSection>
       <AdminSection>
         <h2>Links</h2>
