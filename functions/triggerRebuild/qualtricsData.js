@@ -22,12 +22,12 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
 
 //REBUILD DATA
 //dont forget to uncomment saving tofile system
-qualtricsData({
-  token: TOKEN,
-  surveyId: SURVEY,
-  ipStackKey: IP_STACK_KEY,
-  oldData: {},
-});
+// qualtricsData({
+//   token: TOKEN,
+//   surveyId: SURVEY,
+//   ipStackKey: IP_STACK_KEY,
+//   oldData: {},
+// });
 
 async function getResponses(exportOptions = {}, oldData, config) {
   console.log("ran");
@@ -67,7 +67,7 @@ function startExport(options = {}, config) {
     ...options,
     compress: false,
     limit: 200,
-    filterId: "ef924f0b-a858-4d13-a214-12f9b68e57e7",
+    filterId: "75547da0-65fa-4a35-a62b-c3a170aab2e4",
   });
 
   var requestOptions = {

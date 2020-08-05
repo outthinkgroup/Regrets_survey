@@ -100,7 +100,6 @@ function setLocation({ labels, values }, config) {
   const location = {};
   if (labels.QID4) {
     const { QID4: country, QID6: state } = labels;
-    console.log(state);
     location.state = state;
     location.country = country;
 

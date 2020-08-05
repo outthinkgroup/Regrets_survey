@@ -93,9 +93,9 @@ export default function Admin() {
         <button onClick={refreshRegrets} type="button">
           Refresh{isRefreshButtonLoading && "ing..."}
         </button>
-        <button type="button" onClick={deployToMaster}>
+        {/* <button type="button" onClick={deployToMaster}>
           Deploy{isDeployButtonLoading && "ing..."} To Master
-        </button>
+        </button> */}
         {isShowingStagingLinks && (
           <StagingLinks>
             <h4>Check to staging before merging to master</h4>
