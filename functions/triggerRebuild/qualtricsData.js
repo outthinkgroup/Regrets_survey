@@ -66,7 +66,7 @@ function startExport(options = {}, config) {
     format: "json",
     ...options,
     compress: false,
-    limit: 500,
+    limit: 600,
     filterId: "fe0ca491-e33f-405f-9416-481a135c6d46",
   });
 
