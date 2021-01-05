@@ -1,7 +1,8 @@
 require("dotenv").config();
-
+// const fs = require("fs");
 const fetch = require("node-fetch");
 
+console.log(repo, surveyId);
 const { mergeData } = require("./resultsmerger");
 //const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
 
@@ -23,14 +24,22 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
 //REBUILD DATA
 //dont forget to uncomment saving tofile system
 // qualtricsData({
-//   token: TOKEN,
-//   surveyId: SURVEY,
-//   ipStackKey: IP_STACK_KEY,
+//   token: qualtricsToken,
+//   ipStackKey,
+//   surveyId,
 //   oldData: {},
+// }).then(function(res) {
+//   fs.writeFile(
+//     "./../../data/data.json",
+//     JSON.stringify(res, null, 2),
+//     { encoding: "utf8" },
+//     () => console.log("done")
+//   );
 // });
 
 async function getResponses(exportOptions = {}, oldData, config) {
   console.log("ran");
+  console.log(config);
   const freshData = {};
 
   //start export
@@ -88,7 +97,7 @@ function startExport(options = {}, config) {
 
 async function getProgress(progressId, config) {
   const { token, surveyId } = config;
-
+  console.log(token);
   const myHeaders = {
     "X-API-TOKEN": token,
     "Content-Type": "application/json",
