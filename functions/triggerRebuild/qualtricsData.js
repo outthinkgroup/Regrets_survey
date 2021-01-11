@@ -2,7 +2,7 @@ require("dotenv").config();
 // const fs = require("fs");
 const fetch = require("node-fetch");
 
-console.log(repo, surveyId);
+
 const { mergeData } = require("./resultsmerger");
 //const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
 
