@@ -2,8 +2,8 @@ require("dotenv").config();
 const { qualtricsData } = require("./qualtricsData.js");
 const oldData = {};
 async function test() {
-  const token = "UkQ5ToTwLaQ2ZzbfQXRQJ47ucgdyJrAuQmawdouV";
-  const surveyId = "SV_3CRcRbjb7pIenxr";
+  const token = process.env.AUTH;
+  const surveyId = process.env.SURVEY_ID;
   const ipStackKey = process.env.IP_STACK_KEY;
 
   const data = await qualtricsData({ token, surveyId, ipStackKey, oldData });
