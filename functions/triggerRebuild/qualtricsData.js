@@ -2,7 +2,7 @@ require("dotenv").config();
 // const fs = require("fs");
 const fetch = require("node-fetch");
 
-console.log(repo, surveyId);
+console.log(surveyId);
 const { mergeData } = require("./resultsmerger");
 //const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
 
@@ -10,6 +10,7 @@ const TOKEN = process.env.QUALTRICS_TOKEN;
 const SURVEY = process.env.SURVEY_ID;
 const IP_STACK_KEY = process.env.IP_STACK_KEY;
 const errMsgs = [];
+
 //* THIS INITS THE WHOLE PROCESS
 //? ----
 const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
