@@ -34,8 +34,12 @@
         "regretCount": 10
       },
       {
+        "name": "Georgia_Us",
+        "regretCount": 3
+      },
+      {
         "name": "United_States",
-        "regretCount": 10
+        "regretCount": 8
       },
       {
         "name": "California",
@@ -1214,6 +1218,17 @@
         }
       },
       {
+        "regret": "Walking away from someone that meant a lot to me",
+        "gender": "Female",
+        "id": "R_1OGLi8gwCjbe7FY",
+        "date": "2021-04-02T15:14:43Z",
+        "age": 28,
+        "location": {
+          "state": "North Carolina",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Getting upset about things that are out of my control and with that not being more forgiving and kind towards others who have offended or hurt me. In the long run the anger and resentment formed a knot in my heart.",
         "gender": "Female",
         "id": "R_Ox3sPSBWejZslBn",
@@ -1307,17 +1322,6 @@
         "id": "R_1CkFxy9EnG2Qdki",
         "date": "2021-01-18T01:00:50Z",
         "age": 40,
-        "location": {
-          "state": "North Carolina",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not taking more chances - studying abroad in college, moving away after college, etc",
-        "gender": "Female",
-        "id": "R_12hXwOnu0KKfZii",
-        "date": "2021-01-12T02:41:09Z",
-        "age": 39,
         "location": {
           "state": "North Carolina",
           "country": "United States"
@@ -1535,6 +1539,39 @@
         }
       },
       {
+        "regret": "Not being closer to my siblings when they were young. I was a much older sibling, and I did not make the effort to get to know them when they were young or now, and it feels too much time has passed to ever develop a good relationship as an older brother.",
+        "gender": "Male",
+        "id": "R_1mE3he1F3iJWgiY",
+        "date": "2021-03-15T20:46:46Z",
+        "age": 34,
+        "location": {
+          "state": "Georgia US",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I regret living by the principle that my husband should come before my children. My children will always be my family, but I am divorced. I could have been happier focused on the best years of their childhood.",
+        "gender": "Female",
+        "id": "R_1dsNRJeieEtLAHv",
+        "date": "2021-03-15T02:22:23Z",
+        "age": 52,
+        "location": {
+          "state": "Georgia US",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Career choice",
+        "gender": "Male",
+        "id": "R_10o7azZNsVeFTpE",
+        "date": "2021-04-01T14:43:09Z",
+        "age": 45,
+        "location": {
+          "state": "Georgia",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Not having the courage to follow my heart",
         "gender": "Prefer not to say",
         "id": "R_3szEY0IhclVqiJz",
@@ -1606,28 +1643,6 @@
         "age": 29,
         "location": {
           "state": "Rhode Island",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not being closer to my siblings when they were young. I was a much older sibling, and I did not make the effort to get to know them when they were young or now, and it feels too much time has passed to ever develop a good relationship as an older brother.",
-        "gender": "Male",
-        "id": "R_1mE3he1F3iJWgiY",
-        "date": "2021-03-15T20:46:46Z",
-        "age": 34,
-        "location": {
-          "state": "Georgia US",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret living by the principle that my husband should come before my children. My children will always be my family, but I am divorced. I could have been happier focused on the best years of their childhood.",
-        "gender": "Female",
-        "id": "R_1dsNRJeieEtLAHv",
-        "date": "2021-03-15T02:22:23Z",
-        "age": 52,
-        "location": {
-          "state": "Georgia US",
           "country": "United States"
         }
       },
@@ -10808,6 +10823,16 @@
         }
       },
       {
+        "regret": "hari pratap",
+        "gender": "Male",
+        "id": "R_x4LWuxoQzRiyvrX",
+        "date": "2021-04-02T15:19:21Z",
+        "age": 35,
+        "location": {
+          "country": "United Arab Emirates"
+        }
+      },
+      {
         "regret": "Regret not spending more time with my mother when she was in the hospital.",
         "gender": "Female",
         "id": "R_3kebm0H7sBupWzj",
@@ -10893,16 +10918,6 @@
         "id": "R_3Mb2RIJCfQdk8Q7",
         "date": "2020-08-05T11:27:57Z",
         "age": 51,
-        "location": {
-          "country": "United Arab Emirates"
-        }
-      },
-      {
-        "regret": "i used to have a partnership in a job with a person for 3 years and i hated that job - i regret that i didnt stop after 1 year because that job puts me in a really bad environment and i had a really bad 4 year",
-        "gender": "Male",
-        "id": "R_ezJMDvsbok97XxL",
-        "date": "2020-08-05T08:52:48Z",
-        "age": 28,
         "location": {
           "country": "United Arab Emirates"
         }
@@ -12852,9 +12867,9 @@
         }
       }
     ],
-    "locationCount": 165,
-    "regretCount": 1166,
-    "previousRegretCount": 0,
-    "previousLocationCount": 0
+    "locationCount": 166,
+    "regretCount": 1167,
+    "previousRegretCount": 1166,
+    "previousLocationCount": 165
   }
 }
