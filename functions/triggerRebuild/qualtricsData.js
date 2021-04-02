@@ -1,10 +1,9 @@
 require("dotenv").config();
-// const fs = require("fs");
+const fs = require("fs");
 const fetch = require("node-fetch");
 
-console.log(surveyId);
 const { mergeData } = require("./resultsmerger");
-//const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
+// const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
 
 const TOKEN = process.env.QUALTRICS_TOKEN;
 const SURVEY = process.env.SURVEY_ID;
@@ -23,15 +22,14 @@ const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
 //*
 
 //REBUILD DATA
-//dont forget to uncomment saving tofile system
 // qualtricsData({
-//   token: qualtricsToken,
-//   ipStackKey,
-//   surveyId,
-//   oldData: {},
+//   token: TOKEN,
+//   ipStackKey: null,
+//   surveyId: SURVEY,
+//   oldData: demoFile,
 // }).then(function(res) {
 //   fs.writeFile(
-//     "./../../data/data.json",
+//     "./../../data/tdata.json",
 //     JSON.stringify(res, null, 2),
 //     { encoding: "utf8" },
 //     () => console.log("done")
@@ -64,7 +62,8 @@ async function getResponses(exportOptions = {}, oldData, config) {
 
   return { data: freshData, q_errors: errMsgs };
 }
-
+//TODO test the start date fn, see if it pulls in results correctly
+//TODO make a local endpoint that saves data to filesystem not github
 function startExport(options = {}, config) {
   const { token, surveyId } = config;
 
@@ -76,8 +75,9 @@ function startExport(options = {}, config) {
     format: "json",
     ...options,
     compress: false,
-    limit: 600,
-    filterId: "fe0ca491-e33f-405f-9416-481a135c6d46",
+    limit: 2000,
+    startDate: "2020-01-01T01:50:00Z",
+    // filterId: "fe0ca491-e33f-405f-9416-481a135c6d46",
   });
 
   var requestOptions = {
