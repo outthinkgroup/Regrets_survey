@@ -69,5 +69,6 @@ module.exports = [
   "Louisiana",
   "Mississippi",
   "Alabama",
-  "Georgia",
+  "Georgia US",
+  "Georgia_US",
 ];

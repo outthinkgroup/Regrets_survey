@@ -1,3 +1,3 @@
 module.exports = {
-  Georgia_US: "Georgia",
+  Georgia_US: "Georgia US",
 };
