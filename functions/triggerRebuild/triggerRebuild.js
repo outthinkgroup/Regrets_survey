@@ -19,11 +19,12 @@ exports.handler = async function(event, context) {
     repo,
     githubToken,
     qualtricsToken,
-    ipStackKey,
     surveyId,
     branch,
   }).catch((e) => mainFileERR.push(e));
-
+  console.log(
+    JSON.stringify({ resultsType: typeof results, mainFileERR }, null, 2)
+  );
   return {
     statusCode: 200,
     body: JSON.stringify({

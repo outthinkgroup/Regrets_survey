@@ -12,9 +12,9 @@ async function updateFileInGit({
   repo,
   githubToken,
   qualtricsToken,
-  ipStackKey,
   surveyId,
   branch = "staging",
+  exportOptions = {},
 }) {
   const octokit = new Octokit({
     auth: githubToken,
@@ -32,9 +32,9 @@ async function updateFileInGit({
 
   const { data, q_errors } = await qualtricsData({
     token: qualtricsToken,
-    ipStackKey,
     surveyId,
     oldData,
+    exportOptions,
   }).catch((e) => {
     errorMessages.push(e);
   });
@@ -61,7 +61,7 @@ async function updateFileInGit({
     return errorMsg;
   }
 
-  const results = JSON.stringify(data);
+  const results = JSON.stringify(data, null, 2);
   if (results === "undefined") {
     return "ERROR: after qualtrics data function was run we got `undefined`";
   }
