@@ -1,18 +1,20 @@
 require("dotenv").config();
 const { Octokit } = require("@octokit/rest");
-const { decode, encode } = require("base-64");
+const { decode } = require("base-64");
 var Base64 = require("js-base64").Base64;
 const utf8 = require("utf8");
 const { qualtricsData } = require("./qualtricsData");
-const errorMessages = [];
+
+const errorMessages = []; //TODO Remove ERROR handling here
+
 async function updateFileInGit({
   owner,
   repo,
   githubToken,
   qualtricsToken,
-  ipStackKey,
   surveyId,
   branch = "staging",
+  exportOptions = {},
 }) {
   const octokit = new Octokit({
     auth: githubToken,
@@ -30,9 +32,9 @@ async function updateFileInGit({
 
   const { data, q_errors } = await qualtricsData({
     token: qualtricsToken,
-    ipStackKey,
     surveyId,
     oldData,
+    exportOptions,
   }).catch((e) => {
     errorMessages.push(e);
   });
@@ -59,7 +61,7 @@ async function updateFileInGit({
     return errorMsg;
   }
 
-  const results = JSON.stringify(data);
+  const results = JSON.stringify(data, null, 2);
   if (results === "undefined") {
     return "ERROR: after qualtrics data function was run we got `undefined`";
   }

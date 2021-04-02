@@ -1,36 +1,56 @@
 require("dotenv").config();
-
+const fs = require("fs");
 const fetch = require("node-fetch");
+//ENV vars
 
 const { mergeData } = require("./resultsmerger");
-//const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
-
-const TOKEN = process.env.QUALTRICS_TOKEN;
-const SURVEY = process.env.SURVEY_ID;
-const IP_STACK_KEY = process.env.IP_STACK_KEY;
+// const demoFile = require("./../../data/data.json"); //!this is for restarting fresh
+const { getLastWeekISO } = require("./helpers");
 const errMsgs = [];
+
 //* THIS INITS THE WHOLE PROCESS
 //? ----
-const qualtricsData = ({ token, surveyId, ipStackKey, oldData }) =>
-  getResponses({}, oldData, {
+/**
+ *
+ * @param {{
+ * token: string,
+ * surveyId: string,
+ * oldData:Object,
+ * exportOptions:object - not required
+ * }} qualtricsDataOptions
+ * @returns
+ */
+const qualtricsData = ({ token, surveyId, oldData, exportOptions = {} }) =>
+  getResponses(exportOptions, oldData, {
     token,
     surveyId,
-    ipStackKey,
   }).catch((e) => console.log(e));
 //?---
 //*
 
 //REBUILD DATA
-//dont forget to uncomment saving tofile system
 // qualtricsData({
 //   token: TOKEN,
 //   surveyId: SURVEY,
-//   ipStackKey: IP_STACK_KEY,
-//   oldData: {},
+//   oldData: demoFile,
+// }).then(function(res) {
+//   fs.writeFile(
+//     "./../../data/tdata.json",
+//     JSON.stringify(res, null, 2),
+//     { encoding: "utf8" },
+//     () => console.log("done")
+//   );
 // });
 
-async function getResponses(exportOptions = {}, oldData, config) {
+/**
+ * @param {Object} exportOptions - options to send to qualtrics to get the correct data
+ * @param {Object} oldData - previous data
+ * @param {Object} config - ENV vars
+ * @returns
+ */
+async function getResponses(exportOptions, oldData, config) {
   console.log("ran");
+  console.log(config);
   const freshData = {};
 
   //start export
@@ -54,21 +74,27 @@ async function getResponses(exportOptions = {}, oldData, config) {
 
   return { data: freshData, q_errors: errMsgs };
 }
-
-function startExport(options = {}, config) {
+//TODO test the start date fn, see if it pulls in results correctly
+//TODO make a local endpoint that saves data to filesystem not github
+function startExport(userOptions, config) {
   const { token, surveyId } = config;
 
   const myHeaders = {
     "X-API-TOKEN": token,
     "Content-Type": "application/json",
   };
-  var body = JSON.stringify({
+  const defaultOptions = {
     format: "json",
-    ...options,
     compress: false,
-    limit: 200,
-    filterId: "75547da0-65fa-4a35-a62b-c3a170aab2e4",
-  });
+    limit: 1000,
+    startDate: getLastWeekISO(),
+    filterId: undefined,
+  };
+  const exportOptions = {
+    ...defaultOptions,
+    ...userOptions,
+  };
+  var body = JSON.stringify(exportOptions);
 
   var requestOptions = {
     method: "POST",
@@ -88,7 +114,7 @@ function startExport(options = {}, config) {
 
 async function getProgress(progressId, config) {
   const { token, surveyId } = config;
-
+  console.log(token);
   const myHeaders = {
     "X-API-TOKEN": token,
     "Content-Type": "application/json",
@@ -149,8 +175,6 @@ function hasError(data) {
     console.log(data.meta.error);
   }
 }
-
-//This is just for Results that have ip address and not Country/State
 
 module.exports = {
   qualtricsData,
