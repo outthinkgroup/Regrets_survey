@@ -67,7 +67,7 @@ export default function InteractiveMap({
   useLayoutEffect(() => {
     const states = Object.entries(totalRegretsPerState);
 
-    states.forEach(([key, value]) => {
+    states.forEach(([key, _]) => {
       const id = snakeCase(key);
 
       const stateEl = document.querySelector(`[data-state="${id}"]`);
@@ -76,7 +76,7 @@ export default function InteractiveMap({
     });
 
     const countries = Object.entries(totalRegretsPerCountry);
-    countries.forEach(([key, value]) => {
+    countries.forEach(([key, _]) => {
       const id = snakeCase(key);
       const countryEl = document.querySelector(`[data-country="${id}"]`);
       if (!countryEl) return;
