@@ -7,6 +7,10 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^2.2.0",
+    "@netlify/functions": "^0.7.2",
+    "chrome-aws-lambda": "^9.1.0",
+    "netlify-lambda": "^2.0.7",
+    "puppeteer-core": "^9.1.1",
     "@mdx-js/mdx": "^1.6.5",
     "@mdx-js/react": "^1.6.5",
     "@octokit/rest": "^17.9.2",
@@ -46,14 +50,15 @@
     "babel-preset-gatsby": "^0.5.5",
     "cypress": "^4.8.0",
     "prettier": "^1.19.1",
-    "start-server-and-test": "^1.11.0"
+    "start-server-and-test": "^1.11.0",
+    "puppeteer": "^9.1.1"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "rm ./functions/shareImage-dev.js && gatsby build",
     "dev": "netlify dev",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
