@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Icon from "./Icon";
 import styled from "styled-components";
 import { fonts, colors } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 
-function StateInfoCard({
+export default function StateInfoCard({
   activeState,
   zoomOut,
-  className,
   isMobile,
   mapState,
 }) {
@@ -17,33 +16,62 @@ function StateInfoCard({
     activeStateHasMultiple,
   } = useGetRegrets(activeState, mapState);
   console.log(isMobile);
+  if (!regret) return null;
+  return (
+    <RegretCard
+      header={
+        <button onClick={zoomOut} className="close">
+          <Icon name="close" color="black" />
+        </button>
+      }
+      location={regret.location}
+      isMobile={isMobile}
+      gender={regret.gender}
+      age={regret.age}
+      regret={regret.regret}
+      shouldAnimate={true}
+      footer={
+        activeStateHasMultiple && (
+          <button className="next" onClick={getAnotherRegret}>
+            see another
+          </button>
+        )
+      }
+    />
+  );
+}
+
+const RegretCardUnStyled = ({
+  className,
+  location,
+  gender,
+  age,
+  regret,
+  header,
+  footer,
+}) => {
   return (
     <div className={className}>
       <div className="active-state-info-card">
         <div className="contents">
-          <button onClick={zoomOut} className="close">
-            <Icon name="close" color="black" />
-          </button>
+          {header}
           <h1>
-            {regret?.location.state && regret?.location?.state + ", "}
-            {regret?.location?.country}
+            {location && location.state ? location.state + ", " : ""}
+            {location && location.country}
           </h1>
           <h3>
-            {regret?.gender}
-            {regret?.age && `, Age ${regret.age}`}
+            {gender && gender}
+            {age && `, Age ${age}`}
           </h3>
-          <p>{regret?.regret}</p>
-          {activeStateHasMultiple && (
-            <button className="next" onClick={getAnotherRegret}>
-              see another
-            </button>
-          )}
+          <p>{regret}</p>
+          {footer}
         </div>
       </div>
     </div>
   );
-}
-export default styled(StateInfoCard)`
+};
+
+export const RegretCard = styled(RegretCardUnStyled)`
   position: absolute;
   top: ${({ isMobile }) => (isMobile ? "100%" : "0")};
   left: 0;
@@ -53,7 +81,8 @@ export default styled(StateInfoCard)`
   display: flex;
   align-items: ${({ isMobile }) => (isMobile ? "start" : "center")};
   .active-state-info-card {
-    animation: slideIn 0.28s ease-in-out forwards;
+    animation: ${({ shouldAnimate }) =>
+      shouldAnimate ? "slideIn 0.28s ease-in-out forwards" : "none"};
     position: relative;
     box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1),
       0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -62,10 +91,12 @@ export default styled(StateInfoCard)`
     padding: 20px;
     width: ${({ isMobile }) => (isMobile ? `100%` : `calc(50% - 40px)`)};
     margin: ${({ isMobile }) => (isMobile ? `0px` : `20px`)};
+
     .contents {
       margin-top: 20px;
-      opacity: 0;
-      animation: fadeIn 0.2s linear 0.28s forwards;
+      opacity: ${({ shouldAnimate }) => (shouldAnimate ? 0 : 1)};
+      animation: ${({ shouldAnimate }) =>
+        shouldAnimate ? "fadeIn 0.2s linear 0.28s forwards" : "none"};
       button.next {
         background: ${colors.grey[2]};
         font-family: ${fonts.family};
@@ -76,20 +107,24 @@ export default styled(StateInfoCard)`
         }
       }
     }
+
     h1 {
       font-size: ${fonts.sizes.heading[0]};
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
     h3 {
       font-size: ${fonts.sizes.heading[2]};
     }
+
     p {
       font-size: ${fonts.sizes.copy};
       line-height: 2em;
       max-height: 200px;
       overflow-x: scroll;
     }
+
     button.close {
       background: transparent;
       border: 1px solid transparent;

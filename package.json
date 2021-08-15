@@ -58,7 +58,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "rm ./functions/shareImage-dev.js && gatsby build",
+    "build": "mv ./functions/webscrape.js ../; rm ./functions/shareImage-dev.js; gatsby build",
     "dev": "netlify dev",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
