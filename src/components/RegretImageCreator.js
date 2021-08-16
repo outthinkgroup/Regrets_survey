@@ -4,11 +4,33 @@ import AdminLayout from "./AdminLayout";
 import { colors, elevation, fonts } from "../styles";
 import { Redirect } from "@reach/router";
 import styled from "styled-components";
-import { useStaticQuery } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
+
+const REGRET_LIST = graphql`
+  query REGRET_LIST {
+    allQualtricsData {
+      nodes {
+        results {
+          regretList {
+            date
+            gender
+            id
+            age
+            location {
+              country
+              state
+            }
+            regret
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default function RegretImageCreator() {
   const { user } = useAuth();
-  const { allQualtricsData } = useStaticQuery(GET_REGRETS);
+  const { allQualtricsData } = useStaticQuery(REGRET_LIST);
   const { regretList } = allQualtricsData.nodes[0].results;
   const [activePreviewRegretIndex, setActivePreviewRegretIndex] = useState(0);
 
@@ -140,14 +162,12 @@ export default function RegretImageCreator() {
           </div>
         </div>
         <div className="preview">
-          {typeof window !== "undefined" ? (
-            <iframe
-              ref={iframeRef}
-              src={`/shareimage?age=${settings.age}&gender=${settings.gender}&regret=${settings.regret}&country=${settings.country}&state=${settings.state}`}
-              width="1024"
-              height="512"
-            />
-          ) : null}
+          <iframe
+            ref={iframeRef}
+            src={`/shareimage?age=${settings.age}&gender=${settings.gender}&regret=${settings.regret}&country=${settings.country}&state=${settings.state}`}
+            width="1024"
+            height="512"
+          />
         </div>
       </PageWrapper>
     </AdminLayout>
