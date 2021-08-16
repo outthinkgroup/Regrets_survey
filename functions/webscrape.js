@@ -17,19 +17,19 @@ async function webScrape({ event }, chromium, isProd) {
   console.log(url);
   // If we already have it dont rebuild it
   // If image already exists redirect to image..
-  imageBlob = await checkRegretImageCache(id);
-  if (imageBlob) {
-    console.log(imageBlob);
-    console.log("should be here");
-    return {
-      statusCode: 200,
-      body: imageBlob.toString("base64"),
-      isBase64Encoded: true,
-      headers: {
-        "Content-Type": "image/png",
-      },
-    };
-  }
+  //imageBlob = await checkRegretImageCache(id);
+  //if (imageBlob) {
+  //console.log(imageBlob);
+  //console.log("should be here");
+  //return {
+  //statusCode: 200,
+  //body: imageBlob.toString("base64"),
+  //isBase64Encoded: true,
+  //headers: {
+  //"Content-Type": "image/png",
+  //},
+  //};
+  //}
 
   var browser;
   const width = null;
