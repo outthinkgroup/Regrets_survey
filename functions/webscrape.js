@@ -12,7 +12,7 @@ async function webScrape({ event }, chromium, isProd) {
   // BUILDING THE URL OF SITE TO SCREENSHOT
 
   console.log(process.env.NODE_ENV);
-  const [, , , id, gender, age, regret, ...location] = event.path.split("/");
+  const [, , , , id, gender, age, regret, ...location] = event.path.split("/");
   const regretInfoParams = { gender, age, regret, location: [...location] }; //location = [counrty, ?state]
   const regretInfoString = createUrlParameters(regretInfoParams);
   const url = `${BASE_URL}/shareimage?${regretInfoString}`;
