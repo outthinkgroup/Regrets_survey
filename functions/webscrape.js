@@ -17,6 +17,8 @@ async function webScrape({ event }, chromium, isProd) {
   const regretInfoString = createUrlParameters(regretInfoParams);
   const url = `${BASE_URL}/shareimage?${regretInfoString}`;
   console.log(url);
+
+  // this is the code that would normally check if image is in cache
   // If we already have it dont rebuild it
   // If image already exists redirect to image..
   //imageBlob = await checkRegretImageCache(id);
@@ -34,8 +36,6 @@ async function webScrape({ event }, chromium, isProd) {
   //}
 
   var browser;
-  const width = null;
-  const height = null;
 
   try {
     const launchConfig = {
@@ -50,8 +50,8 @@ async function webScrape({ event }, chromium, isProd) {
 
     var page = await browser.newPage();
     page.setViewport({
-      width: width ? parseInt(width.value) : 1024,
-      height: height ? parseInt(height.value) : 512,
+      width: 1024,
+      height: 512,
       deviceScaleFactor: 2,
     });
     await page.goto(`${url}`);
