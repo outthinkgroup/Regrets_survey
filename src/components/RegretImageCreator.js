@@ -47,6 +47,7 @@ export default function RegretImageCreator() {
     setSettings((state) => ({ ...state, [name]: value }));
   }
   async function saveImage(e, checkToGit = false) {
+    console.log(process.env.NODE_ENV);
     e.preventDefault();
     const url = `/api/${
       process.env.NODE_ENV == "development" ? "shareImage-dev" : "shareImage"
