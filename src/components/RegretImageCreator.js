@@ -49,7 +49,7 @@ export default function RegretImageCreator() {
   async function saveImage(e, checkToGit = false) {
     console.log(process.env.NODE_ENV);
     e.preventDefault();
-    const url = `/api/${
+    const url = `/.netlify/functions/${
       process.env.NODE_ENV == "development" ? "shareImage-dev" : "shareImage"
     }/${123}/${settings.gender}/${settings.age}/${encodeURIComponent(
       settings.regret
