@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Redirect } from "@reach/router";
 import styled from "styled-components";
-import { useAuth } from "../hooks";
-import AdminLayout from "../components/AdminLayout";
-import { colors, elevation, fonts } from "../styles";
-import { useGetRegrets } from "../hooks";
+import { useAuth } from "./../../hooks";
+import AdminLayout from "./../../components/AdminLayout";
+import { colors, elevation } from "./../../styles";
+import { useGetRegrets } from "./../../hooks";
 
 const deployLinks = [
   {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { snakeCase, approvedStates } from "../lib";
 
-const GET_REGRETS = graphql`
+export const GET_REGRETS = graphql`
   query GET_REGRETS {
     allQualtricsData {
       nodes {
