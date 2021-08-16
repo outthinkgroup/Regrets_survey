@@ -25,7 +25,7 @@ export default function ShareImage() {
           header={""}
           footer={
             <span className="footer-text">
-              see more at{" "}
+              See more at{" "}
               <span className="red-text">worldregretsurvey.com</span>
             </span>
           }
@@ -34,22 +34,25 @@ export default function ShareImage() {
       <div className="title">
         <h1>
           <span>from the</span>
-          world regret survey
+          World Regret
+          <br />
+          Survey
         </h1>
-        <p>by daniel pink</p>
+        <p>A project by Daniel Pink</p>
       </div>
     </ShareImageWrapper>
   );
 }
 const ShareImageWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 100vh;
   background: url("/dsi-bg.png");
   background-repeat: norepeat;
   background-size: cover;
   padding-left: 99px;
-  padding-right: 99px;
+  padding-right: 89px;
   & > * {
     width: 100%;
     position: relative;
@@ -61,7 +64,8 @@ const ShareImageWrapper = styled.div`
     width: 100%;
   }
   .title {
-    padding: 20px;
+    text-shadow: 2px 2px 8px rgb(0 0 0 / 50%);
+    padding: 0px;
     text-align: center;
     h1 {
       font-size: 59px;
@@ -77,6 +81,7 @@ const ShareImageWrapper = styled.div`
     font-size: 15px;
     font-weight: bold;
     color: ${colors.primary.base};
+    text-shadow: none;
   }
   .footer-text {
     font-family: ${fonts.family};
