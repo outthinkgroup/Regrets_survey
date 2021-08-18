@@ -1,10 +1,11 @@
 import React from "react";
 import Layout from "../components/layout";
 import RegretsMap from "../components/RegretsMap.js";
-import { createNotification } from "../context";
+import { useNotification } from "../context";
 
-export default function ShareRegret() {
+export default function ShareRegretPage() {
   const [regretInfo, setRegretInfo] = React.useState(null);
+  const { createWarning } = useNotification();
   React.useEffect(() => {
     const infoFromUrl = getUrlParams();
     setRegretInfo(infoFromUrl);
@@ -22,7 +23,7 @@ export default function ShareRegret() {
       `[data-state="${regretInfo.state}"], [data-country="${regretInfo.country}"]`
     );
     if (!searchedState) {
-      createNotification("NOT_EXIST");
+      createWarning("NOT_EXIST");
       return;
     }
     const type = regretInfo.state ? "STATE" : "COUNTRY";

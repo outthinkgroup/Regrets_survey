@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { snakeCase, approvedStates } from "../lib";
+import { snakeCase } from "../lib";
 
 export const GET_REGRETS = graphql`
   query GET_REGRETS {
@@ -31,7 +31,8 @@ export const GET_REGRETS = graphql`
     }
   }
 `;
-export function useGetRegrets(activeState, mapState) {
+
+export function useGetRegrets(activeState, mapState, regretId = false) {
   const { allQualtricsData } = useStaticQuery(GET_REGRETS);
   const { results } = allQualtricsData.nodes[0];
 
@@ -48,10 +49,15 @@ export function useGetRegrets(activeState, mapState) {
 
   function getRegretBy() {
     const allInRegion = getRegretsByLocation(activeState);
-    const getRandom =
-      allInRegion[Math.floor(Math.random() * allInRegion.length)];
-    setActiveRegret(getRandom);
+    if (!regretId) {
+      const getRandom =
+        allInRegion[Math.floor(Math.random() * allInRegion.length)];
+      setActiveRegret(getRandom);
+    } else {
+      setActiveRegret(allInRegion.find((r) => r.id === regretId));
+    }
   }
+
   function getAnotherRegret() {
     const availableRegrets = getRegretsByLocation(activeState);
     const currentRegretIndex = availableRegrets.findIndex(
@@ -76,6 +82,7 @@ export function useGetRegrets(activeState, mapState) {
       if (mapState === "STATE") {
         return stateId === location;
       }
+      return false;
     });
   }
 
@@ -92,6 +99,7 @@ export function useGetRegrets(activeState, mapState) {
     totals[country]++;
     return totals;
   }, {});
+
   const totalRegretsPerStateByCountry = (countryActive) =>
     regretList
       .filter((regret) => {
@@ -108,6 +116,7 @@ export function useGetRegrets(activeState, mapState) {
         totals[state]++;
         return totals;
       }, {});
+
   const totalRegretsPerState = regretList.reduce((totals, regret) => {
     if (!regret.location) return totals;
     const { state } = regret.location;
@@ -121,7 +130,7 @@ export function useGetRegrets(activeState, mapState) {
   const regretCallBack = useCallback(getRegretBy, []);
   useEffect(() => {
     regretCallBack();
-  }, [activeState, regretCallBack]);
+  }, [activeState, regretCallBack, regretId]);
 
   return {
     locations,

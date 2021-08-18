@@ -46,13 +46,13 @@ export default function Admin() {
     }).then((res) => res.json());
     setIsRefreshButtonLoading(false);
     console.log(res);
-    if (res.results.status == 200) {
+    if (res.results.status === 200) {
       setIsShowingStagingLinks(true);
     }
   }
   async function deployToMaster() {
     setIsDeployButtonLoading(true);
-    const res = await fetch("/.netlify/functions/triggerRebuild", {
+    await fetch("/.netlify/functions/triggerRebuild", {
       method: "POST",
       body: JSON.stringify({ branch: "master" }),
     })
@@ -68,6 +68,7 @@ export default function Admin() {
         <h2>Build Status</h2>
         <p>The status of the most recent build on Netlify</p>
         <img
+          alt="site deploy status"
           style={{ marginBottom: `0px` }}
           src="https://api.netlify.com/api/v1/badges/7fdca82a-d896-474c-bb04-0fdf698caa7f/deploy-status"
         />

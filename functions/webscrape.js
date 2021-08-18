@@ -2,17 +2,25 @@
 /*ITS HERE FOR HMR*/
 const fetch = require("node-fetch");
 require("dotenv").config();
+const { Octokit } = require("@octokit/rest");
+var Base64 = require("js-base64").Base64;
+const { repo, owner } = require("./triggerRebuild/config.js");
 
 const BASE_URL =
   process.env.NODE_ENV !== "development"
     ? "https://worldregretsurvey.com"
     : "http://localhost:8888";
 
+const githubToken = process.env.AUTH;
+const octokit = new Octokit({
+  auth: githubToken,
+});
+
 async function webScrape({ event }, chromium, isProd) {
   // BUILDING THE URL OF SITE TO SCREENSHOT
 
   console.log(process.env.NODE_ENV);
-  const [, , , , id, gender, age, regret, ...location] = event.path.split("/");
+  const [, , , , id, gender, age, regret, ...location] = event.path.split("/"); // THIS IS UGILY
   const regretInfoParams = { gender, age, regret, location: [...location] }; //location = [counrty, ?state]
   const regretInfoString = createUrlParameters(regretInfoParams);
   const url = `${BASE_URL}/shareimage?${regretInfoString}`;
@@ -63,7 +71,10 @@ async function webScrape({ event }, chromium, isProd) {
     await browser.close();
 
     // update static/regret-images/ folder in get with screenshot..
-
+    await uploadRegretImage({
+      filename: id,
+      image: screenshot.toString("base64"),
+    });
     // use id to name the file
 
     return {
@@ -99,6 +110,7 @@ function filterOutReserved(o) {
   }
   return true;
 }
+
 async function checkRegretImageCache(name) {
   const image = await fetch(`${BASE_URL}/${name}.png`).catch(() => false);
   console.log(`${BASE_URL}/${name}.png`);
@@ -106,6 +118,7 @@ async function checkRegretImageCache(name) {
   const imageBlob = await image.buffer();
   return imageBlob;
 }
+
 function createUrlParameters({
   age,
   regret,
@@ -117,4 +130,15 @@ function createUrlParameters({
   }`;
 }
 
+async function uploadRegretImage({ filename, image }) {
+  const response = await octokit.repos.createOrUpdateFileContents({
+    owner,
+    repo,
+    path: `static/regret-images/${filename}.png`,
+    message: `uploading image: ${filename}.png`,
+    //content: Base64.encode(image),
+    content: image,
+  });
+  return response;
+}
 module.exports = { webScrape };

@@ -60,6 +60,8 @@ export default function StateInfoCard({
                 regret={regret.regret}
                 country={regret.location.country}
                 state={regret.location.state}
+                gender={regret.gender}
+                age={regret.age}
               />
             </ProtectedComponent>
           </div>
@@ -69,11 +71,13 @@ export default function StateInfoCard({
   );
 }
 
-function ShareRegret({ id, regret, country, state }) {
+function ShareRegret({ id, regret, country, gender, age, state }) {
   if (typeof window === "undefined") return null;
   const link = `${
     window.location.origin
-  }/share-regret?id=${id}&country=${country}${state ? `&state=${state}` : ""}`;
+  }/share-regret?id=${id}&regret=${regret}&age=${age}&gender=${gender}&country=${country}${
+    state ? `&state=${state}` : ""
+  }`;
   return (
     <span style={{ display: "flex", gap: 10 }}>
       <CopyButton text="copy share link" showIcon={true} copyString={link} />

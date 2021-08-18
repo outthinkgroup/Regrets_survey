@@ -9,10 +9,6 @@ const STATE = "STATE";
 const PARENT_COUNTRY = "PARENT_COUNTRY";
 
 export default function useInteractiveMap({ WIDTH, HEIGHT }) {
-  const noActiveState = {
-    country: null,
-  };
-
   const [zoomed, setZoomed] = useState(false);
 
   const [activeState, setActiveState] = useState(null);

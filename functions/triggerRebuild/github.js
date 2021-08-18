@@ -2,7 +2,6 @@ require("dotenv").config();
 const { Octokit } = require("@octokit/rest");
 const { decode } = require("base-64");
 var Base64 = require("js-base64").Base64;
-const utf8 = require("utf8");
 const { qualtricsData } = require("./qualtricsData");
 
 const errorMessages = []; //TODO Remove ERROR handling here
