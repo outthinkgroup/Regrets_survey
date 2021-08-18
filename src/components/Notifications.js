@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useTransition, animated } from "react-spring";
 import { fonts, colors, elevation, breakpoints } from "../styles";
@@ -25,7 +25,6 @@ export default function Notifications() {
   return (
     <NotificationList>
       {transition((style, item) => {
-        console.log(style.transform);
         return (
           <StyledNotification
             style={{
@@ -49,7 +48,6 @@ const NotificationList = styled.ul`
   margin: 0;
   padding: 0;
   right: 5vw;
-  ${(props) => console.log(props.isMobile)}
   width: 90vw;
   font-family: ${fonts.family};
   font-weight: 700;

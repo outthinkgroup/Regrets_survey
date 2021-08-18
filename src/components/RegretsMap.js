@@ -1,11 +1,11 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 
 //import "./Map.css"
 import InteractiveMap from "./InteractiveMap";
 import StateInfoCard from "./StateInfoCard";
 import useInteractiveMap from "../hooks/useInteractiveMap";
-import styled, { css } from "styled-components";
-import { colors, screen, screenAbove, elevation, fonts } from "../styles";
+import styled from "styled-components";
+import { colors, elevation, fonts } from "../styles";
 import CountrySearch from "./CountrySearch";
 import { useIsMobile } from "../hooks/useWindowWidth";
 import Icon from "./Icon.js";
@@ -13,7 +13,7 @@ import Icon from "./Icon.js";
 const WIDTH = 1024;
 const HEIGHT = 561.64917;
 
-function RegretsMap({ className }) {
+function RegretsMap({ className, allowFindRegretById = {}, clearFindRegret }) {
   //functions to pass our map
   const { viewBox, activeState, zoomed, send, mapState } = useInteractiveMap({
     WIDTH,
@@ -21,6 +21,15 @@ function RegretsMap({ className }) {
   });
 
   const isMobile = useIsMobile();
+
+  React.useEffect(() => {
+    if (allowFindRegretById && allowFindRegretById.id) {
+      //Trigger everything to bring up the correct regret
+      //this will trigger the map
+      allowFindRegretById.trigger((d) => send(["searched", d])); // d is {svgElement, type:STATE/COUNTRY}
+      clearFindRegret();
+    }
+  }, [allowFindRegretById.id, send]);
 
   return (
     <div className={className}>
@@ -46,7 +55,6 @@ function RegretsMap({ className }) {
         <div style={{ position: `relative` }}>
           <InteractiveMap
             onClick={(e) => {
-              console.log("called");
               e.persist();
               send(["click", e]);
             }}
@@ -88,6 +96,13 @@ function RegretsMap({ className }) {
             mapState={mapState}
             isMobile={isMobile}
             activeState={activeState}
+            // THIS IS JUST FOR SETTING A REGRET DIRECTLY
+            findRegret={
+              allowFindRegretById && allowFindRegretById.id
+                ? allowFindRegretById.id
+                : null
+            }
+            clearFindRegret={allowFindRegretById && clearFindRegret}
           />
         )}
       </div>

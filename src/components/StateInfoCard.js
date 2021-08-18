@@ -3,19 +3,37 @@ import Icon from "./Icon";
 import styled from "styled-components";
 import { fonts, colors } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
+import ProtectedComponent from "./ProtectedComponent";
+import { CopyButton, ShareButton } from "./Share.js";
+import { useNotification } from "../context/noticationContext";
 
 export default function StateInfoCard({
   activeState,
   zoomOut,
   isMobile,
   mapState,
+  findRegret,
+  clearFindRegret,
 }) {
   const {
     activeRegret: regret,
     getAnotherRegret,
     activeStateHasMultiple,
-  } = useGetRegrets(activeState, mapState);
-  console.log(isMobile);
+  } = useGetRegrets(activeState, mapState, findRegret);
+
+  React.useEffect(() => {
+    if (clearFindRegret) {
+      if (
+        (regret && regret.id !== findRegret) ||
+        typeof regret == "undefined"
+      ) {
+        clearFindRegret();
+      }
+    }
+  }, [regret, clearFindRegret, findRegret]);
+
+  const { create, dismissAfter } = useNotification();
+
   if (!regret) return null;
   return (
     <RegretCard
@@ -32,12 +50,39 @@ export default function StateInfoCard({
       shouldAnimate={true}
       footer={
         activeStateHasMultiple && (
-          <button className="next" onClick={getAnotherRegret}>
-            see another
-          </button>
+          <div className="flex-row">
+            <button className="next" onClick={getAnotherRegret}>
+              see another
+            </button>
+            <ProtectedComponent>
+              <ShareRegret
+                id={regret.id}
+                regret={regret.regret}
+                country={regret.location.country}
+                state={regret.location.state}
+              />
+            </ProtectedComponent>
+          </div>
         )
       }
     />
+  );
+}
+
+function ShareRegret({ id, regret, country, state }) {
+  if (typeof window === "undefined") return null;
+  const link = `${
+    window.location.origin
+  }/share-regret?id=${id}&country=${country}${state ? `&state=${state}` : ""}`;
+  return (
+    <span style={{ display: "flex", gap: 10 }}>
+      <CopyButton text="copy share link" showIcon={true} copyString={link} />
+      <ShareButton
+        url={link}
+        text="A regret from the World Regret Survey"
+        title="World Regret Survey"
+      />
+    </span>
   );
 }
 
@@ -97,7 +142,8 @@ export const RegretCard = styled(RegretCardUnStyled)`
       opacity: ${({ shouldAnimate }) => (shouldAnimate ? 0 : 1)};
       animation: ${({ shouldAnimate }) =>
         shouldAnimate ? "fadeIn 0.2s linear 0.28s forwards" : "none"};
-      button.next {
+      button.next,
+      button.share {
         background: ${colors.grey[2]};
         font-family: ${fonts.family};
         border: none;
@@ -107,7 +153,10 @@ export const RegretCard = styled(RegretCardUnStyled)`
         }
       }
     }
-
+    .flex-row {
+      display: flex;
+      justify-content: space-between;
+    }
     h1 {
       font-size: ${fonts.sizes.heading[0]};
       text-transform: uppercase;

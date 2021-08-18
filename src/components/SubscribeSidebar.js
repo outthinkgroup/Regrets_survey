@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import EmailSignup from "./EmailSignUp";
 import { SubscribeSidebarContent } from "./content";
 import { colors } from "../styles";
 function SubscribeSidebar({ className }) {

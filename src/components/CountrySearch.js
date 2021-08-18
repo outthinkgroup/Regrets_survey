@@ -30,13 +30,10 @@ function CountrySearch({ send, className }) {
           );
           if (!searchedState) {
             createWarning("NOT_EXIST");
-            console.log(searchValSnakeCased, "not found"); //TODO: make this something the user can see.
             return null;
           }
           if (!searchedState.dataset.hasentries) {
-            console.log({ searchValSnakeCased, searchedState });
             createWarning("NO_RESULTS");
-            console.log(searchValSnakeCased, "no results"); //TODO: make this something the user can see.
             return null;
           }
 

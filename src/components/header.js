@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import React from "react";
 import Menu from "./Menu";
-import { layout, colors, fonts, breakpoints } from "../styles";
+import { layout, fonts, breakpoints } from "../styles";
 
 const Header = ({ siteTitle, className }) => (
   <header className={className} style={{}}>

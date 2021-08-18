@@ -47,11 +47,10 @@ export default function RegretImageCreator() {
     setSettings((state) => ({ ...state, [name]: value }));
   }
   async function saveImage(e, checkToGit = false) {
-    console.log(process.env.NODE_ENV);
     e.preventDefault();
     const url = `/.netlify/functions/${
       process.env.NODE_ENV == "development" ? "shareImage-dev" : "shareImage"
-    }/${123}/${settings.gender}/${settings.age}/${encodeURIComponent(
+    }/${generateId()}/${settings.gender}/${settings.age}/${encodeURIComponent(
       settings.regret
     )}/${settings.country}/${settings.state ? settings.state : ""}`;
 
@@ -61,6 +60,14 @@ export default function RegretImageCreator() {
     a.href = imageObjectURL;
     a.download = `regret-${settings.gender}-${settings.country}.png`;
     a.click();
+  }
+  function generateId() {
+    const previewRegretString = previewRegret ? previewRegret.regret : "";
+    if (previewRegretString == settings.regret) {
+      return previewRegret.generateId;
+    }
+
+    return window.btoa(String(Date.now()));
   }
 
   function seeAnotherRegret() {
@@ -92,7 +99,6 @@ export default function RegretImageCreator() {
       const containerWidth = iframeRef.current.parentElement.getBoundingClientRect()
         .width;
       const twitterImageWidth = 1024;
-      console.log(containerWidth);
       setIframeRatioToFit(containerWidth / twitterImageWidth);
     }
   }, [iframeRef.current, setIframeRatioToFit]);
