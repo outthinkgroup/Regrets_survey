@@ -29,19 +29,19 @@ async function webScrape({ event }, chromium, isProd) {
   // this is the code that would normally check if image is in cache
   // If we already have it dont rebuild it
   // If image already exists redirect to image..
-  //imageBlob = await checkRegretImageCache(id);
-  //if (imageBlob) {
-  //console.log(imageBlob);
-  //console.log("should be here");
-  //return {
-  //statusCode: 200,
-  //body: imageBlob.toString("base64"),
-  //isBase64Encoded: true,
-  //headers: {
-  //"Content-Type": "image/png",
-  //},
-  //};
-  //}
+  imageBlob = await checkRegretImageCache(id);
+  if (imageBlob) {
+    console.log(imageBlob);
+    console.log("should be here");
+    return {
+      statusCode: 200,
+      body: imageBlob.toString("base64"),
+      isBase64Encoded: true,
+      headers: {
+        "Content-Type": "image/png",
+      },
+    };
+  }
 
   var browser;
 
@@ -112,8 +112,9 @@ function filterOutReserved(o) {
 }
 
 async function checkRegretImageCache(name) {
-  const image = await fetch(`${BASE_URL}/${name}.png`).catch(() => false);
-  console.log(`${BASE_URL}/${name}.png`);
+  const image = await fetch(`${BASE_URL}/regret-images/${name}.png`).catch(
+    () => false
+  );
   if (image.headers.get("content-type") !== "image/png") return false;
   const imageBlob = await image.buffer();
   return imageBlob;

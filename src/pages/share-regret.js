@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 import RegretsMap from "../components/RegretsMap.js";
 import { useNotification } from "../context";
 

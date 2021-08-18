@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, shareImage, meta, title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -49,7 +49,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: `/shareimage.png`,
+          content: shareImage || `/shareimage.png`,
         },
         {
           property: `og:type`,
