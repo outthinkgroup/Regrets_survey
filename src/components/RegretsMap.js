@@ -21,7 +21,6 @@ function RegretsMap({ className, allowFindRegretById = {}, clearFindRegret }) {
   });
 
   const isMobile = useIsMobile();
-
   React.useEffect(() => {
     if (allowFindRegretById && allowFindRegretById.id) {
       //Trigger everything to bring up the correct regret
@@ -29,7 +28,6 @@ function RegretsMap({ className, allowFindRegretById = {}, clearFindRegret }) {
       allowFindRegretById.trigger((d) => send(["searched", d])); // d is {svgElement, type:STATE/COUNTRY}
     }
   }, [allowFindRegretById.id, send]);
-  React.useEffect(() => {}, [clearFindRegret, allowFindRegretById.id]);
 
   return (
     <div className={className}>

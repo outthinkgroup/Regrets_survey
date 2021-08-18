@@ -19,8 +19,8 @@ const octokit = new Octokit({
 async function webScrape({ event }, chromium, isProd) {
   // BUILDING THE URL OF SITE TO SCREENSHOT
 
-  console.log(process.env.NODE_ENV);
-  const [, , , , id, gender, age, regret, ...location] = event.path.split("/"); // THIS IS UGILY
+  //console.log(process.env.NODE_ENV);
+  const [, , , id, gender, age, regret, ...location] = event.path.split("/"); // THIS IS UGILY
   const regretInfoParams = { gender, age, regret, location: [...location] }; //location = [counrty, ?state]
   const regretInfoString = createUrlParameters(regretInfoParams);
   const url = `${BASE_URL}/shareimage?${regretInfoString}`;
@@ -30,6 +30,7 @@ async function webScrape({ event }, chromium, isProd) {
   // If we already have it dont rebuild it
   // If image already exists redirect to image..
   imageBlob = await checkRegretImageCache(id);
+  console.log("image");
   if (imageBlob) {
     console.log(imageBlob);
     console.log("should be here");
@@ -54,24 +55,27 @@ async function webScrape({ event }, chromium, isProd) {
       launchConfig.executablePath = await chromium.executablePath;
     }
 
+    console.log("before");
     browser = await chromium.puppeteer.launch(launchConfig);
-
     var page = await browser.newPage();
     page.setViewport({
       width: isProd ? 1024 + 20 : 1024,
       height: 512,
       deviceScaleFactor: 2,
     });
+    console.log(url);
     await page.goto(`${url}`);
     //hey
     // await page.waitForTimeout(isProd ? 100 : 100);
-    await page.waitForTimeout("500");
+    await page.waitForTimeout(500);
+    console.log(71);
     const screenshot = await page.screenshot();
 
     await browser.close();
+    console.log("here");
 
     // update static/regret-images/ folder in get with screenshot..
-    if (!isProd) {
+    if (isProd) {
       await uploadRegretImage({
         filename: id,
         image: screenshot.toString("base64"),
@@ -114,6 +118,7 @@ function filterOutReserved(o) {
 }
 
 async function checkRegretImageCache(name) {
+  console.log(name);
   const image = await fetch(`${BASE_URL}/regret-images/${name}.png`).catch(
     () => false
   );

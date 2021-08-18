@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/layout";
 import RegretsMap from "../components/RegretsMap.js";
 import { useNotification } from "../context";
+import { snakeCase, unSnakeCase } from "../lib";
 
 export default function ShareRegretPage() {
   const [regretInfo, setRegretInfo] = React.useState(null);
@@ -20,7 +21,11 @@ export default function ShareRegretPage() {
     if (!regretInfo) return;
 
     const searchedState = document.querySelector(
-      `[data-state="${regretInfo.state}"], [data-country="${regretInfo.country}"]`
+      `${
+        regretInfo.state
+          ? `[data-state="${snakeCase(regretInfo.state)}"]`
+          : `[data-country="${snakeCase(regretInfo.country)}"]`
+      }`
     );
     if (!searchedState) {
       createWarning("NOT_EXIST");
