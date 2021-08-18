@@ -27,9 +27,9 @@ function RegretsMap({ className, allowFindRegretById = {}, clearFindRegret }) {
       //Trigger everything to bring up the correct regret
       //this will trigger the map
       allowFindRegretById.trigger((d) => send(["searched", d])); // d is {svgElement, type:STATE/COUNTRY}
-      clearFindRegret();
     }
   }, [allowFindRegretById.id, send]);
+  React.useEffect(() => {}, [clearFindRegret, allowFindRegretById.id]);
 
   return (
     <div className={className}>
