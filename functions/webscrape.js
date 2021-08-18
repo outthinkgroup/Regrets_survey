@@ -4,8 +4,9 @@ const fetch = require("node-fetch");
 require("dotenv").config();
 const { Octokit } = require("@octokit/rest");
 var Base64 = require("js-base64").Base64;
-const { repo, owner } = require("./triggerRebuild/config.js");
 
+const owner = "outthinkgroup";
+const repo = "Regrets_survey";
 const BASE_URL =
   process.env.NODE_ENV !== "development"
     ? "https://worldregretsurvey.com"
