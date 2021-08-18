@@ -71,10 +71,12 @@ async function webScrape({ event }, chromium, isProd) {
     await browser.close();
 
     // update static/regret-images/ folder in get with screenshot..
-    await uploadRegretImage({
-      filename: id,
-      image: screenshot.toString("base64"),
-    });
+    if (!isProd) {
+      await uploadRegretImage({
+        filename: id,
+        image: screenshot.toString("base64"),
+      });
+    }
     // use id to name the file
 
     return {
