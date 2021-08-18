@@ -75,8 +75,12 @@ function ShareRegret({ id, regret, country, gender, age, state }) {
   if (typeof window === "undefined") return null;
   const link = `${
     window.location.origin
-  }/api/share-regret?id=${id}&regret=${regret}&age=${age}&gender=${gender}&country=${country}${
-    state ? `&state=${state}` : ""
+  }/api/share-regret?id=${id}&regret=${encodeURIComponent(
+    regret
+  )}&age=${encodeURIComponent(age)}&gender=${encodeURIComponent(
+    gender
+  )}&country=${encodeURIComponent(country)}${
+    state ? `&state=${encodeURIComponent(state)}` : ""
   }`;
   return (
     <span style={{ display: "flex", gap: 10 }}>
