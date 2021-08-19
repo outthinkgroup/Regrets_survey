@@ -53,11 +53,11 @@ function SEO({ description, lang, shareImage, meta, title }) {
         },
         {
           property: `og:type`,
-          content: `summary`,
+          content: `summary_larg_image`,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_larg_image`,
         },
         {
           name: `twitter:creator`,
