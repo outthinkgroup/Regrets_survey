@@ -75,7 +75,7 @@ function ShareRegret({ id, regret, country, gender, age, state }) {
   if (typeof window === "undefined") return null;
   const link = `${
     window.location.origin
-  }/api/share-regret?id=${id}&regret=${encodeURIComponent(
+  }/.netlify/functions/share-regret?id=${id}&regret=${encodeURIComponent(
     regret
   )}&age=${encodeURIComponent(age)}&gender=${encodeURIComponent(
     gender
