@@ -9,12 +9,13 @@
   functions = "./functions/"
   port = 8888
 
+[[redirects]]
+from =  "/api/share-regret/*"
+to = "./netlify/functions/share-regret/:splat"
+status = 200
+
 [[redirects]] 
 from = "/api/*" 
 to = "/.netlify/functions/:splat" 
 status = 200
 
-[[redirects]]
-from =  "/api/share-regret/*"
-to = "./netlify/functions/share-regret/:splat"
-status = 200
