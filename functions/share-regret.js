@@ -17,7 +17,7 @@ exports.handler = async (event) => {
   const newHtml = oldHtml.replace(
     "<head>",
     `<head>
-    <meta name="og:image" content="${url}/api/${imageFn}/${id}/${gender}/${age}/${encodeURIComponent(
+    <meta property="og:image" content="${url}/api/${imageFn}/${id}/${gender}/${age}/${encodeURIComponent(
       regret
     )}/${country}/${state ? state : ""}" />`
   );
