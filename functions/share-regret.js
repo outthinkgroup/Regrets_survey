@@ -11,7 +11,7 @@ exports.handler = async (event) => {
 
   const shareTemplate = `
   <!-- Twitter Card data -->
-<meta name="twitter:card" content="${regret}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="worldregretsurvey.com">
 <meta name="twitter:title" content="${gender}, ${age} ">
 <meta name="twitter:description" content="A regret from the World Regret Survey" >
