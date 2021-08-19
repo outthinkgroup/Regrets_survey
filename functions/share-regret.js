@@ -16,7 +16,7 @@ exports.handler = async (event) => {
 <meta name="twitter:title" content="${gender}, ${age} ">
 <meta name="twitter:description" content="A regret from the World Regret Survey" >
 <meta name="twitter:creator" content="@danpink">
-<-- Twitter Summary card images must be at least 120x120px -->
+<!-- Twitter Summary card images must be at least 120x120px -->
 <meta name="twitter:image"  content="${url}/api/${imageFn}/${id}/${gender}/${age}/${encodeURIComponent(
     regret
   )}/${country}/${state ? state : ""}.png" >
