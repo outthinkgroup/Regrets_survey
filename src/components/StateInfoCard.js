@@ -73,15 +73,7 @@ export default function StateInfoCard({
 
 function ShareRegret({ id, regret, country, gender, age, state }) {
   if (typeof window === "undefined") return null;
-  const link = `${
-    window.location.origin
-  }/.netlify/functions/share-regret?id=${id}&regret=${encodeURIComponent(
-    regret
-  )}&age=${encodeURIComponent(age)}&gender=${encodeURIComponent(
-    gender
-  )}&country=${encodeURIComponent(country)}${
-    state ? `&state=${encodeURIComponent(state)}` : ""
-  }`;
+  const link = `${window.location.origin}/regret/${id}`;
   return (
     <span style={{ display: "flex", gap: 10 }}>
       <CopyButton text="copy share link" showIcon={true} copyString={link} />
