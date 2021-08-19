@@ -13,7 +13,7 @@ exports.handler = async (event) => {
   <!-- Twitter Card data -->
 <meta name="twitter:card" content="${regret}">
 <meta name="twitter:site" content="worldregretsurvey.com">
-<meta name="twitter:title" content="${genser}, ${age} ">
+<meta name="twitter:title" content="${gender}, ${age} ">
 <meta name="twitter:description" content="A regret from the World Regret Survey" >
 <meta name="twitter:creator" content="@danpink">
 <-- Twitter Summary card images must be at least 120x120px -->
