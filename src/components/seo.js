@@ -49,7 +49,7 @@ function SEO({ description, lang, shareImage, meta, title }) {
         },
         {
           property: `og:image`,
-          content: shareImage || `/shareimage.png`,
+          content: shareImage || `/shareimage.jpg`,
         },
         {
           property: `og:type`,
