@@ -19,7 +19,7 @@ exports.handler = async (event) => {
 <-- Twitter Summary card images must be at least 120x120px -->
 <meta name="twitter:image"  content="${url}/api/${imageFn}/${id}/${gender}/${age}/${encodeURIComponent(
     regret
-  )}/${country}/${state ? state : ""}" >
+  )}/${country}/${state ? state : ""}.png" >
 
 <!-- Open Graph data -->
 <meta property="og:title" content="${gender}, ${age}" />
@@ -29,7 +29,7 @@ exports.handler = async (event) => {
   }" />
 <meta property="og:image" content="${url}/api/${imageFn}/${id}/${gender}/${age}/${encodeURIComponent(
     regret
-  )}/${country}/${state ? state : ""}"  />
+  )}/${country}/${state ? state : ""}.png"  />
 <meta property="og:description" content="A regret from the World Regret Survey" />
 <meta property="og:site_name" content="World Regret Survey" />
   `;
