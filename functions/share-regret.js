@@ -23,7 +23,7 @@ exports.handler = async (event) => {
 
 <!-- Open Graph data -->
 <meta property="og:title" content="${gender}, ${age}" />
-<meta property="og:type" content="article" />
+<meta property="og:type" content="website" />
 <meta property="og:url" content="${url}/share-regret/?id=${id}&regret=${regret}&age=${age}&gender=${gender}&country=${country}${
     state ? `&state=${state}` : ""
   }" />
