@@ -10,8 +10,8 @@
   port = 8888
 
 [[redirects]]
-from =  "/share/regret/*"
-to = "./netlify/functions/share-regret/:splat"
+from =  "/api/share-regret/*"
+to = "/.netlify/functions/share-regret/:splat"
 status = 200
 
 [[redirects]] 
