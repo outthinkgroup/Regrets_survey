@@ -64,7 +64,7 @@ export default function RegretImageCreator() {
   function generateId() {
     const previewRegretString = previewRegret ? previewRegret.regret : "";
     if (previewRegretString == settings.regret) {
-      return previewRegret.generateId;
+      return previewRegret.id;
     }
 
     return window.btoa(String(Date.now()));
@@ -101,7 +101,7 @@ export default function RegretImageCreator() {
       const twitterImageWidth = 1024;
       setIframeRatioToFit(containerWidth / twitterImageWidth);
     }
-  }, [iframeRef.current, setIframeRatioToFit]);
+  }, [iframeRef.current, setIframeRatioToFit]);//BAD: dont put refs as deps in useEffect as react doesnt check them 
 
   if (!user) {
     return <Redirect noThrow to={"/"} />;

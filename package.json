@@ -7,15 +7,14 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^2.2.0",
-    "@netlify/functions": "^0.7.2",
-    "chrome-aws-lambda": "^9.1.0",
-    "netlify-lambda": "^2.0.7",
-    "puppeteer-core": "^9.1.1",
     "@mdx-js/mdx": "^1.6.5",
     "@mdx-js/react": "^1.6.5",
+    "@netlify/functions": "^0.7.2",
     "@octokit/rest": "^17.9.2",
     "babel-plugin-styled-components": "^1.10.7",
     "base-64": "^0.1.0",
+    "chrome-aws-lambda": "^9.1.0",
+    "cloudinary": "^1.26.3",
     "dotenv": "^8.2.0",
     "downshift": "^5.4.2",
     "gatsby": "^2.19.45",
@@ -36,9 +35,11 @@
     "js-base64": "^2.5.2",
     "md5": "^2.2.1",
     "netlify-identity-widget": "^1.6.0",
+    "netlify-lambda": "^2.0.7",
     "node-fetch": "^2.6.0",
     "node-stream-zip": "^1.11.1",
     "prop-types": "^15.7.2",
+    "puppeteer-core": "^9.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
@@ -50,8 +51,8 @@
     "babel-preset-gatsby": "^0.5.5",
     "cypress": "^4.8.0",
     "prettier": "^1.19.1",
-    "start-server-and-test": "^1.11.0",
-    "puppeteer": "^9.1.1"
+    "puppeteer": "^9.1.1",
+    "start-server-and-test": "^1.11.0"
   },
   "keywords": [
     "gatsby"

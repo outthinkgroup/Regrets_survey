@@ -1,4 +1,4 @@
-const { webScrape } = require("./functions/webscrape.js");
+const { webScrape } = require("./functions/shareImage/webscrape.js");
 const puppeteer = require("puppeteer");
 const chromium = require("chrome-aws-lambda");
 

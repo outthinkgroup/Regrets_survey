@@ -2,20 +2,12 @@
 /*ITS HERE FOR HMR*/
 const fetch = require("node-fetch");
 require("dotenv").config();
-const { Octokit } = require("@octokit/rest");
-var Base64 = require("js-base64").Base64;
+const { uploadToCloudinary, cloudinaryURL } = require("./cloudinary");
 
-const owner = "outthinkgroup";
-const repo = "Regrets_survey";
 const BASE_URL =
   process.env.NODE_ENV !== "development"
     ? "https://worldregretsurvey.com"
     : "http://localhost:8888";
-
-const githubToken = process.env.AUTH;
-const octokit = new Octokit({
-  auth: githubToken,
-});
 
 async function webScrape({ event }, chromium, isProd) {
   // BUILDING THE URL OF SITE TO SCREENSHOT
@@ -27,17 +19,14 @@ async function webScrape({ event }, chromium, isProd) {
   const url = `${BASE_URL}/shareimage?${regretInfoString}`;
   console.log(url);
 
-  // this is the code that would normally check if image is in cache
-  // If we already have it dont rebuild it
-  // If image already exists redirect to image..
-  imageBlob = await checkRegretImageCache(id);
-  console.log("image");
-  if (imageBlob) {
-    console.log(imageBlob);
-    console.log("should be here");
+  //CHECK IF WE ALREADY GOT IT
+  const imageFromCloudinary = await fetch(`${cloudinaryURL}/${id}`);
+  console.log(`${cloudinaryURL}/${id}`, imageFromCloudinary.ok);
+  if (imageFromCloudinary.ok) {
+    const image = await imageFromCloudinary.buffer();
     return {
       statusCode: 200,
-      body: imageBlob.toString("base64"),
+      body: image.toString("base64"),
       isBase64Encoded: true,
       headers: {
         "Content-Type": "image/png",
@@ -62,7 +51,7 @@ async function webScrape({ event }, chromium, isProd) {
     page.setViewport({
       width: isProd ? 1024 + 20 : 1024,
       height: 512,
-      deviceScaleFactor: 2,
+      deviceScaleFactor: 1.1,
     });
     console.log(url);
     await page.goto(`${url}`);
@@ -70,23 +59,21 @@ async function webScrape({ event }, chromium, isProd) {
     // await page.waitForTimeout(isProd ? 100 : 100);
     await page.waitForTimeout(500);
     console.log(71);
-    const screenshot = await page.screenshot();
+    const screenshot = await page.screenshot({ encoding: "base64" });
 
     await browser.close();
     console.log("here");
 
-    // update static/regret-images/ folder in get with screenshot..
-    if (isProd) {
-      await uploadRegretImage({
-        filename: id,
-        image: screenshot.toString("base64"),
-      });
-    }
     // use id to name the file
+    const res = await uploadToCloudinary(
+      `data:image/png;base64,${screenshot}`,
+      id
+    );
 
     return {
       statusCode: 200,
-      body: screenshot.toString("base64"),
+      //body: screenshot.toString("base64"),
+      body: screenshot,
       isBase64Encoded: true,
       headers: {
         "Content-Type": "image/png",
@@ -117,37 +104,10 @@ function filterOutReserved(o) {
   }
   return true;
 }
-
-async function checkRegretImageCache(name) {
-  console.log(name);
-  const image = await fetch(`${BASE_URL}/regret-images/${name}.png`).catch(
-    () => false
-  );
-  if (image.headers.get("content-type") !== "image/png") return false;
-  const imageBlob = await image.buffer();
-  return imageBlob;
+function createUrlParameters({ age, gender, id, regret, location }) {
+  return `age=${age}&gender=${gender}&id=${id}&regret=${encodeURIComponent(
+    regret
+  )}&country=${location[0]}${location[0] ? `&state=${location[1]}` : ""}`;
 }
 
-function createUrlParameters({
-  age,
-  regret,
-  gender,
-  location: [country, state],
-}) {
-  return `age=${age}&regret=${regret}&gender=${gender}&country=${country}${
-    state ? `&state=${state}` : ``
-  }`;
-}
-
-async function uploadRegretImage({ filename, image }) {
-  const response = await octokit.repos.createOrUpdateFileContents({
-    owner,
-    repo,
-    path: `static/regret-images/${filename}.png`,
-    message: `uploading image: ${filename}.png`,
-    //content: Base64.encode(image),
-    content: image,
-  });
-  return response;
-}
 module.exports = { webScrape };
