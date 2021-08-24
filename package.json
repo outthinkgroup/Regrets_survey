@@ -17,6 +17,7 @@
     "cloudinary": "^1.26.3",
     "dotenv": "^8.2.0",
     "downshift": "^5.4.2",
+    "form-data": "^4.0.0",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
     "gatsby-plugin-google-analytics": "^2.3.3",
@@ -44,6 +45,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
     "react-spring": "^9.0.0-rc.3",
+    "sha1": "^1.1.1",
     "styled-components": "^5.0.1",
     "utf8": "^3.0.0"
   },

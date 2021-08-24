@@ -2,7 +2,7 @@
 /*ITS HERE FOR HMR*/
 const fetch = require("node-fetch");
 require("dotenv").config();
-const { uploadToCloudinary, cloudinaryURL } = require("./cloudinary");
+const { cloudinaryRestUploader, cloudinaryURL } = require("./cloudinary");
 
 const BASE_URL =
   process.env.NODE_ENV !== "development"
@@ -58,17 +58,18 @@ async function webScrape({ event }, chromium, isProd) {
     //hey
     // await page.waitForTimeout(isProd ? 100 : 100);
     await page.waitForTimeout(500);
-    console.log(71);
     const screenshot = await page.screenshot({ encoding: "base64" });
 
     await browser.close();
     console.log("here");
 
     // use id to name the file
-    const res = await uploadToCloudinary(
+
+    const res = await cloudinaryRestUploader(
       `data:image/png;base64,${screenshot}`,
       id
-    );
+    ).catch(console.error);
+    console.log("from cloudinaryRestUploader", res);
 
     return {
       statusCode: 200,

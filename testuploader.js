@@ -10,11 +10,12 @@ const chromium = require("chrome-aws-lambda");
   const state = "yourmom";
 
   const event = {
-    path: `_/_/_/_/${id}/${gender}/${encodeURIComponent(
+    path: `_/_/_/${id}/${gender}/${encodeURIComponent(
       regret
     )}/${country}/${state}`,
   };
-  const res = await webScrape({ event, context: {} }, chromium, false);
-  console.log(res);
+  const res = await webScrape({ event, context: {} }, chromium, false).catch(
+    console.log
+  );
   return;
 })();

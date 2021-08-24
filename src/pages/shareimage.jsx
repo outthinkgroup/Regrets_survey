@@ -99,7 +99,7 @@ function getUrlParams() {
   return {
     age,
     gender,
-    regret,
+    regret: decodeURIComponent(regret),
     country,
     state,
   };
