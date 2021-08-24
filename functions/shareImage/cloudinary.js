@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const fetch = require("node-fetch");
 dotenv.config();
 
-const cloudinaryURL = `https://res.cloudinary.com/outthink/image/upload/regret-images`;
+const cloudinaryURL = `https://res.cloudinary.com/outthink/image/upload/c_scale,q_auto,w_832/regret-images`;
 const cloudinaryUploadURL = `https://res.cloudinary.com/outthink/image/upload`;
 //cloudinary.config({
 //cloud_name: process.env.CLOUDINARY_NAME,
