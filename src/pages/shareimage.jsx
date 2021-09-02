@@ -15,23 +15,21 @@ export default function ShareImage() {
   const { age, gender, regret, country, state } = regretInfo;
   return (
     <ShareImageWrapper className="shareimage-container">
-      <div className="regret">
-        <RegretCard
-          age={age}
-          gender={gender}
-          regret={regret}
-          state={state}
-          location={{ country, state }}
-          header={""}
-          footer={
-            <span className="footer-text">
-              See more at{" "}
-              <span className="red-text">worldregretsurvey.com</span>
-            </span>
-          }
-        />
+      <div className="regret-card">
+        <blockquote className="regret">{regret}</blockquote>
+        <cite>
+          <p>
+            <span className="gender">{gender}</span>, age{` `}
+            <span className="age">{age}</span>
+          </p>
+          <p>
+            {state ? <span className="state">{state}</span> : null},{" "}
+            <span className="country">{country}</span>
+          </p>
+        </cite>
       </div>
-      <div className="title">
+
+      {/* <div className="title">
         <h1>
           <span>from the</span>
           World Regret
@@ -39,13 +37,13 @@ export default function ShareImage() {
           Survey
         </h1>
         <p>A project by Daniel Pink</p>
-      </div>
+      </div> */}
     </ShareImageWrapper>
   );
 }
 const ShareImageWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 100vh;
   background: url("/dsi-bg.png");
@@ -60,8 +58,32 @@ const ShareImageWrapper = styled.div`
   .red-text {
     color: ${colors.primary.base};
   }
-  ${RegretCard} .active-state-info-card {
-    width: 100%;
+  .regret-card {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    blockquote {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10vh;
+      line-height: 1.2;
+    }
+    cite {
+      font-size: 6vh;
+      color: ${colors.grey[4]};
+      margin-bottom: 1em;
+      font-weight: bold;
+      p {
+        margin-bottom: 0;
+      }
+      span {
+        color: black;
+      }
+    }
   }
   .title {
     text-shadow: 2px 2px 8px rgb(0 0 0 / 50%);
@@ -88,6 +110,7 @@ const ShareImageWrapper = styled.div`
     font-weight: bold;
   }
 `;
+
 function getUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const age = params.get("age");
