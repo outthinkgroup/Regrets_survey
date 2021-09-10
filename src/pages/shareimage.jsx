@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { RegretCard } from "../components/StateInfoCard";
 import styled from "styled-components";
-import { colors, fonts } from "../styles/index.js";
+import { colors, fonts, elevation } from "../styles/index.js";
 
 export default function ShareImage() {
   const [regretInfo, setRegretInfo] = useState(null);
@@ -16,99 +15,71 @@ export default function ShareImage() {
   return (
     <ShareImageWrapper className="shareimage-container">
       <div className="regret-card">
-        <blockquote className="regret">{regret}</blockquote>
         <cite>
-          <p>
+					<p className="location">
+						{state ? <span className="state">{state},</span> : null}{" "}
+						<span className="country">{country}</span>
+					</p>
+          <p className="info">
             <span className="gender">{gender}</span>, age{` `}
             <span className="age">{age}</span>
           </p>
-          <p>
-            {state ? <span className="state">{state}</span> : null},{" "}
-            <span className="country">{country}</span>
-          </p>
         </cite>
+        <blockquote className="regret">{regret}</blockquote>
+				<a href="/">worldregretsurvey.com</a>
       </div>
-
-      {/* <div className="title">
-        <h1>
-          <span>from the</span>
-          World Regret
-          <br />
-          Survey
-        </h1>
-        <p>A project by Daniel Pink</p>
-      </div> */}
     </ShareImageWrapper>
   );
 }
 const ShareImageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: url("/dsi-bg.png");
-  background-repeat: norepeat;
-  background-size: cover;
-  padding-left: 99px;
-  padding-right: 89px;
-  & > * {
-    width: 100%;
-    position: relative;
-  }
-  .red-text {
-    color: ${colors.primary.base};
-  }
-  .regret-card {
-    height: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    blockquote {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 10vh;
-      line-height: 1.2;
-    }
-    cite {
-      font-size: 6vh;
-      color: ${colors.grey[4]};
-      margin-bottom: 1em;
-      font-weight: bold;
-      p {
-        margin-bottom: 0;
-      }
-      span {
-        color: black;
-      }
-    }
-  }
-  .title {
-    text-shadow: 2px 2px 8px rgb(0 0 0 / 50%);
-    padding: 0px;
-    text-align: center;
-    h1 {
-      font-size: 59px;
-      text-transform: capitalize;
-    }
-    h1 span {
-      display: block;
-      font-size: 38px;
-      font-weight: 400;
-    }
-  }
-  .title p {
-    font-size: 15px;
-    font-weight: bold;
-    color: ${colors.primary.base};
-    text-shadow: none;
-  }
-  .footer-text {
-    font-family: ${fonts.family};
-    font-weight: bold;
-  }
+  font-family:${fonts.family};
+	height:100vh;
+	background:url('/share-img-bg.jpg');
+	background-repeat:no-repeat;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+
+	.regret-card{
+		text-align:center;
+		background:white;
+		box-shadow:0px 50px 100px rgba(50, 50, 50, 0.1), 0px 15px 35px rgba(50, 50, 93, 0.1), 0px 5px 15px rgba(0, 0, 0, 0.1);
+		border-radius:10px;
+		padding:26px 46px;
+		width:746px;
+		height:435px;
+		display:flex;
+		flex-direction:column;
+		justify-content:space-between; 
+		gap:24px;
+	}
+	cite{
+		font-weight:700;
+		color:black;
+		font-style:normal;	            
+		p{
+			margin:0;
+		}
+	}
+	.location{
+		font-size: 14px;
+		text-transform:uppercase;
+	}
+  .info{
+		font-size:18px;
+		text-transform:capitalize;  
+	}
+	a{
+		text-decoration:none;
+		color:${colors.primary.base};
+		font-weight:bold;
+	}
+	.regret{
+		font-size:30px;
+		line-height:1.33;
+		font-weight:300;
+	}
+	
 `;
 
 function getUrlParams() {

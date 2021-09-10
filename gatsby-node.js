@@ -2,7 +2,6 @@ const path = require("path");
 exports.createPages = async function({ actions, graphql, reporter }) {
   const { createPage } = actions;
   // Creates a url in gatsby router for the netlify functions so it can hydrate
-
   const { data } = await graphql(
     `
       {
