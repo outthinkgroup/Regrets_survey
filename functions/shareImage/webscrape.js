@@ -49,7 +49,7 @@ async function webScrape({ event }, chromium, isProd) {
     browser = await chromium.puppeteer.launch(launchConfig);
     var page = await browser.newPage();
     page.setViewport({
-      width: isProd ? 1024 + 20 : 1024,
+      width: 1024,
       height: 512,
       deviceScaleFactor: 1.1,
     });
