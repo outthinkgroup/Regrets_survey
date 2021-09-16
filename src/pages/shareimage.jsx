@@ -32,6 +32,10 @@ export default function ShareImage() {
   );
 }
 const ShareImageWrapper = styled.div`
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
   font-family:${fonts.family};
 	height:100vh;
 	background:url('/share-img-bg.jpg');
