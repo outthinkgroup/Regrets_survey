@@ -1,10 +1,16 @@
-import React, { useState, useMemo, useEffect, useRef } from "react";
-import { useAuth, GET_REGRETS } from "../hooks";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { GET_REGRETS, useAuth } from "../hooks";
 import AdminLayout from "./AdminLayout";
 import { colors, elevation, fonts } from "../styles";
 import { Redirect } from "@reach/router";
 import styled from "styled-components";
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 const REGRET_LIST = graphql`
   query REGRET_LIST {
@@ -32,6 +38,7 @@ export default function RegretImageCreator() {
   const { user } = useAuth();
   const { allQualtricsData } = useStaticQuery(REGRET_LIST);
   const { regretList } = allQualtricsData.nodes[0].results;
+  const [idFromUrl, setIdFromUrl] = useState(null);
   const [activePreviewRegretIndex, setActivePreviewRegretIndex] = useState(0);
 
   const previewRegret = regretList[activePreviewRegretIndex];
@@ -46,13 +53,15 @@ export default function RegretImageCreator() {
     const { name, value } = e.target;
     setSettings((state) => ({ ...state, [name]: value }));
   }
-  async function saveImage(e, checkToGit = false) {
+  async function saveImage(e) {
     e.preventDefault();
     const url = `/api/${
       process.env.NODE_ENV == "development" ? "shareImage-dev" : "shareImage"
-    }/${generateId()}/${settings.gender}/${settings.age}/${encodeURIComponent(
-      settings.regret
-    )}/${settings.country}/${settings.state ? settings.state : ""}`;
+    }/${generateId()}/${settings.gender}/${settings.age}/${
+      encodeURIComponent(
+        settings.regret,
+      )
+    }/${settings.country}/${settings.state ? settings.state : ""}`;
 
     const imageBlob = await fetch(url).then((res) => res.blob());
     const imageObjectURL = URL.createObjectURL(imageBlob);
@@ -76,13 +85,24 @@ export default function RegretImageCreator() {
     );
   }
 
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      setIdFromUrl(getUrlParams());
+    }
+  }, []);
+
   useEffect(() => {
-    if (regretList) {
+    if (typeof window !== "undefined" && regretList && idFromUrl) {
       setActivePreviewRegretIndex(
-        Math.floor(Math.random() * regretList.length)
+        regretList.findIndex((regret) => regret.id === idFromUrl),
       );
     }
-  }, [regretList]);
+    if (typeof window !== "undefined" && regretList && !idFromUrl) {
+      setActivePreviewRegretIndex(
+        Math.floor(Math.random() * regretList.length),
+      );
+    }
+  }, [regretList, idFromUrl]);
 
   useEffect(() => {
     setSettings({
@@ -96,12 +116,13 @@ export default function RegretImageCreator() {
   const iframeRef = useRef();
   useEffect(() => {
     if (iframeRef && iframeRef.current) {
-      const containerWidth = iframeRef.current.parentElement.getBoundingClientRect()
-        .width;
+      const containerWidth =
+        iframeRef.current.parentElement.getBoundingClientRect()
+          .width;
       const twitterImageWidth = 1024;
       setIframeRatioToFit(containerWidth / twitterImageWidth);
     }
-  }, [iframeRef.current, setIframeRatioToFit]);//BAD: dont put refs as deps in useEffect as react doesnt check them 
+  }, [iframeRef.current, setIframeRatioToFit]); //BAD: dont put refs as deps in useEffect as react doesnt check them
 
   if (!user) {
     return <Redirect noThrow to={"/"} />;
@@ -109,7 +130,7 @@ export default function RegretImageCreator() {
 
   return (
     <AdminLayout>
-      <h1> Create a Regret Share Image</h1>
+      <h1>Create a Regret Share Image</h1>
       <PageWrapper iframeRatioToFit={iframeRatioToFit}>
         <div className="settings">
           <div className="setting">
@@ -154,7 +175,8 @@ export default function RegretImageCreator() {
               name="regret"
               onChange={updateSettings}
               value={settings.regret}
-            ></textarea>
+            >
+            </textarea>
           </div>
           <div className="options">
             <button onClick={seeAnotherRegret} type="button">
@@ -163,9 +185,11 @@ export default function RegretImageCreator() {
             <button onClick={saveImage} type="button">
               Save as Image
             </button>
-            {/*<button onClick={(e) => saveImage(e, true)} type="button">
+            {
+              /*<button onClick={(e) => saveImage(e, true)} type="button">
               Save Image and Upload
-						</button>*/}
+						</button>*/
+            }
           </div>
         </div>
         <div className="preview">
@@ -210,3 +234,10 @@ const PageWrapper = styled.div`
     transform-origin: 0 0;
   }
 `;
+
+function getUrlParams() {
+  if (typeof window === "undefined") return null;
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  return id;
+}
