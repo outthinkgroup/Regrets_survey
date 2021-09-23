@@ -180,7 +180,7 @@ export const RegretCard = styled(RegretCardUnStyled)`
       font-size: ${fonts.sizes.copy};
       line-height: 2em;
       max-height: 200px;
-      overflow-x: scroll;
+      overflow-y: scroll;
     }
 
     button.close {
