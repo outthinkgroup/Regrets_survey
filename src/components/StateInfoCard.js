@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "./Icon";
 import styled from "styled-components";
-import { fonts, colors } from "../styles";
+import { colors, fonts } from "../styles";
 import { useGetRegrets } from "../hooks/useGetRegrets";
 import ProtectedComponent from "./ProtectedComponent";
 import { CopyButton, ShareButton } from "./Share.js";
@@ -50,21 +50,29 @@ export default function StateInfoCard({
       shouldAnimate={true}
       footer={
         activeStateHasMultiple && (
-          <div className="flex-row">
-            <button className="next" onClick={getAnotherRegret}>
-              see another
-            </button>
+          <>
+            <div className="flex-row">
+              <button className="next" onClick={getAnotherRegret}>
+                see another
+              </button>
+
+              <ProtectedComponent>
+                <ShareRegret
+                  id={regret.id}
+                  regret={regret.regret}
+                  country={regret.location.country}
+                  state={regret.location.state}
+                  gender={regret.gender}
+                  age={regret.age}
+                />
+              </ProtectedComponent>
+            </div>
             <ProtectedComponent>
-              <ShareRegret
-                id={regret.id}
-                regret={regret.regret}
-                country={regret.location.country}
-                state={regret.location.state}
-                gender={regret.gender}
-                age={regret.age}
-              />
+              <a href={`/admin/new-regret-image/?id=${regret.id}`}>
+                Send To Image Creator
+              </a>
             </ProtectedComponent>
-          </div>
+          </>
         )
       }
     />
@@ -77,6 +85,7 @@ function ShareRegret({ id, regret, country, gender, age, state }) {
   return (
     <span style={{ display: "flex", gap: 10 }}>
       <CopyButton text="copy share link" showIcon={true} copyString={link} />
+
       <ShareButton
         url={link}
         text="A regret from the World Regret Survey"
