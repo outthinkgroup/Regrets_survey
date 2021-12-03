@@ -794,6 +794,17 @@
         }
       },
       {
+        "regret": " I regret not having invested anything as a teen or young person. I also regret not having kids.",
+        "gender": "Male",
+        "id": "R_10qM8xpk6ajuY4W",
+        "date": "2021-11-27T19:35:59Z",
+        "age": 44,
+        "location": {
+          "state": "Oregon",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Should get into shape\nNot staying in touch with my ex and his family\n",
         "gender": "Female",
         "id": "R_3jU4x1ZO4udwYDf",
@@ -893,13 +904,13 @@
         }
       },
       {
-        "regret": "Wish I had treated my ex-wife better.",
-        "gender": "Male",
-        "id": "R_Wfe8L4qQUMe9I0F",
-        "date": "2021-11-01T20:28:56Z",
-        "age": 83,
+        "regret": "I regret not graduating from college. I went four years but never finished. ",
+        "gender": "Female",
+        "id": "R_a3ojjFXGbacj3nH",
+        "date": "2021-11-29T03:42:04Z",
+        "age": 55,
         "location": {
-          "state": "Oregon",
+          "state": "Texas",
           "country": "United States"
         }
       },
@@ -997,17 +1008,6 @@
         "id": "R_1jBeoyCrVtyHaIA",
         "date": "2021-09-08T22:05:14Z",
         "age": 51,
-        "location": {
-          "state": "Texas",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not learning to speak up for myself sooner ",
-        "gender": "Female",
-        "id": "R_1oA1scVFC8amFku",
-        "date": "2021-09-08T21:44:14Z",
-        "age": 55,
         "location": {
           "state": "Texas",
           "country": "United States"
@@ -1124,6 +1124,17 @@
         }
       },
       {
+        "regret": "That I allowed someone else to determine if I became a mother or not.",
+        "gender": "Female",
+        "id": "R_1jE7UyiKqs9POMW",
+        "date": "2021-11-29T17:47:45Z",
+        "age": 52,
+        "location": {
+          "state": "Florida",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Making an ignorant, off-hand comment to someone else as a naive teenager.  And then taking too long to forgive myself for it as an adult.",
         "gender": "Female",
         "id": "R_2YnecCL8JmohfZo",
@@ -1217,17 +1228,6 @@
         "id": "R_1DwkbMZhAGdO5lh",
         "date": "2021-08-24T22:28:08Z",
         "age": 65,
-        "location": {
-          "state": "Florida",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret not moving in with my mother for what turned out to be the last year of her life.",
-        "gender": "Female",
-        "id": "R_10PoBVVyzTvvD59",
-        "date": "2021-08-17T00:24:46Z",
-        "age": 63,
         "location": {
           "state": "Florida",
           "country": "United States"
@@ -1647,6 +1647,39 @@
         }
       },
       {
+        "regret": "Starting fights with my hubby",
+        "gender": "Female",
+        "id": "R_BroTK3dHumiabKh",
+        "date": "2021-12-01T19:20:58Z",
+        "age": 28,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I gave away concert tickets to see Tom Petty a week before he died. I didn't connect with my cousin (who is closest in age to me, also with two young children) when she was very depressed and going through a difficult time and she committed suicide.",
+        "gender": "Female",
+        "id": "R_1Gwh5i6weFajbr0",
+        "date": "2021-12-01T19:05:24Z",
+        "age": 41,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Not moving to PG",
+        "gender": "Female",
+        "id": "R_50XcPqRkAKhv4VX",
+        "date": "2021-11-28T06:54:43Z",
+        "age": 62,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "A better relationship with my mother.",
         "gender": "Female",
         "id": "R_3HgZCjglJKkmT3y",
@@ -1718,39 +1751,6 @@
         "id": "R_2rUUAHlcMqerI0T",
         "date": "2021-10-27T17:03:12Z",
         "age": 53,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not taking a job in high school that might have change the course of my life because it would have made me look at life differently beyond high school life.",
-        "gender": "Male",
-        "id": "R_55efMyH8WzsCfv3",
-        "date": "2021-10-27T15:02:55Z",
-        "age": 47,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "The little things that add up. Not transferring to an elite college when I could have. Not going for that top job that I should have and staying where I was out of fear. How might these little things built up into big differences? ",
-        "gender": "Male",
-        "id": "R_31RaT2FqlXK1yM0",
-        "date": "2021-10-26T23:41:10Z",
-        "age": 40,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret not challenging someone who bullied me for many years.",
-        "gender": "Female",
-        "id": "R_TpE7lXYXN12qMEh",
-        "date": "2021-10-26T19:15:12Z",
-        "age": 64,
         "location": {
           "state": "California",
           "country": "United States"
@@ -4314,6 +4314,17 @@
         }
       },
       {
+        "regret": "I regret not being faithful to my first real love. Till this day no one compares to her and the love I felt for her is like nothing I ever felt before. I also regret not being brave enough to fully be myself and not coming out until I was older. ",
+        "gender": "Female",
+        "id": "R_1rDivZXObaVtQG2",
+        "date": "2021-11-30T16:31:40Z",
+        "age": 28,
+        "location": {
+          "state": "New York",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Not spending more time with my younger brother while we were adults, before he passed away at 29 years old. ",
         "gender": "Female",
         "id": "R_2AEicGTHIdlRGia",
@@ -4407,17 +4418,6 @@
         "id": "R_PzCQYs0yzCeGxP3",
         "date": "2021-10-07T12:48:56Z",
         "age": 49,
-        "location": {
-          "state": "New York",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I went to an Ivy League institution for undergrad and then I didn’t pursue a graduate/professional degree because I didn’t get accepted to a top-tier school. I didn’t want to disappoint my parents by settling on a non-top tier school. I regret that decision very much.",
-        "gender": "Male",
-        "id": "R_vMuhkwHLUYsUqNH",
-        "date": "2021-10-05T23:13:08Z",
-        "age": 50,
         "location": {
           "state": "New York",
           "country": "United States"
@@ -5474,6 +5474,16 @@
         }
       },
       {
+        "regret": "I wish I had insisted a little more in my childhood, adolescence and youth;  Living with a stubborn parent forced me to make constant peace and avoid arguing and seeking justice.  I have been married and emigrated for three years now. I say to myself, I wish I had not lost all this time, but maybe I was not who I am!",
+        "gender": "Female",
+        "id": "R_1felbdjFaSBjVbZ",
+        "date": "2021-11-30T20:58:58Z",
+        "age": 37,
+        "location": {
+          "country": "Germany"
+        }
+      },
+      {
         "regret": "was a smoker. left my first love.",
         "gender": "Male",
         "id": "R_1pu7nisx4Kw0KEU",
@@ -5559,16 +5569,6 @@
         "id": "R_2CKs7FhQLim8FUx",
         "date": "2021-08-10T16:35:46Z",
         "age": 41,
-        "location": {
-          "country": "Germany"
-        }
-      },
-      {
-        "regret": "Not being more assertive",
-        "gender": "Male",
-        "id": "R_3lxCVRnjG8HbDD3",
-        "date": "2021-08-04T13:52:07Z",
-        "age": 53,
         "location": {
           "country": "Germany"
         }
