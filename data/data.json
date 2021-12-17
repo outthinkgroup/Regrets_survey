@@ -1977,6 +1977,17 @@
         }
       },
       {
+        "regret": "Not being more prepared for two career possibilities. Made assumptions that I could do the work without a comprehensive appraisal. ",
+        "gender": "Female",
+        "id": "R_21u0YNtCGyh4eQ5",
+        "date": "2021-12-11T23:00:42Z",
+        "age": 65,
+        "location": {
+          "state": "British Columbia",
+          "country": "Canada"
+        }
+      },
+      {
         "regret": "I regret having inhaled shisha once. I was on a 3 day trip in Dubai during the holidays, with my mother and stepfather. It was the 1st time I traveled to another continent. Every sequence that happened before that moment since I was invited, led me to this one thing. My stepfather worked for Air Canada (still does), so I knew only 10% of the flights had to be paid. In fact, they paid it so I didn't even have to pay a dime. Fast-forward starting from when we arrived at the big destination, it was already dark because of the different time zones. We first got to our hotel room. Then, the stepfather invited me to go out for a little while to get a meal. We sat there and there were a few shisha pumps that people were using. I talked a little bit about it to him, and then told me some things saying that it wouldn't make much difference if it was inhaled. He was confusing my brain and my state. Eventually, the decision in my mind was to do it and so I did. Just after, he did as well.\n\nREGRET",
         "gender": "Male",
         "id": "R_3OoYf9u5eyk3Efy",
@@ -2070,17 +2081,6 @@
         "id": "R_5vts1MnplvDNRAt",
         "date": "2021-09-20T16:34:21Z",
         "age": 52,
-        "location": {
-          "state": "British Columbia",
-          "country": "Canada"
-        }
-      },
-      {
-        "regret": "I’m 4th generation half Chinese. I regret not learning Mandarin as a child. I regret the fact that my family didn’t keep more cultural ties or connection to our family back in China. I can’t blame my grandparents, though - family is complicated and assimilation during the early 1900s was a b*tch. ",
-        "gender": "Female",
-        "id": "R_2v16fBbDT1F1TaC",
-        "date": "2021-09-18T16:58:28Z",
-        "age": 22,
         "location": {
           "state": "British Columbia",
           "country": "Canada"
@@ -6935,6 +6935,16 @@
         }
       },
       {
+        "regret": "Not moving to HR  ",
+        "gender": "Male",
+        "id": "R_1f6NnNQ7Wl1JhQO",
+        "date": "2021-12-10T18:16:06Z",
+        "age": 50,
+        "location": {
+          "country": "Australia"
+        }
+      },
+      {
         "regret": "Not marrying my obvious soulmate.  We reconnected mid-life and realised how much we were alike in the years apart, and now enjoy a good friendship - but how life would have been different if our teen years and earlier lives had been different.",
         "gender": "Male",
         "id": "R_tS5LjkMURANgJmp",
@@ -7020,16 +7030,6 @@
         "id": "R_3aYegHgO4xNJWcp",
         "date": "2021-09-29T03:01:45Z",
         "age": 74,
-        "location": {
-          "country": "Australia"
-        }
-      },
-      {
-        "regret": "I regret allowing my sister to bully me in a passive-aggressive manner my entire life. I have struggled with an eating disorder because of this - it was all I could ‘control' - which has lead to me accepting sub-optimal situations, struggling to find my worth and/or purpose in life. ",
-        "gender": "Female",
-        "id": "R_1eqQ22jaVJ1ZFV1",
-        "date": "2021-09-28T23:46:10Z",
-        "age": 48,
         "location": {
           "country": "Australia"
         }
@@ -9444,6 +9444,16 @@
         }
       },
       {
+        "regret": "Explain to my mother why my stepfather was a monster in 1997. My entire life could be different. I wanted to be a little less myself and a little more thoughtful and trustworthy person to be believed when telling the truth. I would have had the chance for a better future, studying and a good job, while I only spent twenty years running away and looking for solutions to survive the day. I could have saved other people. The biggest regret I have is that I have not been brave, both in the past and in the present, and to continue to breathe in fear of life itself.",
+        "gender": "Female",
+        "id": "R_tKdOhMTwojjvmdr",
+        "date": "2021-12-14T12:54:51Z",
+        "age": 34,
+        "location": {
+          "country": "Italy"
+        }
+      },
+      {
         "regret": "Stay longer in China",
         "gender": "Female",
         "id": "R_3CHF8AQI56FI5T0",
@@ -9528,16 +9538,6 @@
         "gender": "Female",
         "id": "R_DUnIPr36yOWFeHT",
         "date": "2021-07-06T18:38:27Z",
-        "age": 25,
-        "location": {
-          "country": "Italy"
-        }
-      },
-      {
-        "regret": "Study abroad",
-        "gender": "Female",
-        "id": "R_2uvWrL3IKrMAPnf",
-        "date": "2021-07-05T13:13:46Z",
         "age": 25,
         "location": {
           "country": "Italy"
@@ -13431,7 +13431,7 @@
     ],
     "locationCount": 170,
     "regretCount": 1221,
-    "previousRegretCount": 1218,
+    "previousRegretCount": 1221,
     "previousLocationCount": 170
   }
 }
