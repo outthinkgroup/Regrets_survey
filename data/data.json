@@ -904,6 +904,17 @@
         }
       },
       {
+        "regret": "not making enough close friendships",
+        "gender": "Female",
+        "id": "R_r1l4apHYHVwRVLP",
+        "date": "2021-12-19T19:00:18Z",
+        "age": 74,
+        "location": {
+          "state": "Texas",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Staying far too long in a bad marriage and not recognizing what was in-fact abusive behavior, that my children endured also.",
         "gender": "Female",
         "id": "R_2rC49lwg9V6RexN",
@@ -997,17 +1008,6 @@
         "id": "R_2aWEyUuuZkGk9UO",
         "date": "2021-10-13T20:38:59Z",
         "age": 51,
-        "location": {
-          "state": "Texas",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret not learning how to stand up for myself after listening to my gut and walking away from a relationship that ultimately ruined my life.",
-        "gender": "Female",
-        "id": "R_xa6KZgW1sFwuDe1",
-        "date": "2021-09-09T15:10:36Z",
-        "age": 63,
         "location": {
           "state": "Texas",
           "country": "United States"
@@ -1647,6 +1647,61 @@
         }
       },
       {
+        "regret": "I regret playing it safe and getting a tedious, soulless corporate job, rather than pursue my dream off teaching for fear of not having enough money to pay tuition and bills. Now, at 44 I’m finally realizing that it’s in my DNA to teach. Everyday, in inexplicable ways I am coaching, guiding, mentoring, and teaching those around me. I’ve been doing it all along. While my corporate marketing career is one of moderate success with little satisfaction and great discontent.\nIs it even possible to dream of a major career shift at 44? Am I being irrational? Then I hear the low, rhythmic, drum beat, that incessant reminder of a life unfulfilled. ",
+        "gender": "Female",
+        "id": "R_OO0ruzxPyEFI3WF",
+        "date": "2021-12-23T05:59:00Z",
+        "age": 44,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I should have been direct and honest when a close friend of mine asked about something I had done that violated his trust. If I had been immediately and completely honest things might have been better. ",
+        "gender": "Male",
+        "id": "R_1X0bxAelejDSonv",
+        "date": "2021-12-22T17:47:57Z",
+        "age": 44,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I regret not finding a high school guidance counselor to help me figure out how to get into college sooner.",
+        "gender": "Female",
+        "id": "R_3NKDBnDISiCJycI",
+        "date": "2021-12-22T00:04:16Z",
+        "age": 46,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Not having children",
+        "gender": "Female",
+        "id": "R_3McH7BWxubVrQ7r",
+        "date": "2021-12-20T20:56:28Z",
+        "age": 56,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I regret that I don't try work harder, I wasted my time so much.",
+        "gender": "Prefer not to say",
+        "id": "R_33EjCYobDprjjmJ",
+        "date": "2021-12-18T17:09:20Z",
+        "age": 16,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I wish I did advanced math because all my other friends have advanced math.",
         "gender": "Male",
         "id": "R_3qUbCZRxF5AyfxN",
@@ -1696,61 +1751,6 @@
         "id": "R_50XcPqRkAKhv4VX",
         "date": "2021-11-28T06:54:43Z",
         "age": 62,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "A better relationship with my mother.",
-        "gender": "Female",
-        "id": "R_3HgZCjglJKkmT3y",
-        "date": "2021-11-18T22:33:35Z",
-        "age": 66,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Picking the wrong man to start a family with. Infatuation is nice but not a solid foundation for a lasting deep fulfilling relationship. \nStaying in jobs or relationships that made me sick and miserable too long. ",
-        "gender": "Female",
-        "id": "R_3OjNGemJn0ZtlQU",
-        "date": "2021-11-04T18:11:47Z",
-        "age": 56,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Going to business school instead of staying at my current job.",
-        "gender": "Male",
-        "id": "R_3Rl89F0pwyCIhvk",
-        "date": "2021-11-03T12:43:37Z",
-        "age": 37,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I honestly can't think of one. That doesn't mean that I haven't mistakes or have done things I am not particular proud of, but I don't regret them because in the final analysis all those less positive experiences as well as the positive experiences were necessary to bring me where I am today, which is a time in my life in which I am very active, highly creative and very content. ",
-        "gender": "Female",
-        "id": "R_4ZRBF3WRubT2VLH",
-        "date": "2021-11-03T12:24:23Z",
-        "age": 64,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "In college, I was in a relationship that became physically abusive. (I'd never seen that in my life). Things between my boyfriend and I grew unpredictable and scary. Out of the blue, my former roommate and her new boyfriend who were in graduate school called to say they were coming for a visit. I was over the moon! She was an Ethiopian exchange student and so was the new beau.  When I told my boyfriend they were coming, he flew into a rage, said they could not stay with us and threatened me. I was shocked. At that time, I hadn't figured out how to safely leave him, caved into to his demand, and reneged on my invitation to them to stay with us. She was very hurt, angry, and never spoke to me again. I was so ashamed. In time, I got rid of the abusive boyfriend (that takes a bit of figuring out...give abused women a chance to get out). I never figured out how to make it right with my friend. I regret my cowardice, the loss of a great friend, and that I made such a lousy boyfriend choice.",
-        "gender": "Female",
-        "id": "R_dhbKwTMxu3XBlcd",
-        "date": "2021-10-30T17:54:36Z",
-        "age": 66,
         "location": {
           "state": "California",
           "country": "United States"
@@ -2187,6 +2187,16 @@
         }
       },
       {
+        "regret": "1. BE MORE ATTENTION 2. RISK MORE IN LIFE",
+        "gender": "Female",
+        "id": "R_1NzF4W1hUz6k2NL",
+        "date": "2021-12-22T16:25:32Z",
+        "age": 28,
+        "location": {
+          "country": "Portugal"
+        }
+      },
+      {
         "regret": "For me it's a bit hard to say. For one hand I don't believe so much in the concept of regret. I like to think that every choice I made over the years are in a way responsible for who I'm today and I'm mostly proud of myself. So silly regrets like not learning a third language? Yes, but maybe \"regret\" is a strong word for that feeling. But in the end, wouldn't call it a regret itself but a wish. A wish to live life. I think although regret is a concept I don't fully \"believe\", is one that pushes me forward. The fear of regrets is more than a fuel than the regret itself. By the end I know I won't regret. I know that I'll do my best. As this idea, the need to avoid the regret, will keep me in line.",
         "gender": "Male",
         "id": "R_2AYeiKllhxJt2PY",
@@ -2272,16 +2282,6 @@
         "id": "R_0NunwIAZjBKsHh7",
         "date": "2021-04-30T16:48:52Z",
         "age": 69,
-        "location": {
-          "country": "Portugal"
-        }
-      },
-      {
-        "regret": "With the context and choices at concise moments, can not find relevant regrets!",
-        "gender": "Male",
-        "id": "R_3g2bm1UIE0nOiFc",
-        "date": "2021-04-01T17:20:54Z",
-        "age": 45,
         "location": {
           "country": "Portugal"
         }
