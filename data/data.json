@@ -1344,6 +1344,16 @@
         }
       },
       {
+        "regret": "I regret that I stayed in a relationship for too long that wasn't working for me and I should have left years ago. ",
+        "gender": "Female",
+        "id": "R_Umb5jXcZkQgBHZD",
+        "date": "2021-12-24T19:15:33Z",
+        "age": 50,
+        "location": {
+          "country": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      {
         "regret": "Choosing the wrong partner",
         "gender": "Female",
         "id": "R_27I2aEzBQvQr8yp",
@@ -1429,16 +1439,6 @@
         "id": "R_1eWSsUerL3R16Ug",
         "date": "2021-09-30T19:04:34Z",
         "age": 43,
-        "location": {
-          "country": "United Kingdom of Great Britain and Northern Ireland"
-        }
-      },
-      {
-        "regret": "Having low self confidence and esteem and allowing it to damage relationships with my wives, partners (too many but all wonderful people) but especially my daughter. Not realising what wonderful parents I had until long after they passed. I had focused on the (few) things they didn't do right rather than the many things they did excellently and the love they had for me.",
-        "gender": "Male",
-        "id": "R_1FkM89ui2mREIiS",
-        "date": "2021-09-29T09:23:13Z",
-        "age": 61,
         "location": {
           "country": "United Kingdom of Great Britain and Northern Ireland"
         }
@@ -2087,6 +2087,16 @@
         }
       },
       {
+        "regret": "Not having sought help when I was assaulted, thinking that I could face my enemies without bothering others.",
+        "gender": "Male",
+        "id": "R_1BlrY6yewFJ4V45",
+        "date": "2021-12-25T02:13:55Z",
+        "age": 34,
+        "location": {
+          "country": "Brazil"
+        }
+      },
+      {
         "regret": "I regret studying engineering.",
         "gender": "Female",
         "id": "R_7NyLhl1stWrHZ8R",
@@ -2172,16 +2182,6 @@
         "id": "R_3q877cX8rdKBRL0",
         "date": "2021-08-25T22:57:15Z",
         "age": 32,
-        "location": {
-          "country": "Brazil"
-        }
-      },
-      {
-        "regret": "I regret to have taken some decisions in my life in a hurry. I think some of them could be done differently and I had suffer less with my decisions. However, it's okay because I learned a lot with these precipitated decisions and now I know that our life is a beautiful learning school.",
-        "gender": "Male",
-        "id": "R_2TGbjn0w8t3L63Y",
-        "date": "2021-08-23T14:16:26Z",
-        "age": 47,
         "location": {
           "country": "Brazil"
         }
@@ -2606,6 +2606,17 @@
         }
       },
       {
+        "regret": "I regret I took this survey",
+        "gender": "Male",
+        "id": "R_3mlaiZaY9mflqrL",
+        "date": "2021-12-30T12:18:18Z",
+        "age": 60,
+        "location": {
+          "state": "Ontario",
+          "country": "Canada"
+        }
+      },
+      {
         "regret": "not fostering strong friendships \n",
         "gender": "Female",
         "id": "R_2uEusr0e6MjLCmI",
@@ -2699,17 +2710,6 @@
         "id": "R_UcJ6HyEflGJOm9H",
         "date": "2021-10-04T02:21:40Z",
         "age": 42,
-        "location": {
-          "state": "Ontario",
-          "country": "Canada"
-        }
-      },
-      {
-        "regret": "I regret not getting post high school education.    This lack affected my confidence and always made me feel inferior.   ",
-        "gender": "Female",
-        "id": "R_2Ce9VGO6nwNxEj8",
-        "date": "2021-09-29T10:41:34Z",
-        "age": 60,
         "location": {
           "state": "Ontario",
           "country": "Canada"
@@ -5695,6 +5695,17 @@
         }
       },
       {
+        "regret": "Cutting off a relationship too early. I will always wonder what could have been had I given it a little more time to develop. ",
+        "gender": "Female",
+        "id": "R_1kMrqpU21ZIiuJ1",
+        "date": "2021-12-25T19:20:23Z",
+        "age": 33,
+        "location": {
+          "state": "District of Columbia",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Taking my child out of a good school, thinking I was enrolling her in a better school only to put her in danger, the likes of which the we are still feeling the ripple effects today. The domino effect has changed the course of our family's life. The damage is done from that seemingly naive decision. ",
         "gender": "Female",
         "id": "R_2WItQFhYzTMCxyl",
@@ -5788,17 +5799,6 @@
         "id": "R_2ZEXootjegjI8aF",
         "date": "2021-07-12T12:55:29Z",
         "age": 55,
-        "location": {
-          "state": "District of Columbia",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I worried too much about the past and forgot to focus on the present. My nostalgia and anxiety about the past made me miss out on a lot of opportunities and friendships. ",
-        "gender": "Female",
-        "id": "R_NX5dSaIbGPhm55D",
-        "date": "2021-05-14T01:51:34Z",
-        "age": 22,
         "location": {
           "state": "District of Columbia",
           "country": "United States"
@@ -6625,6 +6625,16 @@
         }
       },
       {
+        "regret": "I had my first child when I was 39. I wish I could have her earlier so I could have a second one and be a younger mom. ",
+        "gender": "Female",
+        "id": "R_22CREz8yTpAZgKO",
+        "date": "2021-12-28T10:33:48Z",
+        "age": 39,
+        "location": {
+          "country": "Switzerland"
+        }
+      },
+      {
         "regret": "no regrets",
         "gender": "Female",
         "id": "R_W7nT1UYZHw2bbpL",
@@ -6710,16 +6720,6 @@
         "id": "R_29iUmPuxyUrvLhN",
         "date": "2021-03-04T10:51:51Z",
         "age": 52,
-        "location": {
-          "country": "Switzerland"
-        }
-      },
-      {
-        "regret": "Not taking care of childhood/school contacts\nNot giving enaugh importance to studying\nNot have spent more time with family",
-        "gender": "Female",
-        "id": "R_1MR4FcJZH7uh4jE",
-        "date": "2021-02-12T22:24:08Z",
-        "age": 36,
         "location": {
           "country": "Switzerland"
         }
@@ -8005,6 +8005,17 @@
         }
       },
       {
+        "regret": "Wrong major in college",
+        "gender": "Female",
+        "id": "R_27IQWBMNv3CVe6j",
+        "date": "2021-12-27T17:17:27Z",
+        "age": 63,
+        "location": {
+          "state": "Alabama",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret not having grown up enough during my father’s lifetime to genuinely appreciate him. My younger self didn’t care, and I feel the ache of my ignorance every day. ",
         "gender": "Female",
         "id": "R_295PDO0r4D0Emwm",
@@ -8098,17 +8109,6 @@
         "id": "R_2z5D385Nsk8QRt5",
         "date": "2021-07-28T11:54:04Z",
         "age": 67,
-        "location": {
-          "state": "Alabama",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "1. Taken greater advantage of college opportunities. 2. Played more sports as a kid.  ",
-        "gender": "Male",
-        "id": "R_2YSrabGZa4AbIjm",
-        "date": "2021-07-28T10:57:03Z",
-        "age": 62,
         "location": {
           "state": "Alabama",
           "country": "United States"
