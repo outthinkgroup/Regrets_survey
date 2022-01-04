@@ -1,13 +1,15 @@
 const primary = {
-  base: "#FF393C",
-  dark: "hsl(359, 77%, 35%)",
-  light: "hsl(359, 100%, 76%)",
+  base: "#009EA7", //hsl(183, 100%, 33%)
+  dark: "hsl(183, 77%, 35%)", // this currently is unused
+  light: "#59C6CC",
 };
+
 const success = {
-  base: "3AFF85",
+  base: "#3AFF85",
   dark: "hsl(143, 100%, 31%)",
   light: "hsl(143, 100%, 76%)",
 };
+
 const grey = [
   "#FEFEFE",
   "#EFEFEF",
@@ -15,9 +17,14 @@ const grey = [
   "hsl(50 0% calc(var(--lightness) * 1%))",
   "#333",
 ];
+
 export const colors = {
   primary,
-  error: primary,
+  error: {
+    base: "#FF393C",
+    dark: "hsl(359, 77%, 35%)",
+    light: "hsl(359, 100%, 76%)",
+  },
   success,
   grey,
   country: {
@@ -47,6 +54,7 @@ export const elevation = [
 export const layout = {
   maxWidth: "960px",
 };
+
 export const breakpoints = {
   small: "762px",
   medium: "960px",
@@ -58,11 +66,13 @@ const screen = {
   medium: "960px",
   large: "1400px",
 };
+
 const screenBelow = (screen, rules) => {
   return `@media (max-width: ${screen}){
     ${rules}
   }`;
 };
+
 const screenAbove = (screen, rules) => {
   return `@media (min-width: ${screen}){
     ${rules}
@@ -70,4 +80,5 @@ const screenAbove = (screen, rules) => {
 };
 
 export { screenBelow, screenAbove, screen };
+
 export * from "./StyledComponents";
