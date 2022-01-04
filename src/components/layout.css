@@ -52,6 +52,7 @@ a {
 a:active,
 a:hover {
   outline-width: 0;
+  color: var(--primary, inherit);
 }
 abbr[title] {
   border-bottom: none;

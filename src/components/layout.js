@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
-import { fonts } from "../styles";
+import { fonts, colors } from "../styles";
 import Header from "./header";
 import "./layout.css";
 import Notifications from "./Notifications";
@@ -25,6 +25,7 @@ const Layout = ({ children, className }) => {
           margin: `0 auto`,
           maxWidth: 960,
           padding: `0 1.0875rem`,
+          "--primary": colors.primary.dark,
         }}
       >
         <main>{children}</main>
