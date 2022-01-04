@@ -1,0 +1,34 @@
+{
+  "testimonies": [
+    {
+      "name": "Sanjay Gupta, M.D.",
+      "title": "Chief Medical Correspondent, CNN | Neurosurgeon, Emory Clinic",
+      "quote": "As he so often does, Daniel Pink transformed my understanding of a subject and convinced me of the power of regret. Through his remarkable research, I learned not only what people regret, but also how to optimize those regrets. <span class=\"highlight\">Every time I read a Daniel Pink book, I walk away a better and more informed person.</span>",
+      "image": "https://www.danpink.com/wp-content/uploads/2021/11/samjay-150x150.jpg"
+    },
+    {
+      "name": "Brené Brown, Ph.D.",
+      "title": "#1 New York Times bestselling author of  <em>Dare to Lead</em>",
+      "quote": "I love that Daniel Pink is taking on one of the best (and toughest) teachers in my life - regret. I’ve always known that regret deepened my connection to myself and to others, but now, thanks to Dan’s research and storytelling, I understand why. <span class=\"highlight\">The idea of 'no regrets' doesn’t mean living with courage. It means living without reflection. The world needs this book and more reflection. Now</span>",
+      "image": "https://www.danpink.com/wp-content/uploads/2021/11/bbphoto-150x150.jpg"
+    },
+    {
+      "name": "Kirkus Review",
+      "title": "",
+      "quote": "Throughout more than a dozen <span style=\"color: #ffff00;\">illuminating</span> chapters, Pink cites examples from decades of research . . . and offers <span style=\"color: #ffff00;\">practical</span> guidance on how readers can thrive beyond their mistakes, molding them into learning opportunities. . . . An <span style=\"color: #ffff00;\">insightful and rewarding</span> glimpse into the emotional pathways of human contrition.",
+      "image": "https://www.danpink.com/wp-content/uploads/2021/12/Unknown.png"
+    },
+    {
+      "name": "Publishers Weekly",
+      "title": "",
+      "quote": "<span style=\"color: #ffff00;\">pragmatic</span> guide to harnessing the power of the past . . . assembles an <span style=\"color: #ffff00;\">impressive</span> array of research and includes some <span style=\"color: #ffff00;\">moving</span> stories of people dealing with mistakes . . . Readers looking to shake their shame should start here.",
+      "image": "https://www.danpink.com/wp-content/uploads/2021/12/Unknown.jpeg"
+    },
+    {
+      "name": "Angela Duckworth",
+      "title": "University of Pennsylvania professor | MacArthur fellow | Bestselling author of <em>Grit</em>",
+      "quote": "If you have long assumed that 'no regrets’ is the way to live life, then this book is for you. The incomparably candid, clear, and concise Daniel Pink&nbsp;summarizes the latest science on looking backward on what could have been and shows how it can <span style=\"color: #ffff00;\">vault you forward to a happier, more productive, and principled life.</span>",
+      "image": "https://www.danpink.com/wp-content/uploads/2021/11/angela-duckworth-150x150.png"
+    }
+  ]
+}

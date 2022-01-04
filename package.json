@@ -44,6 +44,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
+    "react-responsive-carousel": "^3.2.22",
     "react-spring": "^9.0.0-rc.3",
     "sha1": "^1.1.1",
     "styled-components": "^5.0.1",

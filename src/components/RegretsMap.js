@@ -9,6 +9,7 @@ import { colors, elevation, fonts } from "../styles";
 import CountrySearch from "./CountrySearch";
 import { useIsMobile } from "../hooks/useWindowWidth";
 import Icon from "./Icon.js";
+import { Container } from "./layout";
 //these are the viewBox width and height for the svg
 const WIDTH = 1024;
 const HEIGHT = 561.64917;
@@ -30,81 +31,88 @@ function RegretsMap({ className, allowFindRegretById = {}, clearFindRegret }) {
   }, [allowFindRegretById.id, send]);
 
   return (
-    <div className={className}>
-      <div className="heading-card">
-        <h2>What do others regret?</h2>
-        <p>
-          Click a country or state, or search by <em>country</em> or{" "}
-          <em>state</em>, to see a selection of survey responses from that area.
-        </p>
-      </div>
+    <Container>
+      <div className={className}>
+        <div className="heading-card">
+          <h2>What do others regret?</h2>
+          <p>
+            Click a country or state, or search by <em>country</em> or{" "}
+            <em>state</em>, to see a selection of survey responses from that
+            area.
+          </p>
+        </div>
 
-      <div
-        className={`${zoomed ? `zoomed` : ""} map-wrapper, ${mapState}`}
-        style={{
-          position: "relative",
-          width: `100%`,
-          height: `100%`,
-        }}
-      >
-        {mapState === "PARENT_COUNTRY" || !activeState ? (
-          <CountrySearch send={send} />
-        ) : null}
-        <div style={{ position: `relative` }}>
-          <InteractiveMap
-            onClick={(e) => {
-              e.persist();
-              send(["click", e]);
-            }}
-            viewBox={viewBox}
-            activeState={activeState}
-            mapState={mapState}
-            styles={{ width: `100%`, height: `100%` }}
-          />
-          {mapState !== "WORLD" && (
-            <button
+        <div
+          className={`${zoomed ? `zoomed` : ""} map-wrapper, ${mapState}`}
+          style={{
+            position: "relative",
+            width: `100%`,
+            height: `100%`,
+          }}
+        >
+          {mapState === "PARENT_COUNTRY" || !activeState ? (
+            <CountrySearch send={send} />
+          ) : null}
+          <div style={{ position: `relative` }}>
+            <InteractiveMap
               onClick={(e) => {
+                e.persist();
+                send(["click", e]);
+              }}
+              viewBox={viewBox}
+              activeState={activeState}
+              mapState={mapState}
+              styles={{ width: `100%`, height: `100%` }}
+            />
+            {mapState !== "WORLD" && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  send(["close"]);
+                }}
+                className="zoomout"
+                style={{
+                  background: `transparent`,
+                  border: `none`,
+                  position: `absolute`,
+                  top: `5px`,
+                  left: `5px`,
+                }}
+              >
+                <span
+                  style={{
+                    width: `20px`,
+                    marginRight: `10px`,
+                    marginTop: `7px`,
+                  }}
+                >
+                  <Icon name="zoom-out" color="black" />
+                </span>
+                <span>zoom out</span>
+              </button>
+            )}
+          </div>
+          {mapState !== "PARENT_COUNTRY" && activeState && (
+            <StateInfoCard
+              zoomOut={(e) => {
                 e.stopPropagation();
                 send(["close"]);
               }}
-              className="zoomout"
-              style={{
-                background: `transparent`,
-                border: `none`,
-                position: `absolute`,
-                top: `5px`,
-                left: `5px`,
-              }}
-            >
-              <span
-                style={{ width: `20px`, marginRight: `10px`, marginTop: `7px` }}
-              >
-                <Icon name="zoom-out" color="black" />
-              </span>
-              <span>zoom out</span>
-            </button>
+              mapState={mapState}
+              isMobile={isMobile}
+              activeState={activeState}
+              // THIS IS JUST FOR SETTING A REGRET DIRECTLY
+              findRegret={
+                allowFindRegretById && allowFindRegretById.id
+                  ? allowFindRegretById.id
+                  : null
+              }
+              clearFindRegret={allowFindRegretById && clearFindRegret}
+            />
           )}
         </div>
-        {mapState !== "PARENT_COUNTRY" && activeState && (
-          <StateInfoCard
-            zoomOut={(e) => {
-              e.stopPropagation();
-              send(["close"]);
-            }}
-            mapState={mapState}
-            isMobile={isMobile}
-            activeState={activeState}
-            // THIS IS JUST FOR SETTING A REGRET DIRECTLY
-            findRegret={
-              allowFindRegretById && allowFindRegretById.id
-                ? allowFindRegretById.id
-                : null
-            }
-            clearFindRegret={allowFindRegretById && clearFindRegret}
-          />
-        )}
       </div>
-    </div>
+    </Container>
   );
 }
 export default styled(RegretsMap)`

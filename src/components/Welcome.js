@@ -2,15 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { PageHeading, PageIntro, breakpoints } from "../styles";
 import { MainIntroduction } from "./content";
+import { Container } from "./layout";
+
 function Welcome({ className }) {
   return (
-    <PageIntro className={className}>
-      <PageHeading>
-        <span style={{ fontSize: `.75em` }}>Welcome to the</span>
-        <br /> <span style={{ fontWeight: 900 }}>World Regret Survey</span>
-      </PageHeading>
-      <MainIntroduction />
-    </PageIntro>
+    <Container>
+      <PageIntro className={className}>
+        <PageHeading>
+          <span style={{ fontSize: `.75em` }}>Welcome to the</span>
+          <br /> <span style={{ fontWeight: 900 }}>World Regret Survey</span>
+        </PageHeading>
+        <MainIntroduction />
+      </PageIntro>
+    </Container>
   );
 }
 

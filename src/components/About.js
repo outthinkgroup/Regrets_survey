@@ -4,14 +4,17 @@ import styled from "styled-components";
 import AuthorImage from "./AuthorImage";
 import { AboutContent } from "./content";
 import { breakpoints } from "../styles";
+import { Container } from "./layout";
 function About({ className }) {
   return (
-    <div className={className}>
-      <AuthorImage />
-      <div className="content">
-        <AboutContent />
+    <Container className={className}>
+      <div className={className}>
+        <AuthorImage />
+        <div className="content">
+          <AboutContent />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
 export default styled(About)`

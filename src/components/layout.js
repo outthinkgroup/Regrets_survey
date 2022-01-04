@@ -20,27 +20,32 @@ const Layout = ({ children, className }) => {
   return (
     <div className={className}>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem`,
-          "--primary": colors.primary.dark,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          <div>
-            © {new Date().getFullYear()},{" "}
-            <a href="https://danpink.com/about/">Daniel Pink</a> - site by{" "}
-            <a href="https://outthinkgroup.com/">Out:think</a>
-          </div>
-        </footer>
-        <Notifications />
-      </div>
+      <main>{children}</main>
+      <footer style={{ "--primary": colors.primary.base }}>
+        <div>
+          © {new Date().getFullYear()},{" "}
+          <a href="https://danpink.com/about/">Daniel Pink</a> - site by{" "}
+          <a href="https://outthinkgroup.com/">Out:think</a>
+        </div>
+      </footer>
+      <Notifications />
     </div>
   );
 };
+
+export const Container = ({ children, styles }) => (
+  <div
+    style={{
+      margin: `0 auto`,
+      maxWidth: 960,
+      padding: `0 1.0875rem`,
+      "--primary": colors.primary.base,
+      ...styles,
+    }}
+  >
+    {children}
+  </div>
+);
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

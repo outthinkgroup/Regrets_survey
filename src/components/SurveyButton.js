@@ -45,4 +45,8 @@ export const Button = styled(_Link)`
   padding: 0.55em 1em;
   line-height: 2em;
   white-space: nowrap;
+  &:hover,
+  &:active {
+    color: white;
+  }
 `;
