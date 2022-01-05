@@ -26,7 +26,7 @@ exports.createPages = async function ({ actions, graphql, reporter }) {
   );
 
   const pageTemplate = path.resolve("src/templates/regret.js");
-  data.allQualtricsData.nodes[1].results.regretList.forEach(
+  data.allQualtricsData.nodes[0].results.regretList.forEach(
     ({ id, location, regret, age, gender }) => {
       if (id) {
         createPage({
