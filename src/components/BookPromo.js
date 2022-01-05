@@ -132,6 +132,7 @@ const BookPromoContainer = styled.div`
 
 const TestimonyWrapper = styled.div`
   padding: 20px;
+  padding-top: 60px;
   background-image: url(https://www.danpink.com/wp-content/uploads/2021/11/large-triangles.svg);
   color: white;
   h2 {
