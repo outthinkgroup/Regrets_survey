@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { fonts, colors } from "../styles";
 import { Container } from "./layout";
 import { Button } from "./SurveyButton";
-import { testimonies as TESTIMONIES } from "../../content/testimonies.json";
+import { testimonies as TESTIMONIES } from "./testimonies.json";
 
 export default function BookPromo() {
   return (

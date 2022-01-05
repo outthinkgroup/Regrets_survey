@@ -34,6 +34,7 @@ module.exports = {
       resolve: `gatsby-transformer-json`,
       options: {
         typeName: `QualtricsData`,
+        path: `${__dirname}/src/data/qualtrics.json`,
       },
     },
     {
