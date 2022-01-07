@@ -1234,6 +1234,17 @@
         }
       },
       {
+        "regret": "I regret not continuing my language studies.",
+        "gender": "Female",
+        "id": "R_3OpEmZlC2kYu5Cr",
+        "date": "2022-01-05T00:21:33Z",
+        "age": 62,
+        "location": {
+          "state": "North Carolina",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Avoiding new experiences because of fear of failure, or pain.",
         "gender": "Male",
         "id": "R_2q9i9UJ4fpNe7dk",
@@ -1327,17 +1338,6 @@
         "id": "R_XTGtXrSwJybCor7",
         "date": "2021-08-10T22:22:41Z",
         "age": 63,
-        "location": {
-          "state": "North Carolina",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "That I didn't really listen to my children.  Trying to be a good parent instead of just loving my children.",
-        "gender": "Female",
-        "id": "R_3DkbOevJ9rFxXD2",
-        "date": "2021-08-10T11:14:41Z",
-        "age": 69,
         "location": {
           "state": "North Carolina",
           "country": "United States"
@@ -1544,6 +1544,28 @@
         }
       },
       {
+        "regret": "okokokkoookk",
+        "gender": "Male",
+        "id": "R_1mDZ7M2LDgQyGmy",
+        "date": "2022-01-06T12:59:20Z",
+        "age": 90,
+        "location": {
+          "state": "Click to write Choice 64",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "going through with a wedding that I should have run from\n",
+        "gender": "Male",
+        "id": "R_b8YpeE5zOPcbgtz",
+        "date": "2022-01-02T18:49:06Z",
+        "age": 59,
+        "location": {
+          "state": "Rhode Island",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret not being kinder to my mother after my father passed away. I did not understand her fear and depression.",
         "gender": "Female",
         "id": "R_3fGBCEVQuR8VDYE",
@@ -1622,27 +1644,6 @@
         "date": "2021-10-26T22:10:48Z",
         "age": 57,
         "location": {
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "That I didn't tell anyone back then about my hardships.",
-        "gender": "Male",
-        "id": "R_1dyNxI1MMRXruKt",
-        "date": "2021-10-26T18:49:36Z",
-        "age": 75,
-        "location": {
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "As a returning adult to college, when I was almost finished with my program, my wife had to have an emergency c-section and our son was about eight weeks premature.  My advisors and the school did not help accommodate that situation well and I got upset and left the program with the finish-line in sight.",
-        "gender": "Male",
-        "id": "R_WupekZkLo0DGJBD",
-        "date": "2021-10-26T17:45:17Z",
-        "age": 41,
-        "location": {
-          "state": "Georgia",
           "country": "United States"
         }
       },
@@ -3046,6 +3047,17 @@
         }
       },
       {
+        "regret": "I regret not investing in college funds for my kids. They're now growing older and it's getting too close for comfort.",
+        "gender": "Male",
+        "id": "R_27BGmyw8ZmNYDYS",
+        "date": "2022-01-03T17:48:19Z",
+        "age": 40,
+        "location": {
+          "state": "Virginia",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I told myself when I left her that the infant boy should grow up in a loving home rather than steeped in the anger she and I couldn’t fix. Instead, he grew up knowing I abandoned him, trusting instead in some future hypothetical stepfather who would love his mother rather than I could. I tried to replace myself, and he paid the price. ",
         "gender": "Male",
         "id": "R_1OiZYr9bUPZcq8l",
@@ -3139,17 +3151,6 @@
         "id": "R_3nwxyfWCjzMIQG5",
         "date": "2021-10-06T11:12:33Z",
         "age": 21,
-        "location": {
-          "state": "Virginia",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "not going out enough, not keeping in touch more.",
-        "gender": "Male",
-        "id": "R_2YbakzsVE7mUodX",
-        "date": "2021-10-06T04:56:22Z",
-        "age": 20,
         "location": {
           "state": "Virginia",
           "country": "United States"
@@ -4325,6 +4326,17 @@
         }
       },
       {
+        "regret": "Not standing up to an abusive uncle",
+        "gender": "Male",
+        "id": "R_wZYbRcxcgNSNxC1",
+        "date": "2022-01-06T13:15:46Z",
+        "age": 34,
+        "location": {
+          "state": "New York",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Staying for too long in committed relationship that was bringing me down. Not walking away sooner (sunk cost, fear of a broken heart) eventually led to an even bigger heartbreak and a missed opportunity to have biological chldren\n\n",
         "gender": "Female",
         "id": "R_1l3KjetEARCUxGj",
@@ -4418,17 +4430,6 @@
         "id": "R_3kLE0dQdGqrYSqZ",
         "date": "2021-10-20T04:23:04Z",
         "age": 45,
-        "location": {
-          "state": "New York",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "In elementary school, I wish I did not bully some of my classmates. ",
-        "gender": "Female",
-        "id": "R_UtConuYKOlcZNgl",
-        "date": "2021-10-15T16:26:04Z",
-        "age": 39,
         "location": {
           "state": "New York",
           "country": "United States"
@@ -6835,6 +6836,16 @@
         }
       },
       {
+        "regret": "No making love to my wife more often.",
+        "gender": "Male",
+        "id": "R_1ruHHwF9spTqtWe",
+        "date": "2022-01-05T18:13:47Z",
+        "age": 52,
+        "location": {
+          "country": "New Zealand"
+        }
+      },
+      {
         "regret": "Putting things off, wasting time",
         "gender": "Male",
         "id": "R_29ogbffjqF6Vecn",
@@ -6920,16 +6931,6 @@
         "id": "R_3HACcxsFtpnt1xC",
         "date": "2021-08-09T03:47:27Z",
         "age": 66,
-        "location": {
-          "country": "New Zealand"
-        }
-      },
-      {
-        "regret": "Not picking a career and sticking with it.",
-        "gender": "Male",
-        "id": "R_p5JlGJeltYDNe8x",
-        "date": "2021-04-29T00:07:53Z",
-        "age": 42,
         "location": {
           "country": "New Zealand"
         }
@@ -7245,6 +7246,17 @@
         }
       },
       {
+        "regret": "Not being disciplined enough to pursue my career dreams. Now it’s too late.",
+        "gender": "Male",
+        "id": "R_1pllcRiVcqgqNt1",
+        "date": "2022-01-04T13:47:41Z",
+        "age": 47,
+        "location": {
+          "state": "South Carolina",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Not wasting time on movies during my undergrad",
         "gender": "Male",
         "id": "R_2Si9sodVqzlAYB5",
@@ -7338,17 +7350,6 @@
         "id": "R_2eW6j9dhZeeWXwE",
         "date": "2021-08-05T02:51:44Z",
         "age": 45,
-        "location": {
-          "state": "South Carolina",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not taking my career seriously and putting it second to my husband's.",
-        "gender": "Female",
-        "id": "R_23Ts5yZzyBnNcJU",
-        "date": "2021-07-28T16:00:49Z",
-        "age": 56,
         "location": {
           "state": "South Carolina",
           "country": "United States"
