@@ -26,7 +26,7 @@ export default function BookPromo() {
               />
             </div>
             <div className="content">
-              <div className="tag">Pre-order Dan's New Book!</div>
+              <div className="tag">Instant NY Times bestseller!</div>
               <h2 className="title">
                 The Power of Regret: How Looking Backward Moves Us Forward
               </h2>
@@ -39,7 +39,7 @@ export default function BookPromo() {
                   as="a"
                   href="https://www.danpink.com/#modal-61857743ccfcf"
                 >
-                  Pre-order the Book
+                  Order the Book
                 </Button>
                 <Button as="a" href="https://www.danpink.com/tpor-book#details">
                   More About the Book
