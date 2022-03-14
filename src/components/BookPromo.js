@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { fonts, colors } from "../styles";
 import { Container } from "./layout";
 import { Button } from "./SurveyButton";
-import { testimonies as TESTIMONIES } from "./testimonies.json";
+// import { testimonies as TESTIMONIES } from "./testimonies.json";
 
 export default function BookPromo() {
   return (
@@ -49,41 +49,41 @@ export default function BookPromo() {
           </BookPromoContainer>
         </Container>
       </div>
-      <TestimonyWrapper>
+      {/*<TestimonyWrapper>
         <Container>
           <div>
             <h2>Praise for the Power of Regret</h2>
             <TestimonialSlider testimonies={TESTIMONIES} />
           </div>
         </Container>
-      </TestimonyWrapper>
+      </TestimonyWrapper>*/}
     </div>
   );
 }
-const TestimonialSlider = ({ testimonies }) => {
-  return (
-    <Carousel autoPlay infiniteLoop className="testimonial-slider">
-      {testimonies.map((testimony, index) => {
-        return <Testimonial key={index} {...testimony} />;
-      })}
-    </Carousel>
-  );
-};
-
-const Testimonial = ({ name, quote, image }) => {
-  return (
-    <div className="testimonial">
-      <div className="image">
-        <img src={image} alt={name} />
-      </div>
-      <div className="content">
-        <div className="name">{name}</div>
-        <div className="quote" dangerouslySetInnerHTML={{ __html: quote }} />
-      </div>
-    </div>
-  );
-};
-
+// const TestimonialSlider = ({ testimonies }) => {
+//   return (
+//     <Carousel autoPlay infiniteLoop className="testimonial-slider">
+//       {testimonies.map((testimony, index) => {
+//         return <Testimonial key={index} {...testimony} />;
+//       })}
+//     </Carousel>
+//   );
+// };
+//
+// const Testimonial = ({ name, quote, image }) => {
+//   return (
+//     <div className="testimonial">
+//       <div className="image">
+//         <img src={image} alt={name} />
+//       </div>
+//       <div className="content">
+//         <div className="name">{name}</div>
+//         <div className="quote" dangerouslySetInnerHTML={{ __html: quote }} />
+//       </div>
+//     </div>
+//   );
+// };
+//
 const BookPromoContainer = styled.div`
   display: flex;
   align-items: center;
