@@ -2,10 +2,10 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 
-const Image = ({ image }) => {
+const Image = () => {
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "danpink.png" }) {
+      file(relativePath: { eq: "danpink.jpeg" }) {
         childImageSharp {
           # Specify the image processing specifications right in the query.
           # Makes it trivial to update as your page's design changes.
