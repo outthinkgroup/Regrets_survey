@@ -70,8 +70,9 @@ export function useGetRegrets(activeState, mapState, regretId = false) {
       setActiveRegret(availableRegrets[nextRegretIndex]);
     }
   }
+
   function getRegretsByLocation(location) {
-    return regretList.filter(function(regret) {
+    return regretList.filter(function (regret) {
       if (!regret.location) return false;
       const { country, state } = regret.location;
       const countryId = snakeCase(country);
@@ -86,9 +87,7 @@ export function useGetRegrets(activeState, mapState, regretId = false) {
     });
   }
 
-  const activeStateHasMultiple =
-    activeState &&
-    locations.find(({ name }) => activeState === name)?.regretCount > 1;
+  const activeStateHasMultiple = getRegretsByLocation(activeState).length > 1;
 
   const totalRegretsPerCountry = regretList.reduce((totals, regret) => {
     if (!regret.location) return totals;
