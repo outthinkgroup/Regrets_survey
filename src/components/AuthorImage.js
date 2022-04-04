@@ -1,31 +1,7 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
 
 const Image = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "danpink.jpeg" }) {
-        childImageSharp {
-          # Specify the image processing specifications right in the query.
-          # Makes it trivial to update as your page's design changes.
-          fixed(width: 125, height: 125) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `);
-
-  return (
-    <Img
-      className="author-image"
-      fixed={data.file.childImageSharp.fixed}
-      objectFit="cover"
-      objectPosition="50% 50%"
-      alt="Dan Pink"
-    />
-  );
+  return <img src="/danpink.jpeg" className="author-image" alt="Dan Pink" />;
 };
 
 export default Image;
