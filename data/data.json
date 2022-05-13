@@ -695,7 +695,7 @@
       },
       {
         "name": "Oman",
-        "regretCount": 2
+        "regretCount": 3
       },
       {
         "name": "Azerbaijan",
@@ -735,7 +735,7 @@
       },
       {
         "name": "Georgia",
-        "regretCount": 4
+        "regretCount": 5
       },
       {
         "name": "Somalia",
@@ -972,6 +972,50 @@
         }
       },
       {
+        "regret": "I regret not fighting for my 27 year marriage after my husband was caught cheating.",
+        "gender": "Female",
+        "id": "R_x5k9uoYIud0G4wx",
+        "date": "2022-05-11T18:23:21Z",
+        "age": 55,
+        "location": {
+          "state": "Texas",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Not believing in myself",
+        "gender": "Female",
+        "id": "R_1rc2W0zJSW0fW5n",
+        "date": "2022-05-11T10:50:02Z",
+        "age": 52,
+        "location": {
+          "state": "Texas",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I regret not branching out more in college to meet new and different people.",
+        "gender": "Female",
+        "id": "R_27lHHdnSIx0iVpz",
+        "date": "2022-05-11T01:48:36Z",
+        "age": 29,
+        "location": {
+          "state": "Texas",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Staying in a long-term relationship too long.",
+        "gender": "Male",
+        "id": "R_3CHtR69izdz1e8T",
+        "date": "2022-05-07T01:49:30Z",
+        "age": 58,
+        "location": {
+          "state": "Texas",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "In college, I had an opportunity to take a summer job at Yellowstone National Park as the violist in the lodge string quartet. Instead, I decided to take a class I needed for graduation. I will never again have that same opportunity. I had the rest of my life to take the class.",
         "gender": "Female",
         "id": "R_1Cv8e5HSa6yMyaW",
@@ -1038,46 +1082,13 @@
         }
       },
       {
-        "regret": "I loved studying law and wanted to go to law school and even applied and was accepted, but never went. And I always regretted that. ",
+        "regret": "I regret being so tough on my sons when they were teenagers. I should have seen the goodness in them during those frustrating years. I should have trusted that they would grow up to be the kind individuals who live meaningful lives .",
         "gender": "Female",
-        "id": "R_3fIWMGuqB0aHuUD",
-        "date": "2022-04-25T23:29:34Z",
-        "age": 67,
+        "id": "R_3qO18XsrJgcWlAs",
+        "date": "2022-05-10T01:36:59Z",
+        "age": 65,
         "location": {
-          "state": "Texas",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I got married and had a child much too early in life. This greatly limited my possibilities in life. ",
-        "gender": "Male",
-        "id": "R_1i5aDpAYAa6MdBe",
-        "date": "2022-04-25T19:44:21Z",
-        "age": 72,
-        "location": {
-          "state": "Texas",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "That I didn’t divorce my ex husband sooner",
-        "gender": "Female",
-        "id": "R_264HXaC8fqSLjRk",
-        "date": "2022-04-25T19:20:27Z",
-        "age": 68,
-        "location": {
-          "state": "Texas",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret wasting time. I’ve felt like a lot of my childhood and teen years were wasted being afraid to disobey what others considered to be “the right way to live”. Many times I regret not doing anything even while sitting there, not doing anything. I’m scared that if I keep wasting time, I’ll wake up one day, out of time to do anything I wanted with anyone I loved.",
-        "gender": "Male",
-        "id": "R_1CrLNVDqfeDNhzG",
-        "date": "2022-04-25T08:13:17Z",
-        "age": 22,
-        "location": {
-          "state": "Texas",
+          "state": "New Jersey",
           "country": "United States"
         }
       },
@@ -1181,13 +1192,24 @@
         }
       },
       {
-        "regret": "2 regrets: 1) Rejecting scholarship for masters degree at GWU in 1981.  2) Marrying my high school sweetheart.",
-        "gender": "Male",
-        "id": "R_1FRpocweNZB9ziU",
-        "date": "2022-04-25T11:47:44Z",
-        "age": 63,
+        "regret": "too many to fit in 1-2 sentences... :(",
+        "gender": "Female",
+        "id": "R_3dXuq40Ecm6wR9K",
+        "date": "2022-05-07T14:53:24Z",
+        "age": 42,
         "location": {
-          "state": "New Jersey",
+          "state": "Florida",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Not marrying the women I loved. Not fighting to claim my child born out of wedlock.",
+        "gender": "Male",
+        "id": "R_W2Rk8DSUcnpwLW9",
+        "date": "2022-05-06T21:19:56Z",
+        "age": 67,
+        "location": {
+          "state": "Florida",
           "country": "United States"
         }
       },
@@ -1274,28 +1296,6 @@
         "id": "R_27HBtkPrNel5zdf",
         "date": "2022-04-25T01:11:49Z",
         "age": 60,
-        "location": {
-          "state": "Florida",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I wish I followed my dream to become a professional writer or musician. ",
-        "gender": "Male",
-        "id": "R_2TOimBmp7G1rDa4",
-        "date": "2022-04-24T19:37:14Z",
-        "age": 52,
-        "location": {
-          "state": "Florida",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I had a chance to buy the small house I was renting in Coeur d’Alene, Idaho in 1990.  I was 22 and I didn’t know how to buy a house, so I didn’t. ",
-        "gender": "Female",
-        "id": "R_31HSncDWlgXAhgC",
-        "date": "2022-04-24T19:06:22Z",
-        "age": 55,
         "location": {
           "state": "Florida",
           "country": "United States"
@@ -1412,6 +1412,66 @@
         }
       },
       {
+        "regret": "I regret taking the job I'm currently in. ",
+        "gender": "Female",
+        "id": "R_3KpdjyHqKxNHpLr",
+        "date": "2022-05-13T14:34:23Z",
+        "age": 28,
+        "location": {
+          "country": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      {
+        "regret": "Spending less time with the kids when they were young than I should have done.",
+        "gender": "Male",
+        "id": "R_3EMZRqT3Iq0eInW",
+        "date": "2022-05-13T08:41:26Z",
+        "age": 34,
+        "location": {
+          "country": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      {
+        "regret": "Being ordained",
+        "gender": "Female",
+        "id": "R_eWZaGvgutdXlhaF",
+        "date": "2022-05-11T20:09:05Z",
+        "age": 39,
+        "location": {
+          "country": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      {
+        "regret": "I was in a relationship with a woman, which ended because of her parents' disapproval of me. I regret than I couldn't earn their respect, and that I'm not with her today.",
+        "gender": "Male",
+        "id": "R_2z5X5mQWz7c70sb",
+        "date": "2022-05-08T18:24:45Z",
+        "age": 28,
+        "location": {
+          "country": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      {
+        "regret": "I regret not kissing her",
+        "gender": "Male",
+        "id": "R_1kUm30SNSEkm0s4",
+        "date": "2022-05-08T11:49:51Z",
+        "age": 42,
+        "location": {
+          "country": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      {
+        "regret": "I should have pursued a career I cared about",
+        "gender": "Male",
+        "id": "R_esOHh9alkcAJXnH",
+        "date": "2022-05-07T19:32:40Z",
+        "age": 30,
+        "location": {
+          "country": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      {
         "regret": "I should have followed my own path and studied drama and written my novel before I got old and full of fear.",
         "gender": "Female",
         "id": "R_1hKXM8IgRjPf1nd",
@@ -1452,63 +1512,33 @@
         }
       },
       {
-        "regret": "I wish I had spent the last weeks of my grandma's life with her. My grandparents wanted me to keep doing my new job instead and I didnt realise that she would deteriorate so quickly so I stayed in London doing my job. By the time I got home she had lost consciousness but at least I got home in time. ",
+        "regret": "I regret I didn't spend as much time outdoors when I was a kid which resulted in my bad myopia now.",
         "gender": "Female",
-        "id": "R_1Q6KYUjje0ciJRD",
-        "date": "2022-05-06T13:53:43Z",
-        "age": 29,
+        "id": "R_2ts8ThVNcLvf4oH",
+        "date": "2022-05-13T05:00:08Z",
+        "age": 37,
         "location": {
-          "country": "United Kingdom of Great Britain and Northern Ireland"
+          "country": "United States of America"
         }
       },
       {
-        "regret": "I wish I persisted with bitcoin trading back in 2013",
-        "gender": "Male",
-        "id": "R_3fvK0sUZAICvMHB",
-        "date": "2022-05-06T11:22:15Z",
-        "age": 38,
-        "location": {
-          "country": "United Kingdom of Great Britain and Northern Ireland"
-        }
-      },
-      {
-        "regret": "I regret letting my family emotionally control and blackmail  me. I regret trying to be a role model to my sisters and do things “the right way”, with the result that I sacrificed happiness, well being and at least one relationship. I regret moving home during university and remaining there for so many years.",
+        "regret": "First night in London",
         "gender": "Female",
-        "id": "R_RwSZTdpt7HVN2zn",
-        "date": "2022-05-04T18:44:30Z",
-        "age": 36,
+        "id": "R_2aCRKcEtbBFyUF3",
+        "date": "2022-05-12T23:23:10Z",
+        "age": 62,
         "location": {
-          "country": "United Kingdom of Great Britain and Northern Ireland"
+          "country": "United States of America"
         }
       },
       {
-        "regret": "I should have been kinder ",
+        "regret": "Not stepping up to play hamonica at a jam session when Little Annie Raines invited me to join in.",
         "gender": "Male",
-        "id": "R_1Q6DiOz6jUq9UN2",
-        "date": "2022-05-02T20:17:28Z",
-        "age": 42,
+        "id": "R_xE4uUAqIkYiG0BX",
+        "date": "2022-05-06T23:16:45Z",
+        "age": 74,
         "location": {
-          "country": "United Kingdom of Great Britain and Northern Ireland"
-        }
-      },
-      {
-        "regret": "not enough sex",
-        "gender": "Male",
-        "id": "R_9nblf2DnvORdOIF",
-        "date": "2022-05-02T19:38:45Z",
-        "age": 48,
-        "location": {
-          "country": "United Kingdom of Great Britain and Northern Ireland"
-        }
-      },
-      {
-        "regret": "I moved from a comfortable rut job to a challenging job that I was not fully prepared for. As a result I lasted 3 months in the new job before being fired. As a result of that I lost my house, went bankrupt and my marriage ended. ",
-        "gender": "Male",
-        "id": "R_aVIwUEK5PnBaG1X",
-        "date": "2022-05-02T14:48:53Z",
-        "age": 49,
-        "location": {
-          "country": "United Kingdom of Great Britain and Northern Ireland"
+          "country": "United States of America"
         }
       },
       {
@@ -1582,33 +1612,25 @@
         }
       },
       {
-        "regret": "The divirce",
+        "regret": "I regret not being strong enough to break out of my cycle of self-sabotage earlier in life.",
         "gender": "Male",
-        "id": "R_VRuTKrZ7UFgAOmB",
-        "date": "2022-04-28T20:41:27Z",
-        "age": 75,
+        "id": "R_2Qfwjx0Fx2sCcvv",
+        "date": "2022-05-12T13:31:59Z",
+        "age": 52,
         "location": {
-          "country": "United States of America"
+          "state": "Georgia",
+          "country": "United States"
         }
       },
       {
-        "regret": "Accepting the cultural 'common wisdom' and relying on a man - got married way too young, before I knew better. ",
-        "gender": "Female",
-        "id": "R_sHkS6qbZUVMBjsR",
-        "date": "2022-04-27T20:02:58Z",
-        "age": 77,
+        "regret": "I regret wasting years in one-way relationships with no real future. Saying next more expeditiously would have got me to the right partner faster.",
+        "gender": "Male",
+        "id": "R_Zfa7QWP5fqcFck1",
+        "date": "2022-05-12T13:28:57Z",
+        "age": 52,
         "location": {
-          "country": "United States of America"
-        }
-      },
-      {
-        "regret": "I regret being a mean kid",
-        "gender": "Female",
-        "id": "R_C4bALqEtrnizY4N",
-        "date": "2022-04-27T16:01:49Z",
-        "age": 45,
-        "location": {
-          "country": "United States of America"
+          "state": "Georgia",
+          "country": "United States"
         }
       },
       {
@@ -1699,23 +1721,46 @@
         }
       },
       {
-        "regret": "not divorcing sooner",
-        "gender": "Male",
-        "id": "R_3P5Dlx0TcLcfl7A",
-        "date": "2022-04-25T14:11:53Z",
-        "age": 59,
+        "regret": "Not being more emotionally transparent and telling the people I love how I feel  ",
+        "gender": "Female",
+        "id": "R_1mqMEG6pNVZ2aC4",
+        "date": "2022-05-13T04:33:48Z",
+        "age": 32,
         "location": {
+          "state": "California",
           "country": "United States"
         }
       },
       {
-        "regret": "My actions the last day of my husband's life",
+        "regret": "Moving my family across the country to work for someone who I would come to find out was a narcissist.",
         "gender": "Female",
-        "id": "R_2dZ4SC9qzIqN4ct",
-        "date": "2022-04-25T12:36:46Z",
-        "age": 81,
+        "id": "R_1j93DiQnvzk7nj3",
+        "date": "2022-05-09T17:05:00Z",
+        "age": 28,
         "location": {
-          "state": "Rhode Island",
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Not being strong enough to resist being manipulated into burning one of the best friendships I think I’ve ever had. She tried to drive us apart all summer, and succeeded a year later.",
+        "gender": "Female",
+        "id": "R_2rvG4O1exuLYHl2",
+        "date": "2022-05-09T03:09:40Z",
+        "age": 31,
+        "location": {
+          "state": "California",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I regret giving the last 18 years of my life to a company that walks all over me and then love bombs me to make me stay. I wish I had the courage to walk out.",
+        "gender": "Female",
+        "id": "R_1qgiL3EJX1DnM32",
+        "date": "2022-05-08T00:43:11Z",
+        "age": 39,
+        "location": {
+          "state": "California",
           "country": "United States"
         }
       },
@@ -1780,50 +1825,6 @@
         "id": "R_1dN97ZfBWVq8b5K",
         "date": "2022-04-30T03:37:57Z",
         "age": 55,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret marrying Richard.",
-        "gender": "Female",
-        "id": "R_1GCjtj7S87gfR8G",
-        "date": "2022-04-29T05:43:51Z",
-        "age": 64,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I wish I had told someone when I started developing an eating disorder, and I wish I had gotten help before it took over my life.",
-        "gender": "Female",
-        "id": "R_1FRkyikWNUGhxrU",
-        "date": "2022-04-29T04:50:40Z",
-        "age": 32,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "not recognizing son's difficulties earlier",
-        "gender": "Female",
-        "id": "R_1lfvv4o7wpPAd57",
-        "date": "2022-04-28T19:20:54Z",
-        "age": 69,
-        "location": {
-          "state": "California",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not saving more money and not saving for retirement ",
-        "gender": "Female",
-        "id": "R_3PHSdr2gixPWFax",
-        "date": "2022-04-28T02:37:58Z",
-        "age": 57,
         "location": {
           "state": "California",
           "country": "United States"
@@ -1940,6 +1941,17 @@
         }
       },
       {
+        "regret": "Wish I took interest in making , saving and investing money. ",
+        "gender": "Male",
+        "id": "R_2CBorOkscWOy5x7",
+        "date": "2022-05-08T01:34:14Z",
+        "age": 56,
+        "location": {
+          "state": "Arizona",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "when i lived in austin, i wish i had done it better. ",
         "gender": "Female",
         "id": "R_3Rgtj5etvfSyZ5M",
@@ -2039,14 +2051,25 @@
         }
       },
       {
-        "regret": "I regret not teaching my kids to speak spanish. I regret wasting time on a relationship\n",
+        "regret": "I let go of a beautiful two storey house with a yard and studio when I separated from my husband. I could have found a way to pay the small $1200/month mortgage at the time. ",
         "gender": "Female",
-        "id": "R_3haopO0o4hXXUsK",
-        "date": "2022-04-19T21:41:09Z",
-        "age": 50,
+        "id": "R_2QKu1xhseguCoTn",
+        "date": "2022-05-09T01:05:13Z",
+        "age": 62,
         "location": {
-          "state": "Arizona",
-          "country": "United States"
+          "state": "British Columbia",
+          "country": "Canada"
+        }
+      },
+      {
+        "regret": "not studying nursing",
+        "gender": "Female",
+        "id": "R_2S13IHaFt7YjN0B",
+        "date": "2022-05-06T22:36:03Z",
+        "age": 57,
+        "location": {
+          "state": "New Brunswick",
+          "country": "Canada"
         }
       },
       {
@@ -2132,28 +2155,6 @@
         "id": "R_2VKPcEUsRIWLvap",
         "date": "2022-04-25T19:05:48Z",
         "age": 35,
-        "location": {
-          "state": "British Columbia",
-          "country": "Canada"
-        }
-      },
-      {
-        "regret": "Attending university too soon.",
-        "gender": "Male",
-        "id": "R_1CD44bujC0H2SWa",
-        "date": "2022-04-25T18:29:10Z",
-        "age": 63,
-        "location": {
-          "state": "British Columbia",
-          "country": "Canada"
-        }
-      },
-      {
-        "regret": "Not being a better parent",
-        "gender": "Female",
-        "id": "R_2TzXNydSixDN1rI",
-        "date": "2022-04-25T17:51:26Z",
-        "age": 49,
         "location": {
           "state": "British Columbia",
           "country": "Canada"
@@ -2360,6 +2361,17 @@
         }
       },
       {
+        "regret": "I regret that I let fear of calculus keep me from continuing in advanced science in college. ",
+        "gender": "Female",
+        "id": "R_31H0dN06OIFBsx2",
+        "date": "2022-05-10T00:56:34Z",
+        "age": 66,
+        "location": {
+          "state": "Indiana",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret getting involved at age 16 with a married woman who was twice my age, had kids, was in a ménage a trois with her husband and business partner, and was a friend of my mom's. I ended up living with her for 7 years and felt I had wasted my best years. ",
         "gender": "Male",
         "id": "R_2tFGUrnr28eZoiZ",
@@ -2459,13 +2471,24 @@
         }
       },
       {
-        "regret": "Not taking more chances for myself and always worrying what others think. ",
-        "gender": "Nonbinary",
-        "id": "R_1jwVwhXoKKeFb9O",
-        "date": "2022-03-25T22:12:58Z",
-        "age": 40,
+        "regret": "I wish I spent more time developing friendships in my youth rather than sticking to family or being selfish with my time.",
+        "gender": "Male",
+        "id": "R_3r2j7ML0Dh6ydzy",
+        "date": "2022-05-12T16:34:25Z",
+        "age": 33,
         "location": {
-          "state": "Indiana",
+          "state": "Colorado",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I know the people in my life feel loved and cared for by me and I know I am very committed to the people in my life.   I regret that it's very difficult for me to say \"I love you\".  I never say it and I regret that.  I regret that I have allowed an internalized fear keep me from expressing those feelings in words directly to the people I love.  ",
+        "gender": "Female",
+        "id": "R_bIrs3i7kHmnM6D7",
+        "date": "2022-05-10T13:23:03Z",
+        "age": 63,
+        "location": {
+          "state": "Colorado",
           "country": "United States"
         }
       },
@@ -2552,28 +2575,6 @@
         "id": "R_3GjNZO3mo8RzDJL",
         "date": "2022-04-25T20:33:06Z",
         "age": 51,
-        "location": {
-          "state": "Colorado",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret being too serious as a young person and simultaneously not taking advantage of all of the opportunities offered, such as participating in more sports, theater, advanced classes, etc. My fear of not being good enough and 'failing' caused me to miss out on the opportunities to try and what adventures trying would have created. ",
-        "gender": "Male",
-        "id": "R_3Pv1Rk62OedRBTa",
-        "date": "2022-04-25T16:10:27Z",
-        "age": 37,
-        "location": {
-          "state": "Colorado",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Being negative, nasty, criminal and unethical when I was younger.",
-        "gender": "Female",
-        "id": "R_bpjKQbV0mOIyTjr",
-        "date": "2022-04-25T14:49:47Z",
-        "age": 56,
         "location": {
           "state": "Colorado",
           "country": "United States"
@@ -2690,6 +2691,28 @@
         }
       },
       {
+        "regret": "Not buying a bigger house when it used to be affordable.",
+        "gender": "Male",
+        "id": "R_2arGlGUO2I7vxEk",
+        "date": "2022-05-10T02:26:41Z",
+        "age": 38,
+        "location": {
+          "state": "Ontario",
+          "country": "Canada"
+        }
+      },
+      {
+        "regret": "I regret getting married at 20. I didn't know myself or what character a good husband should have. I married a man who suffered from borderline personality disorder.  He made my life miserable. ",
+        "gender": "Female",
+        "id": "R_2VffEDcGgAqpaFV",
+        "date": "2022-05-07T10:02:40Z",
+        "age": 48,
+        "location": {
+          "state": "Ontario",
+          "country": "Canada"
+        }
+      },
+      {
         "regret": "Not seeking mental health help earlier in life",
         "gender": "Male",
         "id": "R_1Lj7Ih5LfjuSpo0",
@@ -2778,25 +2801,25 @@
         }
       },
       {
-        "regret": "I regret not taking time for myself after university - not travelling or working abroad. ",
-        "gender": "Female",
-        "id": "R_3GCwxf1S7Ve3tyI",
-        "date": "2022-04-25T01:31:22Z",
-        "age": 37,
+        "regret": "I reached a \"wall\" in my training as a diver and quit diving. I regret letting me fear let me stop doing something I loved.",
+        "gender": "Male",
+        "id": "R_0uoDzMGgl4lYFb3",
+        "date": "2022-05-12T23:41:43Z",
+        "age": 51,
         "location": {
-          "state": "Ontario",
-          "country": "Canada"
+          "state": "Washington",
+          "country": "United States"
         }
       },
       {
-        "regret": "Not going back in the room",
-        "gender": "Prefer not to say",
-        "id": "R_1EilpeqMYHoEkEh",
-        "date": "2022-04-25T00:01:27Z",
-        "age": 63,
+        "regret": "I wish I had taken better advantage of the educational opportunities afforded me in undergrad. I had 4 years of a full-ride, but wasted half of the time wallowing and not sure what to study or do with my free time.",
+        "gender": "Nonbinary",
+        "id": "R_5BDO2tUTKNhRyvL",
+        "date": "2022-05-11T18:55:02Z",
+        "age": 28,
         "location": {
-          "state": "Ontario",
-          "country": "Canada"
+          "state": "Washington",
+          "country": "United States"
         }
       },
       {
@@ -2888,24 +2911,35 @@
         }
       },
       {
-        "regret": "Being fearful and limiting my life choices because of it",
+        "regret": "Not trying harder to go into medical profession",
         "gender": "Female",
-        "id": "R_XhQGcOGZO3LNs09",
-        "date": "2022-04-25T20:43:56Z",
-        "age": 57,
+        "id": "R_2w6tXipyrZUoyUq",
+        "date": "2022-05-10T19:12:41Z",
+        "age": 58,
         "location": {
-          "state": "Washington",
+          "state": "Pennsylvania",
           "country": "United States"
         }
       },
       {
-        "regret": "I regret not getting teacher certified 40 years ago. I would have had a better lifestyle and a pension ",
+        "regret": "Not getting my doctoral degree. Not traveling more. ",
         "gender": "Female",
-        "id": "R_0UkIP3FMzMyWvsJ",
-        "date": "2022-04-25T20:05:46Z",
-        "age": 69,
+        "id": "R_sS5R1tnnex6KH4d",
+        "date": "2022-05-10T14:01:20Z",
+        "age": 43,
         "location": {
-          "state": "Washington",
+          "state": "Pennsylvania",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I regret not being bold enough to stand up to a marriage ultimatum.  It didn't feel right to me to basically be threatened, \"Propose to me by _____ or else I am leaving,\" but I did. ",
+        "gender": "Male",
+        "id": "R_3nV1nq8WvLNXLVS",
+        "date": "2022-05-07T15:37:32Z",
+        "age": 47,
+        "location": {
+          "state": "Pennsylvania",
           "country": "United States"
         }
       },
@@ -2987,35 +3021,13 @@
         }
       },
       {
-        "regret": "I wish I had my son's baptism in my home town where friends and family could have attended rather than a location that was more convenient to relatives traveling from out of town.  ",
+        "regret": "I wish that I had started dating and having relationships a lot earlier, and spent less time pursuing education, good grades, and a career.   I didn't get married until I was too old to have children, and that is the biggest regret of my life.  It's one of the few things that makes me feel like a failure.  Having a child is the most natural thing in world, and I didn't do it.  I would rather have children than graduate degrees.",
         "gender": "Female",
-        "id": "R_1Hz9yLae7pBpaWB",
-        "date": "2022-04-25T19:10:15Z",
-        "age": 54,
+        "id": "R_1I6FTtzVs1GQQj6",
+        "date": "2022-05-10T01:06:30Z",
+        "age": 53,
         "location": {
-          "state": "Pennsylvania",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret my choices around college, and where I ended up going and what I ended up studying. I am happy with my life but often think about how different or how much better and more successful it could have been.",
-        "gender": "Male",
-        "id": "R_dnEj5JJvtcPcEfL",
-        "date": "2022-04-25T16:01:04Z",
-        "age": 36,
-        "location": {
-          "state": "Pennsylvania",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Commit to a special person, too soon, when I wasn't quite ready.",
-        "gender": "Male",
-        "id": "R_1LiLJ1l6leFYQu0",
-        "date": "2022-04-25T15:18:07Z",
-        "age": 78,
-        "location": {
-          "state": "Pennsylvania",
+          "state": "Minnesota",
           "country": "United States"
         }
       },
@@ -3119,13 +3131,13 @@
         }
       },
       {
-        "regret": "I wish I had worked harder in college and law school and not been afraid of pushing my self towards greater success ",
+        "regret": "Leaving my exboyfriend. Staying with my current partner. ",
         "gender": "Female",
-        "id": "R_DejgFt9fK15lBe1",
-        "date": "2022-04-25T04:38:01Z",
-        "age": 58,
+        "id": "R_3J3FSaHNl5SOt69",
+        "date": "2022-05-12T16:01:23Z",
+        "age": 37,
         "location": {
-          "state": "Minnesota",
+          "state": "Virginia",
           "country": "United States"
         }
       },
@@ -3229,13 +3241,13 @@
         }
       },
       {
-        "regret": "After graduating from college, I regret that I don't hang around afterwards to say goodbye to my friends.  Instead, we immediacy packed up and headed home.",
-        "gender": "Male",
-        "id": "R_aVP8L0sTIU9RATT",
-        "date": "2022-04-26T13:54:34Z",
-        "age": 53,
+        "regret": "I regret not following doctor advice to wear compression stockings during my pregnancies. I now live with health consequences that I didn't think were important when I was in my 20's. ",
+        "gender": "Female",
+        "id": "R_2vZL6MtTD3agQPq",
+        "date": "2022-05-12T15:22:00Z",
+        "age": 48,
         "location": {
-          "state": "Virginia",
+          "state": "Maryland",
           "country": "United States"
         }
       },
@@ -3333,17 +3345,6 @@
         "id": "R_4SJDNqTkZA4bkeB",
         "date": "2022-04-25T04:29:53Z",
         "age": 45,
-        "location": {
-          "state": "Maryland",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret starting to count calories in high school. ",
-        "gender": "Female",
-        "id": "R_2VKFaxTZbxh3U89",
-        "date": "2022-04-25T02:01:37Z",
-        "age": 24,
         "location": {
           "state": "Maryland",
           "country": "United States"
@@ -3460,6 +3461,28 @@
         }
       },
       {
+        "regret": "Not trying to wake my husband up sooner the day I found him dead.",
+        "gender": "Female",
+        "id": "R_31mTJsijPKrCOW4",
+        "date": "2022-05-11T18:03:36Z",
+        "age": 30,
+        "location": {
+          "state": "Illinois",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Getting married too early - at age 22 just out of college.",
+        "gender": "Female",
+        "id": "R_10N4soEF7o2BFXd",
+        "date": "2022-05-10T18:27:07Z",
+        "age": 52,
+        "location": {
+          "state": "Illinois",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret not taking a new job out of state to be closer to family. ",
         "gender": "Male",
         "id": "R_3GwTnyuvo2brC1k",
@@ -3542,28 +3565,6 @@
         "id": "R_T0o8WRhTul6Fbk5",
         "date": "2022-04-25T18:31:01Z",
         "age": 63,
-        "location": {
-          "state": "Illinois",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Being more kind with my children",
-        "gender": "Male",
-        "id": "R_2OYYqyi5z5d2RYc",
-        "date": "2022-04-25T17:37:53Z",
-        "age": 60,
-        "location": {
-          "state": "Illinois",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "returning to the US when I was 24 after living in Paris for almost 2 years because of fear, loneliness and the need to end a bad relationship ",
-        "gender": "Female",
-        "id": "R_1kZDfsP2HCbPDpv",
-        "date": "2022-04-25T12:43:04Z",
-        "age": 59,
         "location": {
           "state": "Illinois",
           "country": "United States"
@@ -3770,6 +3771,17 @@
         }
       },
       {
+        "regret": "I regret marring my husband even when my gut said no. He's incredibly sweet and we've built a great life together, just as I thought we would, but I've been fighting my gut for 6 years and it's not getting easier.",
+        "gender": "Female",
+        "id": "R_3p4hfCh4q78EhMk",
+        "date": "2022-05-09T16:07:40Z",
+        "age": 30,
+        "location": {
+          "state": "Massachusetts",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret not reaching out for help earlier. And then looking for help in the wrong places.",
         "gender": "Female",
         "id": "R_DOEIvVtqRj1elb3",
@@ -3869,13 +3881,24 @@
         }
       },
       {
-        "regret": "I regret staying with someone who wasn't good for me for too long.",
+        "regret": "I regret developing an eating disorder at age 15. I will always be recovering, not fully recovered. My inability to eat in a structured way then inhibited my ability to properly control my blood sugar when I developed Type-1 (insulin dependent) diabetes. This lack of control has caused me to have diabetic retinopathy -- serious issues with my eyesight that have resulted in several surgeries and permanently impaired (and uncorrectable) eyesight. My \"weirdness\" around food has also led to -- at times -- obsessive exercising and come uncomfortable social situations.",
         "gender": "Female",
-        "id": "R_xghqgvlgUTEjVLP",
-        "date": "2022-04-26T17:00:04Z",
-        "age": 23,
+        "id": "R_2Tq87E6IBybhKdc",
+        "date": "2022-05-12T19:09:34Z",
+        "age": 65,
         "location": {
-          "state": "Massachusetts",
+          "state": "Ohio",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I regret thinking men would only like me if I had sex with them.",
+        "gender": "Female",
+        "id": "R_3NJOq7MKMzCBqxL",
+        "date": "2022-05-07T00:18:00Z",
+        "age": 55,
+        "location": {
+          "state": "Ohio",
           "country": "United States"
         }
       },
@@ -3962,28 +3985,6 @@
         "id": "R_7X7pnXzhBV9Pg6R",
         "date": "2022-04-25T10:51:02Z",
         "age": 47,
-        "location": {
-          "state": "Ohio",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not fighting for a position at work. ",
-        "gender": "Female",
-        "id": "R_1JQHaywZu11gMkH",
-        "date": "2022-04-25T10:34:13Z",
-        "age": 36,
-        "location": {
-          "state": "Ohio",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "That I didn't get a divorce much sooner than I did. In fact, I should have broke the engagement. ",
-        "gender": "Male",
-        "id": "R_3nSJ79nHwK81NbX",
-        "date": "2022-04-24T20:04:31Z",
-        "age": 68,
         "location": {
           "state": "Ohio",
           "country": "United States"
@@ -4100,6 +4101,16 @@
         }
       },
       {
+        "regret": "No haber conseguido tener más éxito profesional. No haber tenido más relaciones con otras chicas",
+        "gender": "Male",
+        "id": "R_4PjviCkSwLVquFX",
+        "date": "2022-05-13T13:38:52Z",
+        "age": 46,
+        "location": {
+          "country": "Spain"
+        }
+      },
+      {
         "regret": "I regret not opening up to some people and therefore not entering into relationships out of fear of getting hurt or some other kind of self preservation. ",
         "gender": "Female",
         "id": "R_3dKtNCqQ7gOG2Pw",
@@ -4185,16 +4196,6 @@
         "id": "R_1OAIpJ0PrXLxSl9",
         "date": "2022-02-09T16:44:21Z",
         "age": 63,
-        "location": {
-          "country": "Spain"
-        }
-      },
-      {
-        "regret": "I regret not buying shares in Amazon in 2000, or Bitcoin in 2012.. I considered both.  I also regret no exercising more, and really incorporating this into my life.  Lastly, I regret spending so much time living in the US, and then the UK, rather than following my dream of living in more countries for shorter periods of time.",
-        "gender": "Female",
-        "id": "R_1LoffZrwYXtePj7",
-        "date": "2022-02-09T13:54:35Z",
-        "age": 53,
         "location": {
           "country": "Spain"
         }
@@ -4310,6 +4311,16 @@
         }
       },
       {
+        "regret": "Extra Marrital Affair",
+        "gender": "Male",
+        "id": "R_qQM3K4Xvkei7ORX",
+        "date": "2022-05-07T13:01:53Z",
+        "age": 45,
+        "location": {
+          "country": "India"
+        }
+      },
+      {
         "regret": "I regret that I had to leave my boyfriend of 5 years because I was attracted to someone else. I wish I could have broken up with him respectfully, or never strayed at all. ",
         "gender": "Female",
         "id": "R_3eff8NQFhpflzkp",
@@ -4400,13 +4411,36 @@
         }
       },
       {
-        "regret": "I wish I had gone to USA for higher education.\nI wish I could have adjusted to corporate life and steadily grow professionally and financially",
+        "regret": "Not spending more time with my family ",
         "gender": "Male",
-        "id": "R_2qrZd9MPNzdLotC",
-        "date": "2022-04-26T06:46:40Z",
-        "age": 42,
+        "id": "R_AnWqNwdf3SYfkyJ",
+        "date": "2022-05-07T05:09:37Z",
+        "age": 53,
         "location": {
-          "country": "India"
+          "state": "New York",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "Not speaking up enough!",
+        "gender": "Female",
+        "id": "R_1OU0N8XRbwGgH8L",
+        "date": "2022-05-07T03:47:43Z",
+        "age": 78,
+        "location": {
+          "state": "New York",
+          "country": "United States"
+        }
+      },
+      {
+        "regret": "I wish I broke up with my ex sooner",
+        "gender": "Female",
+        "id": "R_3dMaiLm9x020R6A",
+        "date": "2022-05-07T00:31:28Z",
+        "age": 30,
+        "location": {
+          "state": "New York",
+          "country": "United States"
         }
       },
       {
@@ -4487,36 +4521,23 @@
         }
       },
       {
-        "regret": "Not taking care of myself,mentally or physically, until many opportunities for a normal happy life had passed.",
-        "gender": "Male",
-        "id": "R_41PfQYlQ0ROTTwt",
-        "date": "2022-05-01T21:45:37Z",
-        "age": 61,
+        "regret": "1. Haber mentido a cerca de mi posición económica durante la Universidad.\n\n2.No haber ahorrado y no hacer valer mi opinión durante el tiempo que nos iba bien económicamente durante mi matrimonio.",
+        "gender": "Female",
+        "id": "R_DPjGQ0LolUxI0aB",
+        "date": "2022-05-08T00:59:00Z",
+        "age": 50,
         "location": {
-          "state": "New York",
-          "country": "United States"
+          "country": "Mexico"
         }
       },
       {
-        "regret": "I wish I had started taking care of my body more seriously earlier - started eating healthier, working out more, meditating, etc. ",
+        "regret": "I wish I would have been a better and m",
         "gender": "Female",
-        "id": "R_2A1r5d8CPrJeSPg",
-        "date": "2022-04-28T23:27:05Z",
-        "age": 28,
+        "id": "R_2rNIpF3uCwTMWCz",
+        "date": "2022-05-07T23:45:42Z",
+        "age": 78,
         "location": {
-          "state": "New York",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "not taking advantage of all opportunities during college because I was too shy/felt like I didn’t deserve them due to my impostor syndrome ",
-        "gender": "Female",
-        "id": "R_OPtfBFASdRRyrtL",
-        "date": "2022-04-28T22:34:08Z",
-        "age": 24,
-        "location": {
-          "state": "New York",
-          "country": "United States"
+          "country": "Mexico"
         }
       },
       {
@@ -4595,26 +4616,6 @@
         "id": "R_21cF69fBIsaCcs9",
         "date": "2022-03-29T19:32:15Z",
         "age": 52,
-        "location": {
-          "country": "Mexico"
-        }
-      },
-      {
-        "regret": "No estudiar conscientemente ",
-        "gender": "Female",
-        "id": "R_RzcDw09s4i27YMV",
-        "date": "2022-03-25T03:24:13Z",
-        "age": 53,
-        "location": {
-          "country": "Mexico"
-        }
-      },
-      {
-        "regret": "No haber estado presente para mis hermanos y padres",
-        "gender": "Female",
-        "id": "R_1KqyVm05CQVGsom",
-        "date": "2022-03-19T18:22:19Z",
-        "age": 54,
         "location": {
           "country": "Mexico"
         }
@@ -5170,6 +5171,17 @@
         }
       },
       {
+        "regret": "When I was younger I thought it was possible to exchange sex for love. ",
+        "gender": "Female",
+        "id": "R_3KsfqLgf8Bg01j3",
+        "date": "2022-05-09T17:05:12Z",
+        "age": 60,
+        "location": {
+          "state": "Maine",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret that I listened to my father when he told me not to study architecture when I was in college.",
         "gender": "Male",
         "id": "R_3PIcy4OyJSCRIU5",
@@ -5263,17 +5275,6 @@
         "id": "R_Q9XqiE5V8VcBIVb",
         "date": "2022-04-24T13:48:10Z",
         "age": 37,
-        "location": {
-          "state": "Maine",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret not having spent more time with my father before he died.  Essentially: shared experience equates with familiarity in my view, and we didn't share enough time together before he died at age 90.",
-        "gender": "Female",
-        "id": "R_1DHDbloPPBfDdOw",
-        "date": "2022-04-24T12:35:58Z",
-        "age": 69,
         "location": {
           "state": "Maine",
           "country": "United States"
@@ -5480,6 +5481,17 @@
         }
       },
       {
+        "regret": "I regret not pursuing higher education ",
+        "gender": "Female",
+        "id": "R_3fCdyoC8C53Nby1",
+        "date": "2022-05-12T21:59:26Z",
+        "age": 50,
+        "location": {
+          "state": "Wisconsin",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "That I didn’t transfer my nursing license from one state to another. ",
         "gender": "Female",
         "id": "R_1joyyuk5DoKR2FV",
@@ -5579,14 +5591,13 @@
         }
       },
       {
-        "regret": "I regret not pursuing a relationship with my best friend.",
-        "gender": "Female",
-        "id": "R_2dtqf7pFRSpdqrp",
-        "date": "2022-04-22T19:56:48Z",
-        "age": 39,
+        "regret": "I regret not coming out as gay earlier in my life and hiding my identity for too long. ",
+        "gender": "Male",
+        "id": "R_3k1i1st45fyqRtt",
+        "date": "2022-05-08T18:27:52Z",
+        "age": 23,
         "location": {
-          "state": "Wisconsin",
-          "country": "United States"
+          "country": "Germany"
         }
       },
       {
@@ -5675,16 +5686,6 @@
         "id": "R_1pM2CfFv4OJuv5i",
         "date": "2022-04-03T19:26:22Z",
         "age": 39,
-        "location": {
-          "country": "Germany"
-        }
-      },
-      {
-        "regret": "I regret some diets I did when I was younger and also some misconceptions about sports. I was lazy.",
-        "gender": "Female",
-        "id": "R_V3GeJq4RnWCUeiZ",
-        "date": "2022-03-21T14:37:18Z",
-        "age": 43,
         "location": {
           "country": "Germany"
         }
@@ -5910,6 +5911,36 @@
         }
       },
       {
+        "regret": "To sell my house\nNot have a job with long work experince",
+        "gender": "Female",
+        "id": "R_2Ys6VD9jAZGGXfz",
+        "date": "2022-05-11T02:41:03Z",
+        "age": 45,
+        "location": {
+          "country": "Netherlands"
+        }
+      },
+      {
+        "regret": "i regret the time that lost with regretting ",
+        "gender": "Female",
+        "id": "R_1P0spV6wLNfLl0y",
+        "date": "2022-05-10T09:45:05Z",
+        "age": 42,
+        "location": {
+          "country": "Netherlands"
+        }
+      },
+      {
+        "regret": "I regret yelling at my son when he didn’t come down from his room for dinner (which he does often and got me iritated)",
+        "gender": "Male",
+        "id": "R_1pRS2WZrsJtDIhT",
+        "date": "2022-05-08T13:10:49Z",
+        "age": 46,
+        "location": {
+          "country": "Netherlands"
+        }
+      },
+      {
         "regret": "I have paticipated in a scientific study in which the head investigator convinced me to provide him the details on patients who received active treatment vs placebo in order for him to be able to better perform the ultrasound analysis. Of course this will have introduced bias. \n\nI have had a short affair while being married. This should never have happened.",
         "gender": "Male",
         "id": "R_XZfRC50V7xlkJRD",
@@ -5975,36 +6006,6 @@
         "id": "R_2bPeQKWJyejyivG",
         "date": "2022-05-02T11:56:59Z",
         "age": 26,
-        "location": {
-          "country": "Netherlands"
-        }
-      },
-      {
-        "regret": "I wish I had been nicer to some kids in school",
-        "gender": "Female",
-        "id": "R_3ewwSYfL4EuC3zH",
-        "date": "2022-05-02T08:16:16Z",
-        "age": 48,
-        "location": {
-          "country": "Netherlands"
-        }
-      },
-      {
-        "regret": "Not appreciating lovingly given presents\n",
-        "gender": "Female",
-        "id": "R_3JlKATW1aZJjNjs",
-        "date": "2022-05-01T19:28:37Z",
-        "age": 79,
-        "location": {
-          "country": "Netherlands"
-        }
-      },
-      {
-        "regret": "I dropped out of university.",
-        "gender": "Male",
-        "id": "R_AMBP1464qpg2zQd",
-        "date": "2022-04-30T18:12:59Z",
-        "age": 54,
         "location": {
           "country": "Netherlands"
         }
@@ -6110,6 +6111,16 @@
         }
       },
       {
+        "regret": "L'embrasser",
+        "gender": "Female",
+        "id": "R_BRJuHk01yoKORi1",
+        "date": "2022-05-02T13:53:49Z",
+        "age": 40,
+        "location": {
+          "country": "France"
+        }
+      },
+      {
         "regret": "Dont talk with my dead father \nDon’t divorce earlier",
         "gender": "Male",
         "id": "R_SYLG5Ca34wB8O8V",
@@ -6194,16 +6205,6 @@
         "gender": "Male",
         "id": "R_RJfvZU8Se1bzHAl",
         "date": "2022-02-20T11:44:33Z",
-        "age": 49,
-        "location": {
-          "country": "France"
-        }
-      },
-      {
-        "regret": "Je regrette de ne pas avoir mis assez d'argent de côté pour devenir rentière avant l'âge de la retraite. Cela m'aurait permis de me sentir en sécurité financière pour faire ce que je veux vraiment. Et ce que je veux, c'est voyager, rencontrer d'autres cultures, découvrir.\n",
-        "gender": "Female",
-        "id": "R_2rHi7CE6bOZfuSC",
-        "date": "2022-02-20T09:00:25Z",
         "age": 49,
         "location": {
           "country": "France"
@@ -6420,6 +6421,17 @@
         }
       },
       {
+        "regret": "While in grade school during the 1960s, uttering a racial slur under my breath, directed at my teacher. It may have been audible to her. She had done something that made me mad and this was the only thing that I could think of to hurt her. The odd thing is she was my favorite teacher. ",
+        "gender": "Male",
+        "id": "R_3rP2sprOBb1B0w6",
+        "date": "2022-05-07T21:11:01Z",
+        "age": 62,
+        "location": {
+          "state": "Kansas",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret \"retiring\" from competitive running too early.",
         "gender": "Male",
         "id": "R_3GiEmgWaGmY82Hm",
@@ -6513,17 +6525,6 @@
         "id": "R_12A238nedjfbN1k",
         "date": "2022-02-15T20:38:06Z",
         "age": 43,
-        "location": {
-          "state": "Kansas",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I had a great job with no problems, when my new boss started bullying me. As the bullying persisted, I became more and more toxic to be around. When the chance came to retaliate against this boss, I did, and I regret it.",
-        "gender": "Female",
-        "id": "R_2f8zr7V5agDV8nn",
-        "date": "2022-02-14T20:46:50Z",
-        "age": 61,
         "location": {
           "state": "Kansas",
           "country": "United States"
@@ -6730,6 +6731,16 @@
         }
       },
       {
+        "regret": "Parfois impulsif lorsque j'étais plus jeune, je regrette certaines mauvaises paroles et certains actes lors de mes précédentes relations amoureuses.",
+        "gender": "Male",
+        "id": "R_3M4Lm41AYjPrBkW",
+        "date": "2022-05-10T23:00:57Z",
+        "age": 42,
+        "location": {
+          "country": "Switzerland"
+        }
+      },
+      {
         "regret": "Not leaving my husband earlier.",
         "gender": "Female",
         "id": "R_1QaX4cIQLqnWckA",
@@ -6815,16 +6826,6 @@
         "id": "R_W7nT1UYZHw2bbpL",
         "date": "2021-10-29T22:06:08Z",
         "age": 49,
-        "location": {
-          "country": "Switzerland"
-        }
-      },
-      {
-        "regret": "Not taking better care of my body (eating healthier, exercising).",
-        "gender": "Female",
-        "id": "R_1jDkS9v2CUuBCKu",
-        "date": "2021-10-03T07:31:07Z",
-        "age": 37,
         "location": {
           "country": "Switzerland"
         }
@@ -6940,6 +6941,26 @@
         }
       },
       {
+        "regret": "Not having the confidence or support to travel when young",
+        "gender": "Female",
+        "id": "R_5mDamWKq4y3sgKd",
+        "date": "2022-05-10T01:37:59Z",
+        "age": 58,
+        "location": {
+          "country": "New Zealand"
+        }
+      },
+      {
+        "regret": "I didn’t take a world trip when I had the financial resources to easily do it. ",
+        "gender": "Female",
+        "id": "R_TqmuytXe2FldMXL",
+        "date": "2022-05-09T10:13:49Z",
+        "age": 54,
+        "location": {
+          "country": "New Zealand"
+        }
+      },
+      {
         "regret": "I regret that when I was aged 11 I didn't face up to becoming shortsighted. I managed for 4 years, to hide it from my family, teachers and friends. I must have missed out on lots of learning opportunities and the nuances of communication. It was only when I wanted to get my drivers licence that I told my sister and she told my parents. They bought me my first glasses, but I only wore them when it was absolutely necessary for learning and driving until I could save up for contact lenses.  I think it got me into the habit of being secretive, ashamed of any weakness, a loner. I don't know why I couldn't face it when I first noticed not being able to read the blackboard. There was only one person in my class who wore glasses and she was teased. My mother was shortsighted and she hoped we wouldn't be. Now, 50 years later I have just accepted wearing glasses, it is a relief.",
         "gender": "Female",
         "id": "R_1DvtrxtvCcgDwTW",
@@ -7020,23 +7041,63 @@
         }
       },
       {
-        "regret": "I wish I had believed in myself more, and  paid less attention to what I thought I \"should\" do.  In employment, going after acceptable jobs that were wrong for me, which always failed.  In relationships, sticking it out when it wasn't working.",
-        "gender": "Prefer not to say",
-        "id": "R_ZFdmgcBozar2osF",
-        "date": "2022-03-18T19:32:28Z",
-        "age": 16,
+        "regret": "Excessive anxiety and not appreciating life more",
+        "gender": "Female",
+        "id": "R_1Kf1r0NPUjvbhPU",
+        "date": "2022-05-12T23:00:35Z",
+        "age": 53,
         "location": {
-          "country": "New Zealand"
+          "country": "Australia"
         }
       },
       {
-        "regret": "I regret not learner sooner that I had an issue with emotional attachment in my marriage.  This was one of the causes my first marriage failed.  Happy to say that my 2nd marriage is much better as my wife and I have worked hard, and via counselling, to build a better emotional connection and framework for our relationship.",
-        "gender": "Male",
-        "id": "R_2dDPh9CJ8waT0LH",
-        "date": "2022-03-08T19:23:46Z",
+        "regret": "Failed Business, Didnt spend enough time appreciating time with my mum before she passed",
+        "gender": "Female",
+        "id": "R_5cC6q3Y0QrEhF17",
+        "date": "2022-05-12T01:14:14Z",
+        "age": 49,
+        "location": {
+          "country": "Australia"
+        }
+      },
+      {
+        "regret": "Not standing up to my father earlier. ",
+        "gender": "Female",
+        "id": "R_C2m5QgfaW9l21Zn",
+        "date": "2022-05-11T01:32:30Z",
         "age": 51,
         "location": {
-          "country": "New Zealand"
+          "country": "Australia"
+        }
+      },
+      {
+        "regret": "Taken responsibility for my life sooner and make an active choice to grow up.",
+        "gender": "Male",
+        "id": "R_vAgmihoamMpuLf3",
+        "date": "2022-05-09T10:20:47Z",
+        "age": 31,
+        "location": {
+          "country": "Australia"
+        }
+      },
+      {
+        "regret": "After having written 180 pages of a thesis/book, I allowed myself to be distracted by other less important things, and justified it all at the time that I didn't really want to write, and had other things I wanted to do.  But when I look back now, I didn't really, and could have kept on with it including attending to the other things if I had applied myself. Such a waste - of time, of my own skill, and of the potential contribution to others via the work. ",
+        "gender": "Female",
+        "id": "R_tYZ4WuJtrZ8BSE1",
+        "date": "2022-05-07T22:39:33Z",
+        "age": 73,
+        "location": {
+          "country": "Australia"
+        }
+      },
+      {
+        "regret": "I regret poor decision-mkaing which led to someone else's child being lost for 15 minutes",
+        "gender": "Female",
+        "id": "R_3NWjmPxFyjZBWmP",
+        "date": "2022-05-07T00:20:41Z",
+        "age": 50,
+        "location": {
+          "country": "Australia"
         }
       },
       {
@@ -7075,66 +7136,6 @@
         "id": "R_5hUblgbz2AFjdAt",
         "date": "2022-04-25T06:01:32Z",
         "age": 71,
-        "location": {
-          "country": "Australia"
-        }
-      },
-      {
-        "regret": "Not looking after my mother more when she was diagnosed with cancer",
-        "gender": "Male",
-        "id": "R_Qm4NpKLzXmMzNhT",
-        "date": "2022-04-25T04:42:23Z",
-        "age": 36,
-        "location": {
-          "country": "Australia"
-        }
-      },
-      {
-        "regret": "I regret starting a new serious relationship so soon after ending a marriage after 12 years.  And then persevering in the new relationship for too long even though my instincts regularly told me it was not going to work out.  Wasted time, energies, efforts and money.",
-        "gender": "Male",
-        "id": "R_bCq1VRvlEhps5qh",
-        "date": "2022-04-24T21:35:04Z",
-        "age": 56,
-        "location": {
-          "country": "Australia"
-        }
-      },
-      {
-        "regret": "Not investing in Ethereum",
-        "gender": "Male",
-        "id": "R_3eGexZpkjlqTbu9",
-        "date": "2022-04-19T07:11:12Z",
-        "age": 36,
-        "location": {
-          "country": "Australia"
-        }
-      },
-      {
-        "regret": "I regret not pursuing relationships with people, and not being open to relationships during my 20s",
-        "gender": "Female",
-        "id": "R_1Kg3odrA3A5XuRc",
-        "date": "2022-04-17T12:02:37Z",
-        "age": 33,
-        "location": {
-          "country": "Australia"
-        }
-      },
-      {
-        "regret": "Love. Not taking the action of taking it further with the only man I have ever loved. ",
-        "gender": "Female",
-        "id": "R_WcV3pl8ngztGi6B",
-        "date": "2022-04-15T13:36:57Z",
-        "age": 40,
-        "location": {
-          "country": "Australia"
-        }
-      },
-      {
-        "regret": "Didn't enjoy the way I should",
-        "gender": "Female",
-        "id": "R_1E4LQip3IuruXS6",
-        "date": "2022-04-13T08:28:30Z",
-        "age": 37,
         "location": {
           "country": "Australia"
         }
@@ -7460,6 +7461,17 @@
         }
       },
       {
+        "regret": "I regret that I divorced my wife.",
+        "gender": "Male",
+        "id": "R_1BXG8B4zd1XNc9S",
+        "date": "2022-05-12T18:22:54Z",
+        "age": 62,
+        "location": {
+          "state": "Iowa",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I was way to career oriented during my only child’s childhood.",
         "gender": "Female",
         "id": "R_1i4jSq8CyvK0Msr",
@@ -7553,17 +7565,6 @@
         "id": "R_XMoeO8SRuzE3FEl",
         "date": "2022-02-16T22:10:40Z",
         "age": 50,
-        "location": {
-          "state": "Iowa",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret that I did not cultivate a marketable skill.",
-        "gender": "Female",
-        "id": "R_2DUYU3j35lU4Fy4",
-        "date": "2022-02-13T17:35:24Z",
-        "age": 69,
         "location": {
           "state": "Iowa",
           "country": "United States"
@@ -7680,6 +7681,17 @@
         }
       },
       {
+        "regret": "I had just gotten a job bartending (my first ever bar job and I'd be learning to make craft cocktails so at the time it seemed significant and I was in my early 20s so I was dumb) and the bar asked me to verbally commit to working 3 months because the owner was going out of town in 3 months and needed to be guaranteed I'd be there... and then after I started I was offered a job at a luthier shop.  I felt like I'd made a promise to the bar and so I turned down a once in a lifetime opportunity to work under an artisan instrument maker for a bar job which later ended up screwing me by mis-reporting my income and I had to report them to the IRS.  So dumb.  I contacted the luthier when I was in between jobs a few time subsequently, but of course they never had any openings... because no one who gets that job will ever give it up because it's amazing. ",
+        "gender": "Prefer not to say",
+        "id": "R_2cuU8HI4LbjC4GY",
+        "date": "2022-05-09T01:16:01Z",
+        "age": 33,
+        "location": {
+          "state": "Kentucky",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Cheated on wife, which led to divorce.",
         "gender": "Male",
         "id": "R_z2MJWN40eZIdWXn",
@@ -7773,17 +7785,6 @@
         "id": "R_2OZPPRPq7RLC2CM",
         "date": "2022-02-11T21:35:05Z",
         "age": 49,
-        "location": {
-          "state": "Kentucky",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I regret not putting myself out there or being my true self for much of my life, with friendships, potential romantic partners, education and career decisions, etc. The world is huge, and there are a LOT of people in it, and if someone or someplace isn't feeling good or making you a better or happier or more satisfied being, move along.  ",
-        "gender": "Nonbinary",
-        "id": "R_2X4zQ2LSFpFJl9T",
-        "date": "2022-02-08T16:46:09Z",
-        "age": 39,
         "location": {
           "state": "Kentucky",
           "country": "United States"
@@ -7930,101 +7931,101 @@
         }
       },
       {
-        "regret": "Not studying abroad ",
+        "regret": "Choosing the douchebag who had attachment problems, over my boyfriend (whom I also dated atm, because I was scared of true feelings. The douchebag gave me std and my bf felt like second b choice",
+        "gender": "Female",
+        "id": "R_3dSbO93oPKdXvYD",
+        "date": "2022-05-13T15:32:57Z",
+        "age": 36,
+        "location": {
+          "country": "Sweden"
+        }
+      },
+      {
+        "regret": "Letting Stefan go",
+        "gender": "Female",
+        "id": "R_3Ehjc3YIfSmhLJR",
+        "date": "2022-05-13T14:56:36Z",
+        "age": 56,
+        "location": {
+          "country": "Sweden"
+        }
+      },
+      {
+        "regret": "I regret not sticking up for my self more when I was younger, I was a \"follower\" and let other people dictate my life a lot",
+        "gender": "Female",
+        "id": "R_3frWtS7pkdTas6C",
+        "date": "2022-05-13T13:17:18Z",
+        "age": 27,
+        "location": {
+          "country": "Sweden"
+        }
+      },
+      {
+        "regret": "Not taking more chances instead of playing safe and/or being shy. To think more of myself and do things, take initiatives.",
         "gender": "Male",
-        "id": "R_tRReOeZ9MUvzWWR",
-        "date": "2022-05-01T15:42:18Z",
+        "id": "R_SZ4AIfNucTietpL",
+        "date": "2022-05-13T13:07:08Z",
         "age": 40,
         "location": {
           "country": "Sweden"
         }
       },
       {
-        "regret": "Pressured a significant other too much to be in a relationship and lost him all-together ",
-        "gender": "Female",
-        "id": "R_DjZ7bufdCtXVSql",
-        "date": "2022-04-30T13:54:04Z",
+        "regret": "That I didn't visit my grandmother when she had had a stroke, and just had a few days left. ",
+        "gender": "Male",
+        "id": "R_274e4IJklCWRDLo",
+        "date": "2022-05-13T11:35:20Z",
         "age": 29,
         "location": {
           "country": "Sweden"
         }
       },
       {
-        "regret": "Having an affair with a person who used my emotional status and a weak time in my life. When looking for a relationship in order to leave a marriage.",
+        "regret": "I regret being unfaithful to my first boyfriend. I should just had broken up with him first. Know I’m scared that I hurt him for life. But I hope he’s over it by know. I think the whole thing and my regret has made me think I’m less worthy of love because what I once did. ",
+        "gender": "Female",
+        "id": "R_2fa1teXuPwBKyzl",
+        "date": "2022-05-13T11:15:08Z",
+        "age": 29,
+        "location": {
+          "country": "Sweden"
+        }
+      },
+      {
+        "regret": "I wish I hadn`t estranged myself from my family. I also wish I hadn`t messed up my relationship with my husband",
+        "gender": "Female",
+        "id": "R_1CIKUn8zx0K3pVm",
+        "date": "2022-05-13T11:01:13Z",
+        "age": 56,
+        "location": {
+          "country": "Sweden"
+        }
+      },
+      {
+        "regret": "When I was catphished by an obvious catphisher on Twitch. Could tell the signs, but chose to ignore them greatly. ",
         "gender": "Male",
-        "id": "R_prtzdjiCfaKfSrT",
-        "date": "2022-04-25T07:19:44Z",
-        "age": 55,
+        "id": "R_3HUna3sTAGdE2VG",
+        "date": "2022-05-13T10:58:11Z",
+        "age": 27,
         "location": {
           "country": "Sweden"
         }
       },
       {
-        "regret": "I regret not recognizing the role of addiction in me and my family sooner.  ",
-        "gender": "Female",
-        "id": "R_bjT1beNqPpijGrD",
-        "date": "2022-04-24T18:44:49Z",
-        "age": 53,
-        "location": {
-          "country": "Sweden"
-        }
-      },
-      {
-        "regret": "I regret I didn't travel more",
-        "gender": "Female",
-        "id": "R_1j8tN1XT4xJm6yS",
-        "date": "2022-04-24T17:12:06Z",
-        "age": 60,
-        "location": {
-          "country": "Sweden"
-        }
-      },
-      {
-        "regret": "Not studying hard enough despite getting into the best Indian univ (IIT Delhi)",
+        "regret": "I regret not following my heart, I met My Human a couple of years ago. It was love, and I mean true love, like something out of a novel. I don't know why, or rather, I do know why I didn't go for it. But I still regret it and I miss her everyday every week all the time.",
         "gender": "Male",
-        "id": "R_3MsvX569Pd4y8XX",
-        "date": "2022-04-24T14:12:13Z",
-        "age": 40,
+        "id": "R_3fd7Ulr9OiTcdf1",
+        "date": "2022-05-13T10:51:15Z",
+        "age": 50,
         "location": {
           "country": "Sweden"
         }
       },
       {
-        "regret": "I didn't spend a night with a guy I met. He left in a couple of days forever. ",
+        "regret": "I regret that I didn't think men could be unselfish in bed until I was in my 40s and experienced an orgasm during sex for the first time (sidenote: with someone much younger).",
         "gender": "Female",
-        "id": "R_2QzFEx1NgPndUVz",
-        "date": "2022-04-21T21:07:48Z",
-        "age": 47,
-        "location": {
-          "country": "Sweden"
-        }
-      },
-      {
-        "regret": "That I did not learn Dutch so I could speak with people in Belgium.",
-        "gender": "Male",
-        "id": "R_C4t5mmfulULU8kp",
-        "date": "2022-04-10T18:37:18Z",
-        "age": 52,
-        "location": {
-          "country": "Sweden"
-        }
-      },
-      {
-        "regret": "I have spent to much money on shallow things instead of saving them to a summer house",
-        "gender": "Female",
-        "id": "R_22VUMBvVnqWCzal",
-        "date": "2022-04-10T10:11:50Z",
-        "age": 60,
-        "location": {
-          "country": "Sweden"
-        }
-      },
-      {
-        "regret": "To much food ",
-        "gender": "Female",
-        "id": "R_3O17EO7W8PRSAOC",
-        "date": "2022-04-10T06:06:22Z",
-        "age": 63,
+        "id": "R_1eQPgSoPiDUhWvk",
+        "date": "2022-05-13T10:37:41Z",
+        "age": 43,
         "location": {
           "country": "Sweden"
         }
@@ -8460,6 +8461,16 @@
         }
       },
       {
+        "regret": "I wish I had gained the knowledge that I could actually be more courageous to shape my life in the way I desire.",
+        "gender": "Female",
+        "id": "R_1jDHCQCHM2bA1bg",
+        "date": "2022-05-08T12:20:10Z",
+        "age": 32,
+        "location": {
+          "country": "Turkey"
+        }
+      },
+      {
         "regret": "I regret nothing because I always ignored others' ideas about the right way to live, created my own truths and realized all my dreams with hard work and some necessary suffering.",
         "gender": "Female",
         "id": "R_VI6l3f3FE8bq7gB",
@@ -8550,13 +8561,14 @@
         }
       },
       {
-        "regret": "I was very young and i supposed a very good university degree could shape my life and save my future. However, I see at my 40s that socio-economic variables do matter! I mean legacy of a family and environment has been crucial to BE ABLE TO SEE THE OPPORTUNITIES. ",
+        "regret": "I regret pursuing life without patience and insight to learn before rushing into life changing decisions that in return created harder pathways I had to travel down to reach my current position of happiness.",
         "gender": "Male",
-        "id": "R_2OSAFZfxtZplws4",
-        "date": "2022-01-21T16:59:47Z",
-        "age": 45,
+        "id": "R_3kKW2uSCH45yG8z",
+        "date": "2022-05-07T16:20:22Z",
+        "age": 36,
         "location": {
-          "country": "Turkey"
+          "state": "Mississippi",
+          "country": "United States"
         }
       },
       {
@@ -8653,17 +8665,6 @@
         "id": "R_1Fs1fZ1tZ3sz1Ya",
         "date": "2021-07-28T15:49:42Z",
         "age": 65,
-        "location": {
-          "state": "Mississippi",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "I wish I knew more about fellatio and intercourse when I was younger. ",
-        "gender": "Female",
-        "id": "R_3iWiHKv0ZRkR7Iu",
-        "date": "2021-07-28T14:01:46Z",
-        "age": 85,
         "location": {
           "state": "Mississippi",
           "country": "United States"
@@ -9420,6 +9421,17 @@
         }
       },
       {
+        "regret": "I regret starting a relationship and marrying my current husband. I have been the victim of emotional manipulation and abuse for over 30 years. I am in the process of divorcing him now and feel extremely anxious but at the same time elated. ",
+        "gender": "Female",
+        "id": "R_2rrw38s5S6rrW6P",
+        "date": "2022-05-13T12:19:43Z",
+        "age": 61,
+        "location": {
+          "state": "Delaware",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "I regret never learning to manage money and spending the bulk of an inheritance that would have afforded me a measure of financial independence I am not likely to have again. ",
         "gender": "Female",
         "id": "R_2Vg2vRQ9sGDU6Kw",
@@ -9519,14 +9531,13 @@
         }
       },
       {
-        "regret": "Not being more proactive in my son's fight with opioid abuse.",
+        "regret": "放弃自己不努力，沉迷过去",
         "gender": "Female",
-        "id": "R_1H5mh8KtFoa3EyM",
-        "date": "2021-07-28T13:26:47Z",
-        "age": 66,
+        "id": "R_DBMqftDhAsJochz",
+        "date": "2022-05-13T04:59:34Z",
+        "age": 22,
         "location": {
-          "state": "Delaware",
-          "country": "United States"
+          "country": "China"
         }
       },
       {
@@ -9615,16 +9626,6 @@
         "id": "R_3dLpbZwuUUCZE5a",
         "date": "2022-02-24T08:17:55Z",
         "age": 19,
-        "location": {
-          "country": "China"
-        }
-      },
-      {
-        "regret": "I regret not studying abroad right after graduating from my university. I did not want to inflict financial pains on my parents so I did not apply although I was the top student and would definitely get that chance.",
-        "gender": "Female",
-        "id": "R_24I7f4GiQpO7dNQ",
-        "date": "2022-02-20T15:04:50Z",
-        "age": 34,
         "location": {
           "country": "China"
         }
@@ -9780,6 +9781,17 @@
         }
       },
       {
+        "regret": "Not saying no in several relationships. Feeling paralyzed at the initial decision point, letting indecision make decision for me, and then not having the courage to stand up for myself. I compromised my values, repeatedly. ",
+        "gender": "Male",
+        "id": "R_3fdahm0yWmjZPLu",
+        "date": "2022-05-11T13:44:07Z",
+        "age": 67,
+        "location": {
+          "state": "Vermont",
+          "country": "United States"
+        }
+      },
+      {
         "regret": "Marrying my husband   I was desperate to have kids and was 34 and I married him knowing I wasn’t in love. Though I do not regret having kids with him. The kids are wonderful. I wish I had divorced soon after and not tried to stick it out! ",
         "gender": "Female",
         "id": "R_2Uf36BvM6ev4743",
@@ -9873,17 +9885,6 @@
         "id": "R_1rlBKgQYOh4eU4Y",
         "date": "2022-04-09T12:28:37Z",
         "age": 50,
-        "location": {
-          "state": "Vermont",
-          "country": "United States"
-        }
-      },
-      {
-        "regret": "Not telling my first boyfriend I was in love with him",
-        "gender": "Female",
-        "id": "R_3gZz6mpZtvV3fCs",
-        "date": "2022-04-04T01:27:59Z",
-        "age": 69,
         "location": {
           "state": "Vermont",
           "country": "United States"
@@ -9990,6 +9991,16 @@
         }
       },
       {
+        "regret": "I regret not fighting for myself and allowing other people to walk over me back in 2018.",
+        "gender": "Female",
+        "id": "R_ylokN2ixg25fA7D",
+        "date": "2022-05-10T03:51:17Z",
+        "age": 33,
+        "location": {
+          "country": "Philippines"
+        }
+      },
+      {
         "regret": "Wish I was a better father to my eldest daughter.",
         "gender": "Male",
         "id": "R_1ODgXIllAQZFLEu",
@@ -10075,16 +10086,6 @@
         "id": "R_Zt3bccvxC1mUQ0N",
         "date": "2022-04-10T07:05:07Z",
         "age": 20,
-        "location": {
-          "country": "Philippines"
-        }
-      },
-      {
-        "regret": "That i dont have a partner in life",
-        "gender": "Female",
-        "id": "R_31uwJvlMjePh5MW",
-        "date": "2022-04-07T16:36:54Z",
-        "age": 42,
         "location": {
           "country": "Philippines"
         }
@@ -11989,6 +11990,26 @@
         }
       },
       {
+        "regret": "I wish I had taken a chance offered to me 22 years ago. I could have had a career as a translator instead of struggling to become a teacher years after.",
+        "gender": "Female",
+        "id": "R_26mpeC7wWsPOkBQ",
+        "date": "2022-05-12T12:52:42Z",
+        "age": 54,
+        "location": {
+          "country": "Finland"
+        }
+      },
+      {
+        "regret": "I have had a good and interesting life so far. I have done many mistakes in my life but I would not change a think / day. From every mistake I have learned a valuable lesson and it has made the person I am today. I have much more empathy for other people and when I have openly admitted my mistakes people are much more easy to approach me and connect more deeply and faster. Business vice it has helped a lot, I treat people equally, it doesn´t matter if its a President or a Waste picker who I meet, I respect them both. I have boldly tried new things and jumped into to the deep end without knowing how its going to end. Life is to short to be regretting things especially when you have tried your best.",
+        "gender": "Male",
+        "id": "R_3Pbgsw0zEyUkREA",
+        "date": "2022-05-07T07:01:45Z",
+        "age": 44,
+        "location": {
+          "country": "Finland"
+        }
+      },
+      {
         "regret": "Not being patient when accepting my thesis subject.",
         "gender": "Male",
         "id": "R_oXeaZNrkatvq3qF",
@@ -12064,26 +12085,6 @@
         "id": "R_2AFtJOja2umF81X",
         "date": "2022-02-21T11:27:31Z",
         "age": 43,
-        "location": {
-          "country": "Finland"
-        }
-      },
-      {
-        "regret": "Not standing up to my mother and cutting her and the rest of my family entirely out of my life in my twenties due to their reactions after I came out.",
-        "gender": "Female",
-        "id": "R_3qHmtdU1eRPHWGB",
-        "date": "2022-02-13T07:21:06Z",
-        "age": 59,
-        "location": {
-          "country": "Finland"
-        }
-      },
-      {
-        "regret": "I regret I didn't bluntly say \"fuck off\" to intrusive men, who taught they have the right to come up to young women and state their opinions about our own or other women's appearance and demeanor. Today I call out this kind of inappropriate behaviour immediately.",
-        "gender": "Nonbinary",
-        "id": "R_1r8ozzgA39Idddr",
-        "date": "2021-10-10T20:53:04Z",
-        "age": 38,
         "location": {
           "country": "Finland"
         }
@@ -13738,6 +13739,16 @@
         }
       },
       {
+        "regret": "qwertyuiop",
+        "gender": "Male",
+        "id": "R_PYbAhNsRaH8Yh8d",
+        "date": "2022-05-05T02:30:41Z",
+        "age": 45,
+        "location": {
+          "country": "Afghanistan"
+        }
+      },
+      {
         "regret": "Giving up a career in music.",
         "gender": "Male",
         "id": "R_2z6ehlf9b1y0dWT",
@@ -13822,16 +13833,6 @@
         "gender": "Female",
         "id": "R_10NvAzRJID45U92",
         "date": "2021-03-28T21:59:20Z",
-        "age": 16,
-        "location": {
-          "country": "Afghanistan"
-        }
-      },
-      {
-        "regret": "ㄹㄹㅁㅈㅇㅊㅌㄴㄱ호",
-        "gender": "Prefer not to say",
-        "id": "R_2Ui2UkG80ZMZk1c",
-        "date": "2020-12-16T04:35:30Z",
         "age": 16,
         "location": {
           "country": "Afghanistan"
@@ -14647,6 +14648,16 @@
         }
       },
       {
+        "regret": "Not appreciating the small things in life",
+        "gender": "Male",
+        "id": "R_3pfG8lHOiqyJGxy",
+        "date": "2022-05-09T16:15:21Z",
+        "age": 17,
+        "location": {
+          "country": "Oman"
+        }
+      },
+      {
         "regret": "i have no regrets iin my life",
         "gender": "Male",
         "id": "R_2SJN9ylW2LymHQ8",
@@ -14797,6 +14808,16 @@
         }
       },
       {
+        "regret": "I regret being afraid of reading The Power of Regret immediately when it came out. Bravo Dan! ",
+        "gender": "Male",
+        "id": "R_3fwcjKtsE7Wuvhb",
+        "date": "2022-05-12T13:30:44Z",
+        "age": 52,
+        "location": {
+          "country": "Georgia"
+        }
+      },
+      {
         "regret": "I didn’t go off to college as planned.\nDoing every single thing I was asked or told to do and then getting the bad end of the stick, to be hurt.",
         "gender": "Female",
         "id": "R_2Setq9kzfThAgfq",
@@ -14878,8 +14899,8 @@
       }
     ],
     "locationCount": 187,
-    "regretCount": 1358,
-    "previousRegretCount": 1355,
+    "regretCount": 1360,
+    "previousRegretCount": 1358,
     "previousLocationCount": 187
   }
 }
