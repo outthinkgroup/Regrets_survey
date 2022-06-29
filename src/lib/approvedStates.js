@@ -1,6 +1,6 @@
 module.exports = [
   "Yukon",
-  "British",
+  "British Columbia",
   "Alberta",
   "Newfoundland And Labrador",
   "Quebec",
