@@ -11,7 +11,7 @@ const Header = ({ siteTitle, className }) => (
       <h1>
         <Link to="/">{siteTitle}</Link>
       </h1>
-      <Menu />
+      
     </div>
   </header>
 );
